@@ -1,19 +1,17 @@
-# Project Title
-
-TBD.
+# S2A System-Scale Analysis: Hydrogen Delivery Costs
 
 ## Description
-This folder contains the scripts to run the systems analysis and make plots appearing in the manuscript [title TBD].
+This folder contains the scripts to run the system-scale analysis and make the plots for the manuscript "Systems-to-Atoms Examination of Formic Acid as a Liquid Organic Hydrogen Carrier in Transportation Applications".
 Input files, raw output files, and plots are also included.  
 
 * `cross-scale data handoff`: Outputs from material and component modeling that are passed to the system scale and/or used to make plots.
-* `inputs`: Input files to run systems analysis.
+* `inputs`: Input files to run the system-scale analysis.
 * `outputs`: Folders containing raw output files.
 * `plots`: Plots and scripts used to make these plots.
-* `requirements.txt`: List of Python packages needed to run the systems analysis.
+* `requirements.txt`: List of Python packages needed to run the system-scale analysis.
 * `s2a_sys.yml`: Environment file.
-* `s2a_systems_functions.py`: Systems analysis functions, including mass and energy balances, equipment sizing and costing, levelized cost of hydrogen for hydrogen delivery via compressed hydrogen, liquid hydrogen, and formic acid.
-* `s2a_systems_run_analysis.ipynb`: Script used to run the systems analysis for user-specified inputs (e.g., in an `input params_[scenario group].xlsx` file). Imports `s2a_systems_functions.py`.
+* `s2a_systems_functions.py`: Functions, including mass and energy balances, equipment sizing and costing, levelized cost of hydrogen for hydrogen delivery via compressed hydrogen, liquid hydrogen, and formic acid.
+* `s2a_systems_run_analysis.ipynb`: Script used to run the system-scale analysis for user-specified inputs (e.g., in an `input params_[scenario group].xlsx` file). Imports `s2a_systems_functions.py`.
 
 ## Getting Started
 ### [For first-time users] Create the conda environment
