@@ -3004,6 +3004,7 @@ def calcs(
             'run #' : 0,
             'output dollar year' : 2022,
             'target station capacity (kg/day)' : 1000.0,
+            'station annual capacity factor' : 1.0,
             'target number of stations' : 10,
             'one-way delivery distance (mile)' : 100.0,
             'electricity cost ($/kWh)' : 0.1709,
@@ -3081,6 +3082,11 @@ def calcs(
         'target station capacity (kg/day)'
         ]
     
+    # hydrogen refueling station annual capacity factor
+    stn_cap_factor = dict_input_params[
+        'station annual capacity factor'
+        ]
+
     # target number of hydrogen refueling stations
     target_num_stns = dict_input_params[
         'target number of stations'
@@ -3400,7 +3406,8 @@ def calcs(
     
     # calculate total amount of hydrogen delivered per year (kg H2/yr) 
     # to all stations
-    tot_H2_deliv_kg_per_yr = tot_H2_deliv_kg_per_day * day_per_yr
+    tot_H2_deliv_kg_per_yr = tot_H2_deliv_kg_per_day * \
+        day_per_yr * stn_cap_factor
         
     # calculate hydrogen mass flowrate (kg/s) at each refueling station
     STN_H2_flow_kg_per_sec = \
@@ -3452,7 +3459,7 @@ def calcs(
     # calculate amount of CO2 produced per year (ktonne/yr) at each station
     FAH2_STN_CO2_flow_kt_per_yr = \
         FAH2_STN_CO2_flow_kg_per_day / \
-        kg_per_tonne / tonne_per_kt * day_per_yr
+        kg_per_tonne / tonne_per_kt * day_per_yr * stn_cap_factor
         
     # ------------------------------------------------------------------------
     # general terminal mass balance
@@ -3461,6 +3468,10 @@ def calcs(
     # (applies to compressed or liquid hydrogen terminals)
     # TODO: incorporate hydrogen losses
     TML_H2_flow_kg_per_day = tot_H2_deliv_kg_per_day
+    
+    # calculate hydrogen mass flowrate (kg H2/yr) at terminal  
+    TML_H2_flow_kg_per_yr = TML_H2_flow_kg_per_day * \
+        day_per_yr * stn_cap_factor
     
     # calculate hydrogen mass flowrate (kg/s) at terminal
     # (applies to compressed or liquid hydrogen terminals)
@@ -3531,8 +3542,7 @@ def calcs(
     
     # calculate hydrogen purchase cost ($/yr)   
     GH2_TML_H2_purc_cost_usd_per_yr = \
-        purc_cost_H2_usd_per_kg * TML_H2_flow_kg_per_day * \
-        day_per_yr
+        purc_cost_H2_usd_per_kg * TML_H2_flow_kg_per_yr
 
     # calculate hydrogen purchase cost ($/kg H2)   
     GH2_TML_H2_purc_cost_usd_per_kg = \
@@ -3567,8 +3577,8 @@ def calcs(
 
     # calculate emissions of purchased hydrogen (kg CO2-eq/kg H2)
     GH2_TML_H2_purc_ghg_kg_CO2_per_kg = \
-        H2_prod_ghg_kg_CO2_per_kg * TML_H2_flow_kg_per_day * \
-        day_per_yr / tot_H2_deliv_kg_per_yr
+        H2_prod_ghg_kg_CO2_per_kg * TML_H2_flow_kg_per_day / \
+        tot_H2_deliv_kg_per_day
     
     # convert emissions of purchased hydrogen to g CO2-eq/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
@@ -4571,7 +4581,7 @@ def calcs(
     # calculate number of deliveries (truck-trips) per year for compressed 
     # gaseous hydrogen
     GH2_truck_num_delivs_per_yr = \
-        GH2_truck_num_delivs_per_day * day_per_yr 
+        GH2_truck_num_delivs_per_day * day_per_yr * stn_cap_factor
     
     # calculate truck annual O&M cost ($/yr, output dollar year)
     GH2_truck_om_cost_usd_per_yr, \
@@ -5546,8 +5556,7 @@ def calcs(
     
     # calculate hydrogen purchase cost ($/yr)   
     LH2_TML_H2_purc_cost_usd_per_yr = \
-        purc_cost_H2_usd_per_kg * TML_H2_flow_kg_per_day * \
-        day_per_yr
+        purc_cost_H2_usd_per_kg * TML_H2_flow_kg_per_yr
         
     # calculate hydrogen purchase cost ($/kg H2)   
     LH2_TML_H2_purc_cost_usd_per_kg = \
@@ -5582,8 +5591,8 @@ def calcs(
 
     # calculate emissions of purchased hydrogen (kg CO2-eq/kg H2)
     LH2_TML_H2_purc_ghg_kg_CO2_per_kg = \
-        H2_prod_ghg_kg_CO2_per_kg * TML_H2_flow_kg_per_day * \
-        day_per_yr / tot_H2_deliv_kg_per_yr
+        H2_prod_ghg_kg_CO2_per_kg * TML_H2_flow_kg_per_day / \
+        tot_H2_deliv_kg_per_day
     
     # convert emissions of purchased hydrogen to g CO2-eq/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
@@ -6569,7 +6578,7 @@ def calcs(
     # calculate number of deliveries (truck-trips) per year for liquid 
     # hydrogen
     LH2_truck_num_delivs_per_yr = \
-        LH2_truck_num_delivs_per_day * day_per_yr 
+        LH2_truck_num_delivs_per_day * day_per_yr * stn_cap_factor
     
     # calculate truck annual O&M cost ($/yr, output dollar year)
     LH2_truck_om_cost_usd_per_yr, \
@@ -7581,7 +7590,7 @@ def calcs(
         # calculate formic acid purchase cost ($/yr)   
         FAH2_TML_FA_purc_cost_usd_per_yr = \
             purc_cost_FA_usd_per_kg * FAH2_TML_FA_flow_kg_per_day * \
-            day_per_yr
+            day_per_yr * stn_cap_factor
     
     # calculate formic acid production cost ($/kg H2)   
     FAH2_TML_FA_purc_cost_usd_per_kg = \
@@ -7623,8 +7632,8 @@ def calcs(
         
         # calculate emissions of purchased formic acid (kg CO2-eq/kg H2)
         FAH2_TML_FA_purc_ghg_kg_CO2_per_kg = \
-            FA_prod_ghg_kg_CO2_per_kg * FAH2_TML_FA_flow_kg_per_day * \
-            day_per_yr / tot_H2_deliv_kg_per_yr    
+            FA_prod_ghg_kg_CO2_per_kg * FAH2_TML_FA_flow_kg_per_day / \
+            tot_H2_deliv_kg_per_day    
     
     # convert emissions of purchased formic acid to g CO2-eq/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
@@ -7669,7 +7678,7 @@ def calcs(
         # calculate hydrogen purchase cost ($/yr)   
         FAH2_TML_H2_purc_cost_usd_per_yr = \
             purc_cost_H2_usd_per_kg * FAH2_TML_H2_flow_kg_per_day * \
-            day_per_yr
+            day_per_yr * stn_cap_factor
     
     # calculate hydrogen production cost ($/kg H2)   
     FAH2_TML_H2_purc_cost_usd_per_kg = \
@@ -7711,8 +7720,8 @@ def calcs(
         
         # calculate emissions of purchased hydrogen (kg CO2-eq/kg H2)
         FAH2_TML_H2_purc_ghg_kg_CO2_per_kg = \
-            H2_prod_ghg_kg_CO2_per_kg * FAH2_TML_H2_flow_kg_per_day * \
-            day_per_yr / tot_H2_deliv_kg_per_yr    
+            H2_prod_ghg_kg_CO2_per_kg * FAH2_TML_H2_flow_kg_per_day / \
+            tot_H2_deliv_kg_per_day    
                 
     # convert emissions of purchased hydrogen to g CO2-eq/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
@@ -9794,7 +9803,7 @@ def calcs(
     
     # calculate number of deliveries (truck-trips) per year for formic acid
     FAH2_truck_num_delivs_per_yr = \
-        FAH2_truck_num_delivs_per_day * day_per_yr 
+        FAH2_truck_num_delivs_per_day * day_per_yr * stn_cap_factor
             
     # calculate formic acid truck capital cost ($, output dollar year) 
     FAH2_truck_cap_cost_usd, \
