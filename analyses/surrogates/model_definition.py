@@ -11,6 +11,9 @@ from omlt.linear_tree import LinearTreeGDPFormulation, LinearTreeDefinition
 
 from lineartree.lineartree import tree_from_json
 
+import pathlib
+this_file = pathlib.Path(__file__).parent.resolve()
+
 def model_initializer() -> pyo.ConcreteModel:
     # Initialize Pyomo model
     model = pyo.ConcreteModel()
@@ -21,9 +24,9 @@ def model_initializer() -> pyo.ConcreteModel:
     model.nanoparticle_block = OmltBlock()
 
     # Load surrogate models into Python
-    component_surrogate = tree_from_json('models/component_surrogate.json')
-    costing_surrogate = tree_from_json('models/costing_surrogate.json')
-    nanoparticle_surrogate = tree_from_json('models/nanoparticle_surrogate.json')
+    component_surrogate = tree_from_json(this_file/pathlib.Path('models/component_surrogate.json'))
+    costing_surrogate = tree_from_json(this_file/pathlib.Path('models/costing_surrogate.json'))
+    nanoparticle_surrogate = tree_from_json(this_file/pathlib.Path('models/nanoparticle_surrogate.json'))
 
     # Load surrogate models into OMLT
     component_surrogate = LinearTreeDefinition(component_surrogate, unscaled_input_bounds = {
@@ -148,8 +151,8 @@ def model_initializer() -> pyo.ConcreteModel:
     return model
 
 
-def solve(model, tee = True):
-    solver = pyo.SolverFactory('glpk')
+def solve(model, tee = True, solver = 'glpk'):
+    solver = pyo.SolverFactory(solver)
     solution = solver.solve(model, tee = tee)
     return solution
 
