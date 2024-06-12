@@ -1,2 +1,4 @@
 import systems2atoms as s2a
-print(s2a.hydrogen_delivery_costs.calcs())
+
+def test_hydrogen_delivery_costs():
+    print(s2a.hydrogen_delivery_costs.calcs())
