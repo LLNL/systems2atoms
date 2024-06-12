@@ -13,6 +13,9 @@ import os
 import math
 import pandas as pd
 
+import pathlib
+this_file = pathlib.Path(__file__).parent.resolve()
+
 #%% INPUT PARAMETERS
 
 # Parameters here are considered somewhat fixed (e.g., tied to design
@@ -241,7 +244,7 @@ FAH2_dehydr_catal_depr_yr = 3.0
 
 # MACRS depreciation period table
 # read in MACRS depreciation period table (source: HDSAM V3.1)
-df_macrs_depr_idx = pd.read_csv('inputs/MACRS depreciation period.csv')
+df_macrs_depr_idx = pd.read_csv(this_file/pathlib.Path('inputs/MACRS depreciation period.csv'))
 
 #%% CONSTANTS AND CONVERSIONS
 
@@ -326,7 +329,7 @@ sec_per_hr = 3600.0
 # dollar year indices
 
 # read in cost indices for dollar year conversion
-df_cost_idx = pd.read_csv('inputs/cost_indices_2001_2022.csv')
+df_cost_idx = pd.read_csv(this_file/pathlib.Path('inputs/cost_indices_2001_2022.csv'))
 
 # create dataframe of CPI-U by year
 cpi_u = df_cost_idx[['Year', 'CPI-U']].copy()
@@ -341,7 +344,7 @@ cepci.rename(columns = {'CEPCI': 'Cost Index'}, inplace = True)
 
 # read in all-in liquid CO2 trucking cost
 df_co2 = pd.read_csv(
-    'inputs/liq_co2_trucking_costs.csv', 
+    this_file/pathlib.Path('inputs/liq_co2_trucking_costs.csv'), 
     usecols = [
         'Output Dollar Year (User Input)', 
         'Size (kt-CO2/y)', 

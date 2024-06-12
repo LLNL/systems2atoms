@@ -21,15 +21,31 @@ reactions. This includes: production, storage, distribution, and use as a fuel;
 the development of related technologies; and compounds and mixtures in gaseous,
 liquid, and solid states.
 
-## Requirements
+## Requirements, Installation, and Quickstart
 
 Python 3.8 or higher is recommended.
 
-The models in systems2atoms are intended to work with Pyomo
-(http://www.pyomo.org/), a Python-based open-source software package that
-supports a diverse set of optimization capabilities.  Consequently, it is
-strongly encouraged that the Python version is one that is tested and supported
-by the latest Pyomo version.
+Individual submodules (e.g. `s2a.surrogates`, `s2a.hydrogen_delivery_costs`) have associated requirements. Please
+check the READMEs for the individual submodules to find the requirements.
+
+Install this package:
+```
+pip install git+https://github.com/LLNL/systems2atoms
+```
+
+Quick demo of surrogate model optimization (requires [`s2a.surrogates` requirements](analyses/surrogates/README.md)):
+```python
+import systems2atoms as s2a
+model = s2a.surrogates.model_initializer()
+s2a.surrogates.solve(model, solver='glpk')
+s2a.surrogates.pprint(model)
+```
+
+Quick demo of hydrogen delivery cost calculations:
+```python
+import systems2atoms as s2a
+print(s2a.hydrogen_delivery_costs.calcs())
+```
 
 
 ## Contributing
