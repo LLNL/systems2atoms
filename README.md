@@ -28,6 +28,7 @@ Python 3.8 or higher is recommended.
 Individual submodules (e.g. `s2a.surrogates`, `s2a.hydrogen_delivery_costs`) have associated requirements. Please
 check the READMEs for the individual submodules to find the requirements.
 
+Install this package:
 ```
 pip install git+https://github.com/LLNL/systems2atoms
 ```
