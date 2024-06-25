@@ -175,18 +175,6 @@ state_taxes = 0.06
 federal_taxes = 0.35
 total_tax_rate = federal_taxes + state_taxes * (1 - federal_taxes)
 
-# electrolyzer voltage (V) for formic acid production
-# hydrogen oxidation: 1.27 V (= 2.5 - 1.23)
-# water oxidation: 2.5 V
-# references: Li et al., 2021, ACS Sustain. Chem. Eng.; 
-# Ramdin et al., 2019, Ind. Eng. Chem. Res.; 
-# Crandall et al., 2023, Energy Fuels
-electr_volt_V = 1.27
-# electr_volt_V = 2.5
-
-# electrolyzer current density (A/m^2) for formic acid production
-electr_curr_dens_A_per_sq_m = 2000.0
-
 # ----------------------------------------------------------------------------
 # cost levelization
 
@@ -3025,6 +3013,8 @@ def calcs(
             'hydr. catalyst cost ($/kg)' : 5450.0,
             'hydr. catalyst lifetime (yr)' : 1.0,
             'hydr. reactor energy (unit TBD)' : 0.0,
+            'hydr. electrolyzer voltage (V)' : 1.27,
+            'hydr. electrolyzer current density (A/m^2)' : 2000.0,
             'hydr. separator energy (unit TBD)' : 0.0,
             'CO2 electrolyzer purchase cost ($/m^2)' : 5250.0,
             'terminal formic acid storage amount (days)' : 0.25,
@@ -3189,7 +3179,17 @@ def calcs(
     FAH2_hydr_react_energy = dict_input_params[
         'hydr. reactor energy (unit TBD)'
         ]
-
+    
+    # hydrogenation electrolyzer voltage (V)
+    hydr_electr_volt_V = dict_input_params[
+        'hydr. electrolyzer voltage (V)'
+        ]
+    
+    # hydrogenation electrolyzer current density (A/m^2)
+    hydr_electr_curr_dens_A_per_sq_m = dict_input_params[
+        'hydr. electrolyzer current density (A/m^2)'
+        ]
+    
     # hydrogenation separator energy requirement (unit TBD)
     FAH2_hydr_sep_energy = dict_input_params[
         'hydr. separator energy (unit TBD)'
@@ -8098,7 +8098,7 @@ def calcs(
 
         # CO2 electrolyzer energy (kJ/mol formic acid)
         hydr_electr_elec_kJ_per_mol_FA = \
-            electr_volt_V * e_per_mol_FA * \
+            hydr_electr_volt_V * e_per_mol_FA * \
             faraday_const_C_per_mol_e / J_per_kJ
         
         # calculate CO2 electrolyzer power (kW)
@@ -8230,7 +8230,7 @@ def calcs(
         # calculate electrolyzer area (m^2) required
         FAH2_TML_hydr_electr_area_sq_m = \
             e_per_mol_FA * faraday_const_C_per_mol_e / \
-            electr_curr_dens_A_per_sq_m * FAH2_TML_FA_flow_mol_per_sec
+            hydr_electr_curr_dens_A_per_sq_m * FAH2_TML_FA_flow_mol_per_sec
                     
         # calculate CO2 electrolyzer installed cost ($) and annual 
         # O&M cost ($/yr), both in output dollar year
