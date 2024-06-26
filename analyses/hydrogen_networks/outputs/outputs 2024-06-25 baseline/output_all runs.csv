@@ -11,10 +11,16 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 0,all,all,all,all,all,input parameter,electricity emission factor,kg CO2/kWh,0.228
 0,all,all,all,all,all,input parameter,diesel emission factor,kg CO2/gallon,10.18
 0,all,all,all,all,all,input parameter,hydrogen prod. emission factor,kg CO2-eq/kg,0
-0,all,all,all,all,all,input parameter,formic acid prod. emission factor,kg CO2-eq/kg,0
+0,all,all,all,all,all,input parameter,LOHC prod. emission factor,kg CO2-eq/kg,0
 0,all,all,all,all,all,input parameter,hydrogen purchase cost,$/kg,0.31
-0,all,all,all,all,all,input parameter,formic acid purchase cost,$/kg,0
-0,all,all,all,all,all,input parameter,formic acid production pathway,-,electro
+0,all,all,all,all,all,input parameter,LOHC purchase cost,$/kg,0
+0,all,all,all,all,all,input parameter,LOHC name,-,formic acid
+0,all,all,all,all,all,input parameter,LOHC molar mass,kg/kmol,46.025
+0,all,all,all,all,all,input parameter,LOHC density,kg/m^3,1220
+0,all,all,all,all,all,input parameter,stoic. ratio,mol H2/mol LOHC,1
+0,all,all,all,all,all,input parameter,stoic. ratio,mol CO2/mol LOHC,1
+0,all,all,all,all,all,input parameter,stoic. ratio,mol e/mol LOHC,2
+0,all,all,all,all,all,input parameter,LOHC production pathway,-,electro
 0,all,all,all,all,all,input parameter,hydr. reaction temperature,K,366.15
 0,all,all,all,all,all,input parameter,hydr. reaction pressure,bar,105
 0,all,all,all,all,all,input parameter,hydr. reaction yield,-,1
@@ -28,7 +34,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 0,all,all,all,all,all,input parameter,hydr. electrolyzer current density,A/m^2,2000
 0,all,all,all,all,all,input parameter,hydr. separator energy,unit TBD,0
 0,all,all,all,all,all,input parameter,CO2 electrolyzer purchase cost,$/m^2,5250
-0,all,all,all,all,all,input parameter,terminal formic acid storage amount,days,0.25
+0,all,all,all,all,all,input parameter,terminal LOHC storage amount,days,0.25
 0,all,all,all,all,all,input parameter,dehydr. reaction temperature,K,300
 0,all,all,all,all,all,input parameter,dehydr. reaction pressure,bar,1
 0,all,all,all,all,all,input parameter,dehydr. reaction yield,-,0.9999
@@ -39,7 +45,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 0,all,all,all,all,all,input parameter,dehydr. catalyst lifetime,yr,1
 0,all,all,all,all,all,input parameter,dehydr. reactor energy,unit TBD,0
 0,all,all,all,all,all,input parameter,dehydr. gas/liquid separator energy,unit TBD,0
-0,all,all,all,all,all,input parameter,station formic acid storage amount,days,1
+0,all,all,all,all,all,input parameter,station LOHC storage amount,days,1
 0,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,1131500.0
 0,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.31
 0,compressed hydrogen,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
@@ -218,10 +224,10 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 0,liquid hydrogen,reconditioning,refueling station,vaporization,vaporizer,capital cost,levelized capital cost,$/kg H2,0.032331216374550345
 0,liquid hydrogen,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,721413.1412177967
 0,liquid hydrogen,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.1976474359500813
-0,LOHC - formic acid,production,terminal,purchase,formic acid purchase,O&M cost,purchase cost,$/yr,0.0
-0,LOHC - formic acid,production,terminal,purchase,formic acid purchase,O&M cost,purchase cost,$/kg H2,0.0
-0,LOHC - formic acid,production,terminal,purchase,formic acid purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
-0,LOHC - formic acid,production,terminal,purchase,formic acid purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
+0,LOHC - formic acid,production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/yr,0.0
+0,LOHC - formic acid,production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/kg H2,0.0
+0,LOHC - formic acid,production,terminal,purchase,LOHC purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
+0,LOHC - formic acid,production,terminal,purchase,LOHC purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
 0,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,1131613.1613161315
 0,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.31003100310031
 0,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
@@ -440,10 +446,16 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 1,all,all,all,all,all,input parameter,electricity emission factor,kg CO2/kWh,0.0
 1,all,all,all,all,all,input parameter,diesel emission factor,kg CO2/gallon,10.18
 1,all,all,all,all,all,input parameter,hydrogen prod. emission factor,kg CO2-eq/kg,0
-1,all,all,all,all,all,input parameter,formic acid prod. emission factor,kg CO2-eq/kg,0
+1,all,all,all,all,all,input parameter,LOHC prod. emission factor,kg CO2-eq/kg,0
 1,all,all,all,all,all,input parameter,hydrogen purchase cost,$/kg,0.0
-1,all,all,all,all,all,input parameter,formic acid purchase cost,$/kg,0
-1,all,all,all,all,all,input parameter,formic acid production pathway,-,purchase
+1,all,all,all,all,all,input parameter,LOHC purchase cost,$/kg,0
+1,all,all,all,all,all,input parameter,LOHC name,-,formic acid
+1,all,all,all,all,all,input parameter,LOHC molar mass,kg/kmol,46.025
+1,all,all,all,all,all,input parameter,LOHC density,kg/m^3,1220
+1,all,all,all,all,all,input parameter,stoic. ratio,mol H2/mol LOHC,1
+1,all,all,all,all,all,input parameter,stoic. ratio,mol CO2/mol LOHC,1
+1,all,all,all,all,all,input parameter,stoic. ratio,mol e/mol LOHC,2
+1,all,all,all,all,all,input parameter,LOHC production pathway,-,purchase
 1,all,all,all,all,all,input parameter,hydr. reaction temperature,K,366.15
 1,all,all,all,all,all,input parameter,hydr. reaction pressure,bar,105
 1,all,all,all,all,all,input parameter,hydr. reaction yield,-,1
@@ -457,7 +469,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 1,all,all,all,all,all,input parameter,hydr. electrolyzer current density,A/m^2,2000
 1,all,all,all,all,all,input parameter,hydr. separator energy,unit TBD,0
 1,all,all,all,all,all,input parameter,CO2 electrolyzer purchase cost,$/m^2,5250
-1,all,all,all,all,all,input parameter,terminal formic acid storage amount,days,0.25
+1,all,all,all,all,all,input parameter,terminal LOHC storage amount,days,0.25
 1,all,all,all,all,all,input parameter,dehydr. reaction temperature,K,300
 1,all,all,all,all,all,input parameter,dehydr. reaction pressure,bar,1
 1,all,all,all,all,all,input parameter,dehydr. reaction yield,-,0.9999
@@ -468,7 +480,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 1,all,all,all,all,all,input parameter,dehydr. catalyst lifetime,yr,1
 1,all,all,all,all,all,input parameter,dehydr. reactor energy,unit TBD,0
 1,all,all,all,all,all,input parameter,dehydr. gas/liquid separator energy,unit TBD,0
-1,all,all,all,all,all,input parameter,station formic acid storage amount,days,1
+1,all,all,all,all,all,input parameter,station LOHC storage amount,days,1
 1,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,0.0
 1,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.0
 1,compressed hydrogen,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
@@ -647,10 +659,10 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 1,liquid hydrogen,reconditioning,refueling station,vaporization,vaporizer,capital cost,levelized capital cost,$/kg H2,0.032331216374550345
 1,liquid hydrogen,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,721413.1412177967
 1,liquid hydrogen,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.1976474359500813
-1,LOHC - formic acid,production,terminal,purchase,formic acid purchase,O&M cost,purchase cost,$/yr,0.0
-1,LOHC - formic acid,production,terminal,purchase,formic acid purchase,O&M cost,purchase cost,$/kg H2,0.0
-1,LOHC - formic acid,production,terminal,purchase,formic acid purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
-1,LOHC - formic acid,production,terminal,purchase,formic acid purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
+1,LOHC - formic acid,production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/yr,0.0
+1,LOHC - formic acid,production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/kg H2,0.0
+1,LOHC - formic acid,production,terminal,purchase,LOHC purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
+1,LOHC - formic acid,production,terminal,purchase,LOHC purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
 1,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,0.0
 1,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.0
 1,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
@@ -869,10 +881,16 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 2,all,all,all,all,all,input parameter,electricity emission factor,kg CO2/kWh,0.0
 2,all,all,all,all,all,input parameter,diesel emission factor,kg CO2/gallon,10.18
 2,all,all,all,all,all,input parameter,hydrogen prod. emission factor,kg CO2-eq/kg,0
-2,all,all,all,all,all,input parameter,formic acid prod. emission factor,kg CO2-eq/kg,0
+2,all,all,all,all,all,input parameter,LOHC prod. emission factor,kg CO2-eq/kg,0
 2,all,all,all,all,all,input parameter,hydrogen purchase cost,$/kg,0.31
-2,all,all,all,all,all,input parameter,formic acid purchase cost,$/kg,0
-2,all,all,all,all,all,input parameter,formic acid production pathway,-,electro
+2,all,all,all,all,all,input parameter,LOHC purchase cost,$/kg,0
+2,all,all,all,all,all,input parameter,LOHC name,-,formic acid
+2,all,all,all,all,all,input parameter,LOHC molar mass,kg/kmol,46.025
+2,all,all,all,all,all,input parameter,LOHC density,kg/m^3,1220
+2,all,all,all,all,all,input parameter,stoic. ratio,mol H2/mol LOHC,1
+2,all,all,all,all,all,input parameter,stoic. ratio,mol CO2/mol LOHC,1
+2,all,all,all,all,all,input parameter,stoic. ratio,mol e/mol LOHC,2
+2,all,all,all,all,all,input parameter,LOHC production pathway,-,electro
 2,all,all,all,all,all,input parameter,hydr. reaction temperature,K,366.15
 2,all,all,all,all,all,input parameter,hydr. reaction pressure,bar,105
 2,all,all,all,all,all,input parameter,hydr. reaction yield,-,1
@@ -886,7 +904,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 2,all,all,all,all,all,input parameter,hydr. electrolyzer current density,A/m^2,2000
 2,all,all,all,all,all,input parameter,hydr. separator energy,unit TBD,0
 2,all,all,all,all,all,input parameter,CO2 electrolyzer purchase cost,$/m^2,5250
-2,all,all,all,all,all,input parameter,terminal formic acid storage amount,days,0.25
+2,all,all,all,all,all,input parameter,terminal LOHC storage amount,days,0.25
 2,all,all,all,all,all,input parameter,dehydr. reaction temperature,K,300
 2,all,all,all,all,all,input parameter,dehydr. reaction pressure,bar,1
 2,all,all,all,all,all,input parameter,dehydr. reaction yield,-,0.9999
@@ -897,7 +915,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 2,all,all,all,all,all,input parameter,dehydr. catalyst lifetime,yr,1
 2,all,all,all,all,all,input parameter,dehydr. reactor energy,unit TBD,0
 2,all,all,all,all,all,input parameter,dehydr. gas/liquid separator energy,unit TBD,0
-2,all,all,all,all,all,input parameter,station formic acid storage amount,days,1
+2,all,all,all,all,all,input parameter,station LOHC storage amount,days,1
 2,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,1131500.0
 2,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.31
 2,compressed hydrogen,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
@@ -1076,10 +1094,10 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 2,liquid hydrogen,reconditioning,refueling station,vaporization,vaporizer,capital cost,levelized capital cost,$/kg H2,0.032331216374550345
 2,liquid hydrogen,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,721413.1412177967
 2,liquid hydrogen,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.1976474359500813
-2,LOHC - formic acid,production,terminal,purchase,formic acid purchase,O&M cost,purchase cost,$/yr,0.0
-2,LOHC - formic acid,production,terminal,purchase,formic acid purchase,O&M cost,purchase cost,$/kg H2,0.0
-2,LOHC - formic acid,production,terminal,purchase,formic acid purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
-2,LOHC - formic acid,production,terminal,purchase,formic acid purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
+2,LOHC - formic acid,production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/yr,0.0
+2,LOHC - formic acid,production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/kg H2,0.0
+2,LOHC - formic acid,production,terminal,purchase,LOHC purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
+2,LOHC - formic acid,production,terminal,purchase,LOHC purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
 2,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,1131613.1613161315
 2,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.31003100310031
 2,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
@@ -1298,10 +1316,16 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 3,all,all,all,all,all,input parameter,electricity emission factor,kg CO2/kWh,0.0
 3,all,all,all,all,all,input parameter,diesel emission factor,kg CO2/gallon,10.18
 3,all,all,all,all,all,input parameter,hydrogen prod. emission factor,kg CO2-eq/kg,0
-3,all,all,all,all,all,input parameter,formic acid prod. emission factor,kg CO2-eq/kg,0
+3,all,all,all,all,all,input parameter,LOHC prod. emission factor,kg CO2-eq/kg,0
 3,all,all,all,all,all,input parameter,hydrogen purchase cost,$/kg,0.31
-3,all,all,all,all,all,input parameter,formic acid purchase cost,$/kg,0
-3,all,all,all,all,all,input parameter,formic acid production pathway,-,electro
+3,all,all,all,all,all,input parameter,LOHC purchase cost,$/kg,0
+3,all,all,all,all,all,input parameter,LOHC name,-,formic acid
+3,all,all,all,all,all,input parameter,LOHC molar mass,kg/kmol,46.025
+3,all,all,all,all,all,input parameter,LOHC density,kg/m^3,1220
+3,all,all,all,all,all,input parameter,stoic. ratio,mol H2/mol LOHC,1
+3,all,all,all,all,all,input parameter,stoic. ratio,mol CO2/mol LOHC,1
+3,all,all,all,all,all,input parameter,stoic. ratio,mol e/mol LOHC,2
+3,all,all,all,all,all,input parameter,LOHC production pathway,-,electro
 3,all,all,all,all,all,input parameter,hydr. reaction temperature,K,366.15
 3,all,all,all,all,all,input parameter,hydr. reaction pressure,bar,105
 3,all,all,all,all,all,input parameter,hydr. reaction yield,-,1
@@ -1315,7 +1339,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 3,all,all,all,all,all,input parameter,hydr. electrolyzer current density,A/m^2,2000
 3,all,all,all,all,all,input parameter,hydr. separator energy,unit TBD,0
 3,all,all,all,all,all,input parameter,CO2 electrolyzer purchase cost,$/m^2,5250
-3,all,all,all,all,all,input parameter,terminal formic acid storage amount,days,0.25
+3,all,all,all,all,all,input parameter,terminal LOHC storage amount,days,0.25
 3,all,all,all,all,all,input parameter,dehydr. reaction temperature,K,300
 3,all,all,all,all,all,input parameter,dehydr. reaction pressure,bar,1
 3,all,all,all,all,all,input parameter,dehydr. reaction yield,-,0.9999
@@ -1326,7 +1350,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 3,all,all,all,all,all,input parameter,dehydr. catalyst lifetime,yr,1
 3,all,all,all,all,all,input parameter,dehydr. reactor energy,unit TBD,0
 3,all,all,all,all,all,input parameter,dehydr. gas/liquid separator energy,unit TBD,0
-3,all,all,all,all,all,input parameter,station formic acid storage amount,days,1
+3,all,all,all,all,all,input parameter,station LOHC storage amount,days,1
 3,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,905200.0
 3,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.31
 3,compressed hydrogen,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
@@ -1505,10 +1529,10 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 3,liquid hydrogen,reconditioning,refueling station,vaporization,vaporizer,capital cost,levelized capital cost,$/kg H2,0.040414020468187935
 3,liquid hydrogen,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,721413.1412177967
 3,liquid hydrogen,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.24705929493760162
-3,LOHC - formic acid,production,terminal,purchase,formic acid purchase,O&M cost,purchase cost,$/yr,0.0
-3,LOHC - formic acid,production,terminal,purchase,formic acid purchase,O&M cost,purchase cost,$/kg H2,0.0
-3,LOHC - formic acid,production,terminal,purchase,formic acid purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
-3,LOHC - formic acid,production,terminal,purchase,formic acid purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
+3,LOHC - formic acid,production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/yr,0.0
+3,LOHC - formic acid,production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/kg H2,0.0
+3,LOHC - formic acid,production,terminal,purchase,LOHC purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
+3,LOHC - formic acid,production,terminal,purchase,LOHC purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
 3,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,905290.5290529053
 3,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.31003100310031
 3,LOHC - formic acid,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0

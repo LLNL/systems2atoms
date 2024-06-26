@@ -11,10 +11,16 @@ all,all,all,all,all,input parameter,diesel cost,$/gallon,6.028
 all,all,all,all,all,input parameter,electricity emission factor,kg CO2/kWh,0.228
 all,all,all,all,all,input parameter,diesel emission factor,kg CO2/gallon,10.18
 all,all,all,all,all,input parameter,hydrogen prod. emission factor,kg CO2-eq/kg,0
-all,all,all,all,all,input parameter,formic acid prod. emission factor,kg CO2-eq/kg,0
+all,all,all,all,all,input parameter,LOHC prod. emission factor,kg CO2-eq/kg,0
 all,all,all,all,all,input parameter,hydrogen purchase cost,$/kg,0.31
-all,all,all,all,all,input parameter,formic acid purchase cost,$/kg,0
-all,all,all,all,all,input parameter,formic acid production pathway,-,electro
+all,all,all,all,all,input parameter,LOHC purchase cost,$/kg,0
+all,all,all,all,all,input parameter,LOHC name,-,formic acid
+all,all,all,all,all,input parameter,LOHC molar mass,kg/kmol,46.025
+all,all,all,all,all,input parameter,LOHC density,kg/m^3,1220
+all,all,all,all,all,input parameter,stoic. ratio,mol H2/mol LOHC,1
+all,all,all,all,all,input parameter,stoic. ratio,mol CO2/mol LOHC,1
+all,all,all,all,all,input parameter,stoic. ratio,mol e/mol LOHC,2
+all,all,all,all,all,input parameter,LOHC production pathway,-,electro
 all,all,all,all,all,input parameter,hydr. reaction temperature,K,366.15
 all,all,all,all,all,input parameter,hydr. reaction pressure,bar,105
 all,all,all,all,all,input parameter,hydr. reaction yield,-,1
@@ -28,7 +34,7 @@ all,all,all,all,all,input parameter,hydr. electrolyzer voltage,V,1.27
 all,all,all,all,all,input parameter,hydr. electrolyzer current density,A/m^2,2000
 all,all,all,all,all,input parameter,hydr. separator energy,unit TBD,0
 all,all,all,all,all,input parameter,CO2 electrolyzer purchase cost,$/m^2,5250
-all,all,all,all,all,input parameter,terminal formic acid storage amount,days,0.25
+all,all,all,all,all,input parameter,terminal LOHC storage amount,days,0.25
 all,all,all,all,all,input parameter,dehydr. reaction temperature,K,300
 all,all,all,all,all,input parameter,dehydr. reaction pressure,bar,1
 all,all,all,all,all,input parameter,dehydr. reaction yield,-,0.9999
@@ -39,7 +45,7 @@ all,all,all,all,all,input parameter,dehydr. catalyst cost,$/kg,3500
 all,all,all,all,all,input parameter,dehydr. catalyst lifetime,yr,1
 all,all,all,all,all,input parameter,dehydr. reactor energy,unit TBD,0
 all,all,all,all,all,input parameter,dehydr. gas/liquid separator energy,unit TBD,0
-all,all,all,all,all,input parameter,station formic acid storage amount,days,1
+all,all,all,all,all,input parameter,station LOHC storage amount,days,1
 compressed hydrogen,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
 compressed hydrogen,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
 compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,1131500.0
@@ -222,8 +228,8 @@ LOHC - formic acid,production,terminal,compression,reactor compressor,energy con
 LOHC - formic acid,production,terminal,compression,reactor compressor,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
 LOHC - formic acid,production,terminal,reaction,CO2 electrolyzer,energy consumption,electricity consumption,kWh/kg H2,33.771000005644304
 LOHC - formic acid,production,terminal,reaction,CO2 electrolyzer,energy consumption,electricity consumption,MJ/MJ H2 (LHV),1.0134678227769216
-LOHC - formic acid,production,terminal,purchase,formic acid purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
-LOHC - formic acid,production,terminal,purchase,formic acid purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
+LOHC - formic acid,production,terminal,purchase,LOHC purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
+LOHC - formic acid,production,terminal,purchase,LOHC purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
 LOHC - formic acid,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
 LOHC - formic acid,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
 LOHC - formic acid,production,terminal,compression,reactor compressor,emissions,energy emissions,kg CO2/kg H2,0.0
@@ -247,8 +253,8 @@ LOHC - formic acid,production,terminal,reaction,CO2 electrolyzer,capital cost,le
 LOHC - formic acid,production,terminal,reaction,CO2 electrolyzer,capital cost,levelized capital cost,$/kg H2,2.633302401400481
 LOHC - formic acid,production,truck,CO2 recycling,truck,capital cost,all-in CO2 transport cost,$/yr,37015710.57405457
 LOHC - formic acid,production,truck,CO2 recycling,truck,capital cost,all-in CO2 transport cost,$/kg H2,10.141290568234128
-LOHC - formic acid,production,terminal,purchase,formic acid purchase,O&M cost,purchase cost,$/yr,0.0
-LOHC - formic acid,production,terminal,purchase,formic acid purchase,O&M cost,purchase cost,$/kg H2,0.0
+LOHC - formic acid,production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/yr,0.0
+LOHC - formic acid,production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/kg H2,0.0
 LOHC - formic acid,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,1131613.1613161315
 LOHC - formic acid,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.31003100310031
 LOHC - formic acid,production,terminal,compression,reactor compressor,O&M cost,"operation, maintenance, repair costs",$/yr,0.0

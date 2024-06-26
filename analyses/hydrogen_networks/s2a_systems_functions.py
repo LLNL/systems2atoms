@@ -65,9 +65,9 @@ liq_truck_cargo_dens_kg_per_cu_m = 25200.0 / 75.0
 # HDSAM V3.1: hydrogen temperature at terminal (low and ambient temperature)
 GH2_TML_in_temp_C = 25.0
 
-# LOHC / formic acid terminal inlet hydrogen temperature (deg.C)
+# LOHC terminal inlet hydrogen temperature (deg.C)
 # assume same as compressed hydrogen
-FAH2_TML_in_temp_C = GH2_TML_in_temp_C
+LOHC_TML_in_temp_C = GH2_TML_in_temp_C
 
 # refueling station hydrogen temperature (deg.C)
 # HDSAM V3.1: 40 deg.C = ambient (25 deg.C) + 15 deg.C for 
@@ -86,9 +86,9 @@ STN_dispens_temp_C = -40.0
 # in HDSAM V3.1
 GH2_TML_in_pres_atm = 20.0
 
-# LOHC / formic acid hydrogen terminal inlet hydrogen pressure (atm)
+# LOHC hydrogen terminal inlet hydrogen pressure (atm)
 # assume same as compressed hydrogen (based on Perez-Fortes et al., 2016)
-FAH2_TML_in_pres_atm = GH2_TML_in_pres_atm
+LOHC_TML_in_pres_atm = GH2_TML_in_pres_atm
 
 # compressed hydrogen terminal storage minimum and maximum pressures (atm)
 GH2_TML_max_stor_pres_atm = 400.0
@@ -119,25 +119,25 @@ LH2_STN_in_pres_atm = 6.0
 # compressed gaseous hydrogen
 LH2_STN_out_pres_bar =  946.0
 
-# LOHC (formic acid) hydrogen refueling station
+# LOHC hydrogen refueling station
 # dehydrogenation pump inlet pressure (bar)
-# = pressure of formic acid in truck
-FAH2_STN_dehydr_pump_in_pres_bar = 1.013
+# = pressure of LOHC in truck
+LOHC_STN_dehydr_pump_in_pres_bar = 1.013
 
-# LOHC (formic acid) hydrogen refueling station
+# LOHC hydrogen refueling station
 # pressure swing adsorption operating pressure (bar)
-FAH2_STN_psa_pres_bar = 20.0
+LOHC_STN_psa_pres_bar = 20.0
 
-# LOHC (formic acid) hydrogen refueling station
+# LOHC hydrogen refueling station
 # pressure swing adsorption operating temperature (deg.C)
-FAH2_STN_psa_temp_C = 25.0
+LOHC_STN_psa_temp_C = 25.0
 
-# LOHC (formic acid) hydrogen refueling station compressor outlet 
+# LOHC hydrogen refueling station compressor outlet 
 # pressure (bar)
 # = compressor outlet pressure at compressed hydrogen refueling station
 # (based on Nexant et al., "Final Report", "Supplemental Report to Task 2", 
 # p.18)
-FAH2_STN_out_pres_bar = GH2_STN_out_pres_bar
+LOHC_STN_out_pres_bar = GH2_STN_out_pres_bar
 
 # compressed hydrogen terminal required storage amount (days)
 GH2_TML_stor_amt_days = 0.25
@@ -160,9 +160,9 @@ GH2_STN_casc_stor_size_frac = 0.25
 # see note on cascade storage sizing above
 LH2_STN_casc_stor_size_frac = 0.15
 
-# cascade storage size (% of station capacity) at LOHC (formic acid) 
+# cascade storage size (% of station capacity) at LOHC 
 # hydrogen refueling station
-FAH2_STN_casc_stor_size_frac  = GH2_STN_casc_stor_size_frac
+LOHC_STN_casc_stor_size_frac  = GH2_STN_casc_stor_size_frac
 
 # discount rate
 # real after-tax discount rate on "Financial Inputs" tab in HDSAM V3.1
@@ -224,8 +224,8 @@ STN_refrig_depr_yr = 5.0
 STN_vap_depr_yr = 5.0
 STN_react_depr_yr = 15.0
 STN_psa_depr_yr = 15.0
-FAH2_hydr_catal_depr_yr = 3.0
-FAH2_dehydr_catal_depr_yr = 3.0
+LOHC_hydr_catal_depr_yr = 3.0
+LOHC_dehydr_catal_depr_yr = 3.0
 
 # MACRS depreciation period table
 # read in MACRS depreciation period table (source: HDSAM V3.1)
@@ -243,23 +243,13 @@ faraday_const_C_per_mol_e = 9.6485e4
 norm_temp_K = 293.15
 norm_pres_Pa = 101325.0
 
-# number of electrons transferred in reaction (electrons/mol)
-e_per_mol_FA = 2
-
 # molar mass (kg/kmol)
 molar_mass_H2_kg_per_kmol = 2.016
 molar_mass_CO2_kg_per_kmol = 44.009
-molar_mass_FA_kg_per_kmol = 46.025
 
 # density (kg/m^3)
 # liquid hydrogen at normal boiling point
 dens_liq_H2_kg_per_cu_m = 70.85
-# formic acid at ambient conditions (25 deg.C, 1 atm)
-dens_FA_kg_per_cu_m = 1220.0
-
-# stoichiometric ratio (mol/mol)
-stoic_mol_H2_per_mol_FA = 1.0
-stoic_mol_CO2_per_mol_FA = 1.0
 
 # lower heating value (MJ/kg)
 low_heat_val_H2_MJ_per_kg = 119.96
@@ -3000,10 +2990,16 @@ def calcs(
             'electricity emission factor (kg CO2/kWh)' : 0.228,
             'diesel emission factor (kg CO2/gallon)' : 10.180,
             'hydrogen prod. emission factor (kg CO2-eq/kg)' : 0.0,
-            'formic acid prod. emission factor (kg CO2-eq/kg)' : 0.0,            
+            'LOHC prod. emission factor (kg CO2-eq/kg)' : 0.0,            
             'hydrogen purchase cost ($/kg)' : 0.31,
-            'formic acid purchase cost ($/kg)' : 1.0,
-            'formic acid production pathway' : 'electro', 
+            'LOHC purchase cost ($/kg)' : 1.0,
+            'LOHC name' : 'formic acid',
+            'LOHC molar mass (kg/kmol)' : 46.025,
+            'LOHC density (kg/m^3)' : 1220.0,
+            'stoic. ratio (mol H2/mol LOHC)' : 1,
+            'stoic. ratio (mol CO2/mol LOHC)' : 1,
+            'stoic. ratio (mol e/mol LOHC)' : 2,
+            'LOHC production pathway' : 'electro', 
             'hydr. reaction temperature (K)' : 366.15,
             'hydr. reaction pressure (bar)' : 105.0,
             'hydr. reaction yield' : 1.0,
@@ -3017,7 +3013,7 @@ def calcs(
             'hydr. electrolyzer current density (A/m^2)' : 2000.0,
             'hydr. separator energy (unit TBD)' : 0.0,
             'CO2 electrolyzer purchase cost ($/m^2)' : 5250.0,
-            'terminal formic acid storage amount (days)' : 0.25,
+            'terminal LOHC storage amount (days)' : 0.25,
             'dehydr. reaction temperature (K)' : 300.0,
             'dehydr. reaction pressure (bar)' : 1.013,
             'dehydr. reaction yield' : 0.9999,
@@ -3028,7 +3024,7 @@ def calcs(
             'dehydr. catalyst lifetime (yr)' : 1.0,
             'dehydr. reactor energy (unit TBD)' : 0.0,
             'dehydr. gas/liquid separator energy (unit TBD)' : 0.0,
-            'station formic acid storage amount (days)' : 1.0,
+            'station LOHC storage amount (days)' : 1.0,
             }, 
         save_csv = False,
         output_folder = 'outputs'
@@ -3048,8 +3044,8 @@ def calcs(
     -------
     df_output
         Return dataframe containing input parameters and results (energy consumption, costs, etc.). 
-    FAH2_tot_H2_cost_usd_per_kg
-        Return total $/kg H2 costs for formic acid delivery pathway ("FAH2"). 
+    LOHC_tot_H2_cost_usd_per_kg
+        Return total $/kg H2 costs for LOHC delivery pathway ("LOHC"). 
     GH2_tot_H2_cost_usd_per_kg
         Return total $/kg H2 costs for compressed gaseous hydrogen delivery pathway ("GH2").
     LH2_tot_H2_cost_usd_per_kg
@@ -3112,9 +3108,9 @@ def calcs(
         'hydrogen prod. emission factor (kg CO2-eq/kg)'
         ]
     
-    # formic acid production emission factor (kg CO2-eq/kg formic acid)
-    FA_prod_ghg_kg_CO2_per_kg = dict_input_params[
-        'formic acid prod. emission factor (kg CO2-eq/kg)'
+    # LOHC production emission factor (kg CO2-eq/kg LOHC)
+    LOHC_prod_ghg_kg_CO2_per_kg = dict_input_params[
+        'LOHC prod. emission factor (kg CO2-eq/kg)'
         ]
     
     # hydrogen purchase costs ($/kg H2)
@@ -3122,61 +3118,91 @@ def calcs(
         'hydrogen purchase cost ($/kg)'
         ]
 
-    # formic acid purchase cost ($/kg formic acid)
-    purc_cost_FA_usd_per_kg = dict_input_params[
-        'formic acid purchase cost ($/kg)'
+    # LOHC purchase cost ($/kg LOHC)
+    purc_cost_LOHC_usd_per_kg = dict_input_params[
+        'LOHC purchase cost ($/kg)'
         ]
     
-    # formic acid production pathway
+    # LOHC name to use in delivery pathway name (in output files)
+    LOHC_name = dict_input_params[
+        'LOHC name'
+        ]
+    
+    # LOHC molar mass (kg/kmol)
+    molar_mass_LOHC_kg_per_kmol = dict_input_params[
+        'LOHC molar mass (kg/kmol)'
+        ]
+    
+    # LOHC density (kg/m^3) at target transport and storage conditions
+    dens_LOHC_kg_per_cu_m = dict_input_params[
+        'LOHC density (kg/m^3)'
+        ]
+    
+    # stoichiometric ratio (mol H2/mol LOHC)
+    stoic_mol_H2_per_mol_LOHC = dict_input_params[
+        'stoic. ratio (mol H2/mol LOHC)'
+        ]
+    
+    # stoichiometric ratio (mol CO2/mol LOHC)
+    stoic_mol_CO2_per_mol_LOHC = dict_input_params[
+        'stoic. ratio (mol CO2/mol LOHC)'
+        ]
+    
+    # stoichiometric ratio (mol electrons/mol LOHC)
+    stoic_mol_e_per_mol_LOHC = dict_input_params[
+        'stoic. ratio (mol e/mol LOHC)'
+        ]
+
+    # LOHC production pathway
     # thermocatalytic, electrolytic, or purchase
     # 'thermo', 'electro', or 'purchase'
     # purchase = no CO2 recycling or hydrogenation costs
-    FA_prod_pathway = dict_input_params[
-        'formic acid production pathway'
+    LOHC_prod_pathway = dict_input_params[
+        'LOHC production pathway'
         ]
     
     # hydrogenation reaction temperature (K)
-    FAH2_hydr_temp_K = dict_input_params[
+    LOHC_hydr_temp_K = dict_input_params[
         'hydr. reaction temperature (K)'
         ]
     
     # hydrogenation reaction pressure (bar)
-    FAH2_hydr_pres_bar = dict_input_params[
+    LOHC_hydr_pres_bar = dict_input_params[
         'hydr. reaction pressure (bar)'
         ]
     
     # hydrogenation reaction yield
-    FAH2_hydr_yield = dict_input_params[
+    LOHC_hydr_yield = dict_input_params[
         'hydr. reaction yield'
         ]
     
     # hydrogenation reactor volume (m^3)
-    FAH2_hydr_react_vol_cu_m = dict_input_params[
+    LOHC_hydr_react_vol_cu_m = dict_input_params[
         'hydr. reactor volume (m^3)'
         ]
     
     # number of hydrogenation reactors
-    FAH2_num_hydr_reacts = dict_input_params[
+    LOHC_num_hydr_reacts = dict_input_params[
         'number of hydr. reactors'
         ]
     
     # hydrogenation calalyst amount required (kg)
-    FAH2_hydr_catal_amt_kg = dict_input_params[
+    LOHC_hydr_catal_amt_kg = dict_input_params[
         'hydr. catalyst amount (kg)'
         ]
     
     # hydrogenation calalyst cost ($/kg)
-    FAH2_hydr_catal_cost_usd_per_kg = dict_input_params[
+    LOHC_hydr_catal_cost_usd_per_kg = dict_input_params[
         'hydr. catalyst cost ($/kg)'
         ]
 
     # hydrogenation catalyst lifetime (yr)
-    FAH2_hydr_catal_life_yr = dict_input_params[
+    LOHC_hydr_catal_life_yr = dict_input_params[
         'hydr. catalyst lifetime (yr)'
         ]
     
     # hydrogenation reactor energy requirement (unit TBD)
-    FAH2_hydr_react_energy = dict_input_params[
+    LOHC_hydr_react_energy = dict_input_params[
         'hydr. reactor energy (unit TBD)'
         ]
     
@@ -3191,7 +3217,7 @@ def calcs(
         ]
     
     # hydrogenation separator energy requirement (unit TBD)
-    FAH2_hydr_sep_energy = dict_input_params[
+    LOHC_hydr_sep_energy = dict_input_params[
         'hydr. separator energy (unit TBD)'
         ]
     
@@ -3200,85 +3226,84 @@ def calcs(
         'CO2 electrolyzer purchase cost ($/m^2)'
         ]
     
-    # formic acid storage amount at terminal (days)
+    # LOHC storage amount at terminal (days)
     # for now, assume same as compressed hydrogen terminal
-    FAH2_TML_stor_amt_days = dict_input_params[
-        'terminal formic acid storage amount (days)'
+    LOHC_TML_stor_amt_days = dict_input_params[
+        'terminal LOHC storage amount (days)'
         ]    
 
     # dehydrogenation reaction temperature (K)
     # = inlet temperature to precooling for separator 
-    # (pressure swing adsorption, PSA) at LOHC (formic acid) 
-    # hydrogen refueling station
-    FAH2_dehydr_temp_K = dict_input_params[
+    # (pressure swing adsorption, PSA) at LOHC hydrogen refueling station
+    LOHC_dehydr_temp_K = dict_input_params[
         'dehydr. reaction temperature (K)'
         ]
     
     # dehydrogenation reaction pressure (bar)
     # = hydrogen outlet pressure (bar) exiting separator (pressure swing
-    # adsorption, PSA) at LOHC (formic acid) hydrogen refueling station
-    FAH2_dehydr_pres_bar = dict_input_params[
+    # adsorption, PSA) at LOHC hydrogen refueling station
+    LOHC_dehydr_pres_bar = dict_input_params[
         'dehydr. reaction pressure (bar)'
         ]
     
     # dehydrogenation reaction yield
-    FAH2_dehydr_yield = dict_input_params[
+    LOHC_dehydr_yield = dict_input_params[
         'dehydr. reaction yield'
         ]
     
     # dehydrogenation reactor volume (m^3)
-    FAH2_dehydr_react_vol_cu_m = dict_input_params[
+    LOHC_dehydr_react_vol_cu_m = dict_input_params[
         'dehydr. reactor volume (m^3)'
         ]
     
     # number of dehydrogenation reactors
-    FAH2_num_dehydr_reacts = dict_input_params[
+    LOHC_num_dehydr_reacts = dict_input_params[
         'number of dehydr. reactors'
         ]
     
     # dehydrogenation calalyst amount required (kg)
-    FAH2_dehydr_catal_amt_kg = dict_input_params[
+    LOHC_dehydr_catal_amt_kg = dict_input_params[
         'dehydr. catalyst amount (kg)'
         ]
     
     # dehydrogenation calalyst cost ($/kg)
-    FAH2_dehydr_catal_cost_usd_per_kg = dict_input_params[
+    LOHC_dehydr_catal_cost_usd_per_kg = dict_input_params[
         'dehydr. catalyst cost ($/kg)'
         ]
 
     # dehydrogenation catalyst lifetime (yr)
-    FAH2_dehydr_catal_life_yr = dict_input_params[
+    LOHC_dehydr_catal_life_yr = dict_input_params[
         'dehydr. catalyst lifetime (yr)'
         ]
     
     # dehydrogenation reactor energy requirement (unit TBD)
-    FAH2_dehydr_react_energy = dict_input_params[
+    LOHC_dehydr_react_energy = dict_input_params[
         'dehydr. reactor energy (unit TBD)'
         ]
 
     # dehydrogenation gas/liquid separator energy requirement (unit TBD)
-    FAH2_dehydr_gas_liq_sep_energy = dict_input_params[
+    LOHC_dehydr_gas_liq_sep_energy = dict_input_params[
         'dehydr. gas/liquid separator energy (unit TBD)'
         ]
     
-    # formic acid storage amount at refueling station (days)
-    FAH2_STN_stor_amt_days = dict_input_params[
-        'station formic acid storage amount (days)'
+    # LOHC storage amount at refueling station (days)
+    LOHC_STN_stor_amt_days = dict_input_params[
+        'station LOHC storage amount (days)'
         ]   
     
     #%% CHECK INPUTS
     
-    # accepted formic acid production pathways
-    FA_prod_pathways = [
+    # accepted LOHC production pathways
+    LOHC_prod_pathways = [
         'thermo', 
         'electro',
         'purchase'
         ]
     
     # raise error if user-specified pathway is not predefined
-    if FA_prod_pathway not in FA_prod_pathways:
+    if LOHC_prod_pathway not in LOHC_prod_pathways:
         raise ValueError(
-            'Check formic acid production pathway. '
+            'Check LOHC production pathway. '
             'Currently accepted pathways: "thermo", "electro", "purchase".'
             )    
 
@@ -3349,7 +3374,7 @@ def calcs(
 
     # calculate refueling station hydrogen dispensing temperature (K)
     # = outlet temperature from compressor refrigerator
-    # applies to compressed hydrogen and formic acid pathways
+    # applies to compressed hydrogen and LOHC pathways
     STN_dispens_temp_K = STN_dispens_temp_C + C_to_K
         
     # calculate compressed hydrogen terminal inlet temperature (K)
@@ -3357,12 +3382,12 @@ def calcs(
     # temperature)
     GH2_TML_in_temp_K = GH2_TML_in_temp_C + C_to_K
 
-    # calculate LOHC / formic acid terminal inlet temperature (K)
-    FAH2_TML_in_temp_K = FAH2_TML_in_temp_C + C_to_K
+    # calculate LOHC terminal inlet temperature (K)
+    LOHC_TML_in_temp_K = LOHC_TML_in_temp_C + C_to_K
 
-    # calculate LOHC / formic acid refueling station PSA 
+    # calculate LOHC refueling station PSA 
     # operating temperature (K)
-    FAH2_STN_psa_temp_K = FAH2_STN_psa_temp_C + C_to_K
+    LOHC_STN_psa_temp_K = LOHC_STN_psa_temp_C + C_to_K
 
     # calculate inlet pressure (bar) to storage and truck loading compressors 
     # at compressed hydrogen terminal
@@ -3383,9 +3408,9 @@ def calcs(
         GH2_TML_in_pres_atm * Pa_per_atm / Pa_per_bar
         
     # calculate inlet pressure (bar) to hydrogenation reactor at 
-    # LOHC / formic acid terminal
-    FAH2_TML_in_pres_bar = \
-        FAH2_TML_in_pres_atm * Pa_per_atm / Pa_per_bar
+    # LOHC terminal
+    LOHC_TML_in_pres_bar = \
+        LOHC_TML_in_pres_atm * Pa_per_atm / Pa_per_bar
         
     # ------------------------------------------------------------------------
     # calculate roundtrip delivery distance (mile)
@@ -3418,47 +3443,49 @@ def calcs(
         STN_H2_flow_kg_per_sec / molar_mass_H2_kg_per_kmol * mol_per_kmol
         
     # ------------------------------------------------------------------------
-    # LOHC / formic acid refueling station mass balance
+    # LOHC refueling station mass balance
     
-    # calculate amount of formic acid delivered per day (kg formic acid/day)
+    # calculate amount of LOHC delivered per day (kg LOHC/day)
     # to each station for given refueling station capacity 
-    FAH2_STN_FA_flow_kg_per_day = \
+    LOHC_STN_LOHC_flow_kg_per_day = \
         target_stn_capacity_kg_per_day / molar_mass_H2_kg_per_kmol / \
-        stoic_mol_H2_per_mol_FA * molar_mass_FA_kg_per_kmol / \
-        FAH2_dehydr_yield
+        stoic_mol_H2_per_mol_LOHC * molar_mass_LOHC_kg_per_kmol / \
+        LOHC_dehydr_yield
 
-    # calculate formic acid mass flowrate (kg/s) at each refueling station
-    FAH2_STN_FA_flow_kg_per_sec = \
-        FAH2_STN_FA_flow_kg_per_day / hr_per_day / sec_per_hr
+    # calculate LOHC mass flowrate (kg/s) at each refueling station
+    LOHC_STN_LOHC_flow_kg_per_sec = \
+        LOHC_STN_LOHC_flow_kg_per_day / hr_per_day / sec_per_hr
 
-    # calculate formic acid molar flowrate (mol/hr) delivered to each station
-    FAH2_STN_FA_flow_mol_per_hr = \
-        FAH2_STN_FA_flow_kg_per_day / \
-        molar_mass_FA_kg_per_kmol * mol_per_kmol / hr_per_day
+    # calculate LOHC molar flowrate (mol/hr) delivered to each station
+    LOHC_STN_LOHC_flow_mol_per_hr = \
+        LOHC_STN_LOHC_flow_kg_per_day / \
+        molar_mass_LOHC_kg_per_kmol * mol_per_kmol / hr_per_day
     
     # calculate inlet molar flowrate (mol/hr) to refueling station separator
-    FAH2_STN_psa_in_flow_mol_per_hr = \
-        FAH2_STN_FA_flow_mol_per_hr * \
-        FAH2_dehydr_yield * (stoic_mol_H2_per_mol_FA + stoic_mol_CO2_per_mol_FA)
+    # TODO: make this more general (H2 vs. other gases?)
+    LOHC_STN_psa_in_flow_mol_per_hr = \
+        LOHC_STN_LOHC_flow_mol_per_hr * LOHC_dehydr_yield * (
+            stoic_mol_H2_per_mol_LOHC + stoic_mol_CO2_per_mol_LOHC
+            )
     
     # calculate inlet volumetric flowrate (Nm^3/hr) to refueling station 
     # separator
-    FAH2_STN_psa_in_flow_norm_cu_m_per_hr = \
-        mol_to_norm_cu_m(FAH2_STN_psa_in_flow_mol_per_hr)
+    LOHC_STN_psa_in_flow_norm_cu_m_per_hr = \
+        mol_to_norm_cu_m(LOHC_STN_psa_in_flow_mol_per_hr)
         
-    # calculate total amount of formic acid delivered per day 
+    # calculate total amount of LOHC delivered per day 
     # (kg/day) to all stations
-    tot_FA_deliv_kg_per_day = \
-        FAH2_STN_FA_flow_kg_per_day * target_num_stns
+    tot_LOHC_deliv_kg_per_day = \
+        LOHC_STN_LOHC_flow_kg_per_day * target_num_stns
     
     # calculate amount of CO2 produced per day (kg/day) at each station
-    FAH2_STN_CO2_flow_kg_per_day = \
-        FAH2_STN_FA_flow_mol_per_hr / mol_per_kmol * hr_per_day * \
-        stoic_mol_CO2_per_mol_FA * molar_mass_CO2_kg_per_kmol
+    LOHC_STN_CO2_flow_kg_per_day = \
+        LOHC_STN_LOHC_flow_mol_per_hr / mol_per_kmol * hr_per_day * \
+        stoic_mol_CO2_per_mol_LOHC * molar_mass_CO2_kg_per_kmol
 
     # calculate amount of CO2 produced per year (ktonne/yr) at each station
-    FAH2_STN_CO2_flow_kt_per_yr = \
-        FAH2_STN_CO2_flow_kg_per_day / \
+    LOHC_STN_CO2_flow_kt_per_yr = \
+        LOHC_STN_CO2_flow_kg_per_day / \
         kg_per_tonne / tonne_per_kt * day_per_yr * stn_cap_factor
         
     # ------------------------------------------------------------------------
@@ -3490,48 +3517,45 @@ def calcs(
     liquef_size_tonne_per_day = TML_H2_flow_kg_per_day / kg_per_tonne
 
     # ------------------------------------------------------------------------
-    # LOHC / formic acid terminal mass balance
+    # LOHC terminal mass balance
 
-    # calculate formic acid mass flowrate (kg formic acid/day) at 
-    # LOHC / formic acid terminal  
+    # calculate LOHC mass flowrate (kg LOHC/day) at LOHC terminal  
     # TODO: incorporate losses
-    FAH2_TML_FA_flow_kg_per_day = tot_FA_deliv_kg_per_day
+    LOHC_TML_LOHC_flow_kg_per_day = tot_LOHC_deliv_kg_per_day
     
-    # calculate formic acid mass flowrate (kg/s) at 
-    # LOHC / formic acid terminal
-    FAH2_TML_FA_flow_kg_per_sec = \
-        FAH2_TML_FA_flow_kg_per_day / hr_per_day / sec_per_hr
+    # calculate LOHC mass flowrate (kg/s) at LOHC terminal
+    LOHC_TML_LOHC_flow_kg_per_sec = \
+        LOHC_TML_LOHC_flow_kg_per_day / hr_per_day / sec_per_hr
     
-    # calculate formic acid molar flowrate (mol/s) at 
-    # LOHC / formic acid terminal
-    FAH2_TML_FA_flow_mol_per_sec = \
-        FAH2_TML_FA_flow_kg_per_sec / \
-        molar_mass_FA_kg_per_kmol * mol_per_kmol
+    # calculate LOHC molar flowrate (mol/s) at LOHC terminal
+    LOHC_TML_LOHC_flow_mol_per_sec = \
+        LOHC_TML_LOHC_flow_kg_per_sec / \
+        molar_mass_LOHC_kg_per_kmol * mol_per_kmol
         
     # calculate hydrogen molar flowrate (mol/s) at 
-    # LOHC / formic acid terminal
-    FAH2_TML_H2_flow_mol_per_sec = \
-        FAH2_TML_FA_flow_mol_per_sec / FAH2_hydr_yield * \
-        stoic_mol_H2_per_mol_FA
+    # LOHC terminal
+    LOHC_TML_H2_flow_mol_per_sec = \
+        LOHC_TML_LOHC_flow_mol_per_sec / LOHC_hydr_yield * \
+        stoic_mol_H2_per_mol_LOHC
 
-    # calculate hydrogen mass flowrate (kg/day) at LOHC / formic acid terminal  
-    FAH2_TML_H2_flow_kg_per_day = \
-        FAH2_TML_H2_flow_mol_per_sec / mol_per_kmol * \
+    # calculate hydrogen mass flowrate (kg/day) at LOHC terminal  
+    LOHC_TML_H2_flow_kg_per_day = \
+        LOHC_TML_H2_flow_mol_per_sec / mol_per_kmol * \
         sec_per_hr * hr_per_day * molar_mass_H2_kg_per_kmol
     
     # ------------------------------------------------------------------------
     # transport mass balance
 
-    # calculate formic acid truck delivered capacity 
-    # (kg formic acid/truck-trip)
+    # calculate LOHC truck delivered capacity 
+    # (kg LOHC/truck-trip)
     # NOTE: delivered capacity is limited by weight if cargo has higher
     # density than "rated" density 
     # ("rated" cargo density calculated from maximum weight and volume) 
-    liq_truck_deliv_capacity_kgFA = \
+    liq_truck_deliv_capacity_kgLOHC = \
         liq_truck_water_vol_cu_m * \
             liq_truck_usable_capacity_frac * min(
                 liq_truck_cargo_dens_kg_per_cu_m,
-                dens_FA_kg_per_cu_m
+                dens_LOHC_kg_per_cu_m
                 )
     
     #%% CALCULATIONS: COMPRESSED GASEOUS HYDROGEN DELIVERY ("GH2")
@@ -7575,118 +7599,117 @@ def calcs(
         LH2_STN_casc_stor_lev_cap_cost_usd_per_kg
         ])
     
-    #%% CALCULATIONS: LOHC / FORMIC ACID DELIVERY ("FAH2")
-    # FORMIC ACID PRODUCTION @ TERMINAL
+    #%% CALCULATIONS: LOHC DELIVERY ("LOHC")
+    # LOHC PRODUCTION @ TERMINAL
     
     # ------------------------------------------------------------------------
-    # production - formic acid: formic acid purchase cost
+    # production - LOHC: LOHC purchase cost
     
-    # initialize formic acid purchase cost (zero by default)
-    FAH2_TML_FA_purc_cost_usd_per_yr = 0.0
+    # initialize LOHC purchase cost (zero by default)
+    LOHC_TML_LOHC_purc_cost_usd_per_yr = 0.0
     
-    # if purchase formic acid, calculate purchase costs
-    if FA_prod_pathway == 'purchase':
+    # if purchase LOHC, calculate purchase costs
+    if LOHC_prod_pathway == 'purchase':
     
-        # calculate formic acid purchase cost ($/yr)   
-        FAH2_TML_FA_purc_cost_usd_per_yr = \
-            purc_cost_FA_usd_per_kg * FAH2_TML_FA_flow_kg_per_day * \
+        # calculate LOHC purchase cost ($/yr)   
+        LOHC_TML_LOHC_purc_cost_usd_per_yr = \
+            purc_cost_LOHC_usd_per_kg * LOHC_TML_LOHC_flow_kg_per_day * \
             day_per_yr * stn_cap_factor
     
-    # calculate formic acid production cost ($/kg H2)   
-    FAH2_TML_FA_purc_cost_usd_per_kg = \
-        FAH2_TML_FA_purc_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    # calculate LOHC production cost ($/kg H2)   
+    LOHC_TML_LOHC_purc_cost_usd_per_kg = \
+        LOHC_TML_LOHC_purc_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
 
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name),
         'production', 
         'terminal', 
         'purchase', 
-        'formic acid purchase', 
+        'LOHC purchase', 
         'O&M cost', 
         'purchase cost', 
         '$/yr', 
-        FAH2_TML_FA_purc_cost_usd_per_yr
+        LOHC_TML_LOHC_purc_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'purchase', 
-        'formic acid purchase', 
+        'LOHC purchase', 
         'O&M cost', 
         'purchase cost', 
         '$/kg H2', 
-        FAH2_TML_FA_purc_cost_usd_per_kg
+        LOHC_TML_LOHC_purc_cost_usd_per_kg
         ])
    
     # ------------------------------------------------------------------------
-    # production - formic acid: emissions of purchased formic acid
+    # production - LOHC: emissions of purchased LOHC
 
-    # initialize emissions of purchased formic acid (zero by default)
-    FAH2_TML_FA_purc_ghg_kg_CO2_per_kg = 0.0
+    # initialize emissions of purchased LOHC (zero by default)
+    LOHC_TML_LOHC_purc_ghg_kg_CO2_per_kg = 0.0
 
-    # if purchase formic acid, calculate emissions of purchased
-    # formic acid
-    if FA_prod_pathway == 'purchase':
+    # if purchase LOHC, calculate emissions of purchased LOHC
+    if LOHC_prod_pathway == 'purchase':
         
-        # calculate emissions of purchased formic acid (kg CO2-eq/kg H2)
-        FAH2_TML_FA_purc_ghg_kg_CO2_per_kg = \
-            FA_prod_ghg_kg_CO2_per_kg * FAH2_TML_FA_flow_kg_per_day / \
+        # calculate emissions of purchased LOHC (kg CO2-eq/kg H2)
+        LOHC_TML_LOHC_purc_ghg_kg_CO2_per_kg = \
+            LOHC_prod_ghg_kg_CO2_per_kg * LOHC_TML_LOHC_flow_kg_per_day / \
             tot_H2_deliv_kg_per_day    
     
-    # convert emissions of purchased formic acid to g CO2-eq/MJ H2 (LHV) 
+    # convert emissions of purchased LOHC to g CO2-eq/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_TML_FA_purc_ghg_g_CO2_per_MJ = \
-        FAH2_TML_FA_purc_ghg_kg_CO2_per_kg * g_per_kg / \
+    LOHC_TML_LOHC_purc_ghg_g_CO2_per_MJ = \
+        LOHC_TML_LOHC_purc_ghg_kg_CO2_per_kg * g_per_kg / \
         low_heat_val_H2_MJ_per_kg
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'purchase', 
-        'formic acid purchase', 
+        'LOHC purchase', 
         'emissions', 
         'upstream emissions', 
         'kg CO2/kg H2', 
-        FAH2_TML_FA_purc_ghg_kg_CO2_per_kg
+        LOHC_TML_LOHC_purc_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'purchase', 
-        'formic acid purchase', 
+        'LOHC purchase', 
         'emissions', 
         'upstream emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_TML_FA_purc_ghg_g_CO2_per_MJ
+        LOHC_TML_LOHC_purc_ghg_g_CO2_per_MJ
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid: hydrogen purchase cost
+    # production - LOHC: hydrogen purchase cost
     
     # initialize hydrogen purchase cost (zero by default)
-    FAH2_TML_H2_purc_cost_usd_per_yr = 0.0
+    LOHC_TML_H2_purc_cost_usd_per_yr = 0.0
     
-    # if produce formic acid at terminal (as opposed to purchase), 
+    # if produce LOHC at terminal (as opposed to purchase), 
     # calculate hydrogen purchase costs
-    if FA_prod_pathway != 'purchase':
+    if LOHC_prod_pathway != 'purchase':
     
         # calculate hydrogen purchase cost ($/yr)   
-        FAH2_TML_H2_purc_cost_usd_per_yr = \
-            purc_cost_H2_usd_per_kg * FAH2_TML_H2_flow_kg_per_day * \
+        LOHC_TML_H2_purc_cost_usd_per_yr = \
+            purc_cost_H2_usd_per_kg * LOHC_TML_H2_flow_kg_per_day * \
             day_per_yr * stn_cap_factor
     
     # calculate hydrogen production cost ($/kg H2)   
-    FAH2_TML_H2_purc_cost_usd_per_kg = \
-        FAH2_TML_H2_purc_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_H2_purc_cost_usd_per_kg = \
+        LOHC_TML_H2_purc_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
 
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'purchase', 
@@ -7694,10 +7717,10 @@ def calcs(
         'O&M cost', 
         'purchase cost', 
         '$/yr', 
-        FAH2_TML_H2_purc_cost_usd_per_yr
+        LOHC_TML_H2_purc_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'purchase', 
@@ -7705,33 +7728,33 @@ def calcs(
         'O&M cost', 
         'purchase cost', 
         '$/kg H2', 
-        FAH2_TML_H2_purc_cost_usd_per_kg
+        LOHC_TML_H2_purc_cost_usd_per_kg
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid: emissions of purchased hydrogen
+    # production - LOHC: emissions of purchased hydrogen
     
     # initialize emissions of purchased hydrogen (zero by default)
-    FAH2_TML_H2_purc_ghg_kg_CO2_per_kg = 0.0
+    LOHC_TML_H2_purc_ghg_kg_CO2_per_kg = 0.0
 
-    # if produce formic acid at terminal (as opposed to purchase), 
+    # if produce LOHC at terminal (as opposed to purchase), 
     # calculate emissions of purchased hydrogen
-    if FA_prod_pathway != 'purchase':
+    if LOHC_prod_pathway != 'purchase':
         
         # calculate emissions of purchased hydrogen (kg CO2-eq/kg H2)
-        FAH2_TML_H2_purc_ghg_kg_CO2_per_kg = \
-            H2_prod_ghg_kg_CO2_per_kg * FAH2_TML_H2_flow_kg_per_day / \
+        LOHC_TML_H2_purc_ghg_kg_CO2_per_kg = \
+            H2_prod_ghg_kg_CO2_per_kg * LOHC_TML_H2_flow_kg_per_day / \
             tot_H2_deliv_kg_per_day    
                 
     # convert emissions of purchased hydrogen to g CO2-eq/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_TML_H2_purc_ghg_g_CO2_per_MJ = \
-        FAH2_TML_H2_purc_ghg_kg_CO2_per_kg * g_per_kg / \
+    LOHC_TML_H2_purc_ghg_g_CO2_per_MJ = \
+        LOHC_TML_H2_purc_ghg_kg_CO2_per_kg * g_per_kg / \
         low_heat_val_H2_MJ_per_kg
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'purchase', 
@@ -7739,10 +7762,10 @@ def calcs(
         'emissions', 
         'upstream emissions', 
         'kg CO2/kg H2', 
-        FAH2_TML_H2_purc_ghg_kg_CO2_per_kg
+        LOHC_TML_H2_purc_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'purchase', 
@@ -7750,20 +7773,20 @@ def calcs(
         'emissions', 
         'upstream emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_TML_H2_purc_ghg_g_CO2_per_MJ
+        LOHC_TML_H2_purc_ghg_g_CO2_per_MJ
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation hydrogen compressor energy consumption and size
         
     # initialize hydrogenation hydrogen compressor power (kW) 
     # and size (kW/stage) (zero by default)
-    FAH2_TML_hydr_compr_tot_power_kW = 0.0
-    FAH2_TML_hydr_compr_power_kW_per_stg = 0.0
-    FAH2_TML_hydr_compr_num_stgs = 0
+    LOHC_TML_hydr_compr_tot_power_kW = 0.0
+    LOHC_TML_hydr_compr_power_kW_per_stg = 0.0
+    LOHC_TML_hydr_compr_num_stgs = 0
     
-    if FA_prod_pathway == 'thermo':
+    if LOHC_prod_pathway == 'thermo':
 
         # calculate hydrogenation hydrogen compressor power (kW) 
         # and size (kW/stage) at terminal
@@ -7771,30 +7794,30 @@ def calcs(
         # TODO: revisit compressibility 
         # (for now, assume same as storage compressor at compressed 
         # hydrogen terminal)
-        FAH2_TML_hydr_compr_tot_power_kW, \
-        FAH2_TML_hydr_compr_power_kW_per_stg, \
-        FAH2_TML_hydr_compr_num_stgs = \
+        LOHC_TML_hydr_compr_tot_power_kW, \
+        LOHC_TML_hydr_compr_power_kW_per_stg, \
+        LOHC_TML_hydr_compr_num_stgs = \
             compressor_power_and_size(
-                out_pres_bar = FAH2_hydr_pres_bar,
-                in_pres_bar = FAH2_TML_in_pres_bar,
-                in_temp_K = FAH2_TML_in_temp_K, 
-                gas_flow_mol_per_sec = FAH2_TML_H2_flow_mol_per_sec, 
+                out_pres_bar = LOHC_hydr_pres_bar,
+                in_pres_bar = LOHC_TML_in_pres_bar,
+                in_temp_K = LOHC_TML_in_temp_K, 
+                gas_flow_mol_per_sec = LOHC_TML_H2_flow_mol_per_sec, 
                 compressibility = 1.13
                 )
                             
     # calculate hydrogenation hydrogen compressor energy (kWh/kg H2)
-    FAH2_TML_hydr_compr_elec_kWh_per_kg = \
-        FAH2_TML_hydr_compr_tot_power_kW / tot_H2_deliv_kg_per_hr
+    LOHC_TML_hydr_compr_elec_kWh_per_kg = \
+        LOHC_TML_hydr_compr_tot_power_kW / tot_H2_deliv_kg_per_hr
     
     # convert hydrogenation hydrogen compressor energy to MJ/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_TML_hydr_compr_elec_MJ_per_MJ = \
-        FAH2_TML_hydr_compr_elec_kWh_per_kg * MJ_per_kWh / \
+    LOHC_TML_hydr_compr_elec_MJ_per_MJ = \
+        LOHC_TML_hydr_compr_elec_kWh_per_kg * MJ_per_kWh / \
         low_heat_val_H2_MJ_per_kg
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -7802,10 +7825,10 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'kWh/kg H2', 
-        FAH2_TML_hydr_compr_elec_kWh_per_kg
+        LOHC_TML_hydr_compr_elec_kWh_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -7813,28 +7836,28 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'MJ/MJ H2 (LHV)', 
-        FAH2_TML_hydr_compr_elec_MJ_per_MJ
+        LOHC_TML_hydr_compr_elec_MJ_per_MJ
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation hydrogen compressor energy emissions
     
     # calculate hydrogenation hydrogen compressor energy emissions 
     # (kg CO2/kg H2)
-    FAH2_TML_hydr_compr_ghg_kg_CO2_per_kg = \
-        FAH2_TML_hydr_compr_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
+    LOHC_TML_hydr_compr_ghg_kg_CO2_per_kg = \
+        LOHC_TML_hydr_compr_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
     
     # convert hydrogenation hydrogen compressor energy emissions to 
     # g CO2/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_TML_hydr_compr_ghg_g_CO2_per_MJ = \
-        FAH2_TML_hydr_compr_ghg_kg_CO2_per_kg * g_per_kg / \
+    LOHC_TML_hydr_compr_ghg_g_CO2_per_MJ = \
+        LOHC_TML_hydr_compr_ghg_kg_CO2_per_kg * g_per_kg / \
         low_heat_val_H2_MJ_per_kg
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -7842,10 +7865,10 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'kg CO2/kg H2', 
-        FAH2_TML_hydr_compr_ghg_kg_CO2_per_kg
+        LOHC_TML_hydr_compr_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -7853,25 +7876,24 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_TML_hydr_compr_ghg_g_CO2_per_MJ
+        LOHC_TML_hydr_compr_ghg_g_CO2_per_MJ
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
-    # hydrogenation hydrogen compressor energy cost
+    # production - LOHC: hydrogenation hydrogen compressor energy cost
     
     # calculate hydrogenation hydrogen compressor energy cost ($/kg H2)
-    FAH2_TML_hydr_compr_elec_cost_usd_per_kg = \
-        FAH2_TML_hydr_compr_elec_kWh_per_kg * elec_cost_usd_per_kWh
+    LOHC_TML_hydr_compr_elec_cost_usd_per_kg = \
+        LOHC_TML_hydr_compr_elec_kWh_per_kg * elec_cost_usd_per_kWh
     
     # calculate hydrogenation hydrogen compressor energy cost ($/yr)
-    FAH2_TML_hydr_compr_elec_cost_usd_per_yr = \
-        FAH2_TML_hydr_compr_elec_cost_usd_per_kg * \
+    LOHC_TML_hydr_compr_elec_cost_usd_per_yr = \
+        LOHC_TML_hydr_compr_elec_cost_usd_per_kg * \
         tot_H2_deliv_kg_per_yr
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -7879,10 +7901,10 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/yr', 
-        FAH2_TML_hydr_compr_elec_cost_usd_per_yr
+        LOHC_TML_hydr_compr_elec_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -7890,40 +7912,40 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/kg H2', 
-        FAH2_TML_hydr_compr_elec_cost_usd_per_kg
+        LOHC_TML_hydr_compr_elec_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------        
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation hydrogen compressor installed cost and annual O&M cost
     
     # initialize hydrogenation hydrogen compressor installed cost and 
     # annual O&M cost (zero by default)
-    FAH2_TML_hydr_compr_inst_cost_usd = 0.0
-    FAH2_TML_hydr_compr_om_cost_usd_per_yr = 0.0
-    FAH2_TML_hydr_compr_dollar_year = output_dollar_year
+    LOHC_TML_hydr_compr_inst_cost_usd = 0.0
+    LOHC_TML_hydr_compr_om_cost_usd_per_yr = 0.0
+    LOHC_TML_hydr_compr_dollar_year = output_dollar_year
     
-    if FA_prod_pathway == 'thermo':
+    if LOHC_prod_pathway == 'thermo':
 
         # calculate hydrogenation hydrogen compressor installed cost ($) and annual O&M 
         # cost ($/yr), both in output dollar year
-        FAH2_TML_hydr_compr_inst_cost_usd, \
-        FAH2_TML_hydr_compr_om_cost_usd_per_yr, \
-        FAH2_TML_hydr_compr_dollar_year = \
+        LOHC_TML_hydr_compr_inst_cost_usd, \
+        LOHC_TML_hydr_compr_om_cost_usd_per_yr, \
+        LOHC_TML_hydr_compr_dollar_year = \
             compressor_fixed_costs(
                 compr_power_kW_per_stg = \
-                    FAH2_TML_hydr_compr_power_kW_per_stg, 
-                num_stgs = FAH2_TML_hydr_compr_num_stgs,
+                    LOHC_TML_hydr_compr_power_kW_per_stg, 
+                num_stgs = LOHC_TML_hydr_compr_num_stgs,
                 output_dollar_year = output_dollar_year
                 )
         
     # calculate hydrogenation hydrogen compressor O&M cost ($/kg H2)
-    FAH2_TML_hydr_compr_om_cost_usd_per_kg = \
-        FAH2_TML_hydr_compr_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_hydr_compr_om_cost_usd_per_kg = \
+        LOHC_TML_hydr_compr_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -7931,10 +7953,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_TML_hydr_compr_om_cost_usd_per_yr
+        LOHC_TML_hydr_compr_om_cost_usd_per_yr
        ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -7942,112 +7964,112 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_TML_hydr_compr_om_cost_usd_per_kg
+        LOHC_TML_hydr_compr_om_cost_usd_per_kg
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation CO2 pump energy consumption and size
         
     # TODO: add hydrogenation CO2 pump energy consumption and size
         
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation CO2 pump energy emissions
 
     # TODO: add hydrogenation CO2 pump energy emissions
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation CO2 pump energy cost
 
     # TODO: add hydrogenation CO2 pump energy cost
 
     # ------------------------------------------------------------------------        
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation CO2 pump installed cost and annual O&M cost
 
     # TODO: add hydrogenation CO2 installed cost and annual O&M cost
     
-    FAH2_TML_hydr_pump_inst_cost_usd = 0.0
-    FAH2_TML_hydr_pump_dollar_year = output_dollar_year
+    LOHC_TML_hydr_pump_inst_cost_usd = 0.0
+    LOHC_TML_hydr_pump_dollar_year = output_dollar_year
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation CO2 vaporizer energy consumption and size
         
     # TODO: add hydrogenation CO2 vaporizer energy consumption and size
         
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation CO2 vaporizer energy emissions
 
     # TODO: add hydrogenation CO2 vaporizer energy emissions
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation CO2 vaporizer energy cost
 
     # TODO: add hydrogenation CO2 vaporizer energy cost
 
     # ------------------------------------------------------------------------        
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation CO2 vaporizer installed cost and annual O&M cost
 
     # TODO: add hydrogenation CO2 installed cost and annual O&M cost
     
-    FAH2_TML_hydr_vap_inst_cost_usd = 0.0
-    FAH2_TML_hydr_vap_dollar_year = output_dollar_year
+    LOHC_TML_hydr_vap_inst_cost_usd = 0.0
+    LOHC_TML_hydr_vap_dollar_year = output_dollar_year
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation reactor energy consumption
 
     # TODO: add reactor energy consumption
     
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation reactor energy emissions
 
     # TODO: add reactor energy emissions
     
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation reactor energy cost
     
     # TODO: add reactor energy cost
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # hydrogenation reactor installed cost and annual O&M cost
     
     # initialize hydrogenation reactor installed cost and 
     # annual O&M cost (zero by default)
-    FAH2_TML_hydr_react_inst_cost_usd = 0.0
-    FAH2_TML_hydr_react_om_cost_usd_per_yr = 0.0
-    FAH2_TML_hydr_react_dollar_year = output_dollar_year
+    LOHC_TML_hydr_react_inst_cost_usd = 0.0
+    LOHC_TML_hydr_react_om_cost_usd_per_yr = 0.0
+    LOHC_TML_hydr_react_dollar_year = output_dollar_year
     
-    if FA_prod_pathway == 'thermo':
+    if LOHC_prod_pathway == 'thermo':
 
         # calculate hydrogenation reactor installed cost ($) and annual 
         # O&M cost ($/yr), both in output dollar year
-        FAH2_TML_hydr_react_inst_cost_usd, \
-        FAH2_TML_hydr_react_om_cost_usd_per_yr, \
-        FAH2_TML_hydr_react_dollar_year = \
+        LOHC_TML_hydr_react_inst_cost_usd, \
+        LOHC_TML_hydr_react_om_cost_usd_per_yr, \
+        LOHC_TML_hydr_react_dollar_year = \
             reactor_fixed_costs(
-                react_pres_bar = FAH2_hydr_pres_bar,
-                react_vol_cu_m = FAH2_hydr_react_vol_cu_m, 
-                num_reacts = FAH2_num_hydr_reacts, 
+                react_pres_bar = LOHC_hydr_pres_bar,
+                react_vol_cu_m = LOHC_hydr_react_vol_cu_m, 
+                num_reacts = LOHC_num_hydr_reacts, 
                 output_dollar_year = output_dollar_year
                 )
     
     # calculate hydrogenation reactor O&M cost ($/kg H2)
-    FAH2_TML_hydr_react_om_cost_usd_per_kg = \
-        FAH2_TML_hydr_react_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_hydr_react_om_cost_usd_per_kg = \
+        LOHC_TML_hydr_react_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8055,10 +8077,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_TML_hydr_react_om_cost_usd_per_yr
+        LOHC_TML_hydr_react_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8066,58 +8088,56 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_TML_hydr_react_om_cost_usd_per_kg
+        LOHC_TML_hydr_react_om_cost_usd_per_kg
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
-    # hydrogenation catalyst upfront cost
+    # production - LOHC: hydrogenation catalyst upfront cost
     
     # initialize hydrogenation catalyst purchase cost (zero by default)
-    FAH2_TML_hydr_catal_purc_cost_usd = 0.0
+    LOHC_TML_hydr_catal_purc_cost_usd = 0.0
     
-    if FA_prod_pathway == 'thermo':
+    if LOHC_prod_pathway == 'thermo':
 
         # calculate hydrogenation catalyst upfront purchase cost ($)
-        FAH2_TML_hydr_catal_purc_cost_usd = \
-            FAH2_hydr_catal_cost_usd_per_kg * FAH2_hydr_catal_amt_kg
+        LOHC_TML_hydr_catal_purc_cost_usd = \
+            LOHC_hydr_catal_cost_usd_per_kg * LOHC_hydr_catal_amt_kg
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
-    # CO2 electrolyzer energy consumption and size
+    # production - LOHC: CO2 electrolyzer energy consumption and size
     
     # TODO: refine electrolyzer energy consumption and size
     
     # initialize CO2 electrolyzer power (zero by default)
-    FAH2_TML_hydr_electr_power_kW = 0.0
+    LOHC_TML_hydr_electr_power_kW = 0.0
 
-    if FA_prod_pathway == 'electro':
+    if LOHC_prod_pathway == 'electro':
         
         # TODO: turn electrolyzer energy calculations into function
         # ideal assumptions for now
 
-        # CO2 electrolyzer energy (kJ/mol formic acid)
-        hydr_electr_elec_kJ_per_mol_FA = \
-            hydr_electr_volt_V * e_per_mol_FA * \
+        # CO2 electrolyzer energy (kJ/mol LOHC)
+        hydr_electr_elec_kJ_per_mol_LOHC = \
+            hydr_electr_volt_V * stoic_mol_e_per_mol_LOHC * \
             faraday_const_C_per_mol_e / J_per_kJ
         
         # calculate CO2 electrolyzer power (kW)
-        FAH2_TML_hydr_electr_power_kW = \
-            hydr_electr_elec_kJ_per_mol_FA * FAH2_TML_FA_flow_mol_per_sec
+        LOHC_TML_hydr_electr_power_kW = \
+            hydr_electr_elec_kJ_per_mol_LOHC * LOHC_TML_LOHC_flow_mol_per_sec
             
     # calculate CO2 electrolyzer energy (kWh/kg H2)
-    FAH2_TML_hydr_electr_elec_kWh_per_kg = \
-        FAH2_TML_hydr_electr_power_kW / tot_H2_deliv_kg_per_hr
+    LOHC_TML_hydr_electr_elec_kWh_per_kg = \
+        LOHC_TML_hydr_electr_power_kW / tot_H2_deliv_kg_per_hr
         
     # convert CO2 electrolyzer energy to MJ/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_TML_hydr_electr_elec_MJ_per_MJ = \
-        FAH2_TML_hydr_electr_elec_kWh_per_kg * MJ_per_kWh / \
+    LOHC_TML_hydr_electr_elec_MJ_per_MJ = \
+        LOHC_TML_hydr_electr_elec_kWh_per_kg * MJ_per_kWh / \
         low_heat_val_H2_MJ_per_kg
 
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8125,10 +8145,10 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'kWh/kg H2', 
-        FAH2_TML_hydr_electr_elec_kWh_per_kg
+        LOHC_TML_hydr_electr_elec_kWh_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8136,25 +8156,25 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'MJ/MJ H2 (LHV)', 
-        FAH2_TML_hydr_electr_elec_MJ_per_MJ
+        LOHC_TML_hydr_electr_elec_MJ_per_MJ
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid: CO2 electrolyzer energy emissions
+    # production - LOHC: CO2 electrolyzer energy emissions
         
     # calculate CO2 electrolyzer energy emissions (kg CO2/kg H2)
-    FAH2_TML_hydr_electr_ghg_kg_CO2_per_kg = \
-        FAH2_TML_hydr_electr_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
+    LOHC_TML_hydr_electr_ghg_kg_CO2_per_kg = \
+        LOHC_TML_hydr_electr_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
     
     # convert CO2 electrolyzer energy emissions to g CO2/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_TML_hydr_electr_ghg_g_CO2_per_MJ = \
-        FAH2_TML_hydr_electr_ghg_kg_CO2_per_kg * g_per_kg / \
+    LOHC_TML_hydr_electr_ghg_g_CO2_per_MJ = \
+        LOHC_TML_hydr_electr_ghg_kg_CO2_per_kg * g_per_kg / \
         low_heat_val_H2_MJ_per_kg
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8162,10 +8182,10 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'kg CO2/kg H2', 
-        FAH2_TML_hydr_electr_ghg_kg_CO2_per_kg
+        LOHC_TML_hydr_electr_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8173,24 +8193,24 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_TML_hydr_electr_ghg_g_CO2_per_MJ
+        LOHC_TML_hydr_electr_ghg_g_CO2_per_MJ
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid: CO2 electrolyzer energy cost
+    # production - LOHC: CO2 electrolyzer energy cost
     
     # calculate CO2 electrolyzer energy cost ($/kg H2)
-    FAH2_TML_hydr_electr_elec_cost_usd_per_kg = \
-        FAH2_TML_hydr_electr_elec_kWh_per_kg * elec_cost_usd_per_kWh
+    LOHC_TML_hydr_electr_elec_cost_usd_per_kg = \
+        LOHC_TML_hydr_electr_elec_kWh_per_kg * elec_cost_usd_per_kWh
     
     # calculate CO2 electrolyzer energy cost ($/yr)
-    FAH2_TML_hydr_electr_elec_cost_usd_per_yr = \
-        FAH2_TML_hydr_electr_elec_cost_usd_per_kg * \
+    LOHC_TML_hydr_electr_elec_cost_usd_per_yr = \
+        LOHC_TML_hydr_electr_elec_cost_usd_per_kg * \
         tot_H2_deliv_kg_per_yr
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8198,10 +8218,10 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/yr', 
-        FAH2_TML_hydr_electr_elec_cost_usd_per_yr
+        LOHC_TML_hydr_electr_elec_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8209,48 +8229,48 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/kg H2', 
-        FAH2_TML_hydr_electr_elec_cost_usd_per_kg
+        LOHC_TML_hydr_electr_elec_cost_usd_per_kg
         ])
         
     # ------------------------------------------------------------------------
-    # production - formic acid: 
+    # production - LOHC: 
     # CO2 electrolyzer installed cost and annual O&M cost
         
     # initialize CO2 electrolyzer installed cost and 
     # annual O&M cost (zero by default)
-    FAH2_TML_hydr_electr_inst_cost_usd = 0.0
-    FAH2_TML_hydr_electr_om_cost_usd_per_yr = 0.0
-    FAH2_TML_hydr_electr_dollar_year = output_dollar_year
+    LOHC_TML_hydr_electr_inst_cost_usd = 0.0
+    LOHC_TML_hydr_electr_om_cost_usd_per_yr = 0.0
+    LOHC_TML_hydr_electr_dollar_year = output_dollar_year
 
-    if FA_prod_pathway == 'electro':      
+    if LOHC_prod_pathway == 'electro':      
         
         # TODO: turn electrolyzer area calculations into function 
         # ideal assumptions for now
 
         # calculate electrolyzer area (m^2) required
-        FAH2_TML_hydr_electr_area_sq_m = \
-            e_per_mol_FA * faraday_const_C_per_mol_e / \
-            hydr_electr_curr_dens_A_per_sq_m * FAH2_TML_FA_flow_mol_per_sec
+        LOHC_TML_hydr_electr_area_sq_m = \
+            stoic_mol_e_per_mol_LOHC * faraday_const_C_per_mol_e / \
+            hydr_electr_curr_dens_A_per_sq_m * LOHC_TML_LOHC_flow_mol_per_sec
                     
         # calculate CO2 electrolyzer installed cost ($) and annual 
         # O&M cost ($/yr), both in output dollar year
-        FAH2_TML_hydr_electr_inst_cost_usd, \
-        FAH2_TML_hydr_electr_om_cost_usd_per_yr, \
-        FAH2_TML_hydr_electr_dollar_year = \
+        LOHC_TML_hydr_electr_inst_cost_usd, \
+        LOHC_TML_hydr_electr_om_cost_usd_per_yr, \
+        LOHC_TML_hydr_electr_dollar_year = \
             electrolyzer_fixed_costs(
-                    electr_area_sq_m = FAH2_TML_hydr_electr_area_sq_m, 
+                    electr_area_sq_m = LOHC_TML_hydr_electr_area_sq_m, 
                     output_dollar_year = output_dollar_year,
                     electr_purc_cost_usd_per_sq_m = \
                         electr_purc_cost_usd_per_sq_m
                     )
             
     # calculate CO2 electrolyzer O&M cost ($/kg H2)
-    FAH2_TML_hydr_electr_om_cost_usd_per_kg = \
-        FAH2_TML_hydr_electr_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_hydr_electr_om_cost_usd_per_kg = \
+        LOHC_TML_hydr_electr_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8258,10 +8278,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_TML_hydr_electr_om_cost_usd_per_yr
+        LOHC_TML_hydr_electr_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8269,76 +8289,76 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_TML_hydr_electr_om_cost_usd_per_kg
+        LOHC_TML_hydr_electr_om_cost_usd_per_kg
         ])    
     
     # ------------------------------------------------------------------------
-    # production - formic acid: 
-    # formic acid purification (distillation) energy consumption
+    # production - LOHC: 
+    # LOHC purification (distillation) energy consumption
        
-    # TODO: add water / formic acid distillation energy consumption
+    # TODO: add distillation energy consumption
     # get from Components modeling?
     
     # ------------------------------------------------------------------------
-    # production - formic acid: 
-    # formic acid purification (distillation) energy emissions
+    # production - LOHC: 
+    # LOHC purification (distillation) energy emissions
 
-    # TODO: add water / formic acid distillation energy emissions
+    # TODO: add distillation energy emissions
 
     # ------------------------------------------------------------------------
-    # production - formic acid: 
-    # formic acid purification (distillation) energy cost
+    # production - LOHC: 
+    # LOHC purification (distillation) energy cost
     
-    # TODO: add water / formic acid distillation energy cost
+    # TODO: add distillation energy cost
     
     # ------------------------------------------------------------------------
-    # production - formic acid: 
-    # formic acid purification (distillation) installed cost 
+    # production - LOHC: 
+    # LOHC purification (distillation) installed cost 
     # and annual O&M cost
 
-    # TODO: add water / formic acid distillation installed cost and
+    # TODO: add distillation installed cost and
     # annual O&M cost
     # get equipment size from Components modeling?
     
-    # initialize formic acid purification capital and O&M costs
+    # initialize LOHC purification capital and O&M costs
     # ($ and $/yr, zero by default)
-    FAH2_TML_distil_cap_cost_usd = 0.0
-    FAH2_TML_distil_om_cost_usd_per_yr = 0.0    
-    FAH2_TML_distil_dollar_year = output_dollar_year
+    LOHC_TML_distil_cap_cost_usd = 0.0
+    LOHC_TML_distil_om_cost_usd_per_yr = 0.0    
+    LOHC_TML_distil_dollar_year = output_dollar_year
         
-    # initialize formic acid purification capital and O&M costs 
-    # ($/kg FA, zero by default)
-    FAH2_TML_distil_lev_cap_cost_usd_per_kgFA = 0.0    
-    FAH2_TML_distil_om_cost_usd_per_kgFA = 0.0
+    # initialize LOHC purification capital and O&M costs 
+    # ($/kg LOHC, zero by default)
+    LOHC_TML_distil_lev_cap_cost_usd_per_kgLOHC = 0.0    
+    LOHC_TML_distil_om_cost_usd_per_kgLOHC = 0.0
     
-    # if produce formic acid at terminal (as opposed to purchase), 
-    # update formic acid purification costs ($/kg FA)
+    # if produce LOHC at terminal (as opposed to purchase), 
+    # update LOHC purification costs ($/kg LOHC)
     # placeholders from Table 8, Ramdin et al., 2019; 
-    # hybrid extraction-distillation from 10 wt% to 85 wt% FA    
+    # hybrid extraction-distillation from 10 wt% to 85 wt% formic acid    
     # "Maintenance, depreciation, interest, and taxes are 
     # excluded" in OPEX in Ramdin et al."
-    # TODO: revisit: apply to both thermo and electro production?
     # TODO: calculate capital cost ($) and O&M cost ($/yr) as function of
     # plant capacity
-    if FA_prod_pathway != 'purchase':
-        FAH2_TML_distil_lev_cap_cost_usd_per_kgFA = 0.129
-        FAH2_TML_distil_om_cost_usd_per_kgFA = 0.116    
+    # TODO: incorporate purification costs as user input?
+    if LOHC_prod_pathway != 'purchase':
+        LOHC_TML_distil_lev_cap_cost_usd_per_kgLOHC = 0.129
+        LOHC_TML_distil_om_cost_usd_per_kgLOHC = 0.116    
         
-    # calculate formic acid purification capital cost ($/kg H2)
-    FAH2_TML_distil_lev_cap_cost_usd_per_kg = \
-        FAH2_TML_distil_lev_cap_cost_usd_per_kgFA * \
-        tot_FA_deliv_kg_per_day / tot_H2_deliv_kg_per_day
+    # calculate LOHC purification capital cost ($/kg H2)
+    LOHC_TML_distil_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_distil_lev_cap_cost_usd_per_kgLOHC * \
+        tot_LOHC_deliv_kg_per_day / tot_H2_deliv_kg_per_day
         
-    # calculate formic acid purification O&M cost ($/kg H2)
-    FAH2_TML_distil_om_cost_usd_per_kg = \
-        FAH2_TML_distil_om_cost_usd_per_kgFA * \
-        tot_FA_deliv_kg_per_day / tot_H2_deliv_kg_per_day
+    # calculate LOHC purification O&M cost ($/kg H2)
+    LOHC_TML_distil_om_cost_usd_per_kg = \
+        LOHC_TML_distil_om_cost_usd_per_kgLOHC * \
+        tot_LOHC_deliv_kg_per_day / tot_H2_deliv_kg_per_day
 
     # append results to list
-    # TODO: add formic acid purification O&M cost in $/yr --> 
+    # TODO: add LOHC purification O&M cost in $/yr --> 
     # calculate as function of plant capacity
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'separation', 
@@ -8346,10 +8366,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_TML_distil_lev_cap_cost_usd_per_kg
+        LOHC_TML_distil_lev_cap_cost_usd_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'separation', 
@@ -8357,56 +8377,56 @@ def calcs(
         'O&M cost', 
         'operation cost', 
         '$/kg H2', 
-        FAH2_TML_distil_om_cost_usd_per_kg
+        LOHC_TML_distil_om_cost_usd_per_kg
         ])
     
-    #%% CALCULATIONS: LOHC / FORMIC ACID DELIVERY ("FAH2")
-    # FORMIC ACID PRECONDITIONING @ TERMINAL
+    #%% CALCULATIONS: LOHC DELIVERY ("LOHC")
+    # LOHC PRECONDITIONING @ TERMINAL
     
-    # TODO: update formic acid pumping costs
+    # TODO: update LOHC pumping costs
 
     # ------------------------------------------------------------------------
-    # preconditioning - formic acid: 
+    # preconditioning - LOHC: 
     # low-head truck loading pump energy consumption and size
     
     # TODO: revisit flowrate through pump - incoroporate fill time, peak 
-    # demand, outage, etc.; for now, use formic acid flowrate through terminal
+    # demand, outage, etc.; for now, use LOHC flowrate through terminal
     
     # # calculate loading pump inlet pressure (bar)
-    # FAH2_TML_in_pres_bar = \
-    #     FAH2_TML_in_pres_atm * Pa_per_atm / Pa_per_bar
+    # LOHC_TML_in_pres_bar = \
+    #     LOHC_TML_in_pres_atm * Pa_per_atm / Pa_per_bar
     
     # # calculate loading pump outlet pressure (bar)
-    # FAH2_TML_out_pres_bar = \
-    #     FAH2_TML_out_pres_atm * Pa_per_atm / Pa_per_bar
+    # LOHC_TML_out_pres_bar = \
+    #     LOHC_TML_out_pres_atm * Pa_per_atm / Pa_per_bar
     
     # # calculate loading pump power (kW) and size (kW/pump) at terminal
-    # FAH2_TML_load_pump_tot_power_kW, \
-    # FAH2_TML_load_pump_power_kW_per_pump, \
-    # FAH2_TML_num_pumps = \
+    # LOHC_TML_load_pump_tot_power_kW, \
+    # LOHC_TML_load_pump_power_kW_per_pump, \
+    # LOHC_TML_num_pumps = \
     #     pump_power_and_size(
-    #         out_pres_bar = FAH2_TML_out_pres_bar,
-    #         in_pres_bar = FAH2_TML_in_pres_bar,
+    #         out_pres_bar = LOHC_TML_out_pres_bar,
+    #         in_pres_bar = LOHC_TML_in_pres_bar,
     #         fluid_flow_kg_per_sec = TML_H2_flow_kg_per_sec, 
     #         dens_kg_per_cu_m = dens_liq_H2_kg_per_cu_m
     #         )
     
     # # calculate loading pump energy (kWh/kg H2)
-    # FAH2_TML_load_pump_elec_kWh_per_kg = \
-    #     FAH2_TML_load_pump_tot_power_kW / tot_H2_deliv_kg_per_hr
+    # LOHC_TML_load_pump_elec_kWh_per_kg = \
+    #     LOHC_TML_load_pump_tot_power_kW / tot_H2_deliv_kg_per_hr
     
     # # convert loading pump energy to MJ/MJ H2 (LHV) 
     # # (for comparison with HDSAM V3.1)
-    # FAH2_TML_load_pump_elec_MJ_per_MJ = \
-    #     FAH2_TML_load_pump_elec_kWh_per_kg * MJ_per_kWh / \
+    # LOHC_TML_load_pump_elec_MJ_per_MJ = \
+    #     LOHC_TML_load_pump_elec_kWh_per_kg * MJ_per_kWh / \
     #     low_heat_val_H2_MJ_per_kg
     
-    FAH2_TML_load_pump_elec_kWh_per_kg = 0.0
-    FAH2_TML_load_pump_elec_MJ_per_MJ = 0.0
+    LOHC_TML_load_pump_elec_kWh_per_kg = 0.0
+    LOHC_TML_load_pump_elec_MJ_per_MJ = 0.0
 
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -8414,10 +8434,10 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'kWh/kg H2', 
-        FAH2_TML_load_pump_elec_kWh_per_kg
+        LOHC_TML_load_pump_elec_kWh_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -8425,29 +8445,28 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'MJ/MJ H2 (LHV)', 
-        FAH2_TML_load_pump_elec_MJ_per_MJ
+        LOHC_TML_load_pump_elec_MJ_per_MJ
         ])
         
     # ------------------------------------------------------------------------
-    # preconditioning - formic acid: 
-    # low-head truck loading pump energy emissions
+    # preconditioning - LOHC: low-head truck loading pump energy emissions
 
     # # calculate loading pump energy emissions (kg CO2/kg H2)
-    # FAH2_TML_load_pump_ghg_kg_CO2_per_kg = \
-    #     FAH2_TML_load_pump_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
+    # LOHC_TML_load_pump_ghg_kg_CO2_per_kg = \
+    #     LOHC_TML_load_pump_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
     
     # # convert loading pump energy emissions to g CO2/MJ H2 (LHV) 
     # # (for comparison with HDSAM V3.1)
-    # FAH2_TML_load_pump_ghg_g_CO2_per_MJ = \
-    #     FAH2_TML_load_pump_ghg_kg_CO2_per_kg * g_per_kg / \
+    # LOHC_TML_load_pump_ghg_g_CO2_per_MJ = \
+    #     LOHC_TML_load_pump_ghg_kg_CO2_per_kg * g_per_kg / \
     #     low_heat_val_H2_MJ_per_kg
     
-    FAH2_TML_load_pump_ghg_kg_CO2_per_kg = 0.0
-    FAH2_TML_load_pump_ghg_g_CO2_per_MJ = 0.0
+    LOHC_TML_load_pump_ghg_kg_CO2_per_kg = 0.0
+    LOHC_TML_load_pump_ghg_g_CO2_per_MJ = 0.0
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -8455,10 +8474,10 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'kg CO2/kg H2', 
-        FAH2_TML_load_pump_ghg_kg_CO2_per_kg
+        LOHC_TML_load_pump_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -8466,27 +8485,26 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_TML_load_pump_ghg_g_CO2_per_MJ
+        LOHC_TML_load_pump_ghg_g_CO2_per_MJ
         ])
         
     # ------------------------------------------------------------------------
-    # preconditioning - formic acid: 
-    # low-head truck loading pump energy cost
+    # preconditioning - LOHC: low-head truck loading pump energy cost
     
     # # calculate loading pump energy cost ($/kg H2)
-    # FAH2_TML_load_pump_elec_cost_usd_per_kg = \
-    #     FAH2_TML_load_pump_elec_kWh_per_kg * elec_cost_usd_per_kWh
+    # LOHC_TML_load_pump_elec_cost_usd_per_kg = \
+    #     LOHC_TML_load_pump_elec_kWh_per_kg * elec_cost_usd_per_kWh
     
     # # calculate loading pump energy cost ($/yr)
-    # FAH2_TML_load_pump_elec_cost_usd_per_yr = \
-    #     FAH2_TML_load_pump_elec_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
+    # LOHC_TML_load_pump_elec_cost_usd_per_yr = \
+    #     LOHC_TML_load_pump_elec_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
     
-    FAH2_TML_load_pump_elec_cost_usd_per_yr = 0.0
-    FAH2_TML_load_pump_elec_cost_usd_per_kg = 0.0
+    LOHC_TML_load_pump_elec_cost_usd_per_yr = 0.0
+    LOHC_TML_load_pump_elec_cost_usd_per_kg = 0.0
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -8494,10 +8512,10 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/yr', 
-        FAH2_TML_load_pump_elec_cost_usd_per_yr
+        LOHC_TML_load_pump_elec_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -8505,41 +8523,41 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/kg H2', 
-        FAH2_TML_load_pump_elec_cost_usd_per_kg
+        LOHC_TML_load_pump_elec_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # preconditioning - formic acid: 
+    # preconditioning - LOHC: 
     # low-head truck loading pump installed cost and annual O&M cost
             
-    # # calculate formic acid volumetric flowrate through 
+    # # calculate LOHC volumetric flowrate through 
     # # loading pump (m^3/hr)
-    # FAH2_TML_FA_flow_cu_m_per_hr = \
-    #     FAH2_TML_FA_flow_kg_per_day / dens_FA_kg_per_cu_m / hr_per_day
+    # LOHC_TML_LOHC_flow_cu_m_per_hr = \
+    #     LOHC_TML_LOHC_flow_kg_per_day / dens_LOHC_kg_per_cu_m / hr_per_day
 
     # # calculate loading pump installed cost ($) and annual 
     # # O&M cost ($/yr), both in output dollar year
-    # FAH2_TML_load_pump_inst_cost_usd, \
-    # FAH2_TML_load_pump_om_cost_usd_per_yr, \
-    # FAH2_TML_load_pump_dollar_year = \
+    # LOHC_TML_load_pump_inst_cost_usd, \
+    # LOHC_TML_load_pump_om_cost_usd_per_yr, \
+    # LOHC_TML_load_pump_dollar_year = \
     #     low_head_pump_fixed_costs(
-    #         num_pumps = FAH2_TML_num_pumps, 
-    #         fluid_flow_cu_m_per_hr = FAH2_TML_H2_flow_cu_m_per_hr,
+    #         num_pumps = LOHC_TML_num_pumps, 
+    #         fluid_flow_cu_m_per_hr = LOHC_TML_H2_flow_cu_m_per_hr,
     #         output_dollar_year = output_dollar_year
     #         )
     
     # # calculate loading pump O&M cost ($/kg H2)
-    # FAH2_TML_load_pump_om_cost_usd_per_kg = \
-    #     FAH2_TML_load_pump_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    # LOHC_TML_load_pump_om_cost_usd_per_kg = \
+    #     LOHC_TML_load_pump_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
-    FAH2_TML_load_pump_inst_cost_usd = 0.0
-    FAH2_TML_load_pump_dollar_year = output_dollar_year
-    FAH2_TML_load_pump_om_cost_usd_per_yr = 0.0
-    FAH2_TML_load_pump_om_cost_usd_per_kg = 0.0
+    LOHC_TML_load_pump_inst_cost_usd = 0.0
+    LOHC_TML_load_pump_dollar_year = output_dollar_year
+    LOHC_TML_load_pump_om_cost_usd_per_yr = 0.0
+    LOHC_TML_load_pump_om_cost_usd_per_kg = 0.0
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -8547,10 +8565,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_TML_load_pump_om_cost_usd_per_yr
+        LOHC_TML_load_pump_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -8558,42 +8576,42 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_TML_load_pump_om_cost_usd_per_kg
+        LOHC_TML_load_pump_om_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # preconditioning - formic acid: 
-    # terminal formic acid storage installed cost and annual O&M cost
+    # preconditioning - LOHC: 
+    # terminal LOHC storage installed cost and annual O&M cost
             
-    # calculate total formic acid storage capacity (m^3) and 
+    # calculate total LOHC storage capacity (m^3) and 
     # number of storage tanks required at terminal
-    FAH2_TML_stor_tank_capacity_cu_m, \
-    FAH2_TML_num_tanks = \
+    LOHC_TML_stor_tank_capacity_cu_m, \
+    LOHC_TML_num_tanks = \
         general_tank_storage_size(
-            fluid_flow_kg_per_day = FAH2_TML_FA_flow_kg_per_day,
-            stor_amt_days = FAH2_TML_stor_amt_days,
-            fluid_dens_kg_per_cu_m = dens_FA_kg_per_cu_m
+            fluid_flow_kg_per_day = LOHC_TML_LOHC_flow_kg_per_day,
+            stor_amt_days = LOHC_TML_stor_amt_days,
+            fluid_dens_kg_per_cu_m = dens_LOHC_kg_per_cu_m
             )
     
     # calculate storage installed cost ($) and annual O&M cost ($/yr), 
     # both in output dollar year    
-    FAH2_TML_stor_inst_cost_usd, \
-    FAH2_TML_stor_om_cost_usd_per_yr, \
-    FAH2_TML_stor_dollar_year = \
+    LOHC_TML_stor_inst_cost_usd, \
+    LOHC_TML_stor_om_cost_usd_per_yr, \
+    LOHC_TML_stor_dollar_year = \
         general_tank_stor_fixed_costs(
-            stor_tank_capacity_cu_m = FAH2_TML_stor_tank_capacity_cu_m,
-            num_tanks = FAH2_TML_num_tanks,
+            stor_tank_capacity_cu_m = LOHC_TML_stor_tank_capacity_cu_m,
+            num_tanks = LOHC_TML_num_tanks,
             output_dollar_year = output_dollar_year, 
             material = 'fiber glass open top'
             )
 
     # calculate storage O&M cost ($/kg H2)
-    FAH2_TML_stor_om_cost_usd_per_kg = \
-        FAH2_TML_stor_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_stor_om_cost_usd_per_kg = \
+        LOHC_TML_stor_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'storage', 
@@ -8601,10 +8619,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_TML_stor_om_cost_usd_per_yr
+        LOHC_TML_stor_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'storage', 
@@ -8612,14 +8630,14 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_TML_stor_om_cost_usd_per_kg
+        LOHC_TML_stor_om_cost_usd_per_kg
         ])    
     
-    #%% CALCULATIONS: LOHC / FORMIC ACID DELIVERY ("FAH2")
-    # FORMIC ACID PRODUCTION + PRECONDITIONING @ TERMINAL
+    #%% CALCULATIONS: LOHC DELIVERY ("LOHC")
+    # LOHC PRODUCTION + PRECONDITIONING @ TERMINAL
 
     # ------------------------------------------------------------------------
-    # production + preconditioning - formic acid: 
+    # production + preconditioning - LOHC: 
     # terminal total capital investment and "other" annual O&M costs
 
     # "Other" O&M costs include insurance, property taxes, licensing and 
@@ -8630,16 +8648,16 @@ def calcs(
     # calculate terminal total initial capital investment ($)
     # (= hydrogenation hydrogen compressor, reactor, electrolyzer, 
     # separator, etc. installed costs)
-    FAH2_TML_init_cap_inv_usd = \
-        FAH2_TML_hydr_compr_inst_cost_usd + \
-        FAH2_TML_hydr_pump_inst_cost_usd + \
-        FAH2_TML_hydr_vap_inst_cost_usd + \
-        FAH2_TML_hydr_react_inst_cost_usd + \
-        FAH2_TML_hydr_catal_purc_cost_usd + \
-        FAH2_TML_hydr_electr_inst_cost_usd + \
-        FAH2_TML_distil_cap_cost_usd + \
-        FAH2_TML_load_pump_inst_cost_usd + \
-        FAH2_TML_stor_inst_cost_usd
+    LOHC_TML_init_cap_inv_usd = \
+        LOHC_TML_hydr_compr_inst_cost_usd + \
+        LOHC_TML_hydr_pump_inst_cost_usd + \
+        LOHC_TML_hydr_vap_inst_cost_usd + \
+        LOHC_TML_hydr_react_inst_cost_usd + \
+        LOHC_TML_hydr_catal_purc_cost_usd + \
+        LOHC_TML_hydr_electr_inst_cost_usd + \
+        LOHC_TML_distil_cap_cost_usd + \
+        LOHC_TML_load_pump_inst_cost_usd + \
+        LOHC_TML_stor_inst_cost_usd
                 
     # calculate terminal cost allocations (%) to hydrogenation hydrogen
     # compressor, reactor, electrolyzer, separator, etc.
@@ -8647,59 +8665,59 @@ def calcs(
     # use to allocate total capital investment, other O&M costs, and labor 
     # cost
     
-    if FAH2_TML_init_cap_inv_usd == 0.0:
-        FAH2_TML_hydr_compr_cost_perc = 0.0
-        FAH2_TML_hydr_pump_cost_perc = 0.0
-        FAH2_TML_hydr_vap_cost_perc = 0.0
-        FAH2_TML_hydr_react_cost_perc = 0.0
-        FAH2_TML_hydr_catal_cost_perc = 0.0
-        FAH2_TML_hydr_electr_cost_perc = 0.0
-        FAH2_TML_distil_cost_perc = 0.0
-        FAH2_TML_load_pump_cost_perc = 0.0
-        FAH2_TML_stor_cost_perc = 0.0
+    if LOHC_TML_init_cap_inv_usd == 0.0:
+        LOHC_TML_hydr_compr_cost_perc = 0.0
+        LOHC_TML_hydr_pump_cost_perc = 0.0
+        LOHC_TML_hydr_vap_cost_perc = 0.0
+        LOHC_TML_hydr_react_cost_perc = 0.0
+        LOHC_TML_hydr_catal_cost_perc = 0.0
+        LOHC_TML_hydr_electr_cost_perc = 0.0
+        LOHC_TML_distil_cost_perc = 0.0
+        LOHC_TML_load_pump_cost_perc = 0.0
+        LOHC_TML_stor_cost_perc = 0.0
     else:
-        FAH2_TML_hydr_compr_cost_perc = \
-            FAH2_TML_hydr_compr_inst_cost_usd / \
-            FAH2_TML_init_cap_inv_usd
-        FAH2_TML_hydr_pump_cost_perc = \
-            FAH2_TML_hydr_pump_inst_cost_usd / \
-            FAH2_TML_init_cap_inv_usd
-        FAH2_TML_hydr_vap_cost_perc = \
-            FAH2_TML_hydr_vap_inst_cost_usd / \
-            FAH2_TML_init_cap_inv_usd
-        FAH2_TML_hydr_react_cost_perc = \
-            FAH2_TML_hydr_react_inst_cost_usd / \
-            FAH2_TML_init_cap_inv_usd
-        FAH2_TML_hydr_catal_cost_perc = \
-            FAH2_TML_hydr_catal_purc_cost_usd / \
-            FAH2_TML_init_cap_inv_usd
-        FAH2_TML_hydr_electr_cost_perc = \
-            FAH2_TML_hydr_electr_inst_cost_usd / \
-            FAH2_TML_init_cap_inv_usd
-        FAH2_TML_distil_cost_perc = \
-            FAH2_TML_distil_cap_cost_usd / \
-            FAH2_TML_init_cap_inv_usd
-        FAH2_TML_load_pump_cost_perc = \
-            FAH2_TML_load_pump_inst_cost_usd / \
-            FAH2_TML_init_cap_inv_usd
-        FAH2_TML_stor_cost_perc = \
-            FAH2_TML_stor_inst_cost_usd / \
-            FAH2_TML_init_cap_inv_usd
+        LOHC_TML_hydr_compr_cost_perc = \
+            LOHC_TML_hydr_compr_inst_cost_usd / \
+            LOHC_TML_init_cap_inv_usd
+        LOHC_TML_hydr_pump_cost_perc = \
+            LOHC_TML_hydr_pump_inst_cost_usd / \
+            LOHC_TML_init_cap_inv_usd
+        LOHC_TML_hydr_vap_cost_perc = \
+            LOHC_TML_hydr_vap_inst_cost_usd / \
+            LOHC_TML_init_cap_inv_usd
+        LOHC_TML_hydr_react_cost_perc = \
+            LOHC_TML_hydr_react_inst_cost_usd / \
+            LOHC_TML_init_cap_inv_usd
+        LOHC_TML_hydr_catal_cost_perc = \
+            LOHC_TML_hydr_catal_purc_cost_usd / \
+            LOHC_TML_init_cap_inv_usd
+        LOHC_TML_hydr_electr_cost_perc = \
+            LOHC_TML_hydr_electr_inst_cost_usd / \
+            LOHC_TML_init_cap_inv_usd
+        LOHC_TML_distil_cost_perc = \
+            LOHC_TML_distil_cap_cost_usd / \
+            LOHC_TML_init_cap_inv_usd
+        LOHC_TML_load_pump_cost_perc = \
+            LOHC_TML_load_pump_inst_cost_usd / \
+            LOHC_TML_init_cap_inv_usd
+        LOHC_TML_stor_cost_perc = \
+            LOHC_TML_stor_inst_cost_usd / \
+            LOHC_TML_init_cap_inv_usd
 
     # check whether cost allocations (%) sum to one
     # raise error if false
-    if FAH2_TML_init_cap_inv_usd == 0.0:
+    if LOHC_TML_init_cap_inv_usd == 0.0:
         pass
     elif abs(
-            FAH2_TML_hydr_compr_cost_perc + \
-            FAH2_TML_hydr_pump_cost_perc + \
-            FAH2_TML_hydr_vap_cost_perc + \
-            FAH2_TML_hydr_react_cost_perc + \
-            FAH2_TML_hydr_catal_cost_perc + \
-            FAH2_TML_hydr_electr_cost_perc + \
-            FAH2_TML_distil_cost_perc + \
-            FAH2_TML_load_pump_cost_perc + \
-            FAH2_TML_stor_cost_perc - \
+            LOHC_TML_hydr_compr_cost_perc + \
+            LOHC_TML_hydr_pump_cost_perc + \
+            LOHC_TML_hydr_vap_cost_perc + \
+            LOHC_TML_hydr_react_cost_perc + \
+            LOHC_TML_hydr_catal_cost_perc + \
+            LOHC_TML_hydr_electr_cost_perc + \
+            LOHC_TML_distil_cost_perc + \
+            LOHC_TML_load_pump_cost_perc + \
+            LOHC_TML_stor_cost_perc - \
             1.0
             ) >= 1.0e-9:
         raise ValueError(
@@ -8709,51 +8727,51 @@ def calcs(
     # check if all terminal components have the same dollar year
     # if true, assign dollar year of refueling station costs to the dollar 
     # year of one of the components 
-    if (FAH2_TML_hydr_compr_dollar_year == \
-        FAH2_TML_hydr_pump_dollar_year) \
-        and (FAH2_TML_hydr_pump_dollar_year == \
-             FAH2_TML_hydr_vap_dollar_year) \
-        and (FAH2_TML_hydr_vap_dollar_year == \
-             FAH2_TML_hydr_react_dollar_year) \
-        and (FAH2_TML_hydr_react_dollar_year == \
-             FAH2_TML_hydr_electr_dollar_year) \
-        and (FAH2_TML_hydr_electr_dollar_year == \
-             FAH2_TML_distil_dollar_year) \
-        and (FAH2_TML_distil_dollar_year == \
-             FAH2_TML_load_pump_dollar_year) \
-        and (FAH2_TML_load_pump_dollar_year == \
-             FAH2_TML_stor_dollar_year):
-        FAH2_TML_dollar_year = FAH2_TML_hydr_compr_dollar_year
+    if (LOHC_TML_hydr_compr_dollar_year == \
+        LOHC_TML_hydr_pump_dollar_year) \
+        and (LOHC_TML_hydr_pump_dollar_year == \
+             LOHC_TML_hydr_vap_dollar_year) \
+        and (LOHC_TML_hydr_vap_dollar_year == \
+             LOHC_TML_hydr_react_dollar_year) \
+        and (LOHC_TML_hydr_react_dollar_year == \
+             LOHC_TML_hydr_electr_dollar_year) \
+        and (LOHC_TML_hydr_electr_dollar_year == \
+             LOHC_TML_distil_dollar_year) \
+        and (LOHC_TML_distil_dollar_year == \
+             LOHC_TML_load_pump_dollar_year) \
+        and (LOHC_TML_load_pump_dollar_year == \
+             LOHC_TML_stor_dollar_year):
+        LOHC_TML_dollar_year = LOHC_TML_hydr_compr_dollar_year
     else:
         raise ValueError(
             'Dollar year of components need to match.'
             )
 
     # calculate terminal total capital investment ($, output dollar year) 
-    FAH2_TML_tot_cap_inv_usd, \
-    FAH2_TML_cap_cost_dollar_year = \
+    LOHC_TML_tot_cap_inv_usd, \
+    LOHC_TML_cap_cost_dollar_year = \
         non_station_total_capital_investment(
-            init_cap_inv_usd = FAH2_TML_init_cap_inv_usd, 
-            input_dollar_year = FAH2_TML_dollar_year
+            init_cap_inv_usd = LOHC_TML_init_cap_inv_usd, 
+            input_dollar_year = LOHC_TML_dollar_year
             )
     
     # calculate terminal "other" annual O&M costs ($/yr, output dollar year)
-    FAH2_TML_om_cost_usd_per_yr, \
-    FAH2_TML_om_cost_dollar_year = \
+    LOHC_TML_om_cost_usd_per_yr, \
+    LOHC_TML_om_cost_dollar_year = \
         other_om_cost(
-            tot_cap_inv_usd = FAH2_TML_tot_cap_inv_usd,
-            input_dollar_year = FAH2_TML_cap_cost_dollar_year
+            tot_cap_inv_usd = LOHC_TML_tot_cap_inv_usd,
+            input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
     # calculate terminal "other" O&M costs ($/kg H2)
-    FAH2_TML_om_cost_usd_per_kg = \
-        FAH2_TML_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_om_cost_usd_per_kg = \
+        LOHC_TML_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     # assign "other" O&M costs to hydrogenation hydrogen compressor, 
     # reactor, electrolyzer, separator, etc.
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -8761,11 +8779,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_TML_om_cost_usd_per_yr * \
-            FAH2_TML_hydr_compr_cost_perc
+        LOHC_TML_om_cost_usd_per_yr * \
+            LOHC_TML_hydr_compr_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -8773,12 +8791,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_TML_om_cost_usd_per_kg * \
-            FAH2_TML_hydr_compr_cost_perc
+        LOHC_TML_om_cost_usd_per_kg * \
+            LOHC_TML_hydr_compr_cost_perc
         ])
 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'pumping', 
@@ -8786,11 +8804,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_TML_om_cost_usd_per_yr * \
-            FAH2_TML_hydr_pump_cost_perc
+        LOHC_TML_om_cost_usd_per_yr * \
+            LOHC_TML_hydr_pump_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'pumping', 
@@ -8798,12 +8816,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_TML_om_cost_usd_per_kg * \
-            FAH2_TML_hydr_pump_cost_perc
+        LOHC_TML_om_cost_usd_per_kg * \
+            LOHC_TML_hydr_pump_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'vaporization', 
@@ -8811,11 +8829,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_TML_om_cost_usd_per_yr * \
-            FAH2_TML_hydr_vap_cost_perc
+        LOHC_TML_om_cost_usd_per_yr * \
+            LOHC_TML_hydr_vap_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'vaporization', 
@@ -8823,12 +8841,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_TML_om_cost_usd_per_kg * \
-            FAH2_TML_hydr_vap_cost_perc
+        LOHC_TML_om_cost_usd_per_kg * \
+            LOHC_TML_hydr_vap_cost_perc
         ])
 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8836,11 +8854,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_TML_om_cost_usd_per_yr * \
-            FAH2_TML_hydr_react_cost_perc
+        LOHC_TML_om_cost_usd_per_yr * \
+            LOHC_TML_hydr_react_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8848,12 +8866,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_TML_om_cost_usd_per_kg * \
-            FAH2_TML_hydr_react_cost_perc
+        LOHC_TML_om_cost_usd_per_kg * \
+            LOHC_TML_hydr_react_cost_perc
         ])
                 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8861,11 +8879,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_TML_om_cost_usd_per_yr * \
-            FAH2_TML_hydr_catal_cost_perc
+        LOHC_TML_om_cost_usd_per_yr * \
+            LOHC_TML_hydr_catal_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8873,12 +8891,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_TML_om_cost_usd_per_kg * \
-            FAH2_TML_hydr_catal_cost_perc
+        LOHC_TML_om_cost_usd_per_kg * \
+            LOHC_TML_hydr_catal_cost_perc
         ])
 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8886,11 +8904,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_TML_om_cost_usd_per_yr * \
-            FAH2_TML_hydr_electr_cost_perc
+        LOHC_TML_om_cost_usd_per_yr * \
+            LOHC_TML_hydr_electr_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -8898,12 +8916,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_TML_om_cost_usd_per_kg * \
-            FAH2_TML_hydr_electr_cost_perc
+        LOHC_TML_om_cost_usd_per_kg * \
+            LOHC_TML_hydr_electr_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'separation', 
@@ -8911,11 +8929,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_TML_om_cost_usd_per_yr * \
-            FAH2_TML_distil_cost_perc
+        LOHC_TML_om_cost_usd_per_yr * \
+            LOHC_TML_distil_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'separation', 
@@ -8923,12 +8941,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_TML_om_cost_usd_per_kg * \
-            FAH2_TML_distil_cost_perc
+        LOHC_TML_om_cost_usd_per_kg * \
+            LOHC_TML_distil_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -8936,11 +8954,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_TML_om_cost_usd_per_yr * \
-            FAH2_TML_load_pump_cost_perc
+        LOHC_TML_om_cost_usd_per_yr * \
+            LOHC_TML_load_pump_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -8948,12 +8966,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_TML_om_cost_usd_per_kg * \
-            FAH2_TML_load_pump_cost_perc
+        LOHC_TML_om_cost_usd_per_kg * \
+            LOHC_TML_load_pump_cost_perc
         ])
 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'storage', 
@@ -8961,11 +8979,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_TML_om_cost_usd_per_yr * \
-            FAH2_TML_stor_cost_perc
+        LOHC_TML_om_cost_usd_per_yr * \
+            LOHC_TML_stor_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'storage', 
@@ -8973,34 +8991,34 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_TML_om_cost_usd_per_kg * \
-            FAH2_TML_stor_cost_perc
+        LOHC_TML_om_cost_usd_per_kg * \
+            LOHC_TML_stor_cost_perc
         ])
                 
     # ------------------------------------------------------------------------
-    # production + preconditioning - formic acid: 
+    # production + preconditioning - LOHC: 
     # terminal annual labor cost 
 
-    # TODO: revisit labor cost scaling for formic acid terminal
+    # TODO: revisit labor cost scaling for LOHC terminal
 
     # calculate terminal annual labor cost ($/yr, output dollar year), 
     # including overhead and G&A
-    FAH2_TML_labor_cost_usd_per_yr, \
-    FAH2_TML_labor_cost_dollar_year = \
+    LOHC_TML_labor_cost_usd_per_yr, \
+    LOHC_TML_labor_cost_dollar_year = \
         non_station_labor_cost(
-            H2_flow_kg_per_day = FAH2_TML_H2_flow_kg_per_day, 
+            H2_flow_kg_per_day = LOHC_TML_H2_flow_kg_per_day, 
             output_dollar_year = output_dollar_year
             )
     
     # calculate terminal labor cost ($/kg H2)
-    FAH2_TML_labor_cost_usd_per_kg = \
-        FAH2_TML_labor_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_labor_cost_usd_per_kg = \
+        LOHC_TML_labor_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     # assign labor cost to hydrogenation hydrogen compressor, 
     # reactor, electrolyzer, separator, etc.
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -9008,11 +9026,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_TML_labor_cost_usd_per_yr * \
-            FAH2_TML_hydr_compr_cost_perc
+        LOHC_TML_labor_cost_usd_per_yr * \
+            LOHC_TML_hydr_compr_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -9020,12 +9038,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_TML_labor_cost_usd_per_kg * \
-            FAH2_TML_hydr_compr_cost_perc
+        LOHC_TML_labor_cost_usd_per_kg * \
+            LOHC_TML_hydr_compr_cost_perc
         ])
 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'pumping', 
@@ -9033,11 +9051,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_TML_labor_cost_usd_per_yr * \
-            FAH2_TML_hydr_pump_cost_perc
+        LOHC_TML_labor_cost_usd_per_yr * \
+            LOHC_TML_hydr_pump_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'pumping', 
@@ -9045,12 +9063,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_TML_labor_cost_usd_per_kg * \
-            FAH2_TML_hydr_pump_cost_perc
+        LOHC_TML_labor_cost_usd_per_kg * \
+            LOHC_TML_hydr_pump_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'vaporization', 
@@ -9058,11 +9076,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_TML_labor_cost_usd_per_yr * \
-            FAH2_TML_hydr_vap_cost_perc
+        LOHC_TML_labor_cost_usd_per_yr * \
+            LOHC_TML_hydr_vap_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'vaporization', 
@@ -9070,12 +9088,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_TML_labor_cost_usd_per_kg * \
-            FAH2_TML_hydr_vap_cost_perc
+        LOHC_TML_labor_cost_usd_per_kg * \
+            LOHC_TML_hydr_vap_cost_perc
         ])
 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9083,11 +9101,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_TML_labor_cost_usd_per_yr * \
-            FAH2_TML_hydr_react_cost_perc
+        LOHC_TML_labor_cost_usd_per_yr * \
+            LOHC_TML_hydr_react_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9095,12 +9113,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_TML_labor_cost_usd_per_kg * \
-            FAH2_TML_hydr_react_cost_perc
+        LOHC_TML_labor_cost_usd_per_kg * \
+            LOHC_TML_hydr_react_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9108,11 +9126,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_TML_labor_cost_usd_per_yr * \
-            FAH2_TML_hydr_catal_cost_perc
+        LOHC_TML_labor_cost_usd_per_yr * \
+            LOHC_TML_hydr_catal_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9120,12 +9138,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_TML_labor_cost_usd_per_kg * \
-            FAH2_TML_hydr_catal_cost_perc
+        LOHC_TML_labor_cost_usd_per_kg * \
+            LOHC_TML_hydr_catal_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9133,11 +9151,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_TML_labor_cost_usd_per_yr * \
-            FAH2_TML_hydr_electr_cost_perc
+        LOHC_TML_labor_cost_usd_per_yr * \
+            LOHC_TML_hydr_electr_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9145,12 +9163,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_TML_labor_cost_usd_per_kg * \
-            FAH2_TML_hydr_electr_cost_perc
+        LOHC_TML_labor_cost_usd_per_kg * \
+            LOHC_TML_hydr_electr_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'separation', 
@@ -9158,11 +9176,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_TML_labor_cost_usd_per_yr * \
-            FAH2_TML_distil_cost_perc
+        LOHC_TML_labor_cost_usd_per_yr * \
+            LOHC_TML_distil_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'separation', 
@@ -9170,12 +9188,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_TML_labor_cost_usd_per_kg * \
-            FAH2_TML_distil_cost_perc
+        LOHC_TML_labor_cost_usd_per_kg * \
+            LOHC_TML_distil_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -9183,11 +9201,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_TML_labor_cost_usd_per_yr * \
-            FAH2_TML_load_pump_cost_perc
+        LOHC_TML_labor_cost_usd_per_yr * \
+            LOHC_TML_load_pump_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -9195,12 +9213,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_TML_labor_cost_usd_per_kg * \
-            FAH2_TML_load_pump_cost_perc
+        LOHC_TML_labor_cost_usd_per_kg * \
+            LOHC_TML_load_pump_cost_perc
         ])
 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'storage', 
@@ -9208,11 +9226,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_TML_labor_cost_usd_per_yr * \
-            FAH2_TML_stor_cost_perc
+        LOHC_TML_labor_cost_usd_per_yr * \
+            LOHC_TML_stor_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'storage', 
@@ -9220,38 +9238,38 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_TML_labor_cost_usd_per_kg * \
-            FAH2_TML_stor_cost_perc
+        LOHC_TML_labor_cost_usd_per_kg * \
+            LOHC_TML_stor_cost_perc
         ])
         
     # ------------------------------------------------------------------------
-    # production - formic acid:
+    # production - LOHC:
     # hydrogenation hydrogen compressor levelized capital cost
     
     # calculate hydrogenation hydrogen compressor total capital investment ($) 
     # (= terminal total capital investment allocated to compressor)
-    FAH2_TML_hydr_compr_tot_cap_inv_usd = \
-        FAH2_TML_hydr_compr_cost_perc * FAH2_TML_tot_cap_inv_usd
+    LOHC_TML_hydr_compr_tot_cap_inv_usd = \
+        LOHC_TML_hydr_compr_cost_perc * LOHC_TML_tot_cap_inv_usd
     
     # calculate hydrogenation hydrogen compressor levelized capital cost 
     # ($/yr, output dollar year)
-    FAH2_TML_hydr_compr_lev_cap_cost_usd_per_yr, \
-    FAH2_TML_hydr_compr_lev_cap_cost_dollar_year = \
+    LOHC_TML_hydr_compr_lev_cap_cost_usd_per_yr, \
+    LOHC_TML_hydr_compr_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_TML_hydr_compr_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_TML_hydr_compr_tot_cap_inv_usd, 
             life_yr = TML_compr_life_yr, 
             depr_yr = TML_compr_depr_yr,
-            input_dollar_year = FAH2_TML_cap_cost_dollar_year
+            input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
     # calculate hydrogenation hydrogen compressor levelized 
     # capital cost ($/kg H2)
-    FAH2_TML_hydr_compr_lev_cap_cost_usd_per_kg = \
-        FAH2_TML_hydr_compr_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_hydr_compr_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_hydr_compr_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -9259,10 +9277,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_TML_hydr_compr_lev_cap_cost_usd_per_yr
+        LOHC_TML_hydr_compr_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'compression', 
@@ -9270,37 +9288,36 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_TML_hydr_compr_lev_cap_cost_usd_per_kg
+        LOHC_TML_hydr_compr_lev_cap_cost_usd_per_kg
         ])
             
     # ------------------------------------------------------------------------
-    # production - formic acid:
-    # hydrogenation CO2 pump levelized capital cost
+    # production - LOHC: hydrogenation CO2 pump levelized capital cost
     
     # calculate hydrogenation CO2 pump total capital investment ($) 
     # (= terminal total capital investment allocated to pump)
-    FAH2_TML_hydr_pump_tot_cap_inv_usd = \
-        FAH2_TML_hydr_pump_cost_perc * FAH2_TML_tot_cap_inv_usd
+    LOHC_TML_hydr_pump_tot_cap_inv_usd = \
+        LOHC_TML_hydr_pump_cost_perc * LOHC_TML_tot_cap_inv_usd
     
     # calculate hydrogenation CO2 pump levelized capital cost 
     # ($/yr, output dollar year)
-    FAH2_TML_hydr_pump_lev_cap_cost_usd_per_yr, \
-    FAH2_TML_hydr_pump_lev_cap_cost_dollar_year = \
+    LOHC_TML_hydr_pump_lev_cap_cost_usd_per_yr, \
+    LOHC_TML_hydr_pump_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_TML_hydr_pump_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_TML_hydr_pump_tot_cap_inv_usd, 
             life_yr = TML_pump_life_yr, 
             depr_yr = TML_pump_depr_yr,
-            input_dollar_year = FAH2_TML_cap_cost_dollar_year
+            input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
     # calculate hydrogenation CO2 pump levelized 
     # capital cost ($/kg H2)
-    FAH2_TML_hydr_pump_lev_cap_cost_usd_per_kg = \
-        FAH2_TML_hydr_pump_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_hydr_pump_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_hydr_pump_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'pumping', 
@@ -9308,10 +9325,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_TML_hydr_pump_lev_cap_cost_usd_per_yr
+        LOHC_TML_hydr_pump_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'pumping', 
@@ -9319,37 +9336,37 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_TML_hydr_pump_lev_cap_cost_usd_per_kg
+        LOHC_TML_hydr_pump_lev_cap_cost_usd_per_kg
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid:
+    # production - LOHC:
     # hydrogenation CO2 vaporizer levelized capital cost
     
     # calculate hydrogenation CO2 vaporizer total capital investment ($) 
     # (= terminal total capital investment allocated to vaporizer)
-    FAH2_TML_hydr_vap_tot_cap_inv_usd = \
-        FAH2_TML_hydr_vap_cost_perc * FAH2_TML_tot_cap_inv_usd
+    LOHC_TML_hydr_vap_tot_cap_inv_usd = \
+        LOHC_TML_hydr_vap_cost_perc * LOHC_TML_tot_cap_inv_usd
     
     # calculate hydrogenation CO2 vaporizer levelized capital cost 
     # ($/yr, output dollar year)
-    FAH2_TML_hydr_vap_lev_cap_cost_usd_per_yr, \
-    FAH2_TML_hydr_vap_lev_cap_cost_dollar_year = \
+    LOHC_TML_hydr_vap_lev_cap_cost_usd_per_yr, \
+    LOHC_TML_hydr_vap_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_TML_hydr_vap_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_TML_hydr_vap_tot_cap_inv_usd, 
             life_yr = TML_vap_life_yr, 
             depr_yr = TML_vap_depr_yr,
-            input_dollar_year = FAH2_TML_cap_cost_dollar_year
+            input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
     # calculate hydrogenation CO2 vaporizer levelized 
     # capital cost ($/kg H2)
-    FAH2_TML_hydr_vap_lev_cap_cost_usd_per_kg = \
-        FAH2_TML_hydr_vap_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_hydr_vap_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_hydr_vap_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'vaporization', 
@@ -9357,10 +9374,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_TML_hydr_vap_lev_cap_cost_usd_per_yr
+        LOHC_TML_hydr_vap_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'vaporization', 
@@ -9368,37 +9385,36 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_TML_hydr_vap_lev_cap_cost_usd_per_kg
+        LOHC_TML_hydr_vap_lev_cap_cost_usd_per_kg
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid:
-    # hydrogenation reactor levelized capital cost
+    # production - LOHC: hydrogenation reactor levelized capital cost
     
     # calculate hydrogenation reactor total capital investment ($) 
     # (= terminal total capital investment allocated to reactor)
-    FAH2_TML_hydr_react_tot_cap_inv_usd = \
-        FAH2_TML_hydr_react_cost_perc * FAH2_TML_tot_cap_inv_usd
+    LOHC_TML_hydr_react_tot_cap_inv_usd = \
+        LOHC_TML_hydr_react_cost_perc * LOHC_TML_tot_cap_inv_usd
     
     # calculate hydrogenation reactor levelized capital cost 
     # ($/yr, output dollar year)
-    FAH2_TML_hydr_react_lev_cap_cost_usd_per_yr, \
-    FAH2_TML_hydr_react_lev_cap_cost_dollar_year = \
+    LOHC_TML_hydr_react_lev_cap_cost_usd_per_yr, \
+    LOHC_TML_hydr_react_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_TML_hydr_react_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_TML_hydr_react_tot_cap_inv_usd, 
             life_yr = TML_react_life_yr, 
             depr_yr = TML_react_depr_yr,
-            input_dollar_year = FAH2_TML_cap_cost_dollar_year
+            input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
     # calculate hydrogenation reactor levelized 
     # capital cost ($/kg H2)
-    FAH2_TML_hydr_react_lev_cap_cost_usd_per_kg = \
-        FAH2_TML_hydr_react_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_hydr_react_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_hydr_react_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9406,10 +9422,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_TML_hydr_react_lev_cap_cost_usd_per_yr
+        LOHC_TML_hydr_react_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9417,37 +9433,37 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_TML_hydr_react_lev_cap_cost_usd_per_kg
+        LOHC_TML_hydr_react_lev_cap_cost_usd_per_kg
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid:
+    # production - LOHC:
     # hydrogenation catalyst levelized capital cost
     
     # calculate hydrogenation catalyst total capital investment ($) 
     # (= terminal total capital investment allocated to catalyst)
-    FAH2_TML_hydr_catal_tot_cap_inv_usd = \
-        FAH2_TML_hydr_catal_cost_perc * FAH2_TML_tot_cap_inv_usd
+    LOHC_TML_hydr_catal_tot_cap_inv_usd = \
+        LOHC_TML_hydr_catal_cost_perc * LOHC_TML_tot_cap_inv_usd
     
     # calculate hydrogenation catalyst levelized capital cost 
     # ($/yr, output dollar year)
-    FAH2_TML_hydr_catal_lev_cap_cost_usd_per_yr, \
-    FAH2_TML_hydr_catal_lev_cap_cost_dollar_year = \
+    LOHC_TML_hydr_catal_lev_cap_cost_usd_per_yr, \
+    LOHC_TML_hydr_catal_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_TML_hydr_catal_tot_cap_inv_usd, 
-            life_yr = FAH2_hydr_catal_life_yr, 
-            depr_yr = FAH2_hydr_catal_depr_yr,
-            input_dollar_year = FAH2_TML_cap_cost_dollar_year
+            tot_cap_inv_usd = LOHC_TML_hydr_catal_tot_cap_inv_usd, 
+            life_yr = LOHC_hydr_catal_life_yr, 
+            depr_yr = LOHC_hydr_catal_depr_yr,
+            input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
     # calculate hydrogenation catalyst levelized 
     # capital cost ($/kg H2)
-    FAH2_TML_hydr_catal_lev_cap_cost_usd_per_kg = \
-        FAH2_TML_hydr_catal_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_hydr_catal_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_hydr_catal_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9455,10 +9471,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_TML_hydr_catal_lev_cap_cost_usd_per_yr
+        LOHC_TML_hydr_catal_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9466,36 +9482,35 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_TML_hydr_catal_lev_cap_cost_usd_per_kg
+        LOHC_TML_hydr_catal_lev_cap_cost_usd_per_kg
         ])
 
     # ------------------------------------------------------------------------
-    # production - formic acid:
-    # CO2 electrolyzer levelized capital cost
+    # production - LOHC: CO2 electrolyzer levelized capital cost
     
     # calculate CO2 electrolyzer total capital investment ($) 
     # (= terminal total capital investment allocated to electrolyzer)
-    FAH2_TML_hydr_electr_tot_cap_inv_usd = \
-        FAH2_TML_hydr_electr_cost_perc * FAH2_TML_tot_cap_inv_usd
+    LOHC_TML_hydr_electr_tot_cap_inv_usd = \
+        LOHC_TML_hydr_electr_cost_perc * LOHC_TML_tot_cap_inv_usd
     
     # calculate CO2 electrolyzer levelized capital cost 
     # ($/yr, output dollar year)
-    FAH2_TML_hydr_electr_lev_cap_cost_usd_per_yr, \
-    FAH2_TML_hydr_electr_lev_cap_cost_dollar_year = \
+    LOHC_TML_hydr_electr_lev_cap_cost_usd_per_yr, \
+    LOHC_TML_hydr_electr_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_TML_hydr_electr_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_TML_hydr_electr_tot_cap_inv_usd, 
             life_yr = TML_electr_life_yr, 
             depr_yr = TML_electr_depr_yr,
-            input_dollar_year = FAH2_TML_cap_cost_dollar_year
+            input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
     # calculate CO2 electrolyzer levelized capital cost ($/kg H2)
-    FAH2_TML_hydr_electr_lev_cap_cost_usd_per_kg = \
-        FAH2_TML_hydr_electr_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_hydr_electr_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_hydr_electr_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9503,10 +9518,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_TML_hydr_electr_lev_cap_cost_usd_per_yr
+        LOHC_TML_hydr_electr_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
@@ -9514,39 +9529,39 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_TML_hydr_electr_lev_cap_cost_usd_per_kg
+        LOHC_TML_hydr_electr_lev_cap_cost_usd_per_kg
         ])    
     
     # ------------------------------------------------------------------------
-    # production - formic acid:
-    # formic acid purification (distillation) levelized capital cost
+    # production - LOHC:
+    # LOHC purification (distillation) levelized capital cost
     
     # calculate distillator total capital investment ($) 
     # (= terminal total capital investment allocated to distillator)
-    FAH2_TML_distil_tot_cap_inv_usd = \
-        FAH2_TML_distil_cost_perc * FAH2_TML_tot_cap_inv_usd
+    LOHC_TML_distil_tot_cap_inv_usd = \
+        LOHC_TML_distil_cost_perc * LOHC_TML_tot_cap_inv_usd
     
     # calculate distillator levelized capital cost 
     # ($/yr, output dollar year)
-    FAH2_TML_distil_lev_cap_cost_usd_per_yr, \
-    FAH2_TML_distil_lev_cap_cost_dollar_year = \
+    LOHC_TML_distil_lev_cap_cost_usd_per_yr, \
+    LOHC_TML_distil_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_TML_distil_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_TML_distil_tot_cap_inv_usd, 
             life_yr = TML_distil_life_yr, 
             depr_yr = TML_distil_depr_yr,
-            input_dollar_year = FAH2_TML_cap_cost_dollar_year
+            input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
     # calculate distillator levelized capital cost ($/kg H2)
     # TODO: uncomment after updating distillator capital cost ($) 
-    # FAH2_TML_distil_lev_cap_cost_usd_per_kg = \
-    #     FAH2_TML_distil_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    # LOHC_TML_distil_lev_cap_cost_usd_per_kg = \
+    #     LOHC_TML_distil_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     # TODO: uncomment after updating distillator capital cost ($) 
     # (for now, use $/kg values from Ramdin et al., 2019)
     # list_output.append([
-    #     'LOHC - formic acid', 
+    #     'LOHC - ' + str(LOHC_name), 
     #     'production', 
     #     'terminal', 
     #     'separation', 
@@ -9554,10 +9569,10 @@ def calcs(
     #     'capital cost', 
     #     'levelized capital cost', 
     #     '$/yr', 
-    #     FAH2_TML_distil_lev_cap_cost_usd_per_yr
+    #     LOHC_TML_distil_lev_cap_cost_usd_per_yr
     #     ])
     # list_output.append([
-    #     'LOHC - formic acid', 
+    #     'LOHC - ' + str(LOHC_name), 
     #     'production', 
     #     'terminal', 
     #     'separation', 
@@ -9565,36 +9580,35 @@ def calcs(
     #     'capital cost', 
     #     'levelized capital cost', 
     #     '$/kg H2', 
-    #     FAH2_TML_distil_lev_cap_cost_usd_per_kg
+    #     LOHC_TML_distil_lev_cap_cost_usd_per_kg
     #     ])
 
     # ------------------------------------------------------------------------
-    # preconditioning - formic acid:
-    # loading pump levelized capital cost
+    # preconditioning - LOHC: loading pump levelized capital cost
     
     # calculate loading pump total capital investment ($) 
     # (= terminal total capital investment allocated to loading pump)
-    FAH2_TML_load_pump_tot_cap_inv_usd = \
-        FAH2_TML_load_pump_cost_perc * FAH2_TML_tot_cap_inv_usd
+    LOHC_TML_load_pump_tot_cap_inv_usd = \
+        LOHC_TML_load_pump_cost_perc * LOHC_TML_tot_cap_inv_usd
     
     # calculate loading pump levelized capital cost 
     # ($/yr, output dollar year)
-    FAH2_TML_load_pump_lev_cap_cost_usd_per_yr, \
-    FAH2_TML_load_pump_lev_cap_cost_dollar_year = \
+    LOHC_TML_load_pump_lev_cap_cost_usd_per_yr, \
+    LOHC_TML_load_pump_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_TML_load_pump_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_TML_load_pump_tot_cap_inv_usd, 
             life_yr = TML_pump_life_yr, 
             depr_yr = TML_pump_depr_yr,
-            input_dollar_year = FAH2_TML_cap_cost_dollar_year
+            input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
     # calculate loading pump levelized capital cost ($/kg H2)
-    FAH2_TML_load_pump_lev_cap_cost_usd_per_kg = \
-        FAH2_TML_load_pump_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_TML_load_pump_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_load_pump_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -9602,10 +9616,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_TML_load_pump_lev_cap_cost_usd_per_yr
+        LOHC_TML_load_pump_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'pumping', 
@@ -9613,36 +9627,35 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_TML_load_pump_lev_cap_cost_usd_per_kg
+        LOHC_TML_load_pump_lev_cap_cost_usd_per_kg
         ])    
 
     # ------------------------------------------------------------------------
-    # preconditioning - formic acid:
-    # terminal formic acid storage levelized capital cost
+    # preconditioning - LOHC: terminal LOHC storage levelized capital cost
     
-    # calculate terminal formic acid storage total capital investment ($) 
+    # calculate terminal LOHC storage total capital investment ($) 
     # (= terminal total capital investment allocated to storage)
-    FAH2_TML_stor_tot_cap_inv_usd = \
-        FAH2_TML_stor_cost_perc * FAH2_TML_tot_cap_inv_usd
+    LOHC_TML_stor_tot_cap_inv_usd = \
+        LOHC_TML_stor_cost_perc * LOHC_TML_tot_cap_inv_usd
     
-    # calculate terminal formic acid storage levelized capital cost 
+    # calculate terminal LOHC storage levelized capital cost 
     # ($/yr, output dollar year)
-    FAH2_TML_stor_lev_cap_cost_usd_per_yr, \
-    FAH2_TML_stor_lev_cap_cost_dollar_year = \
+    LOHC_TML_stor_lev_cap_cost_usd_per_yr, \
+    LOHC_TML_stor_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_TML_stor_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_TML_stor_tot_cap_inv_usd, 
             life_yr = TML_stor_life_yr, 
             depr_yr = TML_stor_depr_yr,
-            input_dollar_year = FAH2_TML_cap_cost_dollar_year
+            input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
-    # calculate terminal formic acid storage levelized capital cost ($/kg H2)
-    FAH2_TML_stor_lev_cap_cost_usd_per_kg = \
-        FAH2_TML_stor_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    # calculate terminal LOHC storage levelized capital cost ($/kg H2)
+    LOHC_TML_stor_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_stor_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'storage', 
@@ -9650,10 +9663,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_TML_stor_lev_cap_cost_usd_per_yr
+        LOHC_TML_stor_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'preconditioning', 
         'terminal', 
         'storage', 
@@ -9661,49 +9674,49 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_TML_stor_lev_cap_cost_usd_per_kg
+        LOHC_TML_stor_lev_cap_cost_usd_per_kg
         ])    
 
-    #%% CALCULATIONS: LOHC / FORMIC ACID DELIVERY ("FAH2")
-    # LOHC / FORMIC ACID TRANSPORT @ TRUCK
+    #%% CALCULATIONS: LOHC DELIVERY ("LOHC")
+    # LOHC TRANSPORT @ TRUCK
 
     # ------------------------------------------------------------------------
-    # transport - formic acid: 
-    # truck fuel consumption, number of trucks required, number of deliveries 
-    # per day, total trip time
+    # transport - LOHC: 
+    # truck fuel consumption, number of trucks required, 
+    # number of deliveries per day, total trip time
         
-    # calculate truck fuel consumption (gallon/kg formic acid), number of 
+    # calculate truck fuel consumption (gallon/kg LOHC), number of 
     # trucks, number of deliveries per day, total trip time (hr/trip)
     # TODO: revisit truck loading and unloading times 
     # (for now, use same truck loading and unloading times as liquid hydrogen 
     # trucks)
-    FAH2_truck_fuel_gal_per_kgFA, \
-    FAH2_num_trucks, \
-    FAH2_truck_num_delivs_per_day, \
-    FAH2_truck_trip_time_hr = \
+    LOHC_truck_fuel_gal_per_kgLOHC, \
+    LOHC_num_trucks, \
+    LOHC_truck_num_delivs_per_day, \
+    LOHC_truck_trip_time_hr = \
         transport_energy(
             deliv_dist_mi = deliv_dist_mi_ow, 
             speed_mi_per_hr = truck_speed_mi_per_hr, 
             load_unload_time_hr = liq_truck_load_unload_time_hr,
             fuel_econ_mi_per_gal = truck_fuel_econ_mi_per_gal,
-            deliv_capacity_kg = liq_truck_deliv_capacity_kgFA, 
-            cargo_flow_kg_per_day = FAH2_TML_FA_flow_kg_per_day
+            deliv_capacity_kg = liq_truck_deliv_capacity_kgLOHC, 
+            cargo_flow_kg_per_day = LOHC_TML_LOHC_flow_kg_per_day
             )
     
     # calculate truck fuel consumption (gallon/kg H2)
-    FAH2_truck_fuel_gal_per_kg = \
-        FAH2_truck_fuel_gal_per_kgFA * \
-        FAH2_TML_FA_flow_kg_per_day / tot_H2_deliv_kg_per_day
+    LOHC_truck_fuel_gal_per_kg = \
+        LOHC_truck_fuel_gal_per_kgLOHC * \
+        LOHC_TML_LOHC_flow_kg_per_day / tot_H2_deliv_kg_per_day
     
     # convert truck fuel consumption to MJ/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_truck_fuel_MJ_per_MJ = \
-        FAH2_truck_fuel_gal_per_kg * low_heat_val_diesel_MJ_per_gal / \
+    LOHC_truck_fuel_MJ_per_MJ = \
+        LOHC_truck_fuel_gal_per_kg * low_heat_val_diesel_MJ_per_gal / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9711,10 +9724,10 @@ def calcs(
         'energy consumption', 
         'diesel consumption', 
         'gallon/kg H2', 
-        FAH2_truck_fuel_gal_per_kg
+        LOHC_truck_fuel_gal_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9722,26 +9735,25 @@ def calcs(
         'energy consumption', 
         'diesel consumption', 
         'MJ/MJ H2 (LHV)', 
-        FAH2_truck_fuel_MJ_per_MJ
+        LOHC_truck_fuel_MJ_per_MJ
         ])
     
     # ------------------------------------------------------------------------
-    # transport - formic acid: 
-    # truck fuel emissions
+    # transport - LOHC: truck fuel emissions
 
     # calculate truck fuel emissions (kg CO2/kg H2)
-    FAH2_truck_ghg_kg_CO2_per_kg = \
-        FAH2_truck_fuel_gal_per_kg * diesel_ghg_kg_CO2_per_gal
+    LOHC_truck_ghg_kg_CO2_per_kg = \
+        LOHC_truck_fuel_gal_per_kg * diesel_ghg_kg_CO2_per_gal
     
     # convert truck fuel emissions to g CO2/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_truck_ghg_g_CO2_per_MJ = \
-        FAH2_truck_ghg_kg_CO2_per_kg * g_per_kg / \
+    LOHC_truck_ghg_g_CO2_per_MJ = \
+        LOHC_truck_ghg_kg_CO2_per_kg * g_per_kg / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9749,10 +9761,10 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'kg CO2/kg H2', 
-        FAH2_truck_ghg_kg_CO2_per_kg
+        LOHC_truck_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9760,23 +9772,23 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_truck_ghg_g_CO2_per_MJ
+        LOHC_truck_ghg_g_CO2_per_MJ
         ])
     
     # ------------------------------------------------------------------------
-    # transport - formic acid: truck fuel cost
+    # transport - LOHC: truck fuel cost
     
     # calculate truck fuel cost ($/kg H2)
-    FAH2_truck_fuel_cost_usd_per_kg = \
-        FAH2_truck_fuel_gal_per_kg * diesel_cost_usd_per_gal
+    LOHC_truck_fuel_cost_usd_per_kg = \
+        LOHC_truck_fuel_gal_per_kg * diesel_cost_usd_per_gal
     
     # calculate truck fuel cost ($/yr)
-    FAH2_truck_fuel_cost_usd_per_yr = \
-        FAH2_truck_fuel_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
+    LOHC_truck_fuel_cost_usd_per_yr = \
+        LOHC_truck_fuel_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9784,10 +9796,10 @@ def calcs(
         'energy cost', 
         'fuel cost', 
         '$/yr', 
-        FAH2_truck_fuel_cost_usd_per_yr
+        LOHC_truck_fuel_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9795,40 +9807,40 @@ def calcs(
         'energy cost', 
         'fuel cost', 
         '$/kg H2', 
-        FAH2_truck_fuel_cost_usd_per_kg
+        LOHC_truck_fuel_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # transport - formic acid: truck capital cost and annual O&M cost
+    # transport - LOHC: truck capital cost and annual O&M cost
     
-    # calculate number of deliveries (truck-trips) per year for formic acid
-    FAH2_truck_num_delivs_per_yr = \
-        FAH2_truck_num_delivs_per_day * day_per_yr * stn_cap_factor
+    # calculate number of deliveries (truck-trips) per year for LOHC
+    LOHC_truck_num_delivs_per_yr = \
+        LOHC_truck_num_delivs_per_day * day_per_yr * stn_cap_factor
             
-    # calculate formic acid truck capital cost ($, output dollar year) 
-    FAH2_truck_cap_cost_usd, \
-    FAH2_truck_cap_cost_dollar_year = \
+    # calculate LOHC truck capital cost ($, output dollar year) 
+    LOHC_truck_cap_cost_usd, \
+    LOHC_truck_cap_cost_dollar_year = \
         liquid_truck_capital_cost(
-            num_trucks = FAH2_num_trucks,
+            num_trucks = LOHC_num_trucks,
             output_dollar_year = output_dollar_year
             )
     
     # calculate truck annual O&M cost ($/yr, output dollar year)
-    FAH2_truck_om_cost_usd_per_yr, \
-    FAH2_truck_om_cost_dollar_year = \
+    LOHC_truck_om_cost_usd_per_yr, \
+    LOHC_truck_om_cost_dollar_year = \
         truck_om_cost(
             deliv_dist_mi = deliv_dist_mi_ow, 
-            num_delivs_per_yr = FAH2_truck_num_delivs_per_yr, 
+            num_delivs_per_yr = LOHC_truck_num_delivs_per_yr, 
             output_dollar_year = output_dollar_year
             )
         
     # calculate truck O&M cost ($/kg H2)
-    FAH2_truck_om_cost_usd_per_kg = \
-        FAH2_truck_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_truck_om_cost_usd_per_kg = \
+        LOHC_truck_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9836,10 +9848,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_truck_om_cost_usd_per_yr
+        LOHC_truck_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9847,29 +9859,29 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_truck_om_cost_usd_per_kg
+        LOHC_truck_om_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # transport - formic acid: truck annual labor cost
+    # transport - LOHC: truck annual labor cost
     
     # calculate truck annual labor cost ($/yr, output dollar year), 
     # including overhead and G&A
-    FAH2_truck_labor_cost_usd_per_yr, \
-    FAH2_truck_labor_cost_dollar_year = \
+    LOHC_truck_labor_cost_usd_per_yr, \
+    LOHC_truck_labor_cost_dollar_year = \
         truck_labor_cost(
-            num_delivs_per_yr = FAH2_truck_num_delivs_per_yr, 
-            trip_time_hr = FAH2_truck_trip_time_hr, 
+            num_delivs_per_yr = LOHC_truck_num_delivs_per_yr, 
+            trip_time_hr = LOHC_truck_trip_time_hr, 
             output_dollar_year = output_dollar_year
             )
     
     # calculate truck labor cost ($/kg H2)
-    FAH2_truck_labor_cost_usd_per_kg = \
-        FAH2_truck_labor_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_truck_labor_cost_usd_per_kg = \
+        LOHC_truck_labor_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9877,10 +9889,10 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_truck_labor_cost_usd_per_yr
+        LOHC_truck_labor_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9888,30 +9900,30 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_truck_labor_cost_usd_per_kg
+        LOHC_truck_labor_cost_usd_per_kg
         ])
 
     # ------------------------------------------------------------------------
-    # transport - formic acid: truck levelized capital cost
+    # transport - LOHC: truck levelized capital cost
     
     # calculate truck levelized capital cost ($/yr, output dollar year)
     # truck total capital investment = truck capital cost
-    FAH2_truck_lev_cap_cost_usd_per_yr, \
-    FAH2_truck_lev_cap_cost_dollar_year = \
+    LOHC_truck_lev_cap_cost_usd_per_yr, \
+    LOHC_truck_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_truck_cap_cost_usd, 
+            tot_cap_inv_usd = LOHC_truck_cap_cost_usd, 
             life_yr = truck_life_yr, 
             depr_yr = truck_depr_yr,
-            input_dollar_year = FAH2_truck_cap_cost_dollar_year
+            input_dollar_year = LOHC_truck_cap_cost_dollar_year
             )
     
     # calculate truck levelized capital cost ($/kg H2)
-    FAH2_truck_lev_cap_cost_usd_per_kg = \
-        FAH2_truck_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_truck_lev_cap_cost_usd_per_kg = \
+        LOHC_truck_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9919,10 +9931,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_truck_lev_cap_cost_usd_per_yr
+        LOHC_truck_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'transport', 
         'truck', 
         'trucking', 
@@ -9930,51 +9942,51 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_truck_lev_cap_cost_usd_per_kg
+        LOHC_truck_lev_cap_cost_usd_per_kg
         ])
 
-    #%% CALCULATIONS: LOHC / FORMIC ACID DELIVERY ("FAH2")
+    #%% CALCULATIONS: LOHC DELIVERY ("LOHC")
     # CO2 TRANSPORT @ TRUCK
 
     # ------------------------------------------------------------------------
-    # production - formic acid: CO2 recycling (for hydrogenation) costs
+    # production - LOHC: CO2 recycling (for hydrogenation) costs
     
     # initialize CO2 recycling costs (zero by default)
-    FAH2_CO2_recyc_cost_usd_per_tCO2 = 0.0
-    FAH2_CO2_recyc_cost_usd_per_yr_per_stn = 0.0
-    FAH2_CO2_recyc_cost_dollar_year = output_dollar_year
+    LOHC_CO2_recyc_cost_usd_per_tCO2 = 0.0
+    LOHC_CO2_recyc_cost_usd_per_yr_per_stn = 0.0
+    LOHC_CO2_recyc_cost_dollar_year = output_dollar_year
     
-    # if produce formic acid at terminal (as opposed to purchase),
+    # if produce LOHC at terminal (as opposed to purchase),
     # calculate CO2 recycling cost
-    if FA_prod_pathway != 'purchase':
+    if LOHC_prod_pathway != 'purchase':
         
         # calculate CO2 recycling cost per station
         # ($/tonne CO2 and $/yr, output dollar year)
-        FAH2_CO2_recyc_cost_usd_per_tCO2, \
-        FAH2_CO2_recyc_cost_usd_per_yr_per_stn, \
-        FAH2_CO2_recyc_cost_dollar_year = \
+        LOHC_CO2_recyc_cost_usd_per_tCO2, \
+        LOHC_CO2_recyc_cost_usd_per_yr_per_stn, \
+        LOHC_CO2_recyc_cost_dollar_year = \
             CO2_transport_all_in_cost(
-                CO2_flow_kt_per_yr = FAH2_STN_CO2_flow_kt_per_yr,
+                CO2_flow_kt_per_yr = LOHC_STN_CO2_flow_kt_per_yr,
                 deliv_dist_mi = deliv_dist_mi_ow,
                 output_dollar_year = output_dollar_year
                 )        
         
     # calculate CO2 recycling cost ($/yr)
     # sum of all stations, excluding LOHC truck capital cost (shared)
-    FAH2_CO2_recyc_cost_usd_per_yr = max(
+    LOHC_CO2_recyc_cost_usd_per_yr = max(
         0, 
-        FAH2_CO2_recyc_cost_usd_per_yr_per_stn * target_num_stns - \
-        FAH2_truck_lev_cap_cost_usd_per_yr
+        LOHC_CO2_recyc_cost_usd_per_yr_per_stn * target_num_stns - \
+        LOHC_truck_lev_cap_cost_usd_per_yr
         )
 
     # calculate CO2 recycling cost ($/kg H2)
-    FAH2_CO2_recyc_cost_usd_per_kg = \
-        FAH2_CO2_recyc_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_CO2_recyc_cost_usd_per_kg = \
+        LOHC_CO2_recyc_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
         
     # append results to list
     # TODO: allocate "all-in" cost to capital, labor, fuel, etc.
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'truck', 
         'CO2 recycling', 
@@ -9982,10 +9994,10 @@ def calcs(
         'capital cost', 
         'all-in CO2 transport cost', 
         '$/yr', 
-        FAH2_CO2_recyc_cost_usd_per_yr
+        LOHC_CO2_recyc_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'truck', 
         'CO2 recycling', 
@@ -9993,17 +10005,17 @@ def calcs(
         'capital cost', 
         'all-in CO2 transport cost', 
         '$/kg H2', 
-        FAH2_CO2_recyc_cost_usd_per_kg
+        LOHC_CO2_recyc_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # production - formic acid: CO2 recycling (for hydrogenation) emissions
+    # production - LOHC: CO2 recycling (for hydrogenation) emissions
 
     # TODO: add CO2 recycling emissions
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'truck', 
         'CO2 recycling', 
@@ -10014,7 +10026,7 @@ def calcs(
         0.0
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'production', 
         'truck', 
         'CO2 recycling', 
@@ -10026,48 +10038,48 @@ def calcs(
         ])
 
             
-    #%% CALCULATIONS: LOHC / FORMIC ACID DELIVERY ("FAH2")
+    #%% CALCULATIONS: LOHC DELIVERY ("LOHC")
     # RECONDITIONING @ REFUELING STATION
 
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # dehydrogenation pump energy consumption and size
     
     # initialize dehydrogenation pump power (kW) and size (kW/pump)
     # (zero by default)
-    FAH2_STN_dehydr_pump_tot_power_kW = 0.0
-    FAH2_STN_dehydr_pump_power_kW_per_pump = 0.0
-    FAH2_STN_num_dehydr_compr = 0
+    LOHC_STN_dehydr_pump_tot_power_kW = 0.0
+    LOHC_STN_dehydr_pump_power_kW_per_pump = 0.0
+    LOHC_STN_num_dehydr_compr = 0
 
-    if FAH2_dehydr_pres_bar > FAH2_STN_dehydr_pump_in_pres_bar:
+    if LOHC_dehydr_pres_bar > LOHC_STN_dehydr_pump_in_pres_bar:
         
         # calculate dehydrogenation pump power (kW) and size (kW/pump) 
         # at refueling station
         # pump outlet pressure = dehydrogenation reaction pressure
-        FAH2_STN_dehydr_pump_tot_power_kW, \
-        FAH2_STN_dehydr_pump_power_kW_per_pump, \
-        FAH2_STN_num_dehydr_compr = \
+        LOHC_STN_dehydr_pump_tot_power_kW, \
+        LOHC_STN_dehydr_pump_power_kW_per_pump, \
+        LOHC_STN_num_dehydr_compr = \
             pump_power_and_size(
-                out_pres_bar = FAH2_dehydr_pres_bar,
-                in_pres_bar = FAH2_STN_dehydr_pump_in_pres_bar,
-                fluid_flow_kg_per_sec = FAH2_STN_FA_flow_kg_per_sec, 
-                dens_kg_per_cu_m = dens_FA_kg_per_cu_m
+                out_pres_bar = LOHC_dehydr_pres_bar,
+                in_pres_bar = LOHC_STN_dehydr_pump_in_pres_bar,
+                fluid_flow_kg_per_sec = LOHC_STN_LOHC_flow_kg_per_sec, 
+                dens_kg_per_cu_m = dens_LOHC_kg_per_cu_m
                 )
             
     # calculate dehydrogenation pump energy (kWh/kg H2)
-    FAH2_STN_dehydr_pump_elec_kWh_per_kg = \
-        FAH2_STN_dehydr_pump_tot_power_kW * target_num_stns / \
+    LOHC_STN_dehydr_pump_elec_kWh_per_kg = \
+        LOHC_STN_dehydr_pump_tot_power_kW * target_num_stns / \
         tot_H2_deliv_kg_per_hr
     
     # convert dehydrogenation pump energy to MJ/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_STN_dehydr_pump_elec_MJ_per_MJ = \
-        FAH2_STN_dehydr_pump_elec_kWh_per_kg * MJ_per_kWh / \
+    LOHC_STN_dehydr_pump_elec_MJ_per_MJ = \
+        LOHC_STN_dehydr_pump_elec_kWh_per_kg * MJ_per_kWh / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -10075,10 +10087,10 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'kWh/kg H2', 
-        FAH2_STN_dehydr_pump_elec_kWh_per_kg
+        LOHC_STN_dehydr_pump_elec_kWh_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -10086,26 +10098,25 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'MJ/MJ H2 (LHV)', 
-        FAH2_STN_dehydr_pump_elec_MJ_per_MJ
+        LOHC_STN_dehydr_pump_elec_MJ_per_MJ
         ])
         
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # dehydrogenation pump energy emissions
+    # reconditioning - LOHC: dehydrogenation pump energy emissions
     
     # calculate dehydrogenation pump energy emissions (kg CO2/kg H2)
-    FAH2_STN_dehydr_pump_ghg_kg_CO2_per_kg = \
-        FAH2_STN_dehydr_pump_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
+    LOHC_STN_dehydr_pump_ghg_kg_CO2_per_kg = \
+        LOHC_STN_dehydr_pump_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
     
     # convert dehydrogenation pump energy emissions to g CO2/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_STN_dehydr_pump_ghg_g_CO2_per_MJ = \
-        FAH2_STN_dehydr_pump_ghg_kg_CO2_per_kg * g_per_kg / \
+    LOHC_STN_dehydr_pump_ghg_g_CO2_per_MJ = \
+        LOHC_STN_dehydr_pump_ghg_kg_CO2_per_kg * g_per_kg / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -10113,10 +10124,10 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'kg CO2/kg H2', 
-        FAH2_STN_dehydr_pump_ghg_kg_CO2_per_kg
+        LOHC_STN_dehydr_pump_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -10124,25 +10135,24 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_STN_dehydr_pump_ghg_g_CO2_per_MJ
+        LOHC_STN_dehydr_pump_ghg_g_CO2_per_MJ
         ])
         
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # dehydrogenation pump energy cost
+    # reconditioning - LOHC: dehydrogenation pump energy cost
     
     # calculate dehydrogenation pump energy cost ($/kg H2)
-    FAH2_STN_dehydr_pump_elec_cost_usd_per_kg = \
-        FAH2_STN_dehydr_pump_elec_kWh_per_kg * elec_cost_usd_per_kWh
+    LOHC_STN_dehydr_pump_elec_cost_usd_per_kg = \
+        LOHC_STN_dehydr_pump_elec_kWh_per_kg * elec_cost_usd_per_kWh
     
     # calculate dehydrogenation pump energy cost ($/yr)
-    FAH2_STN_dehydr_pump_elec_cost_usd_per_yr = \
-        FAH2_STN_dehydr_pump_elec_cost_usd_per_kg * \
+    LOHC_STN_dehydr_pump_elec_cost_usd_per_yr = \
+        LOHC_STN_dehydr_pump_elec_cost_usd_per_kg * \
         tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -10150,10 +10160,10 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/yr', 
-        FAH2_STN_dehydr_pump_elec_cost_usd_per_yr
+        LOHC_STN_dehydr_pump_elec_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -10161,55 +10171,55 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/kg H2', 
-        FAH2_STN_dehydr_pump_elec_cost_usd_per_kg
+        LOHC_STN_dehydr_pump_elec_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------        
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # dehydrogenation pump installed cost and annual O&M cost
     
     # initialize dehydrogenation pump installed cost and annual O&M cost 
     # (zero by default)
-    FAH2_STN_dehydr_pump_inst_cost_usd_per_stn = 0.0
-    FAH2_STN_dehydr_pump_om_cost_usd_per_yr_per_stn = 0.0
-    FAH2_STN_dehydr_pump_dollar_year = output_dollar_year
+    LOHC_STN_dehydr_pump_inst_cost_usd_per_stn = 0.0
+    LOHC_STN_dehydr_pump_om_cost_usd_per_yr_per_stn = 0.0
+    LOHC_STN_dehydr_pump_dollar_year = output_dollar_year
     
-    if FAH2_STN_dehydr_pump_tot_power_kW > 0.0:
+    if LOHC_STN_dehydr_pump_tot_power_kW > 0.0:
     
-        # calculate formic acid volumetric flowrate through 
+        # calculate LOHC volumetric flowrate through 
         # dehydrogenation pump (m^3/hr)
-        FAH2_STN_FA_flow_cu_m_per_hr = \
-            FAH2_STN_FA_flow_kg_per_day / dens_FA_kg_per_cu_m / hr_per_day
+        LOHC_STN_LOHC_flow_cu_m_per_hr = \
+            LOHC_STN_LOHC_flow_kg_per_day / dens_LOHC_kg_per_cu_m / hr_per_day
     
         # calculate dehydrogenation pump installed cost ($) and annual O&M 
         # cost ($/yr) per station, both in output dollar year
-        FAH2_STN_dehydr_pump_inst_cost_usd_per_stn, \
-        FAH2_STN_dehydr_pump_om_cost_usd_per_yr_per_stn, \
-        FAH2_STN_dehydr_pump_dollar_year = \
+        LOHC_STN_dehydr_pump_inst_cost_usd_per_stn, \
+        LOHC_STN_dehydr_pump_om_cost_usd_per_yr_per_stn, \
+        LOHC_STN_dehydr_pump_dollar_year = \
             low_head_pump_fixed_costs(
-                num_pumps = FAH2_STN_num_dehydr_compr, 
-                fluid_flow_cu_m_per_hr = FAH2_STN_FA_flow_cu_m_per_hr,
+                num_pumps = LOHC_STN_num_dehydr_compr, 
+                fluid_flow_cu_m_per_hr = LOHC_STN_LOHC_flow_cu_m_per_hr,
                 output_dollar_year = output_dollar_year
                 )
     
     # calculate dehydrogenation pump installed cost ($)
     # sum of all stations
-    FAH2_STN_dehydr_pump_inst_cost_usd = \
-        FAH2_STN_dehydr_pump_inst_cost_usd_per_stn * target_num_stns
+    LOHC_STN_dehydr_pump_inst_cost_usd = \
+        LOHC_STN_dehydr_pump_inst_cost_usd_per_stn * target_num_stns
 
     # calculate dehydrogenation pump O&M cost ($/yr)
     # sum of all stations
-    FAH2_STN_dehydr_pump_om_cost_usd_per_yr = \
-        FAH2_STN_dehydr_pump_om_cost_usd_per_yr_per_stn * \
+    LOHC_STN_dehydr_pump_om_cost_usd_per_yr = \
+        LOHC_STN_dehydr_pump_om_cost_usd_per_yr_per_stn * \
         target_num_stns
 
     # calculate dehydrogenation pump O&M cost ($/kg H2)
-    FAH2_STN_dehydr_pump_om_cost_usd_per_kg = \
-        FAH2_STN_dehydr_pump_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_dehydr_pump_om_cost_usd_per_kg = \
+        LOHC_STN_dehydr_pump_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -10217,10 +10227,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_STN_dehydr_pump_om_cost_usd_per_yr
+        LOHC_STN_dehydr_pump_om_cost_usd_per_yr
        ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -10228,61 +10238,61 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_STN_dehydr_pump_om_cost_usd_per_kg
+        LOHC_STN_dehydr_pump_om_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # dehydrogenation reactor energy consumption
 
     # TODO: add reactor energy consumption
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # dehydrogenation reactor energy emissions
 
     # TODO: add reactor energy emissions
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # dehydrogenation reactor energy cost
     
     # TODO: add reactor energy cost
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # dehydrogenation reactor installed cost and annual O&M cost
 
     # calculate dehydrogenation reactor installed cost ($) and annual 
     # O&M cost ($/yr) per station, both in output dollar year
-    FAH2_STN_dehydr_react_inst_cost_usd_per_stn, \
-    FAH2_STN_dehydr_react_om_cost_usd_per_yr_per_stn, \
-    FAH2_STN_dehydr_react_dollar_year = \
+    LOHC_STN_dehydr_react_inst_cost_usd_per_stn, \
+    LOHC_STN_dehydr_react_om_cost_usd_per_yr_per_stn, \
+    LOHC_STN_dehydr_react_dollar_year = \
         reactor_fixed_costs(
-            react_pres_bar = FAH2_dehydr_pres_bar,
-            react_vol_cu_m = FAH2_dehydr_react_vol_cu_m, 
-            num_reacts = FAH2_num_dehydr_reacts, 
+            react_pres_bar = LOHC_dehydr_pres_bar,
+            react_vol_cu_m = LOHC_dehydr_react_vol_cu_m, 
+            num_reacts = LOHC_num_dehydr_reacts, 
             output_dollar_year = output_dollar_year
             )
     
     # calculate dehydrogenation reactor installed cost ($)
     # sum of all stations
-    FAH2_STN_dehydr_react_inst_cost_usd = \
-        FAH2_STN_dehydr_react_inst_cost_usd_per_stn * target_num_stns
+    LOHC_STN_dehydr_react_inst_cost_usd = \
+        LOHC_STN_dehydr_react_inst_cost_usd_per_stn * target_num_stns
 
     # calculate dehydrogenation reactor O&M cost ($/yr)
     # sum of all stations
-    FAH2_STN_dehydr_react_om_cost_usd_per_yr = \
-        FAH2_STN_dehydr_react_om_cost_usd_per_yr_per_stn * \
+    LOHC_STN_dehydr_react_om_cost_usd_per_yr = \
+        LOHC_STN_dehydr_react_om_cost_usd_per_yr_per_stn * \
         target_num_stns
 
     # calculate dehydrogenation reactor O&M cost ($/kg H2)
-    FAH2_STN_dehydr_react_om_cost_usd_per_kg = \
-        FAH2_STN_dehydr_react_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_dehydr_react_om_cost_usd_per_kg = \
+        LOHC_STN_dehydr_react_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
         
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -10290,10 +10300,10 @@ def calcs(
         'capital cost', 
         'installed cost', 
         '$/station', 
-        FAH2_STN_dehydr_react_inst_cost_usd_per_stn
+        LOHC_STN_dehydr_react_inst_cost_usd_per_stn
         ])    
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -10301,10 +10311,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_STN_dehydr_react_om_cost_usd_per_yr
+        LOHC_STN_dehydr_react_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -10312,22 +10322,21 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_STN_dehydr_react_om_cost_usd_per_kg
+        LOHC_STN_dehydr_react_om_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # dehydrogenation catalyst upfront cost
+    # reconditioning - LOHC: dehydrogenation catalyst upfront cost
 
     # calculate dehydrogenation catalyst upfront purchase cost ($)
     # sum of all stations
-    FAH2_STN_dehydr_catal_purc_cost_usd = \
-        FAH2_dehydr_catal_cost_usd_per_kg * \
-        FAH2_dehydr_catal_amt_kg * target_num_stns
+    LOHC_STN_dehydr_catal_purc_cost_usd = \
+        LOHC_dehydr_catal_cost_usd_per_kg * \
+        LOHC_dehydr_catal_amt_kg * target_num_stns
 
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -10335,11 +10344,11 @@ def calcs(
         'capital cost', 
         'purchase cost', 
         '$/station', 
-        FAH2_STN_dehydr_catal_purc_cost_usd / target_num_stns
+        LOHC_STN_dehydr_catal_purc_cost_usd / target_num_stns
         ])
 
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station PSA *refrigerator* (precooling) energy consumption
     
     # calculate refueling station PSA *refrigerator* energy (kWh/kg H2)
@@ -10347,24 +10356,24 @@ def calcs(
     # outlet temperature = PSA operating temperature
     # set refrigerator energy to zero if 
     # inlet temperature <= outlet temperature
-    if FAH2_dehydr_temp_K <= FAH2_STN_psa_temp_K:
-        FAH2_STN_psa_refrig_elec_kWh_per_kg = 0.0
+    if LOHC_dehydr_temp_K <= LOHC_STN_psa_temp_K:
+        LOHC_STN_psa_refrig_elec_kWh_per_kg = 0.0
     else:
-        FAH2_STN_psa_refrig_elec_kWh_per_kg = \
+        LOHC_STN_psa_refrig_elec_kWh_per_kg = \
             heat_exchanger_energy(
-                out_temp_K = FAH2_STN_psa_temp_K,
-                in_temp_K = FAH2_dehydr_temp_K
+                out_temp_K = LOHC_STN_psa_temp_K,
+                in_temp_K = LOHC_dehydr_temp_K
                 )
     
     # convert refrigerator energy to MJ/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_STN_psa_refrig_elec_MJ_per_MJ = \
-        FAH2_STN_psa_refrig_elec_kWh_per_kg * MJ_per_kWh / \
+    LOHC_STN_psa_refrig_elec_MJ_per_MJ = \
+        LOHC_STN_psa_refrig_elec_kWh_per_kg * MJ_per_kWh / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10372,10 +10381,10 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'kWh/kg H2', 
-        FAH2_STN_psa_refrig_elec_kWh_per_kg
+        LOHC_STN_psa_refrig_elec_kWh_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10383,27 +10392,27 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'MJ/MJ H2 (LHV)', 
-        FAH2_STN_psa_refrig_elec_MJ_per_MJ
+        LOHC_STN_psa_refrig_elec_MJ_per_MJ
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station PSA *refrigerator* (precooling) energy emissions
 
     # calculate refueling station PSA *refrigerator* energy emissions 
     # (kg CO2/kg H2)
-    FAH2_STN_psa_refrig_ghg_kg_CO2_per_kg = \
-        FAH2_STN_psa_refrig_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
+    LOHC_STN_psa_refrig_ghg_kg_CO2_per_kg = \
+        LOHC_STN_psa_refrig_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
     
     # convert refrigerator energy emissions to g CO2/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_STN_psa_refrig_ghg_g_CO2_per_MJ = \
-        FAH2_STN_psa_refrig_ghg_kg_CO2_per_kg * g_per_kg / \
+    LOHC_STN_psa_refrig_ghg_g_CO2_per_MJ = \
+        LOHC_STN_psa_refrig_ghg_kg_CO2_per_kg * g_per_kg / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10411,10 +10420,10 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'kg CO2/kg H2', 
-        FAH2_STN_psa_refrig_ghg_kg_CO2_per_kg
+        LOHC_STN_psa_refrig_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10422,24 +10431,24 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_STN_psa_refrig_ghg_g_CO2_per_MJ
+        LOHC_STN_psa_refrig_ghg_g_CO2_per_MJ
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station PSA *refrigerator* (precooling) energy cost
     
     # calculate refueling station PSA *refrigerator* energy cost ($/kg H2)
-    FAH2_STN_psa_refrig_elec_cost_usd_per_kg = \
-        FAH2_STN_psa_refrig_elec_kWh_per_kg * elec_cost_usd_per_kWh
+    LOHC_STN_psa_refrig_elec_cost_usd_per_kg = \
+        LOHC_STN_psa_refrig_elec_kWh_per_kg * elec_cost_usd_per_kWh
     
     # calculate refueling station refrigerator energy cost ($/yr)
-    FAH2_STN_psa_refrig_elec_cost_usd_per_yr = \
-        FAH2_STN_psa_refrig_elec_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
+    LOHC_STN_psa_refrig_elec_cost_usd_per_yr = \
+        LOHC_STN_psa_refrig_elec_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10447,10 +10456,10 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/yr', 
-        FAH2_STN_psa_refrig_elec_cost_usd_per_yr
+        LOHC_STN_psa_refrig_elec_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10458,11 +10467,11 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/kg H2', 
-        FAH2_STN_psa_refrig_elec_cost_usd_per_kg
+        LOHC_STN_psa_refrig_elec_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station PSA *refrigerator* (precooling) installed cost and 
     # annual O&M cost
 
@@ -10472,40 +10481,40 @@ def calcs(
     # (HDSAM V3.1: 1000 kg H2/day --> 4 hoses, 4 refrigerators)
     # set number of refrigerators to zero if
     # inlet temperature <= outlet temperature
-    if FAH2_dehydr_temp_K <= FAH2_STN_psa_temp_K:
-        FAH2_STN_num_psa_refrigs = 0
+    if LOHC_dehydr_temp_K <= LOHC_STN_psa_temp_K:
+        LOHC_STN_num_psa_refrigs = 0
     else: 
-        FAH2_STN_num_psa_refrigs = \
+        LOHC_STN_num_psa_refrigs = \
             target_stn_capacity_kg_per_day / (1000.0 / 4)
     
     # calculate refueling station PSA *refrigerator* installed cost ($) 
     # and annual O&M cost ($/yr) per station, both in output dollar year 
-    FAH2_STN_psa_refrig_inst_cost_usd_per_stn, \
-    FAH2_STN_psa_refrig_om_cost_usd_per_yr_per_stn, \
-    FAH2_STN_psa_refrig_dollar_year = \
+    LOHC_STN_psa_refrig_inst_cost_usd_per_stn, \
+    LOHC_STN_psa_refrig_om_cost_usd_per_yr_per_stn, \
+    LOHC_STN_psa_refrig_dollar_year = \
         heat_exchanger_fixed_costs(
-            out_temp_K = FAH2_STN_psa_temp_K, 
-            num_hx = FAH2_STN_num_psa_refrigs, 
+            out_temp_K = LOHC_STN_psa_temp_K, 
+            num_hx = LOHC_STN_num_psa_refrigs, 
             output_dollar_year = output_dollar_year
             )    
     
     # calculate refueling station PSA *refrigerator* installed cost ($) 
     # sum of all stations
-    FAH2_STN_psa_refrig_inst_cost_usd = \
-        FAH2_STN_psa_refrig_inst_cost_usd_per_stn * target_num_stns
+    LOHC_STN_psa_refrig_inst_cost_usd = \
+        LOHC_STN_psa_refrig_inst_cost_usd_per_stn * target_num_stns
 
     # calculate refueling station PSA *refrigerator* O&M cost ($/yr)
     # sum of all stations
-    FAH2_STN_psa_refrig_om_cost_usd_per_yr = \
-        FAH2_STN_psa_refrig_om_cost_usd_per_yr_per_stn * target_num_stns
+    LOHC_STN_psa_refrig_om_cost_usd_per_yr = \
+        LOHC_STN_psa_refrig_om_cost_usd_per_yr_per_stn * target_num_stns
 
     # calculate refueling station PSA *refrigerator* O&M cost ($/kg H2)
-    FAH2_STN_psa_refrig_om_cost_usd_per_kg = \
-        FAH2_STN_psa_refrig_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_psa_refrig_om_cost_usd_per_kg = \
+        LOHC_STN_psa_refrig_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10513,10 +10522,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_STN_psa_refrig_om_cost_usd_per_yr
+        LOHC_STN_psa_refrig_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10524,40 +10533,40 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_STN_psa_refrig_om_cost_usd_per_kg
+        LOHC_STN_psa_refrig_om_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station separator (PSA) energy consumption
     
     # initialize refueling station separator (PSA) power (kW)
-    FAH2_STN_psa_power_kW = 0.0
+    LOHC_STN_psa_power_kW = 0.0
        
     # calculate refueling station separator (PSA) power (kW)
     # TODO: calculate PSA compression power as function of dehydr. pressure
     # for now, model as step function
-    if FAH2_dehydr_pres_bar < FAH2_STN_psa_pres_bar:
+    if LOHC_dehydr_pres_bar < LOHC_STN_psa_pres_bar:
         
-        FAH2_STN_psa_power_kW = psa_power(
+        LOHC_STN_psa_power_kW = psa_power(
             in_flow_norm_cu_m_per_hr = \
-                FAH2_STN_psa_in_flow_norm_cu_m_per_hr
+                LOHC_STN_psa_in_flow_norm_cu_m_per_hr
             )
     
     # calculate refueling station separator (PSA) energy (kWh/kg H2)
-    FAH2_STN_psa_elec_kWh_per_kg = \
-        FAH2_STN_psa_power_kW * target_num_stns / \
+    LOHC_STN_psa_elec_kWh_per_kg = \
+        LOHC_STN_psa_power_kW * target_num_stns / \
         tot_H2_deliv_kg_per_hr
     
     # convert separator (PSA) energy to MJ/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_STN_psa_elec_MJ_per_MJ = \
-        FAH2_STN_psa_elec_kWh_per_kg * MJ_per_kWh / \
+    LOHC_STN_psa_elec_MJ_per_MJ = \
+        LOHC_STN_psa_elec_kWh_per_kg * MJ_per_kWh / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -10565,10 +10574,10 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'kWh/kg H2', 
-        FAH2_STN_psa_elec_kWh_per_kg
+        LOHC_STN_psa_elec_kWh_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -10576,27 +10585,27 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'MJ/MJ H2 (LHV)', 
-        FAH2_STN_psa_elec_MJ_per_MJ
+        LOHC_STN_psa_elec_MJ_per_MJ
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station separator (PSA) energy emissions
 
     # calculate refueling station separator (PSA) energy emissions 
     # (kg CO2/kg H2)
-    FAH2_STN_psa_ghg_kg_CO2_per_kg = \
-        FAH2_STN_psa_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
+    LOHC_STN_psa_ghg_kg_CO2_per_kg = \
+        LOHC_STN_psa_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
     
     # convert separator (PSA) energy emissions to g CO2/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_STN_psa_ghg_g_CO2_per_MJ = \
-        FAH2_STN_psa_ghg_kg_CO2_per_kg * g_per_kg / \
+    LOHC_STN_psa_ghg_g_CO2_per_MJ = \
+        LOHC_STN_psa_ghg_kg_CO2_per_kg * g_per_kg / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -10604,10 +10613,10 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'kg CO2/kg H2', 
-        FAH2_STN_psa_ghg_kg_CO2_per_kg
+        LOHC_STN_psa_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -10615,23 +10624,23 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_STN_psa_ghg_g_CO2_per_MJ
+        LOHC_STN_psa_ghg_g_CO2_per_MJ
         ])
 
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: refueling station separator energy cost
+    # reconditioning - LOHC: refueling station separator energy cost
     
     # calculate refueling station separator energy cost ($/kg H2)
-    FAH2_STN_psa_elec_cost_usd_per_kg = \
-        FAH2_STN_psa_elec_kWh_per_kg * elec_cost_usd_per_kWh
+    LOHC_STN_psa_elec_cost_usd_per_kg = \
+        LOHC_STN_psa_elec_kWh_per_kg * elec_cost_usd_per_kWh
     
     # calculate refueling station separator energy cost ($/yr)
-    FAH2_STN_psa_elec_cost_usd_per_yr = \
-        FAH2_STN_psa_elec_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
+    LOHC_STN_psa_elec_cost_usd_per_yr = \
+        LOHC_STN_psa_elec_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -10639,10 +10648,10 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/yr', 
-        FAH2_STN_psa_elec_cost_usd_per_yr
+        LOHC_STN_psa_elec_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -10650,40 +10659,40 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/kg H2', 
-        FAH2_STN_psa_elec_cost_usd_per_kg
+        LOHC_STN_psa_elec_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station separator installed cost and annual O&M cost
 
     # calculate refueling station separator installed cost ($) and annual O&M
     # cost ($/yr) per station, both in output dollar year 
-    FAH2_STN_psa_inst_cost_usd_per_stn, \
-    FAH2_STN_psa_om_cost_usd_per_yr_per_stn, \
-    FAH2_STN_psa_dollar_year = \
+    LOHC_STN_psa_inst_cost_usd_per_stn, \
+    LOHC_STN_psa_om_cost_usd_per_yr_per_stn, \
+    LOHC_STN_psa_dollar_year = \
         psa_fixed_costs(
-            in_flow_norm_cu_m_per_hr = FAH2_STN_psa_in_flow_norm_cu_m_per_hr, 
+            in_flow_norm_cu_m_per_hr = LOHC_STN_psa_in_flow_norm_cu_m_per_hr, 
             output_dollar_year = output_dollar_year
             )
         
     # calculate refueling station separator installed cost ($)
     # sum of all stations
-    FAH2_STN_psa_inst_cost_usd = \
-        FAH2_STN_psa_inst_cost_usd_per_stn * target_num_stns
+    LOHC_STN_psa_inst_cost_usd = \
+        LOHC_STN_psa_inst_cost_usd_per_stn * target_num_stns
         
     # calculate refueling station separator O&M cost ($/yr)
     # sum of all stations
-    FAH2_STN_psa_om_cost_usd_per_yr = \
-        FAH2_STN_psa_om_cost_usd_per_yr_per_stn * target_num_stns
+    LOHC_STN_psa_om_cost_usd_per_yr = \
+        LOHC_STN_psa_om_cost_usd_per_yr_per_stn * target_num_stns
     
     # calculate refueling station separator O&M cost ($/kg H2)
-    FAH2_STN_psa_om_cost_usd_per_kg = \
-        FAH2_STN_psa_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_psa_om_cost_usd_per_kg = \
+        LOHC_STN_psa_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -10691,10 +10700,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_STN_psa_om_cost_usd_per_yr
+        LOHC_STN_psa_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation',         
@@ -10702,47 +10711,47 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_STN_psa_om_cost_usd_per_kg
+        LOHC_STN_psa_om_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station compressor energy consumption and size
     
     # set compressor inlet pressure to the higher of 
     # dehydrogenation reaction pressure and PSA operating pressure
-    FAH2_STN_compr_in_pres_bar = max(
-        FAH2_dehydr_pres_bar, FAH2_STN_psa_pres_bar
+    LOHC_STN_compr_in_pres_bar = max(
+        LOHC_dehydr_pres_bar, LOHC_STN_psa_pres_bar
         )
     
     # calculate compressor power (kW) and size (kW/stage) 
     # inlet pressure = reactor pressure, assuming minimal 
     # pressure drop in separator (PSA)
-    FAH2_STN_compr_tot_power_kW, \
-    FAH2_STN_compr_power_kW_per_stg, \
-    FAH2_STN_compr_num_stgs = \
+    LOHC_STN_compr_tot_power_kW, \
+    LOHC_STN_compr_power_kW_per_stg, \
+    LOHC_STN_compr_num_stgs = \
         compressor_power_and_size(
-            out_pres_bar = FAH2_STN_out_pres_bar, 
-            in_pres_bar = FAH2_STN_compr_in_pres_bar, 
-            in_temp_K = FAH2_STN_psa_temp_K, 
+            out_pres_bar = LOHC_STN_out_pres_bar, 
+            in_pres_bar = LOHC_STN_compr_in_pres_bar, 
+            in_temp_K = LOHC_STN_psa_temp_K, 
             gas_flow_mol_per_sec = STN_H2_flow_mol_per_sec, 
             compressibility = 1.28
             )
     
     # calculate refueling station compressor energy (kWh/kg H2)
-    FAH2_STN_compr_elec_kWh_per_kg = \
-        FAH2_STN_compr_tot_power_kW * target_num_stns / \
+    LOHC_STN_compr_elec_kWh_per_kg = \
+        LOHC_STN_compr_tot_power_kW * target_num_stns / \
         tot_H2_deliv_kg_per_hr
     
     # convert compressor energy to MJ/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_STN_compr_elec_MJ_per_MJ = \
-        FAH2_STN_compr_elec_kWh_per_kg * MJ_per_kWh / \
+    LOHC_STN_compr_elec_MJ_per_MJ = \
+        LOHC_STN_compr_elec_kWh_per_kg * MJ_per_kWh / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -10750,10 +10759,10 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'kWh/kg H2', 
-        FAH2_STN_compr_elec_kWh_per_kg
+        LOHC_STN_compr_elec_kWh_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -10761,26 +10770,25 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'MJ/MJ H2 (LHV)', 
-        FAH2_STN_compr_elec_MJ_per_MJ
+        LOHC_STN_compr_elec_MJ_per_MJ
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # refueling station compressor energy emissions
+    # reconditioning - LOHC: refueling station compressor energy emissions
 
     # calculate refueling station compressor energy emissions (kg CO2/kg H2)
-    FAH2_STN_compr_ghg_kg_CO2_per_kg = \
-        FAH2_STN_compr_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
+    LOHC_STN_compr_ghg_kg_CO2_per_kg = \
+        LOHC_STN_compr_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
     
     # convert compressor energy emissions to g CO2/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_STN_compr_ghg_g_CO2_per_MJ = \
-        FAH2_STN_compr_ghg_kg_CO2_per_kg * g_per_kg / \
+    LOHC_STN_compr_ghg_g_CO2_per_MJ = \
+        LOHC_STN_compr_ghg_kg_CO2_per_kg * g_per_kg / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -10788,10 +10796,10 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'kg CO2/kg H2', 
-        FAH2_STN_compr_ghg_kg_CO2_per_kg
+        LOHC_STN_compr_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -10799,23 +10807,23 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_STN_compr_ghg_g_CO2_per_MJ
+        LOHC_STN_compr_ghg_g_CO2_per_MJ
         ])
         
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: refueling station compressor energy cost
+    # reconditioning - LOHC: refueling station compressor energy cost
     
     # calculate refueling station compressor energy cost ($/kg H2)
-    FAH2_STN_compr_elec_cost_usd_per_kg = \
-        FAH2_STN_compr_elec_kWh_per_kg * elec_cost_usd_per_kWh
+    LOHC_STN_compr_elec_cost_usd_per_kg = \
+        LOHC_STN_compr_elec_kWh_per_kg * elec_cost_usd_per_kWh
     
     # calculate refueling station compressor energy cost ($/yr)
-    FAH2_STN_compr_elec_cost_usd_per_yr = \
-        FAH2_STN_compr_elec_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
+    LOHC_STN_compr_elec_cost_usd_per_yr = \
+        LOHC_STN_compr_elec_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -10823,10 +10831,10 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/yr', 
-        FAH2_STN_compr_elec_cost_usd_per_yr
+        LOHC_STN_compr_elec_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -10834,41 +10842,41 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/kg H2', 
-        FAH2_STN_compr_elec_cost_usd_per_kg
+        LOHC_STN_compr_elec_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station compressor installed cost and annual O&M cost
 
     # calculate refueling station compressor installed cost ($) and annual O&M 
     # cost ($/yr) per station, both in output dollar year 
-    FAH2_STN_compr_inst_cost_usd_per_stn, \
-    FAH2_STN_compr_om_cost_usd_per_yr_per_stn, \
-    FAH2_STN_compr_dollar_year = \
+    LOHC_STN_compr_inst_cost_usd_per_stn, \
+    LOHC_STN_compr_om_cost_usd_per_yr_per_stn, \
+    LOHC_STN_compr_dollar_year = \
         compressor_fixed_costs(
-            compr_power_kW_per_stg = FAH2_STN_compr_power_kW_per_stg, 
-            num_stgs = FAH2_STN_compr_num_stgs, 
+            compr_power_kW_per_stg = LOHC_STN_compr_power_kW_per_stg, 
+            num_stgs = LOHC_STN_compr_num_stgs, 
             output_dollar_year = output_dollar_year
             )
         
     # calculate refueling station compressor installed cost ($)
     # sum of all stations
-    FAH2_STN_compr_inst_cost_usd = \
-        FAH2_STN_compr_inst_cost_usd_per_stn * target_num_stns
+    LOHC_STN_compr_inst_cost_usd = \
+        LOHC_STN_compr_inst_cost_usd_per_stn * target_num_stns
 
     # calculate refueling station compressor O&M cost ($/yr)
     # sum of all stations
-    FAH2_STN_compr_om_cost_usd_per_yr = \
-        FAH2_STN_compr_om_cost_usd_per_yr_per_stn * target_num_stns 
+    LOHC_STN_compr_om_cost_usd_per_yr = \
+        LOHC_STN_compr_om_cost_usd_per_yr_per_stn * target_num_stns 
 
     # calculate refueling station compressor O&M cost ($/kg H2)
-    FAH2_STN_compr_om_cost_usd_per_kg = \
-        FAH2_STN_compr_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_compr_om_cost_usd_per_kg = \
+        LOHC_STN_compr_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -10876,10 +10884,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_STN_compr_om_cost_usd_per_yr
+        LOHC_STN_compr_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -10887,15 +10895,14 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_STN_compr_om_cost_usd_per_kg
+        LOHC_STN_compr_om_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # refueling station refrigerator energy consumption
+    # reconditioning - LOHC: refueling station refrigerator energy consumption
     
     # calculate refueling station refrigerator energy (kWh/kg H2)
-    FAH2_STN_refrig_elec_kWh_per_kg = \
+    LOHC_STN_refrig_elec_kWh_per_kg = \
         heat_exchanger_energy(
             out_temp_K = STN_dispens_temp_K,
             in_temp_K = STN_H2_temp_K
@@ -10903,13 +10910,13 @@ def calcs(
     
     # convert refrigerator energy to MJ/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_STN_refrig_elec_MJ_per_MJ = \
-        FAH2_STN_refrig_elec_kWh_per_kg * MJ_per_kWh / \
+    LOHC_STN_refrig_elec_MJ_per_MJ = \
+        LOHC_STN_refrig_elec_kWh_per_kg * MJ_per_kWh / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10917,10 +10924,10 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'kWh/kg H2', 
-        FAH2_STN_refrig_elec_kWh_per_kg
+        LOHC_STN_refrig_elec_kWh_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10928,26 +10935,25 @@ def calcs(
         'energy consumption', 
         'electricity consumption', 
         'MJ/MJ H2 (LHV)', 
-        FAH2_STN_refrig_elec_MJ_per_MJ
+        LOHC_STN_refrig_elec_MJ_per_MJ
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # refueling station refrigerator energy emissions
+    # reconditioning - LOHC: refueling station refrigerator energy emissions
 
     # calculate refueling station refrigerator energy emissions (kg CO2/kg H2)
-    FAH2_STN_refrig_ghg_kg_CO2_per_kg = \
-        FAH2_STN_refrig_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
+    LOHC_STN_refrig_ghg_kg_CO2_per_kg = \
+        LOHC_STN_refrig_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
     
     # convert refrigerator energy emissions to g CO2/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_STN_refrig_ghg_g_CO2_per_MJ = \
-        FAH2_STN_refrig_ghg_kg_CO2_per_kg * g_per_kg / \
+    LOHC_STN_refrig_ghg_g_CO2_per_MJ = \
+        LOHC_STN_refrig_ghg_kg_CO2_per_kg * g_per_kg / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10955,10 +10961,10 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'kg CO2/kg H2', 
-        FAH2_STN_refrig_ghg_kg_CO2_per_kg
+        LOHC_STN_refrig_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10966,24 +10972,23 @@ def calcs(
         'emissions', 
         'energy emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_STN_refrig_ghg_g_CO2_per_MJ
+        LOHC_STN_refrig_ghg_g_CO2_per_MJ
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # refueling station refrigerator energy cost
+    # reconditioning - LOHC: refueling station refrigerator energy cost
     
     # calculate refueling station refrigerator energy cost ($/kg H2)
-    FAH2_STN_refrig_elec_cost_usd_per_kg = \
-        FAH2_STN_refrig_elec_kWh_per_kg * elec_cost_usd_per_kWh
+    LOHC_STN_refrig_elec_cost_usd_per_kg = \
+        LOHC_STN_refrig_elec_kWh_per_kg * elec_cost_usd_per_kWh
     
     # calculate refueling station refrigerator energy cost ($/yr)
-    FAH2_STN_refrig_elec_cost_usd_per_yr = \
-        FAH2_STN_refrig_elec_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
+    LOHC_STN_refrig_elec_cost_usd_per_yr = \
+        LOHC_STN_refrig_elec_cost_usd_per_kg * tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -10991,10 +10996,10 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/yr', 
-        FAH2_STN_refrig_elec_cost_usd_per_yr
+        LOHC_STN_refrig_elec_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -11002,48 +11007,48 @@ def calcs(
         'energy cost', 
         'electricity cost', 
         '$/kg H2', 
-        FAH2_STN_refrig_elec_cost_usd_per_kg
+        LOHC_STN_refrig_elec_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station refrigerator installed cost and annual O&M cost
         
     # calculate number of refrigerators needed at refueling station 
     # (= number of hoses)
     # assume linear relative to station capacity 
     # (HDSAM V3.1: 1000 kg H2/day --> 4 hoses, 4 refrigerators)
-    FAH2_STN_num_refrigs = \
+    LOHC_STN_num_refrigs = \
         target_stn_capacity_kg_per_day / (1000.0 / 4)
     
     # calculate refueling station refrigerator installed cost ($) and annual 
     # O&M cost ($/yr) per station, both in output dollar year 
-    FAH2_STN_refrig_inst_cost_usd_per_stn, \
-    FAH2_STN_refrig_om_cost_usd_per_yr_per_stn, \
-    FAH2_STN_refrig_dollar_year = \
+    LOHC_STN_refrig_inst_cost_usd_per_stn, \
+    LOHC_STN_refrig_om_cost_usd_per_yr_per_stn, \
+    LOHC_STN_refrig_dollar_year = \
         heat_exchanger_fixed_costs(
             out_temp_K = STN_dispens_temp_K, 
-            num_hx = FAH2_STN_num_refrigs, 
+            num_hx = LOHC_STN_num_refrigs, 
             output_dollar_year = output_dollar_year
             )    
         
     # calculate refueling station refrigerator installed cost ($) 
     # sum of all stations
-    FAH2_STN_refrig_inst_cost_usd = \
-        FAH2_STN_refrig_inst_cost_usd_per_stn * target_num_stns
+    LOHC_STN_refrig_inst_cost_usd = \
+        LOHC_STN_refrig_inst_cost_usd_per_stn * target_num_stns
 
     # calculate refueling station refrigerator O&M cost ($/yr)
     # sum of all stations
-    FAH2_STN_refrig_om_cost_usd_per_yr = \
-        FAH2_STN_refrig_om_cost_usd_per_yr_per_stn * target_num_stns 
+    LOHC_STN_refrig_om_cost_usd_per_yr = \
+        LOHC_STN_refrig_om_cost_usd_per_yr_per_stn * target_num_stns 
 
     # calculate refueling station refrigerator O&M cost ($/kg H2)
-    FAH2_STN_refrig_om_cost_usd_per_kg = \
-        FAH2_STN_refrig_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_refrig_om_cost_usd_per_kg = \
+        LOHC_STN_refrig_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -11051,10 +11056,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_STN_refrig_om_cost_usd_per_yr
+        LOHC_STN_refrig_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -11062,53 +11067,53 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_STN_refrig_om_cost_usd_per_kg
+        LOHC_STN_refrig_om_cost_usd_per_kg
         ])
     
 
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # refueling station formic acid storage installed cost and annual O&M cost
+    # reconditioning - LOHC: 
+    # refueling station LOHC storage installed cost and annual O&M cost
     
-    # calculate total formic acid storage capacity (m^3) and 
+    # calculate total LOHC storage capacity (m^3) and 
     # number of storage tanks required at refueling station
-    FAH2_STN_stor_tank_capacity_cu_m, \
-    FAH2_STN_num_tanks = \
+    LOHC_STN_stor_tank_capacity_cu_m, \
+    LOHC_STN_num_tanks = \
         general_tank_storage_size(
-            fluid_flow_kg_per_day = FAH2_STN_FA_flow_kg_per_day,
-            stor_amt_days = FAH2_STN_stor_amt_days,
-            fluid_dens_kg_per_cu_m = dens_FA_kg_per_cu_m
+            fluid_flow_kg_per_day = LOHC_STN_LOHC_flow_kg_per_day,
+            stor_amt_days = LOHC_STN_stor_amt_days,
+            fluid_dens_kg_per_cu_m = dens_LOHC_kg_per_cu_m
             )
     
-    # calculate formic acid storage installed cost ($) and annual O&M 
+    # calculate LOHC storage installed cost ($) and annual O&M 
     # cost ($/yr) per station, both in output dollar year
-    FAH2_STN_stor_inst_cost_usd_per_stn, \
-    FAH2_STN_stor_om_cost_usd_per_yr_per_stn, \
-    FAH2_STN_stor_dollar_year = \
+    LOHC_STN_stor_inst_cost_usd_per_stn, \
+    LOHC_STN_stor_om_cost_usd_per_yr_per_stn, \
+    LOHC_STN_stor_dollar_year = \
         general_tank_stor_fixed_costs(
-            stor_tank_capacity_cu_m = FAH2_STN_stor_tank_capacity_cu_m,
-            num_tanks = FAH2_STN_num_tanks,
+            stor_tank_capacity_cu_m = LOHC_STN_stor_tank_capacity_cu_m,
+            num_tanks = LOHC_STN_num_tanks,
             output_dollar_year = output_dollar_year, 
             material = 'fiber glass open top'
             )
         
-    # calculate formic acid storage installed cost ($)
+    # calculate LOHC storage installed cost ($)
     # sum of all stations
-    FAH2_STN_stor_inst_cost_usd = \
-        FAH2_STN_stor_inst_cost_usd_per_stn * target_num_stns
+    LOHC_STN_stor_inst_cost_usd = \
+        LOHC_STN_stor_inst_cost_usd_per_stn * target_num_stns
 
-    # calculate formic acid storage O&M cost ($/yr)
+    # calculate LOHC storage O&M cost ($/yr)
     # sum of all stations
-    FAH2_STN_stor_om_cost_usd_per_yr = \
-        FAH2_STN_stor_om_cost_usd_per_yr_per_stn * target_num_stns
+    LOHC_STN_stor_om_cost_usd_per_yr = \
+        LOHC_STN_stor_om_cost_usd_per_yr_per_stn * target_num_stns
                 
-    # calculate formic acid storage O&M cost ($/kg H2)
-    FAH2_STN_stor_om_cost_usd_per_kg = \
-        FAH2_STN_stor_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    # calculate LOHC storage O&M cost ($/kg H2)
+    LOHC_STN_stor_om_cost_usd_per_kg = \
+        LOHC_STN_stor_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11116,10 +11121,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_STN_stor_om_cost_usd_per_yr
+        LOHC_STN_stor_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11127,48 +11132,48 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_STN_stor_om_cost_usd_per_kg
+        LOHC_STN_stor_om_cost_usd_per_kg
         ])
 
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station cascade storage installed cost and annual O&M cost
 
     # calculate total cascade storage capacity required (kg) at 
     # refueling station
-    FAH2_STN_casc_stor_tot_capacity_kg = \
+    LOHC_STN_casc_stor_tot_capacity_kg = \
         station_cascade_storage_size(
             stn_capacity_kg_per_day = target_stn_capacity_kg_per_day,
-            casc_stor_size_frac = FAH2_STN_casc_stor_size_frac
+            casc_stor_size_frac = LOHC_STN_casc_stor_size_frac
             )
     
     # calculate cascade storage installed cost ($) and annual O&M 
     # cost ($/yr) per station, both in output dollar year
-    FAH2_STN_casc_stor_inst_cost_usd_per_stn, \
-    FAH2_STN_casc_stor_om_cost_usd_per_yr_per_stn, \
-    FAH2_STN_casc_stor_dollar_year = \
+    LOHC_STN_casc_stor_inst_cost_usd_per_stn, \
+    LOHC_STN_casc_stor_om_cost_usd_per_yr_per_stn, \
+    LOHC_STN_casc_stor_dollar_year = \
         station_cascade_storage_fixed_costs(
-            stor_tot_capacity_kg = FAH2_STN_casc_stor_tot_capacity_kg, 
+            stor_tot_capacity_kg = LOHC_STN_casc_stor_tot_capacity_kg, 
             output_dollar_year = output_dollar_year
             )
         
     # calculate cascade storage installed cost ($)
     # sum of all stations
-    FAH2_STN_casc_stor_inst_cost_usd = \
-        FAH2_STN_casc_stor_inst_cost_usd_per_stn * target_num_stns
+    LOHC_STN_casc_stor_inst_cost_usd = \
+        LOHC_STN_casc_stor_inst_cost_usd_per_stn * target_num_stns
 
     # calculate cascade storage O&M cost ($/yr)
     # sum of all stations
-    FAH2_STN_casc_stor_om_cost_usd_per_yr = \
-        FAH2_STN_casc_stor_om_cost_usd_per_yr_per_stn * target_num_stns
+    LOHC_STN_casc_stor_om_cost_usd_per_yr = \
+        LOHC_STN_casc_stor_om_cost_usd_per_yr_per_stn * target_num_stns
                 
     # calculate cascade storage O&M cost ($/kg H2)
-    FAH2_STN_casc_stor_om_cost_usd_per_kg = \
-        FAH2_STN_casc_stor_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_casc_stor_om_cost_usd_per_kg = \
+        LOHC_STN_casc_stor_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11176,10 +11181,10 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
-        FAH2_STN_casc_stor_om_cost_usd_per_yr
+        LOHC_STN_casc_stor_om_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11187,11 +11192,11 @@ def calcs(
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
-        FAH2_STN_casc_stor_om_cost_usd_per_kg
+        LOHC_STN_casc_stor_om_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station total capital investment and "other" annual O&M costs
         
     # "Other" O&M costs include insurance, property taxes, licensing and 
@@ -11202,20 +11207,19 @@ def calcs(
     # calculate refueling station total initial capital investment ($)
     # (= dehydrogenation pump + reactor + catalyst + 
     # separator *refrigerator* + separator + compressor + refrigerator + 
-    # formic acid storage + cascade storage 
-    # for *formic acid* hydrogen refueling station)
-    # TODO: revisit components at LOHC / formic acid refueling station
+    # LOHC storage + cascade storage for LOHC hydrogen refueling station)
+    # TODO: revisit components at LOHC refueling station
     # sum of all stations
-    FAH2_STN_init_cap_inv_usd = \
-        FAH2_STN_dehydr_pump_inst_cost_usd + \
-        FAH2_STN_dehydr_react_inst_cost_usd + \
-        FAH2_STN_dehydr_catal_purc_cost_usd + \
-        FAH2_STN_psa_refrig_inst_cost_usd + \
-        FAH2_STN_psa_inst_cost_usd + \
-        FAH2_STN_compr_inst_cost_usd + \
-        FAH2_STN_refrig_inst_cost_usd + \
-        FAH2_STN_stor_inst_cost_usd + \
-        FAH2_STN_casc_stor_inst_cost_usd
+    LOHC_STN_init_cap_inv_usd = \
+        LOHC_STN_dehydr_pump_inst_cost_usd + \
+        LOHC_STN_dehydr_react_inst_cost_usd + \
+        LOHC_STN_dehydr_catal_purc_cost_usd + \
+        LOHC_STN_psa_refrig_inst_cost_usd + \
+        LOHC_STN_psa_inst_cost_usd + \
+        LOHC_STN_compr_inst_cost_usd + \
+        LOHC_STN_refrig_inst_cost_usd + \
+        LOHC_STN_stor_inst_cost_usd + \
+        LOHC_STN_casc_stor_inst_cost_usd
     
     # calculate refueling station cost allocations (%) to dehydrogenation pump, 
     # reactor, catalyst, separator *refrigerator*, separator, compressor, 
@@ -11223,46 +11227,46 @@ def calcs(
     # % of refueling station total initial capital investment
     # use to allocate total capital investment, other O&M costs, and labor 
     # cost
-    FAH2_STN_dehydr_pump_cost_perc = \
-        FAH2_STN_dehydr_pump_inst_cost_usd / \
-        FAH2_STN_init_cap_inv_usd
-    FAH2_STN_dehydr_react_cost_perc = \
-        FAH2_STN_dehydr_react_inst_cost_usd / \
-        FAH2_STN_init_cap_inv_usd
-    FAH2_STN_dehydr_catal_cost_perc = \
-        FAH2_STN_dehydr_catal_purc_cost_usd / \
-        FAH2_STN_init_cap_inv_usd
-    FAH2_STN_psa_refrig_cost_perc = \
-        FAH2_STN_psa_refrig_inst_cost_usd / \
-        FAH2_STN_init_cap_inv_usd
-    FAH2_STN_psa_cost_perc = \
-        FAH2_STN_psa_inst_cost_usd / \
-        FAH2_STN_init_cap_inv_usd
-    FAH2_STN_compr_cost_perc = \
-        FAH2_STN_compr_inst_cost_usd / \
-        FAH2_STN_init_cap_inv_usd
-    FAH2_STN_refrig_cost_perc = \
-        FAH2_STN_refrig_inst_cost_usd / \
-        FAH2_STN_init_cap_inv_usd
-    FAH2_STN_stor_cost_perc = \
-        FAH2_STN_stor_inst_cost_usd / \
-        FAH2_STN_init_cap_inv_usd
-    FAH2_STN_casc_stor_cost_perc = \
-        FAH2_STN_casc_stor_inst_cost_usd / \
-        FAH2_STN_init_cap_inv_usd
+    LOHC_STN_dehydr_pump_cost_perc = \
+        LOHC_STN_dehydr_pump_inst_cost_usd / \
+        LOHC_STN_init_cap_inv_usd
+    LOHC_STN_dehydr_react_cost_perc = \
+        LOHC_STN_dehydr_react_inst_cost_usd / \
+        LOHC_STN_init_cap_inv_usd
+    LOHC_STN_dehydr_catal_cost_perc = \
+        LOHC_STN_dehydr_catal_purc_cost_usd / \
+        LOHC_STN_init_cap_inv_usd
+    LOHC_STN_psa_refrig_cost_perc = \
+        LOHC_STN_psa_refrig_inst_cost_usd / \
+        LOHC_STN_init_cap_inv_usd
+    LOHC_STN_psa_cost_perc = \
+        LOHC_STN_psa_inst_cost_usd / \
+        LOHC_STN_init_cap_inv_usd
+    LOHC_STN_compr_cost_perc = \
+        LOHC_STN_compr_inst_cost_usd / \
+        LOHC_STN_init_cap_inv_usd
+    LOHC_STN_refrig_cost_perc = \
+        LOHC_STN_refrig_inst_cost_usd / \
+        LOHC_STN_init_cap_inv_usd
+    LOHC_STN_stor_cost_perc = \
+        LOHC_STN_stor_inst_cost_usd / \
+        LOHC_STN_init_cap_inv_usd
+    LOHC_STN_casc_stor_cost_perc = \
+        LOHC_STN_casc_stor_inst_cost_usd / \
+        LOHC_STN_init_cap_inv_usd
     
     # check whether cost allocations (%) sum to one
     # raise error if false
     if abs(
-            FAH2_STN_dehydr_pump_cost_perc + \
-            FAH2_STN_dehydr_react_cost_perc + \
-            FAH2_STN_dehydr_catal_cost_perc + \
-            FAH2_STN_psa_refrig_cost_perc + \
-            FAH2_STN_psa_cost_perc + \
-            FAH2_STN_compr_cost_perc + \
-            FAH2_STN_refrig_cost_perc + \
-            FAH2_STN_stor_cost_perc + \
-            FAH2_STN_casc_stor_cost_perc - \
+            LOHC_STN_dehydr_pump_cost_perc + \
+            LOHC_STN_dehydr_react_cost_perc + \
+            LOHC_STN_dehydr_catal_cost_perc + \
+            LOHC_STN_psa_refrig_cost_perc + \
+            LOHC_STN_psa_cost_perc + \
+            LOHC_STN_compr_cost_perc + \
+            LOHC_STN_refrig_cost_perc + \
+            LOHC_STN_stor_cost_perc + \
+            LOHC_STN_casc_stor_cost_perc - \
             1.0
             ) >= 1.0e-9:
         raise ValueError(
@@ -11272,21 +11276,21 @@ def calcs(
     # check if all refueling station components have the same dollar year
     # if true, assign dollar year of refueling station costs to the dollar 
     # year of one of the components 
-    if (FAH2_STN_dehydr_pump_dollar_year == \
-        FAH2_STN_dehydr_react_dollar_year) \
-        and (FAH2_STN_dehydr_react_dollar_year == \
-             FAH2_STN_psa_refrig_dollar_year) \
-        and (FAH2_STN_psa_refrig_dollar_year == \
-             FAH2_STN_psa_dollar_year) \
-        and (FAH2_STN_psa_dollar_year == \
-             FAH2_STN_compr_dollar_year) \
-        and (FAH2_STN_compr_dollar_year == \
-             FAH2_STN_refrig_dollar_year) \
-        and (FAH2_STN_refrig_dollar_year == \
-             FAH2_STN_stor_dollar_year) \
-        and (FAH2_STN_stor_dollar_year == \
-             FAH2_STN_casc_stor_dollar_year):
-        FAH2_STN_dollar_year = FAH2_STN_dehydr_react_dollar_year    
+    if (LOHC_STN_dehydr_pump_dollar_year == \
+        LOHC_STN_dehydr_react_dollar_year) \
+        and (LOHC_STN_dehydr_react_dollar_year == \
+             LOHC_STN_psa_refrig_dollar_year) \
+        and (LOHC_STN_psa_refrig_dollar_year == \
+             LOHC_STN_psa_dollar_year) \
+        and (LOHC_STN_psa_dollar_year == \
+             LOHC_STN_compr_dollar_year) \
+        and (LOHC_STN_compr_dollar_year == \
+             LOHC_STN_refrig_dollar_year) \
+        and (LOHC_STN_refrig_dollar_year == \
+             LOHC_STN_stor_dollar_year) \
+        and (LOHC_STN_stor_dollar_year == \
+             LOHC_STN_casc_stor_dollar_year):
+        LOHC_STN_dollar_year = LOHC_STN_dehydr_react_dollar_year    
     else:
         raise ValueError(
             'Dollar year of components need to match.'
@@ -11294,32 +11298,32 @@ def calcs(
         
     # calculate refueling station total capital investment 
     # ($, output dollar year), sum of all stations
-    FAH2_STN_tot_cap_inv_usd, \
-    FAH2_STN_cap_cost_dollar_year = \
+    LOHC_STN_tot_cap_inv_usd, \
+    LOHC_STN_cap_cost_dollar_year = \
         station_total_capital_investment(
-            init_cap_inv_usd = FAH2_STN_init_cap_inv_usd, 
-            input_dollar_year = FAH2_STN_dollar_year
+            init_cap_inv_usd = LOHC_STN_init_cap_inv_usd, 
+            input_dollar_year = LOHC_STN_dollar_year
             )
     
     # calculate refueling station "other" annual O&M costs 
     # ($/yr, output dollar year), sum of all stations
-    FAH2_STN_om_cost_usd_per_yr, \
-    FAH2_STN_om_cost_dollar_year = \
+    LOHC_STN_om_cost_usd_per_yr, \
+    LOHC_STN_om_cost_dollar_year = \
         other_om_cost(
-            tot_cap_inv_usd = FAH2_STN_tot_cap_inv_usd,
-            input_dollar_year = FAH2_STN_cap_cost_dollar_year
+            tot_cap_inv_usd = LOHC_STN_tot_cap_inv_usd,
+            input_dollar_year = LOHC_STN_cap_cost_dollar_year
             )
     
     # calculate refueling station "other" O&M costs ($/kg H2)
-    FAH2_STN_om_cost_usd_per_kg = \
-        FAH2_STN_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_om_cost_usd_per_kg = \
+        LOHC_STN_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     # assign "other" O&M costs to dehydrogenation pump, reactor, catalyst,
     # separator *refrigerator*, seprarator, compressor, 
-    # refrigerator, formic acid storage, and cascade storage
+    # refrigerator, LOHC storage, and cascade storage
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -11327,11 +11331,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_STN_om_cost_usd_per_yr * \
-            FAH2_STN_dehydr_pump_cost_perc
+        LOHC_STN_om_cost_usd_per_yr * \
+            LOHC_STN_dehydr_pump_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -11339,12 +11343,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_STN_om_cost_usd_per_kg * \
-            FAH2_STN_dehydr_pump_cost_perc
+        LOHC_STN_om_cost_usd_per_kg * \
+            LOHC_STN_dehydr_pump_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11352,11 +11356,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_STN_om_cost_usd_per_yr * \
-            FAH2_STN_dehydr_react_cost_perc
+        LOHC_STN_om_cost_usd_per_yr * \
+            LOHC_STN_dehydr_react_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11364,12 +11368,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_STN_om_cost_usd_per_kg * \
-            FAH2_STN_dehydr_react_cost_perc
+        LOHC_STN_om_cost_usd_per_kg * \
+            LOHC_STN_dehydr_react_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11377,11 +11381,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_STN_om_cost_usd_per_yr * \
-            FAH2_STN_dehydr_catal_cost_perc
+        LOHC_STN_om_cost_usd_per_yr * \
+            LOHC_STN_dehydr_catal_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11389,12 +11393,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_STN_om_cost_usd_per_kg * \
-            FAH2_STN_dehydr_catal_cost_perc
+        LOHC_STN_om_cost_usd_per_kg * \
+            LOHC_STN_dehydr_catal_cost_perc
         ])
 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -11402,11 +11406,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_STN_om_cost_usd_per_yr * \
-            FAH2_STN_psa_refrig_cost_perc
+        LOHC_STN_om_cost_usd_per_yr * \
+            LOHC_STN_psa_refrig_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -11414,12 +11418,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_STN_om_cost_usd_per_kg * \
-            FAH2_STN_psa_refrig_cost_perc
+        LOHC_STN_om_cost_usd_per_kg * \
+            LOHC_STN_psa_refrig_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -11427,11 +11431,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_STN_om_cost_usd_per_yr * \
-            FAH2_STN_psa_cost_perc
+        LOHC_STN_om_cost_usd_per_yr * \
+            LOHC_STN_psa_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -11439,12 +11443,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_STN_om_cost_usd_per_kg * \
-            FAH2_STN_psa_cost_perc
+        LOHC_STN_om_cost_usd_per_kg * \
+            LOHC_STN_psa_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -11452,11 +11456,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_STN_om_cost_usd_per_yr * \
-            FAH2_STN_compr_cost_perc
+        LOHC_STN_om_cost_usd_per_yr * \
+            LOHC_STN_compr_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -11464,12 +11468,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_STN_om_cost_usd_per_kg * \
-            FAH2_STN_compr_cost_perc
+        LOHC_STN_om_cost_usd_per_kg * \
+            LOHC_STN_compr_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -11477,11 +11481,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_STN_om_cost_usd_per_yr * \
-            FAH2_STN_refrig_cost_perc
+        LOHC_STN_om_cost_usd_per_yr * \
+            LOHC_STN_refrig_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -11489,12 +11493,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_STN_om_cost_usd_per_kg * \
-            FAH2_STN_refrig_cost_perc
+        LOHC_STN_om_cost_usd_per_kg * \
+            LOHC_STN_refrig_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11502,11 +11506,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_STN_om_cost_usd_per_yr * \
-            FAH2_STN_stor_cost_perc
+        LOHC_STN_om_cost_usd_per_yr * \
+            LOHC_STN_stor_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11514,12 +11518,12 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_STN_om_cost_usd_per_kg * \
-            FAH2_STN_stor_cost_perc
+        LOHC_STN_om_cost_usd_per_kg * \
+            LOHC_STN_stor_cost_perc
         ])
 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11527,11 +11531,11 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
-        FAH2_STN_om_cost_usd_per_yr * \
-            FAH2_STN_casc_stor_cost_perc
+        LOHC_STN_om_cost_usd_per_yr * \
+            LOHC_STN_casc_stor_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11539,24 +11543,24 @@ def calcs(
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
-        FAH2_STN_om_cost_usd_per_kg * \
-            FAH2_STN_casc_stor_cost_perc
+        LOHC_STN_om_cost_usd_per_kg * \
+            LOHC_STN_casc_stor_cost_perc
         ])
             
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: refueling station annual labor cost
+    # reconditioning - LOHC: refueling station annual labor cost
     
     # NOTE: HDSAM V3.1 refueling station labor costs are derived from gasoline 
     # stations and do not have the need for onsite dehydrogenation and
     # separation. Using HDSAM V3.1 formula likely underestimates the labor 
-    # cost for LOHC / formic acid refueling stations.
+    # cost for LOHC refueling stations.
     
-    # TODO: revisit labor cost scaling for formic acid refueling station
+    # TODO: revisit labor cost scaling for LOHC refueling station
     
     # calculate refueling station annual labor cost ($/yr, output dollar 
     # year) per station, including overhead and G&A    
-    FAH2_STN_labor_cost_usd_per_yr_per_stn, \
-    FAH2_STN_labor_cost_dollar_year = \
+    LOHC_STN_labor_cost_usd_per_yr_per_stn, \
+    LOHC_STN_labor_cost_dollar_year = \
         station_labor_cost(
             H2_flow_kg_per_day = target_stn_capacity_kg_per_day, 
             output_dollar_year = output_dollar_year
@@ -11564,19 +11568,19 @@ def calcs(
     
     # calculate refueling station labor cost ($/yr)
     # sum of all stations
-    FAH2_STN_labor_cost_usd_per_yr = \
-        FAH2_STN_labor_cost_usd_per_yr_per_stn * target_num_stns
+    LOHC_STN_labor_cost_usd_per_yr = \
+        LOHC_STN_labor_cost_usd_per_yr_per_stn * target_num_stns
     
     # calculate refueling station labor cost ($/kg H2)
-    FAH2_STN_labor_cost_usd_per_kg = \
-        FAH2_STN_labor_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_labor_cost_usd_per_kg = \
+        LOHC_STN_labor_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     # assign labor cost to dehydrogenation pump, reactor, catalyst,
     # separator *refrigerator*, seprarator, compressor, refrigerator, 
-    # formic acid storage, and cascade storage
+    # LOHC storage, and cascade storage
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -11584,11 +11588,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_STN_labor_cost_usd_per_yr * \
-            FAH2_STN_dehydr_pump_cost_perc
+        LOHC_STN_labor_cost_usd_per_yr * \
+            LOHC_STN_dehydr_pump_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -11596,12 +11600,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_STN_labor_cost_usd_per_kg * \
-            FAH2_STN_dehydr_pump_cost_perc
+        LOHC_STN_labor_cost_usd_per_kg * \
+            LOHC_STN_dehydr_pump_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11609,11 +11613,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_STN_labor_cost_usd_per_yr * \
-            FAH2_STN_dehydr_react_cost_perc
+        LOHC_STN_labor_cost_usd_per_yr * \
+            LOHC_STN_dehydr_react_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11621,12 +11625,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_STN_labor_cost_usd_per_kg * \
-            FAH2_STN_dehydr_react_cost_perc
+        LOHC_STN_labor_cost_usd_per_kg * \
+            LOHC_STN_dehydr_react_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11634,11 +11638,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_STN_labor_cost_usd_per_yr * \
-            FAH2_STN_dehydr_catal_cost_perc
+        LOHC_STN_labor_cost_usd_per_yr * \
+            LOHC_STN_dehydr_catal_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11646,12 +11650,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_STN_labor_cost_usd_per_kg * \
-            FAH2_STN_dehydr_catal_cost_perc
+        LOHC_STN_labor_cost_usd_per_kg * \
+            LOHC_STN_dehydr_catal_cost_perc
         ])
 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -11659,11 +11663,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_STN_labor_cost_usd_per_yr * \
-            FAH2_STN_psa_refrig_cost_perc
+        LOHC_STN_labor_cost_usd_per_yr * \
+            LOHC_STN_psa_refrig_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -11671,12 +11675,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_STN_labor_cost_usd_per_kg * \
-            FAH2_STN_psa_refrig_cost_perc
+        LOHC_STN_labor_cost_usd_per_kg * \
+            LOHC_STN_psa_refrig_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -11684,11 +11688,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_STN_labor_cost_usd_per_yr * \
-            FAH2_STN_psa_cost_perc
+        LOHC_STN_labor_cost_usd_per_yr * \
+            LOHC_STN_psa_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -11696,12 +11700,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_STN_labor_cost_usd_per_kg * \
-            FAH2_STN_psa_cost_perc
+        LOHC_STN_labor_cost_usd_per_kg * \
+            LOHC_STN_psa_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -11709,11 +11713,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_STN_labor_cost_usd_per_yr * \
-            FAH2_STN_compr_cost_perc
+        LOHC_STN_labor_cost_usd_per_yr * \
+            LOHC_STN_compr_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -11721,12 +11725,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_STN_labor_cost_usd_per_kg * \
-            FAH2_STN_compr_cost_perc
+        LOHC_STN_labor_cost_usd_per_kg * \
+            LOHC_STN_compr_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -11734,11 +11738,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_STN_labor_cost_usd_per_yr * \
-            FAH2_STN_refrig_cost_perc
+        LOHC_STN_labor_cost_usd_per_yr * \
+            LOHC_STN_refrig_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -11746,12 +11750,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_STN_labor_cost_usd_per_kg * \
-            FAH2_STN_refrig_cost_perc
+        LOHC_STN_labor_cost_usd_per_kg * \
+            LOHC_STN_refrig_cost_perc
         ])
 
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11759,11 +11763,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_STN_labor_cost_usd_per_yr * \
-            FAH2_STN_stor_cost_perc
+        LOHC_STN_labor_cost_usd_per_yr * \
+            LOHC_STN_stor_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11771,12 +11775,12 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_STN_labor_cost_usd_per_kg * \
-            FAH2_STN_stor_cost_perc
+        LOHC_STN_labor_cost_usd_per_kg * \
+            LOHC_STN_stor_cost_perc
         ])
         
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11784,11 +11788,11 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/yr', 
-        FAH2_STN_labor_cost_usd_per_yr * \
-            FAH2_STN_casc_stor_cost_perc
+        LOHC_STN_labor_cost_usd_per_yr * \
+            LOHC_STN_casc_stor_cost_perc
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -11796,41 +11800,40 @@ def calcs(
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
-        FAH2_STN_labor_cost_usd_per_kg * \
-            FAH2_STN_casc_stor_cost_perc
+        LOHC_STN_labor_cost_usd_per_kg * \
+            LOHC_STN_casc_stor_cost_perc
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # dehydrogenation pump levelized capital cost
+    # reconditioning - LOHC: dehydrogenation pump levelized capital cost
     
     # calculate dehydrogenation pump total capital investment ($) 
     # (= refueling station total capital investment allocated to 
     # dehydrogenation pump)
     # sum of all stations
-    FAH2_STN_dehydr_pump_tot_cap_inv_usd = \
-        FAH2_STN_dehydr_pump_cost_perc * FAH2_STN_tot_cap_inv_usd
+    LOHC_STN_dehydr_pump_tot_cap_inv_usd = \
+        LOHC_STN_dehydr_pump_cost_perc * LOHC_STN_tot_cap_inv_usd
     
     # calculate dehydrogenation pump levelized capital cost 
     # ($/yr, output dollar year)
     # sum of all stations
-    FAH2_STN_dehydr_pump_lev_cap_cost_usd_per_yr, \
-    FAH2_STN_dehydr_pump_lev_cap_cost_dollar_year = \
+    LOHC_STN_dehydr_pump_lev_cap_cost_usd_per_yr, \
+    LOHC_STN_dehydr_pump_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_STN_dehydr_pump_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_STN_dehydr_pump_tot_cap_inv_usd, 
             life_yr = STN_pump_life_yr, 
             depr_yr = STN_pump_depr_yr,
-            input_dollar_year = FAH2_STN_dollar_year
+            input_dollar_year = LOHC_STN_dollar_year
             )
     
     # calculate dehydrogenation pump levelized capital cost ($/kg H2)
-    FAH2_STN_dehydr_pump_lev_cap_cost_usd_per_kg = \
-        FAH2_STN_dehydr_pump_lev_cap_cost_usd_per_yr / \
+    LOHC_STN_dehydr_pump_lev_cap_cost_usd_per_kg = \
+        LOHC_STN_dehydr_pump_lev_cap_cost_usd_per_yr / \
         tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -11838,10 +11841,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_STN_dehydr_pump_lev_cap_cost_usd_per_yr
+        LOHC_STN_dehydr_pump_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'pumping', 
@@ -11849,40 +11852,39 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_STN_dehydr_pump_lev_cap_cost_usd_per_kg
+        LOHC_STN_dehydr_pump_lev_cap_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # dehydrogenation reactor levelized capital cost
+    # reconditioning - LOHC: dehydrogenation reactor levelized capital cost
     
     # calculate reactor total capital investment ($) 
     # (= refueling station total capital investment allocated to 
     # dehydrogenation reactor)
     # sum of all stations
-    FAH2_STN_dehydr_react_tot_cap_inv_usd = \
-        FAH2_STN_dehydr_react_cost_perc * FAH2_STN_tot_cap_inv_usd
+    LOHC_STN_dehydr_react_tot_cap_inv_usd = \
+        LOHC_STN_dehydr_react_cost_perc * LOHC_STN_tot_cap_inv_usd
     
     # calculate reactor levelized capital cost 
     # ($/yr, output dollar year)
     # sum of all stations
-    FAH2_STN_dehydr_react_lev_cap_cost_usd_per_yr, \
-    FAH2_STN_dehydr_react_lev_cap_cost_dollar_year = \
+    LOHC_STN_dehydr_react_lev_cap_cost_usd_per_yr, \
+    LOHC_STN_dehydr_react_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_STN_dehydr_react_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_STN_dehydr_react_tot_cap_inv_usd, 
             life_yr = STN_react_life_yr, 
             depr_yr = STN_react_depr_yr,
-            input_dollar_year = FAH2_STN_dollar_year
+            input_dollar_year = LOHC_STN_dollar_year
             )
     
     # calculate reactor levelized capital cost ($/kg H2)
-    FAH2_STN_dehydr_react_lev_cap_cost_usd_per_kg = \
-        FAH2_STN_dehydr_react_lev_cap_cost_usd_per_yr / \
+    LOHC_STN_dehydr_react_lev_cap_cost_usd_per_kg = \
+        LOHC_STN_dehydr_react_lev_cap_cost_usd_per_yr / \
         tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11890,10 +11892,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_STN_dehydr_react_lev_cap_cost_usd_per_yr
+        LOHC_STN_dehydr_react_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11901,42 +11903,41 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_STN_dehydr_react_lev_cap_cost_usd_per_kg
+        LOHC_STN_dehydr_react_lev_cap_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # dehydrogenation catalyst levelized capital cost
+    # reconditioning - LOHC: dehydrogenation catalyst levelized capital cost
 
     # calculate dehydrogenation catalyst total capital 
     # investment ($) 
     # (= refueling station total capital investment allocated to 
     # dehydrogenation catalyst)
     # sum of all stations
-    FAH2_STN_dehydr_catal_tot_cap_inv_usd = \
-        FAH2_STN_dehydr_catal_cost_perc * FAH2_STN_tot_cap_inv_usd
+    LOHC_STN_dehydr_catal_tot_cap_inv_usd = \
+        LOHC_STN_dehydr_catal_cost_perc * LOHC_STN_tot_cap_inv_usd
     
     # calculate dehydrogenation catalyst levelized capital cost 
     # ($/yr, output dollar year)
     # sum of all stations
-    FAH2_STN_dehydr_catal_lev_cap_cost_usd_per_yr, \
-    FAH2_STN_dehydr_catal_lev_cap_cost_dollar_year = \
+    LOHC_STN_dehydr_catal_lev_cap_cost_usd_per_yr, \
+    LOHC_STN_dehydr_catal_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_STN_dehydr_catal_tot_cap_inv_usd, 
-            life_yr = FAH2_dehydr_catal_life_yr, 
-            depr_yr = FAH2_dehydr_catal_depr_yr,
-            input_dollar_year = FAH2_STN_dollar_year
+            tot_cap_inv_usd = LOHC_STN_dehydr_catal_tot_cap_inv_usd, 
+            life_yr = LOHC_dehydr_catal_life_yr, 
+            depr_yr = LOHC_dehydr_catal_depr_yr,
+            input_dollar_year = LOHC_STN_dollar_year
             )
     
     # calculate dehydrogenation catalyst levelized capital 
     # cost ($/kg H2)
-    FAH2_STN_dehydr_catal_lev_cap_cost_usd_per_kg = \
-        FAH2_STN_dehydr_catal_lev_cap_cost_usd_per_yr / \
+    LOHC_STN_dehydr_catal_lev_cap_cost_usd_per_kg = \
+        LOHC_STN_dehydr_catal_lev_cap_cost_usd_per_yr / \
         tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11944,10 +11945,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_STN_dehydr_catal_lev_cap_cost_usd_per_yr
+        LOHC_STN_dehydr_catal_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -11955,11 +11956,11 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_STN_dehydr_catal_lev_cap_cost_usd_per_kg
+        LOHC_STN_dehydr_catal_lev_cap_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station PSA *refrigerator* (precooling) levelized capital cost
 
     # calculate refueling station PSA *refrigerator* total 
@@ -11967,29 +11968,29 @@ def calcs(
     # (= refueling station total capital investment allocated to 
     # PSA *refrigerator*)
     # sum of all stations
-    FAH2_STN_psa_refrig_tot_cap_inv_usd = \
-        FAH2_STN_psa_refrig_cost_perc * FAH2_STN_tot_cap_inv_usd
+    LOHC_STN_psa_refrig_tot_cap_inv_usd = \
+        LOHC_STN_psa_refrig_cost_perc * LOHC_STN_tot_cap_inv_usd
     
     # calculate refueling station PSA *refrigerator* levelized capital cost 
     # ($/yr, output dollar year)
     # sum of all stations
-    FAH2_STN_psa_refrig_lev_cap_cost_usd_per_yr, \
-    FAH2_STN_psa_refrig_lev_cap_cost_dollar_year = \
+    LOHC_STN_psa_refrig_lev_cap_cost_usd_per_yr, \
+    LOHC_STN_psa_refrig_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_STN_psa_refrig_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_STN_psa_refrig_tot_cap_inv_usd, 
             life_yr = STN_refrig_life_yr, 
             depr_yr = STN_refrig_depr_yr,
-            input_dollar_year = FAH2_STN_dollar_year
+            input_dollar_year = LOHC_STN_dollar_year
             )
     
     # calculate refueling station PSA *refrigerator* levelized capital cost 
     # ($/kg H2)
-    FAH2_STN_psa_refrig_lev_cap_cost_usd_per_kg = \
-        FAH2_STN_psa_refrig_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_psa_refrig_lev_cap_cost_usd_per_kg = \
+        LOHC_STN_psa_refrig_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -11997,10 +11998,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_STN_psa_refrig_lev_cap_cost_usd_per_yr
+        LOHC_STN_psa_refrig_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -12008,39 +12009,39 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_STN_psa_refrig_lev_cap_cost_usd_per_kg
+        LOHC_STN_psa_refrig_lev_cap_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC:
     # refueling station separator levelized capital cost
     
     # calculate refueling station separator (PSA) total capital investment ($) 
     # (= refueling station total capital investment allocated to separator)
     # sum of all stations
-    FAH2_STN_psa_tot_cap_inv_usd = \
-        FAH2_STN_psa_cost_perc * FAH2_STN_tot_cap_inv_usd
+    LOHC_STN_psa_tot_cap_inv_usd = \
+        LOHC_STN_psa_cost_perc * LOHC_STN_tot_cap_inv_usd
     
     # calculate refueling station separator (PSA) levelized capital cost 
     # ($/yr, output dollar year)
     # sum of all stations
-    FAH2_STN_psa_lev_cap_cost_usd_per_yr, \
-    FAH2_STN_psa_lev_cap_cost_dollar_year = \
+    LOHC_STN_psa_lev_cap_cost_usd_per_yr, \
+    LOHC_STN_psa_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_STN_psa_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_STN_psa_tot_cap_inv_usd, 
             life_yr = STN_psa_life_yr, 
             depr_yr = STN_psa_depr_yr,
-            input_dollar_year = FAH2_STN_dollar_year
+            input_dollar_year = LOHC_STN_dollar_year
             )
     
     # calculate refueling station separator (PSA) levelized capital cost 
     # ($/kg H2)
-    FAH2_STN_psa_lev_cap_cost_usd_per_kg = \
-        FAH2_STN_psa_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_psa_lev_cap_cost_usd_per_kg = \
+        LOHC_STN_psa_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -12048,10 +12049,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_STN_psa_lev_cap_cost_usd_per_yr
+        LOHC_STN_psa_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'separation', 
@@ -12059,38 +12060,38 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_STN_psa_lev_cap_cost_usd_per_kg
+        LOHC_STN_psa_lev_cap_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station compressor levelized capital cost
     
     # calculate refueling station compressor total capital investment ($) 
     # (= refueling station total capital investment allocated to compressor)
     # sum of all stations
-    FAH2_STN_compr_tot_cap_inv_usd = \
-        FAH2_STN_compr_cost_perc * FAH2_STN_tot_cap_inv_usd
+    LOHC_STN_compr_tot_cap_inv_usd = \
+        LOHC_STN_compr_cost_perc * LOHC_STN_tot_cap_inv_usd
     
     # calculate refueling station compressor levelized capital cost 
     # ($/yr, output dollar year)
     # sum of all stations
-    FAH2_STN_compr_lev_cap_cost_usd_per_yr, \
-    FAH2_STN_compr_lev_cap_cost_dollar_year = \
+    LOHC_STN_compr_lev_cap_cost_usd_per_yr, \
+    LOHC_STN_compr_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_STN_compr_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_STN_compr_tot_cap_inv_usd, 
             life_yr = STN_compr_life_yr, 
             depr_yr = STN_compr_depr_yr,
-            input_dollar_year = FAH2_STN_dollar_year
+            input_dollar_year = LOHC_STN_dollar_year
             )
     
     # calculate refueling station compressor levelized capital cost ($/kg H2)
-    FAH2_STN_compr_lev_cap_cost_usd_per_kg = \
-        FAH2_STN_compr_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_compr_lev_cap_cost_usd_per_kg = \
+        LOHC_STN_compr_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -12098,10 +12099,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_STN_compr_lev_cap_cost_usd_per_yr
+        LOHC_STN_compr_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'compression', 
@@ -12109,39 +12110,39 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_STN_compr_lev_cap_cost_usd_per_kg
+        LOHC_STN_compr_lev_cap_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station refrigerator levelized capital cost
 
     # calculate refueling station refrigerator total capital investment ($) 
     # (= refueling station total capital investment allocated to refrigerator)
     # sum of all stations
-    FAH2_STN_refrig_tot_cap_inv_usd = \
-        FAH2_STN_refrig_cost_perc * FAH2_STN_tot_cap_inv_usd
+    LOHC_STN_refrig_tot_cap_inv_usd = \
+        LOHC_STN_refrig_cost_perc * LOHC_STN_tot_cap_inv_usd
     
     # calculate refueling station refrigerator levelized capital cost 
     # ($/yr, output dollar year)
     # sum of all stations
-    FAH2_STN_refrig_lev_cap_cost_usd_per_yr, \
-    FAH2_STN_refrig_lev_cap_cost_dollar_year = \
+    LOHC_STN_refrig_lev_cap_cost_usd_per_yr, \
+    LOHC_STN_refrig_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_STN_refrig_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_STN_refrig_tot_cap_inv_usd, 
             life_yr = STN_refrig_life_yr, 
             depr_yr = STN_refrig_depr_yr,
-            input_dollar_year = FAH2_STN_dollar_year
+            input_dollar_year = LOHC_STN_dollar_year
             )
     
     # calculate refueling station refrigerator levelized capital cost 
     # ($/kg H2)
-    FAH2_STN_refrig_lev_cap_cost_usd_per_kg = \
-        FAH2_STN_refrig_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_refrig_lev_cap_cost_usd_per_kg = \
+        LOHC_STN_refrig_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -12149,10 +12150,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_STN_refrig_lev_cap_cost_usd_per_yr
+        LOHC_STN_refrig_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'cooling', 
@@ -12160,41 +12161,41 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_STN_refrig_lev_cap_cost_usd_per_kg
+        LOHC_STN_refrig_lev_cap_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # refueling station formic acid storage levelized capital cost
+    # reconditioning - LOHC: 
+    # refueling station LOHC storage levelized capital cost
     
-    # calculate refueling station formic acid storage total 
+    # calculate refueling station LOHC storage total 
     # capital investment ($) 
-    # (= refueling station total capital investment allocated to formic acid
+    # (= refueling station total capital investment allocated to LOHC
     # storage)
     # sum of all stations
-    FAH2_STN_stor_tot_cap_inv_usd = \
-        FAH2_STN_stor_cost_perc * FAH2_STN_tot_cap_inv_usd
+    LOHC_STN_stor_tot_cap_inv_usd = \
+        LOHC_STN_stor_cost_perc * LOHC_STN_tot_cap_inv_usd
     
-    # calculate refueling station formic acid storage levelized capital cost 
+    # calculate refueling station LOHC storage levelized capital cost 
     # ($/yr, output dollar year)
     # sum of all stations
-    FAH2_STN_stor_lev_cap_cost_usd_per_yr, \
-    FAH2_STN_stor_lev_cap_cost_dollar_year = \
+    LOHC_STN_stor_lev_cap_cost_usd_per_yr, \
+    LOHC_STN_stor_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_STN_stor_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_STN_stor_tot_cap_inv_usd, 
             life_yr = STN_stor_life_yr, 
             depr_yr = STN_stor_depr_yr,
-            input_dollar_year = FAH2_STN_dollar_year
+            input_dollar_year = LOHC_STN_dollar_year
             )
     
-    # calculate refueling station formic acid storage levelized capital cost 
+    # calculate refueling station LOHC storage levelized capital cost 
     # ($/kg H2)
-    FAH2_STN_stor_lev_cap_cost_usd_per_kg = \
-        FAH2_STN_stor_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_stor_lev_cap_cost_usd_per_kg = \
+        LOHC_STN_stor_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -12202,10 +12203,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_STN_stor_lev_cap_cost_usd_per_yr
+        LOHC_STN_stor_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -12213,40 +12214,40 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_STN_stor_lev_cap_cost_usd_per_kg
+        LOHC_STN_stor_lev_cap_cost_usd_per_kg
         ])
 
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
+    # reconditioning - LOHC: 
     # refueling station cascade storage levelized capital cost
     
     # calculate refueling station cascade storage total capital investment ($) 
     # (= refueling station total capital investment allocated to cascade
     # storage)
     # sum of all stations
-    FAH2_STN_casc_stor_tot_cap_inv_usd = \
-        FAH2_STN_casc_stor_cost_perc * FAH2_STN_tot_cap_inv_usd
+    LOHC_STN_casc_stor_tot_cap_inv_usd = \
+        LOHC_STN_casc_stor_cost_perc * LOHC_STN_tot_cap_inv_usd
     
     # calculate refueling station cascade storage levelized capital cost 
     # ($/yr, output dollar year)
     # sum of all stations
-    FAH2_STN_casc_stor_lev_cap_cost_usd_per_yr, \
-    FAH2_STN_casc_stor_lev_cap_cost_dollar_year = \
+    LOHC_STN_casc_stor_lev_cap_cost_usd_per_yr, \
+    LOHC_STN_casc_stor_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = FAH2_STN_casc_stor_tot_cap_inv_usd, 
+            tot_cap_inv_usd = LOHC_STN_casc_stor_tot_cap_inv_usd, 
             life_yr = STN_stor_life_yr, 
             depr_yr = STN_stor_depr_yr,
-            input_dollar_year = FAH2_STN_dollar_year
+            input_dollar_year = LOHC_STN_dollar_year
             )
     
     # calculate refueling station cascade storage levelized capital cost 
     # ($/kg H2)
-    FAH2_STN_casc_stor_lev_cap_cost_usd_per_kg = \
-        FAH2_STN_casc_stor_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    LOHC_STN_casc_stor_lev_cap_cost_usd_per_kg = \
+        LOHC_STN_casc_stor_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -12254,10 +12255,10 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        FAH2_STN_casc_stor_lev_cap_cost_usd_per_yr
+        LOHC_STN_casc_stor_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'storage', 
@@ -12265,38 +12266,37 @@ def calcs(
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        FAH2_STN_casc_stor_lev_cap_cost_usd_per_kg
+        LOHC_STN_casc_stor_lev_cap_cost_usd_per_kg
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - formic acid: 
-    # refueling station process emissions 
+    # reconditioning - LOHC: refueling station process emissions 
     # (separator outlet, if CO2 is not captured)
 
     # TODO: revisit process emissions with updated reaction yield
         
     # initialize dehydrogenation process emissions (zero by default)
-    FAH2_STN_proc_ghg_kg_CO2_per_kg = 0.0
+    LOHC_STN_proc_ghg_kg_CO2_per_kg = 0.0
 
-    # if purchase formic acid, calculate dehydrogenation process emissions
-    if FA_prod_pathway == 'purchase':
+    # if purchase LOHC, calculate dehydrogenation process emissions
+    if LOHC_prod_pathway == 'purchase':
         
         # calculate dehydrogenation process emissions (kg CO2/kg H2)
-        FAH2_STN_proc_ghg_kg_CO2_per_kg = \
-            stoic_mol_CO2_per_mol_FA * molar_mass_CO2_kg_per_kmol / (
-            stoic_mol_H2_per_mol_FA * molar_mass_H2_kg_per_kmol
+        LOHC_STN_proc_ghg_kg_CO2_per_kg = \
+            stoic_mol_CO2_per_mol_LOHC * molar_mass_CO2_kg_per_kmol / (
+            stoic_mol_H2_per_mol_LOHC * molar_mass_H2_kg_per_kmol
             )
         
     # convert dehydrogenation process emissions to g CO2/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
-    FAH2_STN_proc_ghg_g_CO2_per_MJ = \
-        FAH2_STN_proc_ghg_kg_CO2_per_kg * g_per_kg / \
+    LOHC_STN_proc_ghg_g_CO2_per_MJ = \
+        LOHC_STN_proc_ghg_kg_CO2_per_kg * g_per_kg / \
         low_heat_val_H2_MJ_per_kg
     
     # append results to list
     # for now, attribute emissions to reaction / reactor
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -12304,10 +12304,10 @@ def calcs(
         'emissions', 
         'process emissions', 
         'kg CO2/kg H2', 
-        FAH2_STN_proc_ghg_kg_CO2_per_kg
+        LOHC_STN_proc_ghg_kg_CO2_per_kg
         ])
     list_output.append([
-        'LOHC - formic acid', 
+        'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
         'refueling station', 
         'reaction', 
@@ -12315,7 +12315,7 @@ def calcs(
         'emissions', 
         'process emissions', 
         'g CO2/MJ H2 (LHV)', 
-        FAH2_STN_proc_ghg_g_CO2_per_MJ
+        LOHC_STN_proc_ghg_g_CO2_per_MJ
         ])
 
     #%% SAVE RESULTS
@@ -12327,8 +12327,8 @@ def calcs(
     pathway_categories = [
         'all', 
         'compressed hydrogen', 
-        'liquid hydrogen', 
-        'LOHC - formic acid'
+        'liquid hydrogen',
+        'LOHC - ' + str(LOHC_name), 
         ]
     process_categories = [
         'all', 
@@ -12378,8 +12378,8 @@ def calcs(
             by = ['pathway'])['value'].sum().reset_index()
         
     # assign total $/kg H2 costs to each pathway
-    FAH2_tot_H2_cost_usd_per_kg = df_tot_costs_usd_per_kg.loc[
-            df_tot_costs_usd_per_kg['pathway'] == 'LOHC - formic acid', 
+    LOHC_tot_H2_cost_usd_per_kg = df_tot_costs_usd_per_kg.loc[
+            df_tot_costs_usd_per_kg['pathway'] == 'LOHC - ' + str(LOHC_name), 
             'value'
             ].values[0]
     GH2_tot_H2_cost_usd_per_kg = df_tot_costs_usd_per_kg.loc[
@@ -12406,7 +12406,7 @@ def calcs(
         index = False)
             
     return df_output, \
-        FAH2_tot_H2_cost_usd_per_kg, \
+        LOHC_tot_H2_cost_usd_per_kg, \
         GH2_tot_H2_cost_usd_per_kg, \
         LH2_tot_H2_cost_usd_per_kg
         
