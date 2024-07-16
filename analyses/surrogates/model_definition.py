@@ -1,20 +1,21 @@
-import numpy as np
-import matplotlib.pyplot as plt
-
-from tqdm import tqdm
-
-import pyomo.environ as pyo
-from pyomo.gdp import Disjunction
-
-from omlt import OmltBlock
-from omlt.linear_tree import LinearTreeGDPFormulation, LinearTreeDefinition
-
-from lineartree.lineartree import tree_from_json
-
+import warnings
 import pathlib
 this_file = pathlib.Path(__file__).parent.resolve()
 
-def model_initializer() -> pyo.ConcreteModel:
+def model_initializer():
+    try:
+        import pyomo.environ as pyo
+        from pyomo.gdp import Disjunction
+        from omlt import OmltBlock
+        from omlt.linear_tree import LinearTreeGDPFormulation, LinearTreeDefinition
+    except ImportError:
+        warnings.warn('Could not import Linear Tree modules from OMLT. Ensure you have the latest version of OMLT.')
+
+    try:
+        from lineartree.lineartree import tree_from_json
+    except ImportError:
+        warnings.warn('linear-tree has no "tree_from_json(). You will not be able to load the surrogate LMDTs!')
+
     # Initialize Pyomo model
     model = pyo.ConcreteModel()
 
@@ -152,10 +153,12 @@ def model_initializer() -> pyo.ConcreteModel:
 
 
 def solve(model, tee = True, solver = 'glpk'):
+    import pyomo.environ as pyo
     solver = pyo.SolverFactory(solver)
     solution = solver.solve(model, tee = tee)
     return solution
 
 def pprint(model):
+    import pyomo.environ as pyo
     for key, value in model.__dict__.items():
      value.pprint() if isinstance(value, pyo.Var) else None
