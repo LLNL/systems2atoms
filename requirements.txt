@@ -1,4 +1,5 @@
 numpy < 2.0.0
+scikit-learn
 flake8
 pytest
 pandas
