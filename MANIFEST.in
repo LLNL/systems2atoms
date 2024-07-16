@@ -1,1 +1,1 @@
-global-include inputs/*.csv
+recursive-include *.csv
