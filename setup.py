@@ -5,6 +5,5 @@ setup(
     version="0.0.0",
     description="Models built for cross-scale optimization for the hydrogen economy",
     url="https://github.com/LLNL/systems2atoms",
-    packages=find_packages(),
     include_package_data=True,
 )
