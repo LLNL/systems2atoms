@@ -1,0 +1,9 @@
+numpy < 2.0.0
+flake8
+pytest
+pandas
+matplotlib
+tqdm
+pyomo
+omlt @ git+https://github.com/cog-imperial/OMLT
+lineartree @ git+https://github.com/emsunshine/linear-tree
