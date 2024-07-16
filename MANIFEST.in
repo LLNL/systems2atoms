@@ -1,2 +1,1 @@
-include systems2atoms/hydrogen_delivery_costs/inputs/*.csv
-include systems2atoms/hydrogen_networks/inputs/*.csv
+global-include inputs/*.csv
