@@ -1,1 +1,1 @@
-global-include **
+graft */inputs
