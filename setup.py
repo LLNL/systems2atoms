@@ -6,6 +6,6 @@ setup(
     description="Models built for cross-scale optimization for the hydrogen economy",
     url="https://github.com/LLNL/systems2atoms",
     packages=find_packages(),
-    package_dir={"": "systems2atoms"}
+    package_dir={"": "systems2atoms"},
     include_package_data=True,
 )
