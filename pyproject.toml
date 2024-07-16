@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["version", "dependencies"]
+name = "systems2atoms"
+description="Models built for cross-scale optimization for the hydrogen economy"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[project.urls]
+Repository="https://github.com/LLNL/systems2atoms"
+
+[tool.setuptools_scm]
