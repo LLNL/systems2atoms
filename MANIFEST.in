@@ -1,1 +1,1 @@
-include systems2atoms/hydrogen_delivery_costs/inputs/*.csv
+include systems2atoms/hydrogen_delivery_costs/inputs/'MACRS depreciation period.csv'
