@@ -1,1 +1,2 @@
-graft **/inputs
+include systems2atoms/hydrogen_delivery_costs/inputs/*
+include systems2atoms/hydrogen_networks/inputs/*
