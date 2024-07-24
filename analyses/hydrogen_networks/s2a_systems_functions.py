@@ -236,9 +236,6 @@ df_macrs_depr_idx = pd.read_csv('inputs/MACRS depreciation period.csv')
 # gas constant (kJ/kmol-K)
 gas_const_kJ_per_kmol_K = 8.3144
 
-# Faraday constant (C/mol)
-faraday_const_C_per_mol_e = 9.6485e4
-
 # normal conditions (20 deg.C, 1 atm)
 norm_temp_K = 293.15
 norm_pres_Pa = 101325.0
@@ -1354,19 +1351,57 @@ def reactor_fixed_costs(
 #%% FUNCTIONS: ELECTROLYZER
 
 # ----------------------------------------------------------------------------
-# function: electrolyzer energy
+# function: electrolyzer power
 
-# TODO: add electrolyzer energy as function
+def electrolyzer_power(
+        electr_volt_V,
+        electr_curr_dens_A_per_sq_m,
+        electr_area_sq_m_per_cell,
+        out_flow_kg_per_sec_per_cell,
+        target_out_flow_kg_per_sec,
+        ):
+    """Calculate electrolyzer power (kW) for a target output flowrate.
 
+    Parameters
+    ----------
+    electr_volt_V : float
+        Applied electrolyzer cell voltage (V).
+    electr_curr_dens_A_per_sq_m : float
+        Electrolyzer current density (A/m^2).
+    electr_area_sq_m_per_cell : float
+        Electrolyzer area per cell (m^2/cell).         
+    out_flow_kg_per_sec_per_cell : float
+        Electrolyzer output flowrate per cell (kg/s-cell).
+    target_out_flow_kg_per_sec : float
+        Total target output flowrate (kg/s).
+        
+    Returns
+    -------
+    electr_power_kW
+        Electrolyzer total power (kW) for the target output flowrate.
+    """
+    # calculate total electrolyzer area required (m^2)
+    tot_electr_area_sq_m = electr_area_sq_m_per_cell *  (
+        target_out_flow_kg_per_sec / out_flow_kg_per_sec_per_cell
+        )
+    
+    # calculate electrolyzer total power (kW)
+    electr_power_kW = tot_electr_area_sq_m * \
+        electr_volt_V * electr_curr_dens_A_per_sq_m / J_per_kJ
+        
+    return electr_power_kW
 
 # ----------------------------------------------------------------------------
 # function: electrolyzer installed and O&M costs
 
 # TODO: revisit installation factor
 # TODO: revisit installed cost factor and O&M cost as % of installed cost 
+# TODO: incorporate scaling exponent as function of number of cells
 
 def electrolyzer_fixed_costs(
-        electr_area_sq_m, 
+        electr_area_sq_m_per_cell,
+        out_flow_kg_per_sec_per_cell,
+        target_out_flow_kg_per_sec,
         output_dollar_year, 
         electr_purc_cost_usd_per_sq_m = 30000.0,
         electr_cost_dollar_year = 2019
@@ -1380,8 +1415,12 @@ def electrolyzer_fixed_costs(
 
     Parameters
     ----------
-    electr_area_sq_m : float
-        Electrolyzer area (m^2). 
+    electr_area_sq_m_per_cell : float
+        Electrolyzer area per cell (m^2/cell). 
+    out_flow_kg_per_sec_per_cell : float
+        Electrolyzer output flowrate per cell (kg/s-cell).
+    target_out_flow_kg_per_sec : float
+        Total target output flowrate (kg/s).
     output_dollar_year : int
         Dollar year of calculated costs. 
     electr_purc_cost_usd_per_sq_m : float, optional
@@ -1410,10 +1449,15 @@ def electrolyzer_fixed_costs(
             output_dollar_year = output_dollar_year
             )    
     
+    # calculate total electrolyzer area required (m^2)
+    tot_electr_area_sq_m = electr_area_sq_m_per_cell *  (
+        target_out_flow_kg_per_sec / out_flow_kg_per_sec_per_cell
+        )
+    
     # calculate electrolyzer purchase cost ($, output dollar year) 
     electr_purc_cost_usd = \
         electr_purc_cost_usd_per_sq_m * \
-        electr_area_sq_m * dollar_year_multiplier
+        tot_electr_area_sq_m * dollar_year_multiplier
         
     # calculate electrolyzer installed cost ($, output dollar year)
     electr_inst_cost_usd = electr_purc_cost_usd * inst_factor
@@ -2998,7 +3042,6 @@ def calcs(
             'LOHC density (kg/m^3)' : 1220.0,
             'stoic. ratio (mol H2/mol LOHC)' : 1,
             'stoic. ratio (mol CO2/mol LOHC)' : 1,
-            'stoic. ratio (mol e/mol LOHC)' : 2,
             'LOHC production pathway' : 'electro', 
             'hydr. reaction temperature (K)' : 366.15,
             'hydr. reaction pressure (bar)' : 105.0,
@@ -3009,6 +3052,8 @@ def calcs(
             'hydr. catalyst cost ($/kg)' : 5450.0,
             'hydr. catalyst lifetime (yr)' : 1.0,
             'hydr. reactor energy (unit TBD)' : 0.0,
+            'hydr. LOHC output flowrate (kg/s)' : 2.642609297,
+            'hydr. electrolyzer cell area (m^2/cell)' : 254.972158,
             'hydr. electrolyzer voltage (V)' : 1.27,
             'hydr. electrolyzer current density (A/m^2)' : 2000.0,
             'hydr. separator energy (unit TBD)' : 0.0,
@@ -3148,11 +3193,6 @@ def calcs(
         'stoic. ratio (mol CO2/mol LOHC)'
         ]
     
-    # stoichiometric ratio (mol electrons/mol LOHC)
-    stoic_mol_e_per_mol_LOHC = dict_input_params[
-        'stoic. ratio (mol e/mol LOHC)'
-        ]
-
     # LOHC production pathway
     # thermocatalytic, electrolytic, or purchase
     # 'thermo', 'electro', or 'purchase'
@@ -3206,6 +3246,17 @@ def calcs(
         'hydr. reactor energy (unit TBD)'
         ]
     
+    # hydrogenation reaction LOHC output flowrate (kg/s)
+    # per reactor or per electrolyzer cell
+    hydr_LOHC_out_flow_kg_per_sec_per_unit = dict_input_params[
+        'hydr. LOHC output flowrate (kg/s)'
+        ]
+    
+    # hydrogenation electrolyzer cell area (m^2/cell)
+    hydr_electr_area_sq_m_per_cell = dict_input_params[
+        'hydr. electrolyzer cell area (m^2/cell)'
+        ]
+    
     # hydrogenation electrolyzer voltage (V)
     hydr_electr_volt_V = dict_input_params[
         'hydr. electrolyzer voltage (V)'
@@ -3222,7 +3273,7 @@ def calcs(
         ]
     
     # CO2 electrolyer purchase cost ($/m^2)
-    electr_purc_cost_usd_per_sq_m = dict_input_params[
+    CO2_electr_purc_cost_usd_per_sq_m = dict_input_params[
         'CO2 electrolyzer purchase cost ($/m^2)'
         ]
     
@@ -8106,25 +8157,21 @@ def calcs(
     # ------------------------------------------------------------------------
     # production - LOHC: CO2 electrolyzer energy consumption and size
     
-    # TODO: refine electrolyzer energy consumption and size
-    
     # initialize CO2 electrolyzer power (zero by default)
     LOHC_TML_hydr_electr_power_kW = 0.0
 
     if LOHC_prod_pathway == 'electro':
         
-        # TODO: turn electrolyzer energy calculations into function
-        # ideal assumptions for now
-
-        # CO2 electrolyzer energy (kJ/mol LOHC)
-        hydr_electr_elec_kJ_per_mol_LOHC = \
-            hydr_electr_volt_V * stoic_mol_e_per_mol_LOHC * \
-            faraday_const_C_per_mol_e / J_per_kJ
-        
         # calculate CO2 electrolyzer power (kW)
-        LOHC_TML_hydr_electr_power_kW = \
-            hydr_electr_elec_kJ_per_mol_LOHC * LOHC_TML_LOHC_flow_mol_per_sec
-            
+        LOHC_TML_hydr_electr_power_kW = electrolyzer_power(
+            electr_volt_V = hydr_electr_volt_V,
+            electr_curr_dens_A_per_sq_m = hydr_electr_curr_dens_A_per_sq_m,
+            electr_area_sq_m_per_cell = hydr_electr_area_sq_m_per_cell,
+            out_flow_kg_per_sec_per_cell = \
+                    hydr_LOHC_out_flow_kg_per_sec_per_unit,
+            target_out_flow_kg_per_sec = LOHC_TML_LOHC_flow_mol_per_sec,
+            )
+        
     # calculate CO2 electrolyzer energy (kWh/kg H2)
     LOHC_TML_hydr_electr_elec_kWh_per_kg = \
         LOHC_TML_hydr_electr_power_kW / tot_H2_deliv_kg_per_hr
@@ -8243,26 +8290,21 @@ def calcs(
     LOHC_TML_hydr_electr_dollar_year = output_dollar_year
 
     if LOHC_prod_pathway == 'electro':      
-        
-        # TODO: turn electrolyzer area calculations into function 
-        # ideal assumptions for now
-
-        # calculate electrolyzer area (m^2) required
-        LOHC_TML_hydr_electr_area_sq_m = \
-            stoic_mol_e_per_mol_LOHC * faraday_const_C_per_mol_e / \
-            hydr_electr_curr_dens_A_per_sq_m * LOHC_TML_LOHC_flow_mol_per_sec
-                    
+                            
         # calculate CO2 electrolyzer installed cost ($) and annual 
         # O&M cost ($/yr), both in output dollar year
         LOHC_TML_hydr_electr_inst_cost_usd, \
         LOHC_TML_hydr_electr_om_cost_usd_per_yr, \
         LOHC_TML_hydr_electr_dollar_year = \
             electrolyzer_fixed_costs(
-                    electr_area_sq_m = LOHC_TML_hydr_electr_area_sq_m, 
-                    output_dollar_year = output_dollar_year,
-                    electr_purc_cost_usd_per_sq_m = \
-                        electr_purc_cost_usd_per_sq_m
-                    )
+                electr_area_sq_m_per_cell = hydr_electr_area_sq_m_per_cell,
+                out_flow_kg_per_sec_per_cell = \
+                    hydr_LOHC_out_flow_kg_per_sec_per_unit,
+                target_out_flow_kg_per_sec = LOHC_TML_LOHC_flow_mol_per_sec,
+                output_dollar_year = output_dollar_year,
+                electr_purc_cost_usd_per_sq_m = \
+                    CO2_electr_purc_cost_usd_per_sq_m
+                )
             
     # calculate CO2 electrolyzer O&M cost ($/kg H2)
     LOHC_TML_hydr_electr_om_cost_usd_per_kg = \
