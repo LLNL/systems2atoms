@@ -1,0 +1,10 @@
+numpy < 2.0.0
+scikit-learn
+flake8
+pytest
+pandas
+matplotlib
+tqdm
+pyomo
+omlt @ git+https://github.com/cog-imperial/OMLT
+linear-tree @ git+https://github.com/emsunshine/linear-tree
