@@ -25,7 +25,7 @@ liquid, and solid states.
 
 Python 3.8 or higher is recommended.
 
-Individual submodules (e.g. `s2a.surrogates`, `s2a.hydrogen_delivery_costs`) have associated requirements. Please
+Individual submodules (e.g. `s2a.surrogates`, `s2a.systems`) have associated requirements. Please
 check the READMEs for the individual submodules to find the requirements.
 
 Install this package:
@@ -44,7 +44,7 @@ s2a.surrogates.pprint(model)
 Quick demo of hydrogen delivery cost calculations:
 ```python
 import systems2atoms as s2a
-print(s2a.hydrogen_delivery_costs.calcs())
+print(s2a.systems.calcs())
 ```
 
 
