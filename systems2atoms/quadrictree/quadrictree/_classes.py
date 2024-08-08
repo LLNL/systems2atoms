@@ -769,7 +769,7 @@ class _LinearTree(BaseDecisionTree):
         return len(self._leaves)
 
     def __len__(self):
-        return num_leaves(self)
+        return self.num_leaves
 
     def summary(self, feature_names=None, only_leaves=False, max_depth=None):
         """Return a summary of nodes created from model fitting.
