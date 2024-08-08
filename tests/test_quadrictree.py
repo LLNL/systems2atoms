@@ -1,6 +1,4 @@
 import torch
-
-from systems2atoms.systems2atoms.surrogates import model_definition
 torch_device = 'cpu'
 from systems2atoms.quadrictree import LinearTreeRegressor, HyperplaneTreeRegressor, QuadricTreeRegressor
 
