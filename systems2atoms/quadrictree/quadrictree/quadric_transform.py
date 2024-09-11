@@ -49,7 +49,7 @@ class QuadricTransform(TransformerMixin, BaseEstimator):
         generate_combinations([], 0, num_features)
         
         # Convert to torch.Tensor
-        all_combinations = torch.Tensor(all_combinations).to(X.device)
+        all_combinations = torch.tensor(all_combinations, dtype=X.dtype).to(X.device)
         
         # Normalize and keep non-degenerate
         leftmost_nonzero = torch.argmax((all_combinations != 0).type(torch.int), axis=1)
