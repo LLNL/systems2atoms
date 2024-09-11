@@ -5,6 +5,7 @@ pytest
 pandas
 matplotlib
 tqdm
+torch
 pyomo
 omlt @ git+https://github.com/cog-imperial/OMLT
 linear-tree @ git+https://github.com/emsunshine/linear-tree
