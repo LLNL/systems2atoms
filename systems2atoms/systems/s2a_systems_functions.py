@@ -3038,7 +3038,6 @@ def calcs(
             'LOHC density (kg/m^3)' : 1220.0,
             'stoic. ratio (mol H2/mol LOHC)' : 1,
             'stoic. ratio (mol CO2/mol LOHC)' : 1,
-            'stoic. ratio (mol e/mol LOHC)' : 2,
             'LOHC production pathway' : 'electro', 
             'hydr. reaction temperature (K)' : 366.15,
             'hydr. reaction pressure (bar)' : 105.0,
