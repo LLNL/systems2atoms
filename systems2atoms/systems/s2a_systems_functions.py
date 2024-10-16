@@ -1925,7 +1925,7 @@ def CO2_transport_all_in_cost(
     # for given CO2 flowrate and distance
     X = CO2_flow_kt_per_yr
     Y = deliv_dist_mi    
-    Z = interp(list((X, Y)))
+    Z = interp((X, Y))
 
     # set transport cost to zero if either CO2 flowrate or distance is zero
     if X * Y == 0.0:
