@@ -12,6 +12,7 @@ Outputs include .csv file and dataframe containing input parameters and results.
 import os
 import math
 import pandas as pd
+from scipy.interpolate import LinearNDInterpolator
 
 import pathlib
 this_file = pathlib.Path(__file__).parent.resolve()
@@ -1025,10 +1026,12 @@ def heat_exchanger_fixed_costs(
             )    
 
     # calculate heat exchanger uninstalled cost ($, output dollar year) 
-    hx_uninst_cost_usd = \
-        1.25 * 11092.0 * (
-            100.0 * num_hx * hx_capacity_ton_per_unit / out_temp_K
-            )**0.8579 * dollar_year_multiplier
+    hx_uninst_cost_usd = 0.0
+    if num_hx > 0:
+        hx_uninst_cost_usd = \
+            1.25 * 11092.0 * (
+                100.0 * num_hx * hx_capacity_ton_per_unit / out_temp_K
+                )**0.8579 * dollar_year_multiplier
 
     # calculate heat exchanger installed cost ($, output dollar year)
     hx_inst_cost_usd = hx_uninst_cost_usd * inst_factor
@@ -1870,8 +1873,6 @@ def truck_labor_cost(
 # ----------------------------------------------------------------------------
 # function: CO2 all-in transport cost (includes conditioning)
 
-# TODO: use scipy.interpolate (fix DLL load error)
-
 def CO2_transport_all_in_cost(
         CO2_flow_kt_per_yr,
         deliv_dist_mi,
@@ -1909,68 +1910,44 @@ def CO2_transport_all_in_cost(
             input_dollar_year = input_dollar_year, 
             output_dollar_year = output_dollar_year
             )
-    
-    # find nearest low and high values to given CO2 flowrate
-    x = CO2_flow_kt_per_yr
-    xs = df_co2['Size (kt-CO2/y)'].unique()
-    if x < xs.min() or x > xs.max():
-        raise ValueError(
-            'CO2 flowrate needs to be between {} and {} ktonne/year.'.format(
-                xs.min(), xs.max())
-            )
-    x1 = xs[xs <= x].max()
-    x2 = xs[xs >= x].min()
-    
-    # find nearest low and high values to given transport distance
-    y = deliv_dist_mi
-    ys = df_co2['Distance (mi)'].unique()
-    if y < ys.min() or y > ys.max():
-        raise ValueError(
-            'Transport distance needs to be between {} and {} miles.'.format(
-                ys.min(), ys.max())
-            )
-    y1 = ys[ys <= y].max()
-    y2 = ys[ys >= y].min()
-    
-    # find transport costs corresponding to nearest CO2 flowrates and distances
-    z11 = df_co2['Total ($/t-CO2 gross)'].loc[(
-        df_co2['Size (kt-CO2/y)'] == x1
-        ) & (
-        df_co2['Distance (mi)'] == y1
-        )].values[0]
-    z12 = df_co2['Total ($/t-CO2 gross)'].loc[(
-        df_co2['Size (kt-CO2/y)'] == x1
-        ) & (
-        df_co2['Distance (mi)'] == y2
-        )].values[0]
-    z21 = df_co2['Total ($/t-CO2 gross)'].loc[(
-        df_co2['Size (kt-CO2/y)'] == x2
-        ) & (
-        df_co2['Distance (mi)'] == y1
-        )].values[0]
-    z22 = df_co2['Total ($/t-CO2 gross)'].loc[(
-        df_co2['Size (kt-CO2/y)'] == x2
-        ) & (
-        df_co2['Distance (mi)'] == y2
-        )].values[0]
-    
-    # interpolate transport cost ($/tCO2 gross, input dollar year)
-    if (x1 == x2) and (y1 == y2):
-        z = z11
-    elif x1 == x2:
-        z = (z11 * (y2 - y) + z22 * (y - y1)) / (y2 - y1) 
-    elif y1 == y2:
-        z = (z11 * (x2 - x) + z22 * (x - x1)) / (x2 - x1) 
+
+    # define points for interpolation (CO2 flowrate and distance)
+    x = df_co2['Size (kt-CO2/y)'].values
+    y = df_co2['Distance (mi)'].values
+
+    # define values for interpolation (CO2 transport cost)
+    z = df_co2['Total ($/t-CO2 gross)'].values
+
+    # define interpolater
+    interp = LinearNDInterpolator(list(zip(x, y)), z)
+
+    # interpolate transport cost (input dollar year) 
+    # for given CO2 flowrate and distance
+    X = CO2_flow_kt_per_yr
+    Y = deliv_dist_mi    
+    Z = interp(list((X, Y)))
+
+    # set transport cost to zero if either CO2 flowrate or distance is zero
+    if X * Y == 0.0:
+        Z = 0.0
     else:
-        z = (
-            z11 * (x2 - x) * (y2 - y) + \
-            z21 * (x - x1) * (y2 - y) + \
-            z12 * (x2 - x) * (y - y1) + \
-            z22 * (x - x1) * (y - y1)
-            ) / ((x2 - x1) * (y2 - y1))
+        # print message if CO2 flowrate is out of range (transport cost = nan)
+        if X < x.min() or X > x.max():
+            print(
+                'CO2 flowrate needs to be '
+                'between {} and {} ktonne/year.'.format(
+                    x.min(), x.max())
+                )
+        # print message if distance is out of range (transport cost = nan)
+        if Y < y.min() or Y > y.max():
+            print(
+                'Transport distance needs to be '
+                'between {} and {} miles.'.format(
+                    y.min(), y.max())
+                )
     
     # calculate transport cost ($/tCO2 gross, output dollar year)
-    liq_CO2_trucking_cost_usd_per_tCO2 = z * dollar_year_multiplier
+    liq_CO2_trucking_cost_usd_per_tCO2 = Z * dollar_year_multiplier
     
     # calculate annual transport cost ($/yr, output dollar year)
     liq_CO2_trucking_cost_usd_per_yr = \
@@ -3526,10 +3503,12 @@ def calcs(
     
     # calculate inlet molar flowrate (mol/hr) to refueling station separator
     # TODO: make this more general (H2 vs. other gases?)
-    LOHC_STN_psa_in_flow_mol_per_hr = \
-        LOHC_STN_LOHC_flow_mol_per_hr * LOHC_dehydr_yield * (
-            stoic_mol_H2_per_mol_LOHC + stoic_mol_CO2_per_mol_LOHC
-            )
+    LOHC_STN_psa_in_flow_mol_per_hr = 0.0
+    if stoic_mol_CO2_per_mol_LOHC > 0.0:
+        LOHC_STN_psa_in_flow_mol_per_hr = \
+            LOHC_STN_LOHC_flow_mol_per_hr * LOHC_dehydr_yield * (
+                stoic_mol_H2_per_mol_LOHC + stoic_mol_CO2_per_mol_LOHC
+                )
     
     # calculate inlet volumetric flowrate (Nm^3/hr) to refueling station 
     # separator
@@ -10407,15 +10386,19 @@ def calcs(
     # reconditioning - LOHC: 
     # refueling station PSA *refrigerator* (precooling) energy consumption
     
+    # initialize PSA *refrigerator* (precooling) energy consumption
+    # (zero by default)
+    LOHC_STN_psa_refrig_elec_kWh_per_kg = 0.0
+
     # calculate refueling station PSA *refrigerator* energy (kWh/kg H2)
+    # if PSA inlet flowrate > 0
+    # and if inlet temperature > outlet temperature
     # inlet temperature = dehydrogenation reaction temperature
     # outlet temperature = PSA operating temperature
-    # set refrigerator energy to zero if 
-    # inlet temperature <= outlet temperature
-    if LOHC_dehydr_temp_K <= LOHC_STN_psa_temp_K:
-        LOHC_STN_psa_refrig_elec_kWh_per_kg = 0.0
-    else:
-        LOHC_STN_psa_refrig_elec_kWh_per_kg = \
+    # TODO: add molar mass of inlet gas mixture
+    if (LOHC_STN_psa_in_flow_mol_per_hr > 0.0) and \
+        (LOHC_dehydr_temp_K > LOHC_STN_psa_temp_K):
+            LOHC_STN_psa_refrig_elec_kWh_per_kg = \
             heat_exchanger_energy(
                 out_temp_K = LOHC_STN_psa_temp_K,
                 in_temp_K = LOHC_dehydr_temp_K
@@ -10530,16 +10513,19 @@ def calcs(
     # reconditioning - LOHC: 
     # refueling station PSA *refrigerator* (precooling) installed cost and 
     # annual O&M cost
-
-    # calculate number of PSA refrigerators needed at refueling station 
+    
+    # initialize number of PSA refrigerators (zero by default)
+    LOHC_STN_num_psa_refrigs = 0.0
+    
+    # calculate number of PSA refrigerators needed at refueling station
     # (= number of hoses)
+    # if PSA inlet flowrate > 0
+    # and if inlet temperature > outlet temperature
     # assume linear relative to station capacity 
     # (HDSAM V3.1: 1000 kg H2/day --> 4 hoses, 4 refrigerators)
-    # set number of refrigerators to zero if
-    # inlet temperature <= outlet temperature
-    if LOHC_dehydr_temp_K <= LOHC_STN_psa_temp_K:
-        LOHC_STN_num_psa_refrigs = 0
-    else: 
+    # TODO: revisit - this assumption applies to hydrogen refrigerators only?
+    if (LOHC_STN_psa_in_flow_mol_per_hr > 0.0) and \
+        (LOHC_dehydr_temp_K > LOHC_STN_psa_temp_K):
         LOHC_STN_num_psa_refrigs = \
             target_stn_capacity_kg_per_day / (1000.0 / 4)
     
