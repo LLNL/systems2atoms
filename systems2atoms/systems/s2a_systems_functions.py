@@ -8161,8 +8161,8 @@ def calcs(
             electr_curr_dens_A_per_sq_m = hydr_electr_curr_dens_A_per_sq_m,
             electr_area_sq_m_per_cell = hydr_electr_area_sq_m_per_cell,
             out_flow_kg_per_sec_per_cell = \
-                    hydr_LOHC_out_flow_kg_per_sec_per_unit,
-            target_out_flow_kg_per_sec = LOHC_TML_LOHC_flow_mol_per_sec,
+                hydr_LOHC_out_flow_kg_per_sec_per_unit,
+            target_out_flow_kg_per_sec = LOHC_TML_LOHC_flow_kg_per_sec,
             )
         
     # calculate CO2 electrolyzer energy (kWh/kg H2)
@@ -8293,7 +8293,7 @@ def calcs(
                 electr_area_sq_m_per_cell = hydr_electr_area_sq_m_per_cell,
                 out_flow_kg_per_sec_per_cell = \
                     hydr_LOHC_out_flow_kg_per_sec_per_unit,
-                target_out_flow_kg_per_sec = LOHC_TML_LOHC_flow_mol_per_sec,
+                target_out_flow_kg_per_sec = LOHC_TML_LOHC_flow_kg_per_sec,
                 output_dollar_year = output_dollar_year,
                 electr_purc_cost_usd_per_sq_m = \
                     CO2_electr_purc_cost_usd_per_sq_m
