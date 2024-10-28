@@ -171,7 +171,7 @@ class TorchLinearRegression(LinearRegression):
             x = torch.Tensor(x)
 
         if rescale:
-            self.scale_weight = torch.max(x, dim = 0)[0] - torch.min(x, dim = 0)[0]
+            self.scale_weight = 1/(torch.max(x, dim = 0)[0] - torch.min(x, dim = 0)[0])
 
         x = x * self.scale_weight
         
@@ -227,11 +227,12 @@ class TorchLinearRegression(LinearRegression):
         x = torch.hstack((torch.ones((len(x),1), device = x.device), x))
         lin_pred = x @ self.params
 
-        x = torch.einsum('ij,ik->ijk', x, x)
-        x = torch.triu(x)
-        x = x.reshape((len(x),len(x[0])**2))
+        x_expanded = torch.einsum('ij,ik->ijk', x, x)   
+        mask = torch.triu(torch.ones_like(x_expanded, dtype = torch.bool))
+        x_triu = x_expanded[mask]
+        x_expanded = x_triu.reshape((len(x), -1))[:, 1:]
 
-        quad_pred = x @ self.quad_params
+        quad_pred = x_expanded @ self.quad_params
 
         return torch.abs(lin_pred - quad_pred)
     
