@@ -538,7 +538,7 @@ class _LinearTree(BaseDecisionTree):
                 if torch.sum(mask) < 2 * self._min_samples_leaf:
                     split_t, split_col, left_node, right_node = None, None, None, None
 
-                elif torch.sum(mask) > self.max_batch_size:
+                elif (self.max_batch_size != torch.inf) and (torch.sum(mask) > self.max_batch_size):
                     valid_min_samples = self.max_batch_size * (self._min_samples_leaf / len(X))
                     random_mask = torch.randint(high = len(X[mask]), size = (self.max_batch_size,))
                     if weights is None:
@@ -741,7 +741,7 @@ class _LinearTree(BaseDecisionTree):
             num_quadratic_features = int(len(linear_features) * (len(linear_features) + 3) / 2)
             linear_features = torch.arange(num_quadratic_features, device = X.device)
 
-        self._linear_features = linear_features
+        self._linear_features = torch.tensor(linear_features, dtype=torch.long).to(X.device)
 
         with torch.no_grad():
             self._grow(X, y, sample_weight)
