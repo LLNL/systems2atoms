@@ -156,6 +156,10 @@ class TorchLinearRegression(LinearRegression):
     def __init__(self):
         super().__init__()
         self.scale_weight = 1
+        self.scale_offset = 0
+
+    def scale(self, x):
+        return x * self.scale_weight + self.scale_offset
 
     def fit(
         self,
@@ -172,8 +176,9 @@ class TorchLinearRegression(LinearRegression):
 
         if rescale:
             self.scale_weight = 1/(torch.max(x, dim = 0)[0] - torch.min(x, dim = 0)[0])
+            self.scale_offset = -torch.min(x, dim = 0)[0] * self.scale_weight
 
-        x = x * self.scale_weight
+        x = self.scale(x)
         
         if self.fit_intercept:
             x = torch.hstack((torch.ones((len(x),1), device = x.device), x))
@@ -204,7 +209,7 @@ class TorchLinearRegression(LinearRegression):
         if not isinstance(x, torch.Tensor):
             x = torch.Tensor(x)
 
-        x = x * self.scale_weight
+        x = self.scale(x)
 
         if self.fit_intercept:
             x = torch.hstack((torch.ones((len(x),1), device = x.device), x))
@@ -215,14 +220,14 @@ class TorchLinearRegression(LinearRegression):
     
     
     def linprop_uncertainty(self, x):
-        x = x * self.scale_weight
+        x = self.scale(x)
 
         return torch.sqrt(
             self.mse * (1/self.n) + torch.sum((x - self.x_mean)**2 / ((self.n - 1) * self.x_var), axis=1)
         )
     
     def quad_uncertainty(self, x):
-        x = x * self.scale_weight
+        x = self.scale(x)
 
         x = torch.hstack((torch.ones((len(x),1), device = x.device), x))
         lin_pred = x @ self.params
