@@ -254,14 +254,17 @@ class TorchLinearRegression(LinearRegression):
     # intercept_ and coef_ with numpy types for sklearn compatibility
     @property
     def intercept_(self):
-        return self.params[0]
+        if isinstance(self.scale_offset, torch.Tensor):
+            return (self.params[0] - torch.sum(self.params[1:] * self.scale_offset)).item()
+        else:
+            return (self.params[0] - torch.sum(self.params[1:] * torch.tensor(self.scale_offset))).item()
     
     @property
     def coef_(self):
         if isinstance(self.scale_weight, torch.Tensor):
-            return self.params[1:] * self.scale_weight.numpy()
+            return (self.params[1:] * self.scale_weight).numpy()
         else:
-            return self.params[1:] * self.scale_weight
+            return (self.params[1:] * torch.tensor(self.scale_weight)).numpy()
 
 
 class _LinearTree(BaseDecisionTree):
