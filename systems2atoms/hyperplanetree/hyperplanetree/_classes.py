@@ -744,7 +744,7 @@ class _LinearTree(BaseDecisionTree):
             num_quadratic_features = int(len(linear_features) * (len(linear_features) + 3) / 2)
             linear_features = torch.arange(num_quadratic_features, device = X.device)
 
-        self._linear_features = torch.tensor(linear_features, dtype=torch.long).to(X.device)
+        self._linear_features = linear_features.clone().detach().to(X.device)
 
         with torch.no_grad():
             self._grow(X, y, sample_weight)

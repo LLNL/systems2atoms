@@ -2,6 +2,7 @@ import copy
 import json
 import torch
 import inspect
+import warnings
 
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 
@@ -65,6 +66,11 @@ class QuadricMixin():
             torch_device = torch_device,
             categorical_features = categorical_features,
             do_scaling = do_scaling,
+        )
+        
+        warnings.warn(
+            'QuadricTree is experimental and may not work as expected. You are likely to get a better accuracy/performance tradeoff with HyperplaneTree.',
+            UserWarning
         )
 
     def do_quadric(self, X):

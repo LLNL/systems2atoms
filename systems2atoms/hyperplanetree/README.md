@@ -1,7 +1,7 @@
-# quadric-tree
-A python library to build Model Trees with Quadric Splits and Quadratic Models at the leaves.
+# hyperplanetree
+A Python library to build piecewise linear or piecewise quadratic models in multi-dimensional spaces.
 
-This repository is a fork of [linear-tree](https://github.com/cerlymarco/linear-tree). Please see this repository for more information about Linear Model Decision Trees!
+This code is a fork of [linear-tree](https://github.com/cerlymarco/linear-tree). Please see this repository for more information about Linear Model Decision Trees!
 
 ## What does this fork include?
 
@@ -11,7 +11,6 @@ The main features of this fork (compared to upstream) are as follows:
 2. HyperplaneTree: Hyperplanes (linear combinations of features) are considered as splitting variables. This significantly increases the training cost of the tree, which motivated the PyTorch rewrite.
 3. QuadricTree: Quadrics (linear combinations of bilinear features) are considered as splitting variables, and the bilinear terms are used in the leaf regressions. Also carries significant cost increase.
 4. "Mixed-integer linear program" (MIP) formulations for hyperplane trees via [OMLT](https://github.com/cog-imperial/OMLT) and [Pyomo](https://pyomo.org).
-5. Ability to save and load tree models. (Currently implemented for HyperplaneTreeRegressor)
 
 ## Why Hyperplanes/Quadrics?
 TLDR: Expanding the search space of possible splits can allow us to build trees with better accuracy for the same number of leaves.
