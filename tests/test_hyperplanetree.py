@@ -1,6 +1,6 @@
 import torch
 torch_device = 'cpu'
-from systems2atoms.quadrictree import LinearTreeRegressor, HyperplaneTreeRegressor, QuadricTreeRegressor
+from systems2atoms.hyperplanetree import LinearTreeRegressor, HyperplaneTreeRegressor, QuadricTreeRegressor
 
 def generate_function(x, y, noise_scale = 0.1):
     a = x/1.3 + y   
