@@ -47,8 +47,8 @@ criteria = {
 
 
 def compute_theta(X, y):
-    """Compute linear regression parmaters using torch.linalg.lstsq """
-    c, b, s, f = X.shape #columns, bins, samples, features
+    """Compute linear regression parameters using torch.linalg.lstsq """
+    c, b, s, f = X.shape  # columns, bins, samples, features
 
     # Scale X
     epsilon = 1e-8  # Small value to avoid division by zero
@@ -61,6 +61,10 @@ def compute_theta(X, y):
 
     y_reshaped = y.reshape(c * b, s, 1)
     Xty = torch.bmm(X_reshaped, y_reshaped).reshape(c, b, f)
+
+    # Add regularization to handle small data
+    reg = 1e-5 * torch.eye(f, device=X.device).unsqueeze(0).unsqueeze(0)
+    XtX += reg
 
     theta = torch.linalg.lstsq(XtX, Xty)[0]
 
