@@ -147,7 +147,9 @@ class LinearCombinations(TransformerMixin, BaseEstimator):
                 ).to(X.device)
             
             if self.do_scaling:
-                ranges = torch.max(X, dim = 0)[0] - torch.min(X, dim = 0)[0]
+                ranges = torch.max(X, dim=0)[0] - torch.min(X, dim=0)[0]
+                epsilon = 1e-8  # Small value to avoid division by zero
+                ranges[ranges < epsilon] = epsilon
                 final_matrix /= ranges
 
                 # Renormalize

@@ -50,13 +50,24 @@ def compute_theta(X, y):
     """Compute linear regression parmaters using torch.linalg.lstsq """
     c, b, s, f = X.shape #columns, bins, samples, features
 
+    # Scale X
+    epsilon = 1e-8  # Small value to avoid division by zero
+    range_X = torch.max(X, dim=2)[0] - torch.min(X, dim=2)[0]
+    range_X[range_X < epsilon] = epsilon
+    X = (X - torch.min(X, dim=2)[0].unsqueeze(2)) / range_X.unsqueeze(2)
+
     X_reshaped = X.permute(0, 1, 3, 2).reshape(c * b, f, s)
     XtX = torch.bmm(X_reshaped, X_reshaped.transpose(1, 2)).view(c, b, f, f)
 
     y_reshaped = y.reshape(c * b, s, 1)
     Xty = torch.bmm(X_reshaped, y_reshaped).reshape(c, b, f)
 
-    return torch.linalg.lstsq(XtX, Xty)[0]
+    theta = torch.linalg.lstsq(XtX, Xty)[0]
+
+    # Unscale theta
+    theta = theta / range_X
+
+    return theta
 
 
 def _map_node(X, feat, direction, split):
@@ -157,9 +168,14 @@ class TorchLinearRegression(LinearRegression):
         super().__init__()
         self.scale_weight = 1
         self.scale_offset = 0
+        self.target_scale_weight = 1
+        self.target_scale_offset = 0
 
-    def scale(self, x):
-        return x * self.scale_weight + self.scale_offset
+    def scale(self, x, y = None):
+        if y is not None:
+            return x * self.scale_weight + self.scale_offset, y * self.target_scale_weight + self.target_scale_offset
+        else:
+            return x * self.scale_weight + self.scale_offset
 
     def fit(
         self,
@@ -175,10 +191,18 @@ class TorchLinearRegression(LinearRegression):
             x = torch.Tensor(x)
 
         if rescale:
-            self.scale_weight = 1/(torch.max(x, dim = 0)[0] - torch.min(x, dim = 0)[0])
-            self.scale_offset = -torch.min(x, dim = 0)[0] * self.scale_weight
+            epsilon = 1e-8  # Small value to avoid division by zero
+            range_x = torch.max(x, dim=0)[0] - torch.min(x, dim=0)[0]
+            range_x[range_x < epsilon] = epsilon
+            self.scale_weight = 1 / range_x
+            self.scale_offset = -torch.min(x, dim=0)[0] * self.scale_weight
+            
+            range_y = torch.max(y) - torch.min(y)
+            range_y[range_y < epsilon] = epsilon
+            self.target_scale_weight = 1 / range_y
+            self.target_scale_offset = -torch.min(y) * self.target_scale_weight
 
-        x = self.scale(x)
+        x, y = self.scale(x, y)
         
         if self.fit_intercept:
             x = torch.hstack((torch.ones((len(x),1), device = x.device), x))
@@ -255,16 +279,16 @@ class TorchLinearRegression(LinearRegression):
     @property
     def intercept_(self):
         if isinstance(self.scale_offset, torch.Tensor):
-            return (self.params[0] - torch.sum(self.params[1:] * self.scale_offset)).item()
+            return (self.params[0] * self.target_scale_weight + self.target_scale_offset - torch.sum(self.params[1:] * self.scale_offset * self.target_scale_weight)).item()
         else:
-            return (self.params[0] - torch.sum(self.params[1:] * torch.tensor(self.scale_offset))).item()
+            return (self.params[0] * self.target_scale_weight + self.target_scale_offset - torch.sum(self.params[1:] * torch.tensor(self.scale_offset) * self.target_scale_weight)).item()
     
     @property
     def coef_(self):
         if isinstance(self.scale_weight, torch.Tensor):
-            return (self.params[1:] * self.scale_weight).numpy()
+            return (self.params[1:] * self.scale_weight * self.target_scale_weight).numpy()
         else:
-            return (self.params[1:] * torch.tensor(self.scale_weight)).numpy()
+            return (self.params[1:] * torch.tensor(self.scale_weight) * self.target_scale_weight).numpy()
 
 
 class _LinearTree(BaseDecisionTree):
@@ -389,15 +413,18 @@ class _LinearTree(BaseDecisionTree):
         y_pred_below = torch.einsum('cbsf, cbf -> cbs', X_below[:, :, :, linear_features], theta_below)
         y_pred_above = torch.einsum('cbsf, cbf -> cbs', X_above[:, :, :, linear_features], theta_above)
 
+        y_pred = torch.einsum('cbs, bsc -> cbs', y_pred_below, mask_below) + \
+                 torch.einsum('cbs, bsc -> cbs', y_pred_above, mask_above)
+
         # Calculate error
+        overall_error = self.loss_func(y, y_pred, dim = -1).T
+
         err_below = self.loss_func(y_below, y_pred_below, dim = -1).T
         err_above = self.loss_func(y_above, y_pred_above, dim = -1).T
 
         n_below = mask_below.sum(dim=1)
         n_above = mask_above.sum(dim=1)
 
-        # Compute overall error
-        overall_error = (err_below * n_below + err_above * n_above) / (n_below + n_above)
         overall_error = torch.nan_to_num(overall_error, 2*torch.max(overall_error))
         overall_error[~valid_thresholds] += torch.inf
 
