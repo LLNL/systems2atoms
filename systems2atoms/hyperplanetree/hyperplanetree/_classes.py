@@ -444,7 +444,7 @@ class _LinearTree(BaseDecisionTree):
             split_col = best_feature_idx.item()
             split_t = thresholds[best_threshold_idx, best_feature_idx].item()
 
-            # Create TorchLinearRegressions for above ane below
+            # Create TorchLinearRegressions for above and below
             below_mask = X[:, split_col+1] <= split_t
             above_mask = ~below_mask
 
