@@ -10,6 +10,5 @@ from .quadric_tree import (
     QuadricTreeRegressor,
 )
 
-from ._classes import (
-    plot_surrogate_2d
-)
+from ._classes import *
+from .omlt import *
