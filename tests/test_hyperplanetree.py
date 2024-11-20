@@ -1,6 +1,6 @@
 import torch
 torch_device = 'cpu'
-from systems2atoms.hyperplanetree import LinearTreeRegressor, HyperplaneTreeRegressor, QuadricTreeRegressor
+from systems2atoms.hyperplanetree import *
 
 def generate_function(x, y, noise_scale = 0.1):
     a = x/1.3 + y   
@@ -10,7 +10,7 @@ def generate_function(x, y, noise_scale = 0.1):
 
     return f.to(torch_device)
 
-def test_quadrictree():
+def test_hyperplanetree():
     # Generate sampling points
     x0 = torch.linspace(-3, 3, 20, device = torch_device)
     x1 = torch.linspace(-3, 3, 20, device = torch_device)
@@ -44,9 +44,19 @@ def test_quadrictree():
     assert leaves > 2
     assert max(y_pred) - min(y_pred) > 0
 
-    model = QuadricTreeRegressor()
-    model.fit(train_features, train_y)
-    y_pred = model.predict(test_features.to(torch_device))
-    leaves = len(model)
-    assert leaves > 2
-    assert max(y_pred) - min(y_pred) > 0
+def test_formulations():
+    model = HyperplaneTreeRegressor()
+    features = torch.randn(10, 2)
+    labels = torch.randn(10)
+    model.fit(features, labels)
+    
+    definition = HyperplaneTreeDefinition(
+        model,
+        input_bounds_matrix = torch.stack([
+            torch.min(features, dim=0).values,
+            torch.max(features, dim=0).values,
+        ]).T,
+    )
+
+    formulation = HyperplaneTreeGDPFormulation(definition)
+    formulation = HyperplaneTreeHybridBigMFormulation(definition)
