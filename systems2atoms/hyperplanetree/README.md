@@ -24,7 +24,7 @@ from systems2atoms.hyperplanetree import LinearTreeRegressor, HyperplaneTreeRegr
 
 Alternatively, you can install hyperplanetree without installing the rest of systems2atoms:
 
-```pip install "hyperplanetree @ git+https://git@github.com/LLNL/systems2atoms@add-hyperplanetree#subdirectory=systems2atoms/hyperplanetree"```
+```pip install "hyperplanetree @ git+https://git@github.com/LLNL/systems2atoms#subdirectory=systems2atoms/hyperplanetree"```
 
 The import will then be:
 
