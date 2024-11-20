@@ -39,7 +39,8 @@ class HyperplaneTreeDefinition(LinearTreeDefinition):
         for node in summary.values():
             if isinstance(node['models'], TorchLinearRegression):
                 # Convert to list and add zeros for all linear combinations features
-                node['models'].params = node['models'].params.tolist() + list(np.zeros(len(input_bounds) - len(input_bounds_matrix)))
+                zeros_to_add = torch.zeros(len(input_bounds) - len(input_bounds_matrix))
+                node['models'].params = torch.cat((node['models'].params, zeros_to_add))
 
         super().__init__(
             lt_regressor = summary,
