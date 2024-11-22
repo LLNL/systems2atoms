@@ -297,6 +297,10 @@ class HyperplaneTreeRegressor(HyperplaneMixin, LinearTreeRegressor):
         Depth-first is generally recommended for the following reasons:
         1. Leaves close in index are usually close in domain
         2. More accurate training time estimation
+
+    ridge : float, default = 1e-5
+        Regularization parameter for the linear models in the leaves.
+        A higher value implies a higher regularization.
     """
 
     def __init__(
@@ -322,6 +326,7 @@ class HyperplaneTreeRegressor(HyperplaneMixin, LinearTreeRegressor):
         save_quadratic_uncertainty_parameters: bool = False,
         max_batch_size = torch.inf,
         depth_first = True,
+        ridge = 1e-5,
 
         ):
         HyperplaneMixin.__init__(
@@ -353,4 +358,5 @@ class HyperplaneTreeRegressor(HyperplaneMixin, LinearTreeRegressor):
             save_quadratic_uncertainty_parameters,
             max_batch_size,
             depth_first,
+            ridge,
         )

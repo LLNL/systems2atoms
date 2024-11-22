@@ -46,15 +46,9 @@ criteria = {
 }
 
 
-def compute_theta(X, y):
+def compute_theta(X, y, ridge = 1e-5):
     """Compute linear regression parameters using torch.linalg.lstsq """
     c, b, s, f = X.shape  # columns, bins, samples, features
-
-    # Scale X
-    epsilon = 1e-8  # Small value to avoid division by zero
-    range_X = torch.max(X, dim=2)[0] - torch.min(X, dim=2)[0]
-    range_X[range_X < epsilon] = epsilon
-    X = (X - torch.min(X, dim=2)[0].unsqueeze(2)) / range_X.unsqueeze(2)
 
     X_reshaped = X.permute(0, 1, 3, 2).reshape(c * b, f, s)
     XtX = torch.bmm(X_reshaped, X_reshaped.transpose(1, 2)).view(c, b, f, f)
@@ -62,14 +56,10 @@ def compute_theta(X, y):
     y_reshaped = y.reshape(c * b, s, 1)
     Xty = torch.bmm(X_reshaped, y_reshaped).reshape(c, b, f)
 
-    # Add regularization to handle small data
-    reg = 1e-5 * torch.eye(f, device=X.device).unsqueeze(0).unsqueeze(0)
-    XtX += reg
+    # Add ridge regularization to handle small data
+    XtX += ridge * torch.eye(f, device=X.device).unsqueeze(0).unsqueeze(0)
 
     theta = torch.linalg.lstsq(XtX, Xty)[0]
-
-    # Unscale theta
-    theta = theta / range_X
 
     return theta
 
@@ -188,7 +178,8 @@ class TorchLinearRegression(LinearRegression):
         sample_weight = None,
         save_linear_propogation_uncertainty_parameters = False,
         save_quadratic_uncertainty_parameters = False,
-        rescale = True,
+        rescale = False,
+        ridge = 1e-5,
         ):
 
         if not isinstance(x, torch.Tensor):
@@ -212,10 +203,20 @@ class TorchLinearRegression(LinearRegression):
             x = torch.hstack((torch.ones((len(x),1), device = x.device), x))
 
         if sample_weight is None:
-            self.params = torch.linalg.lstsq(x.T @ x, x.T @ y)[0]
+            XTX = x.T @ x
+
+            # Add ridge regularization
+            XTX += ridge * torch.eye(len(XTX), device = x.device)
+
+            self.params = torch.linalg.lstsq(XTX, x.T @ y)[0]
         else:
             weighted_x = sample_weight @ x
-            self.params = torch.linalg.lstsq(x.T @ weighted_x, x.T @ sample_weight @ y)[0]
+            XTX = x.T @ weighted_x
+
+            # Add ridge regularization
+            XTX += ridge * torch.eye(len(XTX), device = x.device)
+
+            self.params = torch.linalg.lstsq(XTX, x.T @ sample_weight @ y)[0]
 
         if save_linear_propogation_uncertainty_parameters:
             self.n = len(y)
@@ -307,7 +308,7 @@ class _LinearTree(BaseDecisionTree):
                  split_features, linear_features, disable_tqdm,
                  save_linear_propogation_uncertainty_parameters,
                  save_quadratic_uncertainty_parameters,
-                 max_batch_size, depth_first):
+                 max_batch_size, depth_first, ridge):
 
         self.base_estimator = base_estimator
         self.criterion = criterion
@@ -324,6 +325,7 @@ class _LinearTree(BaseDecisionTree):
         self.save_quadratic_uncertainty_parameters = save_quadratic_uncertainty_parameters
         self.max_batch_size = max_batch_size
         self.depth_first = depth_first
+        self.ridge = ridge
         
         if isinstance(criterion, Callable):
             self.loss_func = criterion
@@ -410,8 +412,8 @@ class _LinearTree(BaseDecisionTree):
         y_above = torch.einsum('s,bsc->cbs', y, mask_above)
 
         # Compute theta (linear regression parameters) for below and above thresholds
-        theta_below = compute_theta(X_below[:, :, :, linear_features], y_below)
-        theta_above = compute_theta(X_above[:, :, :, linear_features], y_above)
+        theta_below = compute_theta(X_below[:, :, :, linear_features], y_below, ridge=self.ridge)
+        theta_above = compute_theta(X_above[:, :, :, linear_features], y_above, ridge=self.ridge)
 
         # Make predictions
         y_pred_below = torch.einsum('cbsf, cbf -> cbs', X_below[:, :, :, linear_features], theta_below)

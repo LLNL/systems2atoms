@@ -109,6 +109,10 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
         Depth-first is generally recommended for the following reasons:
         1. Leaves close in index are usually close in domain
         2. More accurate training time estimation
+
+    ridge : float, default = 1e-5
+        Regularization strength for the linear models in the leaves.
+        A higher value implies a higher regularization strength.
     """
 
     def __init__(
@@ -127,6 +131,7 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
         save_quadratic_uncertainty_parameters = False,
         max_batch_size = torch.inf,
         depth_first = True,
+        ridge = 1e-5,
         ):
 
         self.base_estimator = TorchLinearRegression()
@@ -146,7 +151,8 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
             save_linear_propogation_uncertainty_parameters = save_linear_propogation_uncertainty_parameters,
             save_quadratic_uncertainty_parameters = save_quadratic_uncertainty_parameters,
             max_batch_size = max_batch_size,
-            depth_first = depth_first
+            depth_first = depth_first,
+            ridge = ridge,
             )
 
     def fit(self, X, y, sample_weight=None):

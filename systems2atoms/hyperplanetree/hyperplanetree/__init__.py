@@ -10,5 +10,17 @@ from .quadric_tree import (
     QuadricTreeRegressor,
 )
 
-from ._classes import *
-from .omlt import *
+from .omlt import (
+    HyperplaneTreeDefinition,
+    HyperplaneTreeGDPFormulation,
+    HyperplaneTreeHybridBigMFormulation,
+    HyperplaneTreeOMLTFormulationMixin,
+)
+
+from .uq import (
+    calculate_uncertainty_metrics,
+)
+
+from ._classes import (
+    plot_surrogate_2d,
+)

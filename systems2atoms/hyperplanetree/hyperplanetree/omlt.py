@@ -26,7 +26,7 @@ class HyperplaneTreeDefinition(LinearTreeDefinition):
         # Currently, these bounds are not very tight
         # This should get handled by the solver pre-processing anyway
         fm = lt_regressor.linear_combinations_transform.final_matrix
-        max_bound = torch.max(torch.abs(torch.abs(input_bounds_matrix.T @ fm))).item()
+        max_bound = torch.max(torch.abs(input_bounds_matrix.T @ fm)).item()
 
         input_bounds = {}
         for i, row in enumerate(fm.T):
