@@ -8,11 +8,6 @@
 
 import torch
 
-try:
-    from uncertainty_toolbox import get_all_metrics
-except ImportError:
-    raise ImportError('For uncertainty quantification, please install Uncertainty Toolbox: https://uncertainty-toolbox.github.io/')
-
 def calculate_uncertainty_metrics(
         y_pred,
         uncertainty,
@@ -20,6 +15,11 @@ def calculate_uncertainty_metrics(
         num_bins = 100,
         resolution = 99,
     ):
+
+    try:
+        from uncertainty_toolbox import get_all_metrics
+    except ImportError:
+        raise ImportError('For uncertainty quantification, please install Uncertainty Toolbox: https://uncertainty-toolbox.github.io/')
     
     y_pred = y_pred.flatten()
     uncertainty = uncertainty.flatten()
