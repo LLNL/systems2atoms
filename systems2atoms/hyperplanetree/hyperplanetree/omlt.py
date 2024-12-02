@@ -35,12 +35,25 @@ class HyperplaneTreeDefinition(LinearTreeDefinition):
             else:
                 input_bounds[i] = (-max_bound, max_bound)
 
+        used_cols = []
         summary = copy.deepcopy(lt_regressor.summary())
         for node in summary.values():
             if isinstance(node['models'], TorchLinearRegression):
                 # Convert to list and add zeros for all linear combinations features
                 zeros_to_add = torch.zeros(len(input_bounds) - len(input_bounds_matrix))
                 node['models'].params = torch.cat((node['models'].params, zeros_to_add))
+
+            # If node has a 'col', append it to the list of used columns if it's not already there
+            if 'col' in node and node['col'] not in used_cols:
+                used_cols.append(node['col'])
+
+        # Remove unused columns from the final matrix
+        fm = fm[:, used_cols]
+
+        # Update the cols in the summary to match the new matrix
+        for node in summary.values():
+            if 'col' in node:
+                node['col'] = used_cols.index(node['col'])
 
         super().__init__(
             lt_regressor = summary,
