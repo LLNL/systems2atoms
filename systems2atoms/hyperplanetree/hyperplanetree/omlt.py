@@ -35,7 +35,7 @@ class HyperplaneTreeDefinition(LinearTreeDefinition):
             else:
                 input_bounds[i] = (-max_bound, max_bound)
 
-        used_cols = []
+        used_cols = list(range(len(input_bounds_matrix)))
         summary = copy.deepcopy(lt_regressor.summary())
         for node in summary.values():
             if isinstance(node['models'], TorchLinearRegression):
