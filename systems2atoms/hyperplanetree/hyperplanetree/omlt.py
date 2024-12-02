@@ -22,27 +22,11 @@ class HyperplaneTreeDefinition(LinearTreeDefinition):
         input_bounds_matrix = None,
         scaling_object = None,
     ):
-        # Must set up bounds for all linear combinations features (OMLT limitation)
-        # Currently, these bounds are not very tight
-        # This should get handled by the solver pre-processing anyway
         fm = lt_regressor.linear_combinations_transform.final_matrix
-        max_bound = torch.max(torch.abs(input_bounds_matrix.T @ fm)).item()
-
-        input_bounds = {}
-        for i, row in enumerate(fm.T):
-            if i < len(input_bounds_matrix):
-                input_bounds[i] = tuple(input_bounds_matrix[i].tolist())
-            else:
-                input_bounds[i] = (-max_bound, max_bound)
 
         used_cols = list(range(len(input_bounds_matrix)))
         summary = copy.deepcopy(lt_regressor.summary())
         for node in summary.values():
-            if isinstance(node['models'], TorchLinearRegression):
-                # Convert to list and add zeros for all linear combinations features
-                zeros_to_add = torch.zeros(len(input_bounds) - len(input_bounds_matrix))
-                node['models'].params = torch.cat((node['models'].params, zeros_to_add))
-
             # If node has a 'col', append it to the list of used columns if it's not already there
             if 'col' in node and node['col'] not in used_cols:
                 used_cols.append(node['col'])
@@ -52,10 +36,33 @@ class HyperplaneTreeDefinition(LinearTreeDefinition):
         # Remove unused columns from the final matrix
         fm = fm[:, used_cols]
 
+        input_bounds = {}
+        for i, row in enumerate(fm.T):
+            if i < len(input_bounds_matrix):
+                input_bounds[i] = tuple(input_bounds_matrix[i].tolist())
+            else:
+                # Find extremes the linear combination can be based on the input_bounds
+                min_bound = 0
+                max_bound = 0
+                for j, val in enumerate(row):
+                    if val > 0:
+                        min_bound += val * input_bounds_matrix[j][0]
+                        max_bound += val * input_bounds_matrix[j][1]
+                    else:
+                        min_bound += val * input_bounds_matrix[j][1]
+                        max_bound += val * input_bounds_matrix[j][0]
+                
+                input_bounds[i] = (min_bound.item(), max_bound.item())
+
         # Update the cols in the summary to match the new matrix
         for node in summary.values():
             if 'col' in node:
                 node['col'] = used_cols.index(node['col'])
+
+            if isinstance(node['models'], TorchLinearRegression):
+                # Convert to list and add zeros for all linear combinations features
+                zeros_to_add = torch.zeros(len(fm.T) - len(input_bounds_matrix))
+                node['models'].params = torch.cat((node['models'].params, zeros_to_add))
 
         super().__init__(
             lt_regressor = summary,
