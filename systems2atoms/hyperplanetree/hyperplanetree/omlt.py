@@ -47,6 +47,8 @@ class HyperplaneTreeDefinition(LinearTreeDefinition):
             if 'col' in node and node['col'] not in used_cols:
                 used_cols.append(node['col'])
 
+        used_cols = sorted(used_cols)
+
         # Remove unused columns from the final matrix
         fm = fm[:, used_cols]
 
