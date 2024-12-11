@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["version", "dependencies"]
+name = "hyperplanetree"
+description="Hyperplane trees for piecewise linear models"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[project.urls]
+Repository="https://github.com/LLNL/systems2atoms"
+
+[tool.setuptools_scm]
+root = "../.."
+
+[tool.setuptools]
+packages = ["hyperplanetree"]

@@ -1,0 +1,7 @@
+numpy < 2.0.0
+scikit-learn>=1.5.0
+torch
+tqdm
+matplotlib
+pyomo
+omlt @ git+https://github.com/cog-imperial/OMLT
