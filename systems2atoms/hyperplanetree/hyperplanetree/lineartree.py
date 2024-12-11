@@ -3,7 +3,7 @@ import torch
 
 from sklearn.base import BaseEstimator, RegressorMixin
 
-from sklearn.utils.validation import check_is_fitted, _check_sample_weight, validate_data
+from sklearn.utils.validation import check_is_fitted, _check_sample_weight
 from tqdm.auto import tqdm
 
 from ._classes import TorchLinearRegression, _LinearTree, _LinearForest, _predict_branch
@@ -181,18 +181,6 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
         if not hasattr(self, 'original_features_count'):
             self.original_features_count = X.shape[1]
 
-        X, y = validate_data(
-            X, y,
-            reset=True,
-            accept_sparse=False,
-            dtype='float32',
-            force_all_finite=True,
-            ensure_2d=True,
-            allow_nd=False,
-            multi_output=True,
-            y_numeric=True,
-            dtype=None,
-        )
         if sample_weight is not None:
             sample_weight = _check_sample_weight(sample_weight, X)
 
@@ -219,18 +207,6 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
             The predicted values.
         """
         check_is_fitted(self, attributes='_nodes')
-
-        X = validate_data(
-            X,
-            reset=False,
-            accept_sparse=False,
-            dtype='float32',
-            force_all_finite=True,
-            ensure_2d=True,
-            allow_nd=False,
-            ensure_min_features=self.n_features_in_,
-            dtype=None,
-        )
 
         if self.n_targets_ > 1:
             pred = torch.zeros((X.shape[0], self.n_targets_), device = X.device, dtype = X.dtype)
@@ -262,18 +238,6 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
             The predicted uncertainties
         """
         check_is_fitted(self, attributes='_nodes')
-
-        X = validate_data(
-            X,
-            reset=False,
-            accept_sparse=False,
-            dtype='float32',
-            force_all_finite=True,
-            ensure_2d=True,
-            allow_nd=False,
-            ensure_min_features=self.n_features_in_,
-            dtype=None,
-        )
 
         if self.n_targets_ > 1:
             unc = torch.zeros((X.shape[0], self.n_targets_))
