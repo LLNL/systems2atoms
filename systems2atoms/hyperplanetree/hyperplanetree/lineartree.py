@@ -3,7 +3,7 @@ import torch
 
 from sklearn.base import BaseEstimator, RegressorMixin
 
-from sklearn.utils.validation import check_is_fitted, _check_sample_weight
+from sklearn.utils.validation import check_is_fitted, _check_sample_weight, validate_data
 from tqdm.auto import tqdm
 
 from ._classes import TorchLinearRegression, _LinearTree, _LinearForest, _predict_branch
@@ -181,7 +181,7 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
         if not hasattr(self, 'original_features_count'):
             self.original_features_count = X.shape[1]
 
-        X, y = self._validate_data(
+        X, y = validate_data(
             X, y,
             reset=True,
             accept_sparse=False,
@@ -191,7 +191,7 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
             allow_nd=False,
             multi_output=True,
             y_numeric=True,
-            cast_to_ndarray = False,
+            dtype=None,
         )
         if sample_weight is not None:
             sample_weight = _check_sample_weight(sample_weight, X)
@@ -220,7 +220,7 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
         """
         check_is_fitted(self, attributes='_nodes')
 
-        X = self._validate_data(
+        X = validate_data(
             X,
             reset=False,
             accept_sparse=False,
@@ -229,7 +229,7 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
             ensure_2d=True,
             allow_nd=False,
             ensure_min_features=self.n_features_in_,
-            cast_to_ndarray = False,
+            dtype=None,
         )
 
         if self.n_targets_ > 1:
@@ -263,7 +263,7 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
         """
         check_is_fitted(self, attributes='_nodes')
 
-        X = self._validate_data(
+        X = validate_data(
             X,
             reset=False,
             accept_sparse=False,
@@ -272,7 +272,7 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
             ensure_2d=True,
             allow_nd=False,
             ensure_min_features=self.n_features_in_,
-            cast_to_ndarray = False,
+            dtype=None,
         )
 
         if self.n_targets_ > 1:
