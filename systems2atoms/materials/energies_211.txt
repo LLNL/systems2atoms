@@ -1,0 +1,22 @@
+surface_name	site_name	species_name	formation_energy	bulk_structure	frequencies	other_parameters	reference
+None	gas	HCOOH	2.60	None	[3570, 2943, 1770, 1387, 1229, 1105, 625, 1033, 638]	[]	NIST+Yoo_paper.
+None	gas	CH4	0.0	None	[2917, 1534, 1534, 3019, 3019, 3019, 1306, 1306, 1306]	[]	Input File Tutorial.
+None	gas	CO	2.522	None	[2170]	[]	Input File Tutorial.
+None	gas	CO2	2.45	None	[1333,2349,667,667]	[]	Input File.
+None	gas	H2	0.0	None	[4401]	[]	Input File Tutorial.
+None	gas	H2O	0.0	None	[3657, 1595, 3756]	[]	Input File Tutorial.
+Pd	211	HCOO	1.99	fcc	[2994, 1595, 1325, 1338, 991, 737, 294, 291, 287, 89, 86, 46 ]	[]	Yoo_paper
+Pd	211	HCOO&	2.53	fcc	[2657, 1729, 1317, 1177, 989, 698, 281, 219, 118, 109, 88, 75]	[]	Yoo_paper
+Pd	211	COOH	2.12	fcc	[3614, 1773, 1147, 851, 582, 575, 352, 241, 184, 82, 50, 30]	[]	Yoo_paper
+Pd	211	CO	1.25	fcc	[1993, 275, 263, 162, 122, 34]	[]	Yoo_paper
+Pd	211	OH	0.69	fcc	[3928, 611, 393, 326, 316, 66]	[]	Yoo_paper
+Pd	211	H	-0.35	fcc	[1036, 914, 609 ]	[]	Yoo_paper
+Pd	211	HCOO-H	2.76	fcc	[2990, 1579, 1324, 1290, 1050, 981, 700, 512, 255, 240, 193, 122, 22, 71]	[]	Yoo_paper
+Pd	211	H-COOH	2.55	fcc	[2857, 1244, 1273, 1168, 1100, 1096, 1005, 634, 386, 371, 303, 117, 77, 49]	[]	Yoo_paper
+Pd	211	H-COO	2.99	fcc	[1723, 1124, 1246, 925, 678, 353, 227, 222, 136, 75, 36]	[]	Yoo_paper
+Pd	211	HCOO-	2.96	fcc	[2523, 1763, 1324, 1177, 961, 695, 264, 190, 171, 118, 90, 74]	[]	Yoo_paper
+Pd	211	H-COO&	2.81	fcc	[2135, 1458, 1103, 821, 686, 446, 202, 113, 104, 50, 19 ]	[]	Yoo_paper
+Pd	211	COO-H	2.85	fcc	[2058, 1311, 888, 811, 594 ,294, 228, 82, 67, 23, 109]	[]	Yoo_paper
+Pd	211	CO-OH	3.10	fcc	[3810, 2060, 721, 516, 348, 322, 274, 223, 95, 40, 55]	[]	Yoo_paper
+Pd	211	H-H	0.00	fcc	[1651, 1395, 217, 510, 501]	[]	Yoo_paper
+Pd	211	H-OH	1.20	fcc	[3767, 830, 485, 528, 526, 315, 190, 203]	[]	Yoo_paper

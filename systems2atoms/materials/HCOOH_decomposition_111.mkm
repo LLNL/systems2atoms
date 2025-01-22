@@ -1,0 +1,85 @@
+#
+#Microkinetic model parameters
+#
+
+scaler = 'ThermodynamicScaler'
+
+rxn_expressions = [			   
+               '2*_s + HCOOH_g <-> HCOO-H* + *_s <-> HCOO* + H*',
+			   'HCOO* <-> H-COO* -> CO2_g + H*',
+			   'HCOO* <-> HCOO-* <-> HCOO&*',
+			   'HCOO&* <-> H-COO&* <-> CO2_g + H*',
+			   '2H* <-> H-H* + *_s <-> H2_g + 2*',
+			   '2*_s + HCOOH_g <-> H-COOH* + *_s <-> COOH* + H*',
+                           'COOH* <-> COO-H* <-> CO2_g + H*',
+			   'COOH* + *_s <-> CO-OH* + *_s <-> CO* + OH*',
+			   'CO*  -> CO_g + *',
+			   'OH*+H*  <-> H-OH* +*_s -> H2O_g + 2*',
+                   ]
+
+
+surface_names = ['Pd'] #surfaces to include in scaling (need to have descriptors defined for each)
+
+descriptor_names= ['temperature','pressure'] #descriptor names
+
+descriptor_ranges = [[300,400], [1, 100.0]]
+
+#descriptor_names= ['O_s','CO_s'] #descriptor names
+
+#descriptor_ranges = [[-1,3],[-0.5,4]]
+
+resolution = 20
+
+#temperature = 500 #Temperature of the reaction
+
+species_definitions = {}
+species_definitions['HCOOH_g'] = {'concentration':1.}
+species_definitions['H2O_g'] = {'concentration':0.}
+species_definitions['H2_g'] = {'concentration':0.}
+species_definitions['CO2_g'] = {'concentration':0.} #define the gas pressures
+species_definitions['CO_g'] = {'concentration':0.}
+
+species_definitions['s'] = {'site_names': ['111'], 'total':1} #define the sites
+
+data_file = 'HCOOH_decomposition_111.pkl'
+
+#
+#Parser parameters
+#
+
+input_file = 'energies_111.txt' #input data
+
+#
+#Scaler parameters
+#
+
+gas_thermo_mode = "shomate_gas"
+#gas_thermo_mode = "ideal_gas" #Ideal gas approximation
+#gas_thermo_mode = "zero_point_gas" #uses zero-point corrections only
+#gas_thermo_mode = "fixed_entropy_gas" #assumes entropy of 0.002 eV/K for all gasses except H2 (H2 is 0.00135 eV/K)
+#gas_thermo_mode = "frozen_gas" #neglect thermal contributions
+
+#adsorbate_thermo_mode = "frozen_adsorbate"
+adsorbate_thermo_mode = "harmonic_adsorbate"
+#adsorbate_thermo_mode = "hindered_adsorbate"
+#adsorbate_thermo_mode = "zero_point_adsorbate"
+
+scaling_constraint_dict = {
+                           'H_s':['+',0,None],
+                           'H2_s':[0,'+',None],
+                           'HCOO-H_s':'initial_state',
+                           'H-H_s':'final_state',
+                           }
+
+
+#
+#Solver parameters
+#
+
+decimal_precision = 100 #precision of numbers involved
+
+tolerance = 1e-50 #all d_theta/d_t's must be less than this at the solution
+
+max_rootfinding_iterations = 100
+
+max_bisections = 3
