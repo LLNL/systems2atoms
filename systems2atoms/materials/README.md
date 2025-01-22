@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains scripts to compute **Turnover Frequency (TOF)** data (mol H₂/mol catalyst·hr) for palladium nanoparticles of specified sizes over a range of temperatures and pressures. The main script, `tof_map_dia.py`, calculates TOF values and generates 2D heatmaps for visualization.
+This repository contains scripts to compute **Turnover Frequency (TOF)** data (mol H<sub>2</sub>/mol catalyst·hr) for palladium nanoparticles of specified sizes over a range of temperatures and pressures. The main script, `tof_map_dia.py`, calculates TOF values and generates 2D heatmaps for visualization.
 
 The workflow uses **CATMAP** for microkinetics modeling (MKM), Wulff construction for nanoparticle geometry, and additional Python scripts for data processing. For detailed information about CATMAP, refer to its [documentation](https://catmap.readthedocs.io/en/latest/index.html).
 
@@ -32,7 +32,7 @@ The workflow uses **CATMAP** for microkinetics modeling (MKM), Wulff constructio
 
 ### 2. Wulff Construction Files
 - **Input Scripts**:
-  - `fn_dia_site.py`: Constructs Wulff particles based on surface energies.
+  - `fn_dia_site.py`: Constructs Wulff particles based on surface energies ([https://crystalium.materialsvirtuallab.org/](https://crystalium.materialsvirtuallab.org/)).
   - `NN_list_fn.py`: Calculates the surface fraction for different facets.
 
 - **Output**:
@@ -81,9 +81,10 @@ resolution = 20
 
 ## Output
 
-All results are saved in the output directory, including:
-   -`TOF Data: .csv, .xlsx, .npz files.`
-   -`TOF Heatmaps: .png images.`
+All results are saved in the **output** directory, including:
+- `TOF Data: .csv, .xlsx, .npz files.`
+
+- `TOF Heatmaps: .jpg images.`
 
 ## Requirements
 
@@ -95,17 +96,16 @@ conda install -c conda-forge ase
 ```
 2. CATMAP (documentation).
 3. Python Libraries:
-	-`scipy`
-	-`matplotlib`
-	-`pandas`
-	-`openpyxl`
-4. ASAP3 (documentation):
+	- `scipy`
+	- `matplotlib`
+	- `pandas`
+	- `openpyxl`
+4. [ASAP3](https://asap3.readthedocs.io/en/latest/):
 	Used for neighbor list generation in Wulff construction.
 
 ## References
-
-CATMAP Documentation
-Kinetic Data Source (DOI: 10.1021/cs400664z)
+- [CATMAP](https://catmap.readthedocs.io/en/latest/index.html)
+- Kinetic Data Source: [DOI: 10.1021/cs400664z](https://pubs.acs.org/doi/10.1021/cs400664z)
 
 ## Authors
 
@@ -115,4 +115,4 @@ Shyam Deo (deo4@llnl.gov)
 
 ## Citation
 For citation, refer to:
-DOI: 10.1021/acs.iecr.4c03344
+[[DOI: 10.1021/acs.iecr.4c03344](https://doi.org/10.1021/acs.iecr.4c03344)]
