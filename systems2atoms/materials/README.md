@@ -58,7 +58,9 @@ The workflow uses **CATMAP** for microkinetics modeling (MKM), Wulff constructio
 
 ### 2. Run the TOF Analysis
 To compute TOF, run the following command:
-```python tof_map_dia.py <Particle_diameter (nm)>```
+```
+python tof_map_dia.py <Particle_diameter (nm)>
+```
 Replace <Particle_diameter (nm)> with the desired nanoparticle size in nanometers.
 
 ## Customization
