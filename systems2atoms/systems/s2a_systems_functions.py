@@ -336,12 +336,12 @@ def mol_to_norm_cu_m(
     Parameters
     ----------
     num_mols : float
-        Number of moles of gas.
+        Number of moles of gas
     
     Returns
     -------
     gas_vol_norm_cu_m
-        Gas volume (Nm^3) (or volumetric flowrate, Nm^3/time).
+        Gas volume (Nm^3) (or volumetric flowrate, Nm^3/time)
     """
     gas_vol_norm_cu_m = \
         num_mols * gas_const_kJ_per_kmol_K * \
@@ -600,7 +600,7 @@ def compressor_fixed_costs(
         num_stgs, 
         output_dollar_year
         ):
-    """Calculate compressor installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate compressor installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
     
     For now, use equation for "Refueling Station Main Compressors" for 700 bar refueling (HDSAM V3.1 "Cost Data" tab).
     
@@ -616,9 +616,9 @@ def compressor_fixed_costs(
     Returns
     -------
     compr_inst_cost_usd
-        Compressor installed cost ($, user-specified output dollar year). 
+        Compressor installed cost (\\$, user-specified output dollar year). 
     compr_om_cost_usd_per_yr
-        Compressor annual O&M cost ($/yr, user-specified output dollar year).
+        Compressor annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -728,7 +728,7 @@ def cryo_pump_fixed_costs(
         num_pumps, 
         output_dollar_year
         ):
-    """Calculate high-pressure cryogenic pump installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate high-pressure cryogenic pump installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
     
     For now, use equation for station pump for 700 bar dispensing (HDSAM V3.1 "Cost Data" tab).
     
@@ -742,9 +742,9 @@ def cryo_pump_fixed_costs(
     Returns
     -------
     pump_inst_cost_usd
-        Pump installed cost ($, user-specified output dollar year). 
+        Pump installed cost (\\$, user-specified output dollar year). 
     pump_om_cost_usd_per_yr
-        Pump annual O&M cost ($/yr, user-specified output dollar year).
+        Pump annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -790,7 +790,7 @@ def low_head_pump_fixed_costs(
         fluid_flow_cu_m_per_hr, 
         output_dollar_year
         ):
-    """Calculate low-head pump installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year. Outputs validated using HDSAM V3.1.
+    r"""Calculate low-head pump installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year. Outputs validated using HDSAM V3.1.
     
     "Low-Head LH2 Pump" cost equation on HDSAM V3.1 "Liquid H2 Terminal" tab is a function of hydrogen mass flowrate. Here, converted to function of volumetric flowrate using liquid hydrogen density (hence the different base cost, or multiplier, in the cost equation). Assume generally applicable to other fluids (e.g., formic acid).
     
@@ -806,9 +806,9 @@ def low_head_pump_fixed_costs(
     Returns
     -------
     pump_inst_cost_usd
-        Pump installed cost ($, user-specified output dollar year). 
+        Pump installed cost (\\$, user-specified output dollar year). 
     pump_om_cost_usd_per_yr
-        Pump annual O&M cost ($/yr, user-specified output dollar year).
+        Pump annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -867,7 +867,7 @@ def vaporizer_fixed_costs(
         output_dollar_year,
         vap_capacity_kg_per_hr = 250
         ):
-    """Calculate vaporizer (evaporator) installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate vaporizer (evaporator) installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
     
     For now, focus on vaporizer (evaporator) at refueling station. Evaporator cost equation available for terminal, but evaporator capacity at terminal is zero in HDSAM V3.1. 
         
@@ -883,9 +883,9 @@ def vaporizer_fixed_costs(
     Returns
     -------
     vap_inst_cost_usd
-        Vaporizer installed cost ($, user-specified output dollar year). 
+        Vaporizer installed cost (\\$, user-specified output dollar year). 
     vap_om_cost_usd_per_yr
-        Vaporizer annual O&M cost ($/yr, user-specified output dollar year).
+        Vaporizer annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -980,7 +980,7 @@ def heat_exchanger_fixed_costs(
         output_dollar_year,
         hx_capacity_ton_per_unit = 3.4
         ):
-    """Calculate heat exchanger installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate heat exchanger installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
     
     Uninstalled cost: use purchase cost equation for "Hydrogen Precooling Refrigeration Equipment" (HDSAM V3.1 "Cost Data" tab). 
     
@@ -1002,9 +1002,9 @@ def heat_exchanger_fixed_costs(
     Returns
     -------
     hx_inst_cost_usd
-        Heat exchanger installed cost ($, user-specified output dollar year). 
+        Heat exchanger installed cost (\\$, user-specified output dollar year). 
     hx_om_cost_usd_per_yr
-        Heat exchanger annual O&M cost ($/yr, user-specified output dollar year).
+        Heat exchanger annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -1080,7 +1080,7 @@ def liquefier_fixed_costs(
         liquef_size_tonne_per_day,
         output_dollar_year
         ):
-    """Calculate liquefier installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year. Installed cost scales with assumed liquefier size (tonne H2/day), using relationship in HDSAM V3.1. Outputs validated using HDSAM V3.1.
+    r"""Calculate liquefier installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year. Installed cost scales with assumed liquefier size (tonne H2/day), using relationship in HDSAM V3.1. Outputs validated using HDSAM V3.1.
             
     Parameters
     ----------
@@ -1092,9 +1092,9 @@ def liquefier_fixed_costs(
     Returns
     -------
     liquef_inst_cost_usd
-        Liquefier installed cost ($, user-specified output dollar year). 
+        Liquefier installed cost (\\$, user-specified output dollar year). 
     liquef_om_cost_usd_per_yr
-        Liquefier annual O&M cost ($/yr, user-specified output dollar year).
+        Liquefier annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -1138,7 +1138,7 @@ def reactor_fixed_costs(
         output_dollar_year, 
         method = 'woods'
         ):
-    """Calculate reactor installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate reactor installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
     
     Types:
     (a) Jacketed and stirred reactor, carbon steel. (Peters, Timmerhaus, West, Figure 13.15.)
@@ -1164,9 +1164,9 @@ def reactor_fixed_costs(
     Returns
     -------
     react_inst_cost_usd
-        Reactor installed cost ($, user-specified output dollar year). 
+        Reactor installed cost (\\$, user-specified output dollar year). 
     react_om_cost_usd_per_yr
-        Reactor annual O&M cost ($/yr, user-specified output dollar year).
+        Reactor annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -1405,7 +1405,7 @@ def electrolyzer_fixed_costs(
         electr_purc_cost_usd_per_sq_m = 30000.0,
         electr_cost_dollar_year = 2019
         ):
-    """Calculate electrolyzer installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate electrolyzer installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
             
     Reference(s): 
     (a) Ramdin, M., Morrison, A. R. T., de Groen, M., van Haperen, R., de Kler, R., van den Broeke, L. J. P., Trusler, J. P. M., de Jong, W., & Vlugt, T. J. H. (2019). High Pressure Electrochemical Reduction of CO2 to Formic Acid/Formate: A Comparison between Bipolar Membranes and Cation Exchange Membranes. Industrial & Engineering Chemistry Research, 58(5), 1834-1847. https://doi.org/10.1021/acs.iecr.8b04944.
@@ -1430,9 +1430,9 @@ def electrolyzer_fixed_costs(
     Returns
     -------
     electr_inst_cost_usd
-        Electrolyzer installed cost ($, user-specified output dollar year). 
+        Electrolyzer installed cost (\\$, user-specified output dollar year). 
     electr_om_cost_usd_per_yr
-        Electrolyzer annual O&M cost ($/yr, user-specified output dollar year).
+        Electrolyzer annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -1508,7 +1508,7 @@ def psa_fixed_costs(
         in_flow_norm_cu_m_per_hr, 
         output_dollar_year
         ):
-    """Calculate separator (pressure swing adsorption, PSA) installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate separator (pressure swing adsorption, PSA) installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
     
     Investment scales with inlet gas flowrate (Nm^3/hr), based on Jouny et al., 2020 (citing Paturska et al., 2015, citing Bauer et al., 2013). Outputs validated using Paturska et al., 2015, Table 2.
 
@@ -1526,9 +1526,9 @@ def psa_fixed_costs(
     Returns
     -------
     psa_inst_cost_usd
-        Separator (PSA) installed cost ($, user-specified output dollar year). 
+        Separator (PSA) installed cost (\\$, user-specified output dollar year). 
     psa_om_cost_usd_per_yr
-        Separator (PSA) annual O&M cost ($/yr, user-specified output dollar year).
+        Separator (PSA) annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -1878,7 +1878,7 @@ def CO2_transport_all_in_cost(
         deliv_dist_mi,
         output_dollar_year
         ):
-    """Interpolate all-in liquid CO2 trucking cost ($) for given amount of CO2 (kt/yr) and transport distance (mile). Output is in user-specified output dollar year.
+    r"""Interpolate all-in liquid CO2 trucking cost ($) for given amount of CO2 (kt/yr) and transport distance (mile). Output is in user-specified output dollar year.
     
     All-in costs include preconditioning (e.g., liquefaction) and trucking fixed and variable costs. Reference: Multimodal CO2 Transportation Cost Model developed at Lawrence Livermore National Laboratory under the auspices of the U.S. Department of Energy under Contract DE-AC52-07NA27344. Model available at: https://github.com/myers79/MuMo-CoCo. 
 
@@ -1894,9 +1894,9 @@ def CO2_transport_all_in_cost(
     Returns
     -------
     liq_CO2_trucking_cost_usd_per_tCO2
-        All-in liquid CO2 trucking cost ($/tonne CO2, user-specified output dollar year). 
+        All-in liquid CO2 trucking cost (\\$/tonne CO2, user-specified output dollar year). 
     liq_CO2_trucking_cost_usd_per_yr
-        All-in liquid CO2 trucking cost ($/yr, user-specified output dollar year). 
+        All-in liquid CO2 trucking cost (\$/yr, user-specified output dollar year). 
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -2208,7 +2208,7 @@ def GH2_terminal_storage_fixed_costs(
         stor_tot_capacity_kg, 
         output_dollar_year
         ):
-    """Calculate compressed hydrogen terminal storage installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate compressed hydrogen terminal storage installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
     
     NOTE: Formula for compressed hydrogen storage cost on the "Compressed Gas H2 Terminal" tab in HDSAM V3.1 does not seem to match any of the storage cost equations on the "Cost Data" tab (taking into account dollar year conversion), but is close to formula for "Low Pressure GH2 Storage System Costs". For now, use equation for "Low Pressure GH2 Storage System Costs" (HDSAM V3.1 "Cost Data" tab).
     
@@ -2222,9 +2222,9 @@ def GH2_terminal_storage_fixed_costs(
     Returns
     -------
     stor_inst_cost_usd
-        Compressed hydrogen terminal storage installed cost ($, user-specified output dollar year). 
+        Compressed hydrogen terminal storage installed cost (\\$, user-specified output dollar year). 
     stor_om_cost_usd_per_yr
-        Compressed hydrogen terminal storage annual O&M cost ($/yr, user-specified output dollar year).
+        Compressed hydrogen terminal storage annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -2275,7 +2275,7 @@ def LH2_terminal_storage_fixed_costs(
         num_tanks,
         output_dollar_year
         ):
-    """Calculate liquid hydrogen terminal storage installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate liquid hydrogen terminal storage installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
     
     For now, use equation for "LH2 Storage Costs" (HDSAM V3.1 "Cost Data" tab). 
     
@@ -2293,9 +2293,9 @@ def LH2_terminal_storage_fixed_costs(
     Returns
     -------
     stor_inst_cost_usd
-        Liquid hydrogen terminal storage installed cost ($, user-specified output dollar year). 
+        Liquid hydrogen terminal storage installed cost (\\$, user-specified output dollar year). 
     stor_om_cost_usd_per_yr
-        Liquid hydrogen terminal storage annual O&M cost ($/yr, user-specified output dollar year).
+        Liquid hydrogen terminal storage annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -2343,7 +2343,7 @@ def LH2_station_cryo_storage_fixed_costs(
         stor_tot_capacity_kg, 
         output_dollar_year
         ):
-    """Calculate liquid hydrogen refueling station cryogenic storage installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate liquid hydrogen refueling station cryogenic storage installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
             
     Parameters
     ----------
@@ -2355,9 +2355,9 @@ def LH2_station_cryo_storage_fixed_costs(
     Returns
     -------
     stor_inst_cost_usd
-        Liquid hydrogen refueling station cryogenic storage installed cost ($, user-specified output dollar year). 
+        Liquid hydrogen refueling station cryogenic storage installed cost (\\$, user-specified output dollar year). 
     stor_om_cost_usd_per_yr
-        Liquid hydrogen refueling station cryogenic storage annual O&M cost ($/yr, user-specified output dollar year).
+        Liquid hydrogen refueling station cryogenic storage annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -2403,7 +2403,7 @@ def station_cascade_storage_fixed_costs(
         stor_tot_capacity_kg, 
         output_dollar_year
         ):
-    """Calculate refueling station cascade storage installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate refueling station cascade storage installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
     
     For now, use equation for "700 Bar Cascade Storage System Costs" (HDSAM V3.1 "Cost Data" tab).
     
@@ -2417,9 +2417,9 @@ def station_cascade_storage_fixed_costs(
     Returns
     -------
     stor_inst_cost_usd
-        Refueling station cascade storage installed cost ($, user-specified output dollar year). 
+        Refueling station cascade storage installed cost (\\$, user-specified output dollar year). 
     stor_om_cost_usd_per_yr
-        Refueling station cascade storage annual O&M cost ($/yr, user-specified output dollar year).
+        Refueling station cascade storage annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -2527,7 +2527,7 @@ def general_tank_stor_fixed_costs(
         output_dollar_year, 
         material = 'carbon steel',
         ):
-    """Calculate general-purpose storage tank installed cost ($) and annual O&M cost ($/yr), both in user-specified output dollar year.
+    r"""Calculate general-purpose storage tank installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
             
     Reference(s): 
     (a) Woods, 2007, "Rules of Thumb Engineering Practice"
@@ -2548,9 +2548,9 @@ def general_tank_stor_fixed_costs(
     Returns
     -------
     stor_tank_inst_cost_usd
-        Storage tank installed cost ($, user-specified output dollar year). 
+        Storage tank installed cost (\\$, user-specified output dollar year). 
     stor_tank_om_cost_usd_per_yr
-        Storage tank annual O&M cost ($/yr, user-specified output dollar year).
+        Storage tank annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
     """
@@ -3049,14 +3049,14 @@ def calcs(
         save_csv = False,
         output_folder = 'outputs'
         ):
-    """Run S2A systems technoeconomic analysis for various delivery pathways.
+    r"""Run S2A systems technoeconomic analysis for various delivery pathways.
 
     Parameters
     ----------
     dict_input_params : dict
         Dictionary containing one set of input parameters for one run.
     save_csv : bool, default False
-        If True, save output csv file. Otherwise return total hydrogen cost ($/kg) by pathway and output dataframe.
+        If True, save output csv file. Otherwise return total hydrogen cost (\$/kg) by pathway and output dataframe.
     output_folder : str, default 'outputs'
         Path for saving output .csv files.
         
@@ -3065,11 +3065,11 @@ def calcs(
     df_output
         Return dataframe containing input parameters and results (energy consumption, costs, etc.). 
     LOHC_tot_H2_cost_usd_per_kg
-        Return total $/kg H2 costs for LOHC delivery pathway ("LOHC"). 
+        Return total \\$/kg H2 costs for LOHC delivery pathway ("LOHC"). 
     GH2_tot_H2_cost_usd_per_kg
-        Return total $/kg H2 costs for compressed gaseous hydrogen delivery pathway ("GH2").
+        Return total \\$/kg H2 costs for compressed gaseous hydrogen delivery pathway ("GH2").
     LH2_tot_H2_cost_usd_per_kg
-        Return total $/kg H2 costs for liquid hydrogen delivery pathway ("LH2").
+        Return total \\$/kg H2 costs for liquid hydrogen delivery pathway ("LH2").
     """
     #%% ASSIGN INPUT PARAMETERS
     
