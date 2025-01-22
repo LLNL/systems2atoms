@@ -79,13 +79,13 @@ descriptor_ranges = [[300, 400], [1, 100.0]]
 resolution = 20
 ```
 
-##Output
+## Output
 
 All results are saved in the output directory, including:
    -`TOF Data: .csv, .xlsx, .npz files.`
    -`TOF Heatmaps: .png images.`
 
-##Requirements
+## Requirements
 
 To run the project, you need the following tools and libraries:
 
@@ -102,7 +102,7 @@ conda install -c conda-forge ase
 4. ASAP3 (documentation):
 	Used for neighbor list generation in Wulff construction.
 
-##References
+## References
 
 CATMAP Documentation
 Kinetic Data Source (DOI: 10.1021/cs400664z)
