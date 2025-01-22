@@ -336,12 +336,12 @@ def mol_to_norm_cu_m(
     Parameters
     ----------
     num_mols : float
-        Number of moles of gas
+        Number of moles of gas.
     
     Returns
     -------
     gas_vol_norm_cu_m
-        Gas volume (Nm^3) (or volumetric flowrate, Nm^3/time)
+        Gas volume (Nm^3) (or volumetric flowrate, Nm^3/time).
     """
     gas_vol_norm_cu_m = \
         num_mols * gas_const_kJ_per_kmol_K * \
