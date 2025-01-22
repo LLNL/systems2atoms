@@ -66,7 +66,7 @@ Replace <Particle_diameter (nm)> with the desired nanoparticle size in nanometer
 ## Customization
 ### Adjust Temperature and Pressure Ranges
 To customize the temperature (`T`) and pressure (`P`) ranges:
-1. Open the tof_map_dia.py script.
+1. Open the `tof_map_dia.py` script.
 2. Locate the **USER INPUT** section:
 ```python
 # User inputs for Temperature and Pressure Range
