@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains scripts to compute **Turnover Frequency (TOF)** data (mol H<sub>2</sub>/mol catalyst·hr) for palladium nanoparticles of specified sizes over a range of temperatures and pressures. The main script, `tof_map_dia.py`, calculates TOF values and generates 2D heatmaps for visualization.
+This repository contains scripts to compute **Turnover Frequency (TOF)** data (mol H<sub>2</sub>/mol catalyst·hr) for Palladium nanoparticles of specified sizes over a range of temperatures and pressures. The main script, `tof_map_dia.py`, calculates TOF values and generates 2D heatmaps for visualization.
 
 The workflow uses **CATMAP** for microkinetics modeling (MKM), Wulff construction for nanoparticle geometry, and additional Python scripts for data processing. For detailed information about CATMAP, refer to its [documentation](https://catmap.readthedocs.io/en/latest/index.html).
 
