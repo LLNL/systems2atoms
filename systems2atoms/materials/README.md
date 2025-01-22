@@ -92,7 +92,7 @@ All results are saved in the **output** directory, including:
 
 To run the project, you need the following tools and libraries:
 
-1. ASE (installation guide):
+1. [ASE](https://wiki.fysik.dtu.dk/ase/index.html) (installation guide):
 ```
 conda install -c conda-forge ase
 ```
