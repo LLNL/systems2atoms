@@ -1,0 +1,568 @@
+from numpy import array
+
+try:
+    import cPickle as pickle
+
+except: #workaround for python3.X
+    import _pickle as pickle
+
+
+from mpmath import mpf 
+
+parser = None
+
+scaler = 'ThermodynamicScaler'
+
+thermodynamics = 'ThermoCorrections'
+
+solver = 'SteadyStateSolver'
+
+mapper = 'MinResidMapper'
+
+binary_data = pickle.load(open("HCOOH_decomposition_211.pkl","rb"))
+
+locals().update(binary_data)
+
+A_uc = None
+
+adsorbate_interaction_model = 'ideal'
+
+adsorbate_interactions = None
+
+adsorbate_names = ('COOH_s', 'CO_s', 'HCOO&_s', 'HCOO_s', 'H_s', 'OH_s')
+
+adsorbate_thermo_mode = 'harmonic_adsorbate'
+
+analytical_jacobian = True
+
+atomic_reservoir_list = [{'C': 'CO2_g', 'O': 'CO_g', 'H': 'H2O_g'}, {'C': 'CO2_g', 'O': 'CO_g', 'H': 'H2_g'}, {'C': 'CO2_g', 'O': 'CO_g', 'H': 'HCOOH_g'}, {'C': 'CO2_g', 'O': 'H2O_g', 'H': 'H2_g'}, {'C': 'CO2_g', 'O': 'H2O_g', 'H': 'HCOOH_g'}, {'C': 'CO_g', 'O': 'H2O_g', 'H': 'H2_g'}, {'C': 'CO_g', 'O': 'HCOOH_g', 'H': 'H2_g'}, {'C': 'HCOOH_g', 'O': 'H2O_g', 'H': 'H2_g'}]
+
+atoms_dict = {}
+
+coverage_headers = ['coverage', 'coadsorbate_coverage']
+
+data_file = 'HCOOH_decomposition_211.pkl'
+
+decimal_precision = 100
+
+descriptor_decimal_precision = 2
+
+descriptor_names = ('temperature', 'pressure')
+
+descriptor_ranges = [[300, 400], [1, 100.0]]
+
+echem_transition_state_names = []
+
+electrochemical_thermo_mode = 'simple_electrochemical'
+
+elementary_rxns = ([['s', 's', 'HCOOH_g'], ['HCOO-H_s', 's'], ['HCOO_s', 'H_s']], [['HCOO_s'], ['CO2_g', 'H_s']], [['HCOO_s'], ['HCOO-_s'], ['HCOO&_s']], [['HCOO&_s'], ['H-COO&_s'], ['CO2_g', 'H_s']], [['H_s', 'H_s'], ['H-H_s', 's'], ['H2_g', 's', 's']], [['s', 's', 'HCOOH_g'], ['H-COOH_s', 's'], ['COOH_s', 'H_s']], [['COOH_s'], ['COO-H_s'], ['CO2_g', 'H_s']], [['COOH_s', 's'], ['CO-OH_s', 's'], ['CO_s', 'OH_s']], [['CO_s'], ['CO_g', 's']], [['OH_s', 'H_s'], ['H-OH_s', 's'], ['H2O_g', 's', 's']])
+
+estimate_frequencies = True
+
+extrapolate_coverages = False
+
+fixed_entropy_dict = {'H2_g': 0.00135, 'other': 0.002}
+
+force_recalculation = False
+
+force_recompilation = False
+
+frequency_dict = {'HCOOH_g': [0.44262359400000006, 0.3648855006, 0.21945203400000002, 0.17196608540000002, 0.15237658180000002, 0.137002541, 0.077490125, 0.12807567860000002, 0.0791019196], 'H2O_g': [0.45341021940000004, 0.197754799, 0.4656846552], 'H2_g': [0.5456544642000001], 'CO2_g': [0.16527093860000003, 0.2912388858, 0.0826974614, 0.0826974614], 'CO_g': [0.26904571400000005], 's': [], 'COOH_s': [0.4480788988, 0.21982398660000002, 0.14220987740000002, 0.10551055420000001, 0.07215880440000001, 0.07129091500000001, 0.043642438400000004, 0.029880192200000003, 0.022813092800000004, 0.0101667044, 0.00619921, 0.0037195260000000003], 'CO_s': [0.24710051060000002, 0.034095655, 0.032607844600000005, 0.0200854404, 0.015126072400000001, 0.0042154628], 'HCOO&_s': [0.32942601940000005, 0.21436868180000002, 0.1632871914, 0.14592940340000002, 0.12262037380000002, 0.0865409716, 0.0348395602, 0.027152539800000004, 0.014630135600000002, 0.013514277800000002, 0.010910609600000001, 0.009298815], 'HCOO_s': [0.3712086948, 0.197754799, 0.164279065, 0.16589085960000002, 0.12286834220000001, 0.09137635540000001, 0.0364513548, 0.036079402200000006, 0.0355834654, 0.0110345938, 0.010662641200000001, 0.005703273200000001], 'H_s': [0.12844763120000002, 0.11332155880000001, 0.07550637780000001], 'OH_s': [0.48700993760000005, 0.0757543462, 0.048725790600000006, 0.0404188492, 0.039179007200000004, 0.0081829572], 'CO-OH_s': [0.47237980200000007, 0.25540745200000003, 0.08939260820000001, 0.0639758472, 0.043146501600000005, 0.0399229124, 0.033971670800000006, 0.027648476600000003, 0.011778499000000001, 0.0049593680000000005, 0.006819131000000001], 'COO-H_s': [0.2551594836, 0.16254328620000003, 0.11009796960000001, 0.1005511862, 0.07364661480000001, 0.0364513548, 0.028268397600000002, 0.0101667044, 0.0083069414, 0.0028516366000000005, 0.013514277800000002], 'H-COO&_s': [0.26470626700000005, 0.18076896360000003, 0.1367545726, 0.10179102820000001, 0.0850531612, 0.055296953200000006, 0.025044808400000004, 0.014010214600000001, 0.012894356800000001, 0.00619921, 0.0023556998000000004], 'H-COOH_s': [0.35422285940000003, 0.1542363448, 0.15783188660000003, 0.1448135456, 0.13638262, 0.13588668320000002, 0.12460412100000001, 0.0786059828, 0.047857901200000004, 0.045998138200000004, 0.037567212600000004, 0.014506151400000002, 0.009546783400000002, 0.0060752258], 'H-H_s': [0.20469791420000003, 0.17295795900000002, 0.026904571400000004, 0.063231942, 0.062116084200000005], 'H-OH_s': [0.46704848140000005, 0.102906886, 0.06013233700000001, 0.0654636576, 0.06521568920000001, 0.039055023, 0.023556998000000003, 0.025168792600000003], 'HCOO-H_s': [0.37071275800000003, 0.1957710518, 0.16415508080000002, 0.159939618, 0.13018341, 0.12162850020000002, 0.08678894000000001, 0.0634799104, 0.031615971, 0.029756208000000003, 0.023928950600000002, 0.015126072400000001, 0.0027276524000000003, 0.008802878200000001], 'HCOO-_s': [0.3128121366, 0.21858414460000003, 0.16415508080000002, 0.14592940340000002, 0.11914881620000001, 0.08616901900000001, 0.0327318288, 0.023556998000000003, 0.021201298200000003, 0.014630135600000002, 0.011158578, 0.0091748308], 'g': [], '*_g': [], '*_s': []}
+
+frequency_surface_names = []
+
+frequency_unit_conversion = 0.0001239842
+
+gas_names = ('CO2_g', 'CO_g', 'H2O_g', 'H2_g', 'HCOOH_g')
+
+gas_pressures = [0.0, 0.0, 0.0, 0.0, 1.0]
+
+gas_thermo_mode = 'shomate_gas'
+
+hbond_dict = {'COOH': -0.25, 'OCHO': 0.0, 'CO': -0.1, 'CHO': -0.1, 'CH2O': 0.0, 'OCH3': 0.0, 'O': 0.0, 'OH': -0.5, 'H': 0.0, 'COH': -0.25, 'C': 0.0, 'CH': 0.0, 'CH2': 0.0, 'CH3': 0.0, 'CHOH': -0.25, 'COHOH': -0.25, 'OCH2O': 0.0, 'CH2OH': -0.25, 'OCHCH2': 0.0, 'OCHCHO': 0.0}
+
+hindered_ads_params = {}
+
+ideal_gas_params = {'H2_g': [2, 'linear', 0], 'N2_g': [2, 'linear', 0], 'O2_g': [2, 'linear', 1.0], 'H2O_g': [2, 'nonlinear', 0], 'CO_g': [1, 'linear', 0], 'CH4_g': [12, 'nonlinear', 0], 'NH3_g': [3, 'nonlinear', 0], 'CH3OH_g': [1, 'nonlinear', 0], 'CH3CH2OH_g': [1, 'nonlinear', 0], 'CO2_g': [2, 'linear', 0], 'CH2O_g': [2, 'nonlinear', 0], 'HCOOH_g': [1, 'nonlinear', 0], 'CH2CH2_g': [4, 'nonlinear', 0], 'CH3CHCH2_g': [1, 'nonlinear', 0], 'CH3CH2CHCH2_g': [1, 'nonlinear', 0], 'CH3CHCHCH3_g': [2, 'nonlinear', 0], 'CH3CH3CCH2_g': [2, 'nonlinear', 0], 'pe_g': [2, 'linear', 0], 'C2H2_g': [2, 'linear', 0], 'C2H4_g': [4, 'nonlinear', 0], 'C2H6_g': [6, 'nonlinear', 0], 'C3H6_g': [1, 'nonlinear', 0], 'CH3COOH_g': [1, 'nonlinear', 0], 'CH3CHO_g': [1, 'nonlinear', 0], 'C5H4O2_g': [1, 'nonlinear', 0], 'C5H6O2_g': [1, 'nonlinear', 0], 'C5H6O_g': [1, 'nonlinear', 0], 'HCl_g': [1, 'linear', 0], 'Cl2_g': [2, 'linear', 0]}
+
+input_file = 'energies_211.txt'
+
+interaction_fitting_mode = None
+
+interaction_surface_names = None
+
+internally_constrain_coverages = True
+
+kBT = mpf('0.025851997434000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003')
+
+max_bisections = 3
+
+max_initial_guesses = 3
+
+max_rootfinding_iterations = 100
+
+model_name = 'HCOOH_decomposition_211'
+
+numerical_representation = 'mpmath'
+
+optimize_analytical_expressions = False
+
+output_labels = {'coverage': ('COOH_s', 'CO_s', 'HCOO&_s', 'HCOO_s', 'H_s', 'OH_s'), 'rate': ([['s', 's', 'HCOOH_g'], ['HCOO-H_s', 's'], ['HCOO_s', 'H_s']], [['HCOO_s'], ['CO2_g', 'H_s']], [['HCOO_s'], ['HCOO-_s'], ['HCOO&_s']], [['HCOO&_s'], ['H-COO&_s'], ['CO2_g', 'H_s']], [['H_s', 'H_s'], ['H-H_s', 's'], ['H2_g', 's', 's']], [['s', 's', 'HCOOH_g'], ['H-COOH_s', 's'], ['COOH_s', 'H_s']], [['COOH_s'], ['COO-H_s'], ['CO2_g', 'H_s']], [['COOH_s', 's'], ['CO-OH_s', 's'], ['CO_s', 'OH_s']], [['CO_s'], ['CO_g', 's']], [['OH_s', 'H_s'], ['H-OH_s', 's'], ['H2O_g', 's', 's']]), 'turnover_frequency': ('CO2_g', 'CO_g', 'H2O_g', 'H2_g', 'HCOOH_g'), 'production_rate': ('CO2_g', 'CO_g', 'H2O_g', 'H2_g', 'HCOOH_g'), 'consumption_rate': ('CO2_g', 'CO_g', 'H2O_g', 'H2_g', 'HCOOH_g')}
+
+output_variables = ['coverage', 'rate', 'production_rate', 'consumption_rate', 'turnover_frequency']
+
+parameter_mode = 'formation_energy'
+
+parameter_names = ('COOH_s', 'CO_s', 'HCOO&_s', 'HCOO_s', 'H_s', 'OH_s', 'CO-OH_s', 'COO-H_s', 'H-COO&_s', 'H-COOH_s', 'H-H_s', 'H-OH_s', 'HCOO-H_s', 'HCOO-_s')
+
+parse_headers = ['formation_energy', 'frequencies']
+
+perturbation_size = 1e-14
+
+prefactor_list = ['kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h', 'kB*T/h']
+
+pressure = 1.0
+
+pressure_mode = 'concentration'
+
+required_headers = ['species_name', 'surface_name', 'site_name', 'formation_energy', 'frequencies', 'reference']
+
+residual_threshold = 0.9
+
+resolution = [20, 20]
+
+rxn_expressions = ['2*_s + HCOOH_g <-> HCOO-H* + *_s -> HCOO* + H*', 'HCOO* <-> CO2_g + H*', 'HCOO* <-> HCOO-* <-> HCOO&*', 'HCOO&* <-> H-COO&* <-> CO2_g + H*', '2H* <-> H-H*+*_s <-> H2_g + 2*_s', '2*_s + HCOOH_g <-> H-COOH* + *_s -> COOH* + H*', 'COOH* <-> COO-H* <-> CO2_g + H*', 'COOH* + *_s <-> CO-OH* + *_s -> CO* + OH*', 'CO*  <-> CO_g + *_s', 'OH*+H*  <-> H-OH* +*_s <-> H2O_g + 2*_s']
+
+rxn_options_dict = {'prefactor': {}, 'beta': {}}
+
+scaling_constraint_dict = {'H_s': ['+', 0, None], 'H2_s': [0, '+', None], 'HCOO-H_s': 'initial_state', 'H-H_s': 'final_state'}
+
+search_directions = [[0, 0], [0, 1], [1, 0], [0, -1], [-1, 0], [-1, 1], [1, 1], [1, -1], [-1, -1]]
+
+setup_file = 'HCOOH_decomposition_211.mkm'
+
+shomate_params = {'H2_g:298-1000': [33.066178, -11.363417, 11.432816, -2.772874, -0.158558, -9.980797, 172.707974, 0], 'H2_g:1000-2500': [18.563083, 12.257357, -2.859786, 0.268238, 1.97799, -1.147438, 156.288133, 0], 'H2_g:2500-6000': [43.41356, -4.293079, 1.272428, -0.096876, -20.533862, -38.515158, 162.081354, 0], 'CH4_g:298-1300': [-0.703029, 108.4773, -42.52157, 5.862788, 0.678565, -76.84376, 158.7163, -74.8731], 'CH4_g:1300-1600': [85.81217, 11.26467, -2.114146, 0.13819, -26.42221, -153.5327, 224.4143, -74.8731], 'CO_g:298-1300': [25.56759, 6.09613, 4.054656, -2.671201, 0.131021, -118.0089, 227.3665, -110.5271], 'CO_g:1300-1600': [35.1507, 1.300095, -0.205921, 0.01355, -3.28278, -127.8375, 231.712, -110.5271], 'H2O_g:100-500': [36.303952, -24.11232, 63.64111, -38.9524, -0.01385, -10.23966, 237.39431, 0.0], 'H2O_g:500-1700': [30.092, 6.832514, 6.793435, -2.53448, 0.082139, -250.881, 223.3967, -241.8264], 'H2O_g:1700-6000': [41.96426, 8.622053, -1.49978, 0.098119, -11.15764, -272.1797, 219.7809, -241.8264], 'CO2_g:298-1200': [24.99735, 55.18696, -33.69137, 7.948387, -0.136638, -403.6075, 228.2431, -393.5224], 'CO2_g:1200-6000': [58.16639, 2.720075, -0.492289, 0.038844, -6.447293, -425.9186, 263.6125, -393.5224], 'O2_g:100-700': [31.32234, -20.23531, 57.8664, -36.50624, -0.007374, -8.903471, 246.7945, 0.0], 'O2_g:700-2000': [30.03235, 8.772972, -3.988133, 0.788313, -0.741599, -11.32468, 236.1663, 0.0], 'O2_g:2000-6000': [20.91111, 10.72071, -2.020498, 0.146449, 9.245722, 5.337651, 237.6185, 0.0], 'NH3_g:298-1400': [19.99563, 49.77119, -15.37599, 1.921168, 0.189174, -53.30667, 203.8591, -45.89806], 'N2_g:100-500': [28.98641, 1.853978, -9.647459, 16.63537, 0.000117, -8.671914, 226.4168, 0.0], 'N2_g:500-2000': [19.50583, 19.88705, -8.598535, 1.369784, 0.527601, -4.935202, 212.39, 0.0], 'N2O_g:298-1400': [27.67988, 51.14898, -30.64454, 6.847911, -0.157906, 71.24934, 238.6164, 82.04824], 'NO2_g:298-1200': [16.10857, 75.89525, -54.3874, 14.30777, 0.239423, 26.17464, 240.5386, 33.09502], 'NO_g:298-1200': [23.83491, 12.58878, -1.139011, -1.497459, 0.214194, 83.35783, 237.1219, 90.29114], 'NO3_g:298-1200': [11.22316, 166.3889, -148.4458, 47.40598, -0.176791, 61.00858, 221.7679, 71.128], 'HNO2_g:298-1200': [24.89974, 91.37563, -64.84614, 17.92007, -0.134737, -88.13596, 254.2671, -76.73498], 'HNO3_g:298-1200': [19.63229, 153.9599, -115.8378, 32.87955, -0.249114, -146.8818, 247.7049, -134.306], 'HCN_g:298-1200': [32.69373, 22.59205, -4.369142, -0.407697, -0.282399, 123.4811, 233.2597, 135.1432], 'CH2CH2_g:298-1200': [-6.38788, 184.4019, -112.9718, 28.49593, 0.31554, 48.17332, 163.1568, 52.46694], 'CH2O_g:298-1500': [5.193767, 93.23249, -44.85457, 7.882279, 0.551175, -119.3591, 202.4663, -115.8972], 'CH3OH_g:298-1500': [-1.0845814245433651, 153.2463565199489, -79.53050359618254, 16.47130239316011, 0.5220334601533215, -4.897417024069, 199.1893745506112, 0.0], 'C5H4O2_g:100-1500': [-16.36694, 0.46958, -0.000331925, 8.50912e-08, 198590.9145, -1661.34999, -15.68938, 12461.34999], 'C5H6O2_g:100-1500': [-18.57626, 0.50733, -0.000335824, 8.28263e-08, 231619.2141, -6357.53523, 2.75692, 7057.53523], 'C5H6O_g:50-1500': [1.26847, 0.35388, -0.000173962, 2.87427e-08, 48401.71207, -5691.94893, -85.38991, 7191.94893], 'Cl2_g:298-1000': [33.0506, 12.2294, -12.0651, 4.38533, -0.159494, -10.8348, 259.029, 0.0], 'HCl_g:298-1200': [32.12392, -13.45805, 19.86852, -6.853936, -0.049672, -101.6206, 228.6866, -92.31201], 'CH3CH2OH_g:298-1500': [-4.7367880805894265, 271.96181550301463, -169.34946529216657, 43.73860153608533, 0.24643430702178773, -9.828280829187861, 203.3325622617075, 0.0], 'CH3CHO_g:298-1500': [4.8037386340099095, 185.92002366990326, -99.1084610902012, 20.61473919069016, 0.2770802548558646, -8.566600040790945, 220.00244674443837, 0.0], 'HCOOH_g:298-1500': [3.802752304225226, 153.66217894746168, -84.64046773816926, 16.297377707561505, 0.2772064997263338, -6.16527, 212.9698972559699, 0]}
+
+site_names = ('g', 's')
+
+species_definitions = {'HCOOH_g': {'name': 'HCOOH', 'site': 'g', 'type': 'gas', 'n_sites': 0, 'composition': {'C': 1, 'O': 2, 'H': 2}, 'concentration': 1.0, 'formation_energy': 2.6, 'formation_energy_source': 'NIST+Yoo_paper.', 'frequencies': [0.44262359400000006, 0.3648855006, 0.21945203400000002, 0.17196608540000002, 0.15237658180000002, 0.137002541, 0.077490125, 0.12807567860000002, 0.0791019196]}, 'H2O_g': {'name': 'H2O', 'site': 'g', 'type': 'gas', 'n_sites': 0, 'composition': {'O': 1, 'H': 2}, 'concentration': 0.0, 'formation_energy': 0.0, 'formation_energy_source': 'Input File Tutorial.', 'frequencies': [0.45341021940000004, 0.197754799, 0.4656846552]}, 'H2_g': {'name': 'H2', 'site': 'g', 'type': 'gas', 'n_sites': 0, 'composition': {'H': 2}, 'concentration': 0.0, 'formation_energy': 0.0, 'formation_energy_source': 'Input File Tutorial.', 'frequencies': [0.5456544642000001]}, 'CO2_g': {'name': 'CO2', 'site': 'g', 'type': 'gas', 'n_sites': 0, 'composition': {'C': 1, 'O': 2}, 'concentration': 0.0, 'formation_energy': 2.45, 'formation_energy_source': 'Input File.', 'frequencies': [0.16527093860000003, 0.2912388858, 0.0826974614, 0.0826974614]}, 'CO_g': {'name': 'CO', 'site': 'g', 'type': 'gas', 'n_sites': 0, 'composition': {'C': 1, 'O': 1}, 'concentration': 0.0, 'formation_energy': 2.522, 'formation_energy_source': 'Input File Tutorial.', 'frequencies': [0.26904571400000005]}, 's': {'name': 's', 'site': 's', 'type': 'site', 'formation_energy': 0, 'n_sites': 1, 'composition': {}, 'site_names': ['211'], 'total': 1, 'frequencies': []}, 'COOH_s': {'name': 'COOH', 'site': 's', 'type': 'adsorbate', 'n_sites': 1, 'composition': {'H': 1, 'C': 1, 'O': 2}, 'formation_energy': [2.12], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.4480788988, 0.21982398660000002, 0.14220987740000002, 0.10551055420000001, 0.07215880440000001, 0.07129091500000001, 0.043642438400000004, 0.029880192200000003, 0.022813092800000004, 0.0101667044, 0.00619921, 0.0037195260000000003]}, 'CO_s': {'name': 'CO', 'site': 's', 'type': 'adsorbate', 'n_sites': 1, 'composition': {'C': 1, 'O': 1}, 'formation_energy': [1.25], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.24710051060000002, 0.034095655, 0.032607844600000005, 0.0200854404, 0.015126072400000001, 0.0042154628]}, 'HCOO&_s': {'name': 'HCOO&', 'site': 's', 'type': 'adsorbate', 'n_sites': 1, 'composition': {'C': 1, 'O': 2, 'H': 1}, 'formation_energy': [2.53], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.32942601940000005, 0.21436868180000002, 0.1632871914, 0.14592940340000002, 0.12262037380000002, 0.0865409716, 0.0348395602, 0.027152539800000004, 0.014630135600000002, 0.013514277800000002, 0.010910609600000001, 0.009298815]}, 'HCOO_s': {'name': 'HCOO', 'site': 's', 'type': 'adsorbate', 'n_sites': 1, 'composition': {'C': 1, 'O': 2, 'H': 1}, 'formation_energy': [1.99], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.3712086948, 0.197754799, 0.164279065, 0.16589085960000002, 0.12286834220000001, 0.09137635540000001, 0.0364513548, 0.036079402200000006, 0.0355834654, 0.0110345938, 0.010662641200000001, 0.005703273200000001]}, 'H_s': {'name': 'H', 'site': 's', 'type': 'adsorbate', 'n_sites': 1, 'composition': {'H': 1}, 'formation_energy': [-0.35], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.12844763120000002, 0.11332155880000001, 0.07550637780000001]}, 'OH_s': {'name': 'OH', 'site': 's', 'type': 'adsorbate', 'n_sites': 1, 'composition': {'O': 1, 'H': 1}, 'formation_energy': [0.69], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.48700993760000005, 0.0757543462, 0.048725790600000006, 0.0404188492, 0.039179007200000004, 0.0081829572]}, 'CO-OH_s': {'name': 'CO-OH', 'site': 's', 'type': 'transition_state', 'n_sites': 1, 'composition': {'H': 1, 'C': 1, 'O': 2}, 'formation_energy': [3.1], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.47237980200000007, 0.25540745200000003, 0.08939260820000001, 0.0639758472, 0.043146501600000005, 0.0399229124, 0.033971670800000006, 0.027648476600000003, 0.011778499000000001, 0.0049593680000000005, 0.006819131000000001]}, 'COO-H_s': {'name': 'COO-H', 'site': 's', 'type': 'transition_state', 'n_sites': 1, 'composition': {'H': 1, 'C': 1, 'O': 2}, 'formation_energy': [2.85], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.2551594836, 0.16254328620000003, 0.11009796960000001, 0.1005511862, 0.07364661480000001, 0.0364513548, 0.028268397600000002, 0.0101667044, 0.0083069414, 0.0028516366000000005, 0.013514277800000002]}, 'H-COO&_s': {'name': 'H-COO&', 'site': 's', 'type': 'transition_state', 'n_sites': 1, 'composition': {'C': 1, 'O': 2, 'H': 1}, 'formation_energy': [2.81], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.26470626700000005, 0.18076896360000003, 0.1367545726, 0.10179102820000001, 0.0850531612, 0.055296953200000006, 0.025044808400000004, 0.014010214600000001, 0.012894356800000001, 0.00619921, 0.0023556998000000004]}, 'H-COOH_s': {'name': 'H-COOH', 'site': 's', 'type': 'transition_state', 'n_sites': 1, 'composition': {'C': 1, 'O': 2, 'H': 2}, 'formation_energy': [2.55], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.35422285940000003, 0.1542363448, 0.15783188660000003, 0.1448135456, 0.13638262, 0.13588668320000002, 0.12460412100000001, 0.0786059828, 0.047857901200000004, 0.045998138200000004, 0.037567212600000004, 0.014506151400000002, 0.009546783400000002, 0.0060752258]}, 'H-H_s': {'name': 'H-H', 'site': 's', 'type': 'transition_state', 'n_sites': 1, 'composition': {'H': 2}, 'formation_energy': [0.0], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.20469791420000003, 0.17295795900000002, 0.026904571400000004, 0.063231942, 0.062116084200000005]}, 'H-OH_s': {'name': 'H-OH', 'site': 's', 'type': 'transition_state', 'n_sites': 1, 'composition': {'O': 1, 'H': 2}, 'formation_energy': [1.2], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.46704848140000005, 0.102906886, 0.06013233700000001, 0.0654636576, 0.06521568920000001, 0.039055023, 0.023556998000000003, 0.025168792600000003]}, 'HCOO-H_s': {'name': 'HCOO-H', 'site': 's', 'type': 'transition_state', 'n_sites': 1, 'composition': {'C': 1, 'O': 2, 'H': 2}, 'formation_energy': [2.76], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.37071275800000003, 0.1957710518, 0.16415508080000002, 0.159939618, 0.13018341, 0.12162850020000002, 0.08678894000000001, 0.0634799104, 0.031615971, 0.029756208000000003, 0.023928950600000002, 0.015126072400000001, 0.0027276524000000003, 0.008802878200000001]}, 'HCOO-_s': {'name': 'HCOO-', 'site': 's', 'type': 'transition_state', 'n_sites': 1, 'composition': {'C': 1, 'O': 2, 'H': 1}, 'formation_energy': [2.96], 'formation_energy_source': ['Yoo_paper'], 'frequencies': [0.3128121366, 0.21858414460000003, 0.16415508080000002, 0.14592940340000002, 0.11914881620000001, 0.08616901900000001, 0.0327318288, 0.023556998000000003, 0.021201298200000003, 0.014630135600000002, 0.011158578, 0.0091748308]}, 'g': {'name': 'g', 'site': 'g', 'type': 'site', 'formation_energy': 0, 'n_sites': 0, 'site_names': ['gas'], 'total': 0, 'composition': {}, 'frequencies': []}, '*_g': {'name': 'g', 'site': 'g', 'type': 'site', 'formation_energy': 0, 'n_sites': 0, 'site_names': ['gas'], 'total': 0, 'composition': {}, 'frequencies': []}, '*_s': {'name': 's', 'site': 's', 'type': 'site', 'formation_energy': 0, 'n_sites': 1, 'composition': {}, 'site_names': ['211'], 'total': 1, 'frequencies': []}}
+
+standard_coadsorbate_coverage = 'min'
+
+standard_coverage = 'min'
+
+surface_names = ('Pd',)
+
+temperature = 300.0
+
+thermodynamic_corrections = ['gas', 'adsorbate']
+
+thermodynamic_variables = ['temperature', 'gas_pressures', 'voltage', 'beta', 'pH', 'Upzc', 'gas_thermo_mode', 'adsorbate_thermo_mode', 'pressure']
+
+tolerance = 1e-50
+
+transition_state_names = ('CO-OH_s', 'COO-H_s', 'H-COO&_s', 'H-COOH_s', 'H-H_s', 'H-OH_s', 'HCOO-H_s', 'HCOO-_s')
+
+verbose = 1
+
+stdout = """initial_evaluation: success - initial guess at point [400.00,100.00]
+initial_evaluation: success - initial guess at point [400.00,94.79]
+initial_evaluation: success - initial guess at point [400.00,89.58]
+initial_evaluation: success - initial guess at point [400.00,84.37]
+initial_evaluation: success - initial guess at point [400.00,79.16]
+initial_evaluation: success - initial guess at point [400.00,73.95]
+initial_evaluation: success - initial guess at point [400.00,68.74]
+initial_evaluation: success - initial guess at point [400.00,63.53]
+initial_evaluation: success - initial guess at point [400.00,58.32]
+initial_evaluation: success - initial guess at point [400.00,53.11]
+initial_evaluation: success - initial guess at point [400.00,47.89]
+initial_evaluation: success - initial guess at point [400.00,42.68]
+initial_evaluation: success - initial guess at point [400.00,37.47]
+initial_evaluation: success - initial guess at point [400.00,32.26]
+initial_evaluation: success - initial guess at point [400.00,27.05]
+initial_evaluation: success - initial guess at point [400.00,21.84]
+initial_evaluation: success - initial guess at point [400.00,16.63]
+initial_evaluation: success - initial guess at point [400.00,11.42]
+initial_evaluation: success - initial guess at point [400.00, 6.21]
+initial_evaluation: success - initial guess at point [400.00, 1.00]
+initial_evaluation: success - initial guess at point [394.74,100.00]
+initial_evaluation: success - initial guess at point [394.74,94.79]
+initial_evaluation: success - initial guess at point [394.74,89.58]
+initial_evaluation: success - initial guess at point [394.74,84.37]
+initial_evaluation: success - initial guess at point [394.74,79.16]
+initial_evaluation: success - initial guess at point [394.74,73.95]
+initial_evaluation: success - initial guess at point [394.74,68.74]
+initial_evaluation: success - initial guess at point [394.74,63.53]
+initial_evaluation: success - initial guess at point [394.74,58.32]
+initial_evaluation: success - initial guess at point [394.74,53.11]
+initial_evaluation: success - initial guess at point [394.74,47.89]
+initial_evaluation: success - initial guess at point [394.74,42.68]
+initial_evaluation: success - initial guess at point [394.74,37.47]
+initial_evaluation: success - initial guess at point [394.74,32.26]
+initial_evaluation: success - initial guess at point [394.74,27.05]
+initial_evaluation: success - initial guess at point [394.74,21.84]
+initial_evaluation: success - initial guess at point [394.74,16.63]
+initial_evaluation: success - initial guess at point [394.74,11.42]
+initial_evaluation: success - initial guess at point [394.74, 6.21]
+initial_evaluation: success - initial guess at point [394.74, 1.00]
+initial_evaluation: success - initial guess at point [389.47,100.00]
+initial_evaluation: success - initial guess at point [389.47,94.79]
+initial_evaluation: success - initial guess at point [389.47,89.58]
+initial_evaluation: success - initial guess at point [389.47,84.37]
+initial_evaluation: success - initial guess at point [389.47,79.16]
+initial_evaluation: success - initial guess at point [389.47,73.95]
+initial_evaluation: success - initial guess at point [389.47,68.74]
+initial_evaluation: success - initial guess at point [389.47,63.53]
+initial_evaluation: success - initial guess at point [389.47,58.32]
+initial_evaluation: success - initial guess at point [389.47,53.11]
+initial_evaluation: success - initial guess at point [389.47,47.89]
+initial_evaluation: success - initial guess at point [389.47,42.68]
+initial_evaluation: success - initial guess at point [389.47,37.47]
+initial_evaluation: success - initial guess at point [389.47,32.26]
+initial_evaluation: success - initial guess at point [389.47,27.05]
+initial_evaluation: success - initial guess at point [389.47,21.84]
+initial_evaluation: success - initial guess at point [389.47,16.63]
+initial_evaluation: success - initial guess at point [389.47,11.42]
+initial_evaluation: success - initial guess at point [389.47, 6.21]
+initial_evaluation: success - initial guess at point [389.47, 1.00]
+initial_evaluation: success - initial guess at point [384.21,100.00]
+initial_evaluation: success - initial guess at point [384.21,94.79]
+initial_evaluation: success - initial guess at point [384.21,89.58]
+initial_evaluation: success - initial guess at point [384.21,84.37]
+initial_evaluation: success - initial guess at point [384.21,79.16]
+initial_evaluation: success - initial guess at point [384.21,73.95]
+initial_evaluation: success - initial guess at point [384.21,68.74]
+initial_evaluation: success - initial guess at point [384.21,63.53]
+initial_evaluation: success - initial guess at point [384.21,58.32]
+initial_evaluation: success - initial guess at point [384.21,53.11]
+initial_evaluation: success - initial guess at point [384.21,47.89]
+initial_evaluation: success - initial guess at point [384.21,42.68]
+initial_evaluation: success - initial guess at point [384.21,37.47]
+initial_evaluation: success - initial guess at point [384.21,32.26]
+initial_evaluation: success - initial guess at point [384.21,27.05]
+initial_evaluation: success - initial guess at point [384.21,21.84]
+initial_evaluation: success - initial guess at point [384.21,16.63]
+initial_evaluation: success - initial guess at point [384.21,11.42]
+initial_evaluation: success - initial guess at point [384.21, 6.21]
+initial_evaluation: success - initial guess at point [384.21, 1.00]
+initial_evaluation: success - initial guess at point [378.95,100.00]
+initial_evaluation: success - initial guess at point [378.95,94.79]
+initial_evaluation: success - initial guess at point [378.95,89.58]
+initial_evaluation: success - initial guess at point [378.95,84.37]
+initial_evaluation: success - initial guess at point [378.95,79.16]
+initial_evaluation: success - initial guess at point [378.95,73.95]
+initial_evaluation: success - initial guess at point [378.95,68.74]
+initial_evaluation: success - initial guess at point [378.95,63.53]
+initial_evaluation: success - initial guess at point [378.95,58.32]
+initial_evaluation: success - initial guess at point [378.95,53.11]
+initial_evaluation: success - initial guess at point [378.95,47.89]
+initial_evaluation: success - initial guess at point [378.95,42.68]
+initial_evaluation: success - initial guess at point [378.95,37.47]
+initial_evaluation: success - initial guess at point [378.95,32.26]
+initial_evaluation: success - initial guess at point [378.95,27.05]
+initial_evaluation: success - initial guess at point [378.95,21.84]
+initial_evaluation: success - initial guess at point [378.95,16.63]
+initial_evaluation: success - initial guess at point [378.95,11.42]
+initial_evaluation: success - initial guess at point [378.95, 6.21]
+initial_evaluation: success - initial guess at point [378.95, 1.00]
+initial_evaluation: success - initial guess at point [373.68,100.00]
+initial_evaluation: success - initial guess at point [373.68,94.79]
+initial_evaluation: success - initial guess at point [373.68,89.58]
+initial_evaluation: success - initial guess at point [373.68,84.37]
+initial_evaluation: success - initial guess at point [373.68,79.16]
+initial_evaluation: success - initial guess at point [373.68,73.95]
+initial_evaluation: success - initial guess at point [373.68,68.74]
+initial_evaluation: success - initial guess at point [373.68,63.53]
+initial_evaluation: success - initial guess at point [373.68,58.32]
+initial_evaluation: success - initial guess at point [373.68,53.11]
+initial_evaluation: success - initial guess at point [373.68,47.89]
+initial_evaluation: success - initial guess at point [373.68,42.68]
+initial_evaluation: success - initial guess at point [373.68,37.47]
+initial_evaluation: success - initial guess at point [373.68,32.26]
+initial_evaluation: success - initial guess at point [373.68,27.05]
+initial_evaluation: success - initial guess at point [373.68,21.84]
+initial_evaluation: success - initial guess at point [373.68,16.63]
+initial_evaluation: success - initial guess at point [373.68,11.42]
+initial_evaluation: success - initial guess at point [373.68, 6.21]
+initial_evaluation: success - initial guess at point [373.68, 1.00]
+initial_evaluation: success - initial guess at point [368.42,100.00]
+initial_evaluation: success - initial guess at point [368.42,94.79]
+initial_evaluation: success - initial guess at point [368.42,89.58]
+initial_evaluation: success - initial guess at point [368.42,84.37]
+initial_evaluation: success - initial guess at point [368.42,79.16]
+initial_evaluation: success - initial guess at point [368.42,73.95]
+initial_evaluation: success - initial guess at point [368.42,68.74]
+initial_evaluation: success - initial guess at point [368.42,63.53]
+initial_evaluation: success - initial guess at point [368.42,58.32]
+initial_evaluation: success - initial guess at point [368.42,53.11]
+initial_evaluation: success - initial guess at point [368.42,47.89]
+initial_evaluation: success - initial guess at point [368.42,42.68]
+initial_evaluation: success - initial guess at point [368.42,37.47]
+initial_evaluation: success - initial guess at point [368.42,32.26]
+initial_evaluation: success - initial guess at point [368.42,27.05]
+initial_evaluation: success - initial guess at point [368.42,21.84]
+initial_evaluation: success - initial guess at point [368.42,16.63]
+initial_evaluation: success - initial guess at point [368.42,11.42]
+initial_evaluation: success - initial guess at point [368.42, 6.21]
+initial_evaluation: success - initial guess at point [368.42, 1.00]
+initial_evaluation: success - initial guess at point [363.16,100.00]
+initial_evaluation: success - initial guess at point [363.16,94.79]
+initial_evaluation: success - initial guess at point [363.16,89.58]
+initial_evaluation: success - initial guess at point [363.16,84.37]
+initial_evaluation: success - initial guess at point [363.16,79.16]
+initial_evaluation: success - initial guess at point [363.16,73.95]
+initial_evaluation: success - initial guess at point [363.16,68.74]
+initial_evaluation: success - initial guess at point [363.16,63.53]
+initial_evaluation: success - initial guess at point [363.16,58.32]
+initial_evaluation: success - initial guess at point [363.16,53.11]
+initial_evaluation: success - initial guess at point [363.16,47.89]
+initial_evaluation: success - initial guess at point [363.16,42.68]
+initial_evaluation: success - initial guess at point [363.16,37.47]
+initial_evaluation: success - initial guess at point [363.16,32.26]
+initial_evaluation: success - initial guess at point [363.16,27.05]
+initial_evaluation: success - initial guess at point [363.16,21.84]
+initial_evaluation: success - initial guess at point [363.16,16.63]
+initial_evaluation: success - initial guess at point [363.16,11.42]
+initial_evaluation: success - initial guess at point [363.16, 6.21]
+initial_evaluation: success - initial guess at point [363.16, 1.00]
+initial_evaluation: success - initial guess at point [357.89,100.00]
+initial_evaluation: success - initial guess at point [357.89,94.79]
+initial_evaluation: success - initial guess at point [357.89,89.58]
+initial_evaluation: success - initial guess at point [357.89,84.37]
+initial_evaluation: success - initial guess at point [357.89,79.16]
+initial_evaluation: success - initial guess at point [357.89,73.95]
+initial_evaluation: success - initial guess at point [357.89,68.74]
+initial_evaluation: success - initial guess at point [357.89,63.53]
+initial_evaluation: success - initial guess at point [357.89,58.32]
+initial_evaluation: success - initial guess at point [357.89,53.11]
+initial_evaluation: success - initial guess at point [357.89,47.89]
+initial_evaluation: success - initial guess at point [357.89,42.68]
+initial_evaluation: success - initial guess at point [357.89,37.47]
+initial_evaluation: success - initial guess at point [357.89,32.26]
+initial_evaluation: success - initial guess at point [357.89,27.05]
+initial_evaluation: success - initial guess at point [357.89,21.84]
+initial_evaluation: success - initial guess at point [357.89,16.63]
+initial_evaluation: success - initial guess at point [357.89,11.42]
+initial_evaluation: success - initial guess at point [357.89, 6.21]
+initial_evaluation: success - initial guess at point [357.89, 1.00]
+initial_evaluation: success - initial guess at point [352.63,100.00]
+initial_evaluation: success - initial guess at point [352.63,94.79]
+initial_evaluation: success - initial guess at point [352.63,89.58]
+initial_evaluation: success - initial guess at point [352.63,84.37]
+initial_evaluation: success - initial guess at point [352.63,79.16]
+initial_evaluation: success - initial guess at point [352.63,73.95]
+initial_evaluation: success - initial guess at point [352.63,68.74]
+initial_evaluation: success - initial guess at point [352.63,63.53]
+initial_evaluation: success - initial guess at point [352.63,58.32]
+initial_evaluation: success - initial guess at point [352.63,53.11]
+initial_evaluation: success - initial guess at point [352.63,47.89]
+initial_evaluation: success - initial guess at point [352.63,42.68]
+initial_evaluation: success - initial guess at point [352.63,37.47]
+initial_evaluation: success - initial guess at point [352.63,32.26]
+initial_evaluation: success - initial guess at point [352.63,27.05]
+initial_evaluation: success - initial guess at point [352.63,21.84]
+initial_evaluation: success - initial guess at point [352.63,16.63]
+initial_evaluation: success - initial guess at point [352.63,11.42]
+initial_evaluation: success - initial guess at point [352.63, 6.21]
+initial_evaluation: success - initial guess at point [352.63, 1.00]
+initial_evaluation: success - initial guess at point [347.37,100.00]
+initial_evaluation: success - initial guess at point [347.37,94.79]
+initial_evaluation: success - initial guess at point [347.37,89.58]
+initial_evaluation: success - initial guess at point [347.37,84.37]
+initial_evaluation: success - initial guess at point [347.37,79.16]
+initial_evaluation: success - initial guess at point [347.37,73.95]
+initial_evaluation: success - initial guess at point [347.37,68.74]
+initial_evaluation: success - initial guess at point [347.37,63.53]
+initial_evaluation: success - initial guess at point [347.37,58.32]
+initial_evaluation: success - initial guess at point [347.37,53.11]
+initial_evaluation: success - initial guess at point [347.37,47.89]
+initial_evaluation: success - initial guess at point [347.37,42.68]
+initial_evaluation: success - initial guess at point [347.37,37.47]
+initial_evaluation: success - initial guess at point [347.37,32.26]
+initial_evaluation: success - initial guess at point [347.37,27.05]
+initial_evaluation: success - initial guess at point [347.37,21.84]
+initial_evaluation: success - initial guess at point [347.37,16.63]
+initial_evaluation: success - initial guess at point [347.37,11.42]
+initial_evaluation: success - initial guess at point [347.37, 6.21]
+initial_evaluation: success - initial guess at point [347.37, 1.00]
+initial_evaluation: success - initial guess at point [342.11,100.00]
+initial_evaluation: success - initial guess at point [342.11,94.79]
+initial_evaluation: success - initial guess at point [342.11,89.58]
+initial_evaluation: success - initial guess at point [342.11,84.37]
+initial_evaluation: success - initial guess at point [342.11,79.16]
+initial_evaluation: success - initial guess at point [342.11,73.95]
+initial_evaluation: success - initial guess at point [342.11,68.74]
+initial_evaluation: success - initial guess at point [342.11,63.53]
+initial_evaluation: success - initial guess at point [342.11,58.32]
+initial_evaluation: success - initial guess at point [342.11,53.11]
+initial_evaluation: success - initial guess at point [342.11,47.89]
+initial_evaluation: success - initial guess at point [342.11,42.68]
+initial_evaluation: success - initial guess at point [342.11,37.47]
+initial_evaluation: success - initial guess at point [342.11,32.26]
+initial_evaluation: success - initial guess at point [342.11,27.05]
+initial_evaluation: success - initial guess at point [342.11,21.84]
+initial_evaluation: success - initial guess at point [342.11,16.63]
+initial_evaluation: success - initial guess at point [342.11,11.42]
+initial_evaluation: success - initial guess at point [342.11, 6.21]
+initial_evaluation: success - initial guess at point [342.11, 1.00]
+initial_evaluation: success - initial guess at point [336.84,100.00]
+initial_evaluation: success - initial guess at point [336.84,94.79]
+initial_evaluation: success - initial guess at point [336.84,89.58]
+initial_evaluation: success - initial guess at point [336.84,84.37]
+initial_evaluation: success - initial guess at point [336.84,79.16]
+initial_evaluation: success - initial guess at point [336.84,73.95]
+initial_evaluation: success - initial guess at point [336.84,68.74]
+initial_evaluation: success - initial guess at point [336.84,63.53]
+initial_evaluation: success - initial guess at point [336.84,58.32]
+initial_evaluation: success - initial guess at point [336.84,53.11]
+initial_evaluation: success - initial guess at point [336.84,47.89]
+initial_evaluation: success - initial guess at point [336.84,42.68]
+initial_evaluation: success - initial guess at point [336.84,37.47]
+initial_evaluation: success - initial guess at point [336.84,32.26]
+initial_evaluation: success - initial guess at point [336.84,27.05]
+initial_evaluation: success - initial guess at point [336.84,21.84]
+initial_evaluation: success - initial guess at point [336.84,16.63]
+initial_evaluation: success - initial guess at point [336.84,11.42]
+initial_evaluation: success - initial guess at point [336.84, 6.21]
+initial_evaluation: success - initial guess at point [336.84, 1.00]
+initial_evaluation: success - initial guess at point [331.58,100.00]
+initial_evaluation: success - initial guess at point [331.58,94.79]
+initial_evaluation: success - initial guess at point [331.58,89.58]
+initial_evaluation: success - initial guess at point [331.58,84.37]
+initial_evaluation: success - initial guess at point [331.58,79.16]
+initial_evaluation: success - initial guess at point [331.58,73.95]
+initial_evaluation: success - initial guess at point [331.58,68.74]
+initial_evaluation: success - initial guess at point [331.58,63.53]
+initial_evaluation: success - initial guess at point [331.58,58.32]
+initial_evaluation: success - initial guess at point [331.58,53.11]
+initial_evaluation: success - initial guess at point [331.58,47.89]
+initial_evaluation: success - initial guess at point [331.58,42.68]
+initial_evaluation: success - initial guess at point [331.58,37.47]
+initial_evaluation: success - initial guess at point [331.58,32.26]
+initial_evaluation: success - initial guess at point [331.58,27.05]
+initial_evaluation: success - initial guess at point [331.58,21.84]
+initial_evaluation: success - initial guess at point [331.58,16.63]
+initial_evaluation: success - initial guess at point [331.58,11.42]
+initial_evaluation: success - initial guess at point [331.58, 6.21]
+initial_evaluation: success - initial guess at point [331.58, 1.00]
+initial_evaluation: success - initial guess at point [326.32,100.00]
+initial_evaluation: success - initial guess at point [326.32,94.79]
+initial_evaluation: success - initial guess at point [326.32,89.58]
+initial_evaluation: success - initial guess at point [326.32,84.37]
+initial_evaluation: success - initial guess at point [326.32,79.16]
+initial_evaluation: success - initial guess at point [326.32,73.95]
+initial_evaluation: success - initial guess at point [326.32,68.74]
+initial_evaluation: success - initial guess at point [326.32,63.53]
+initial_evaluation: success - initial guess at point [326.32,58.32]
+initial_evaluation: success - initial guess at point [326.32,53.11]
+initial_evaluation: success - initial guess at point [326.32,47.89]
+initial_evaluation: success - initial guess at point [326.32,42.68]
+initial_evaluation: success - initial guess at point [326.32,37.47]
+initial_evaluation: success - initial guess at point [326.32,32.26]
+initial_evaluation: success - initial guess at point [326.32,27.05]
+initial_evaluation: success - initial guess at point [326.32,21.84]
+initial_evaluation: success - initial guess at point [326.32,16.63]
+initial_evaluation: success - initial guess at point [326.32,11.42]
+initial_evaluation: success - initial guess at point [326.32, 6.21]
+initial_evaluation: success - initial guess at point [326.32, 1.00]
+initial_evaluation: success - initial guess at point [321.05,100.00]
+initial_evaluation: success - initial guess at point [321.05,94.79]
+initial_evaluation: success - initial guess at point [321.05,89.58]
+initial_evaluation: success - initial guess at point [321.05,84.37]
+initial_evaluation: success - initial guess at point [321.05,79.16]
+initial_evaluation: success - initial guess at point [321.05,73.95]
+initial_evaluation: success - initial guess at point [321.05,68.74]
+initial_evaluation: success - initial guess at point [321.05,63.53]
+initial_evaluation: success - initial guess at point [321.05,58.32]
+initial_evaluation: success - initial guess at point [321.05,53.11]
+initial_evaluation: success - initial guess at point [321.05,47.89]
+initial_evaluation: success - initial guess at point [321.05,42.68]
+initial_evaluation: success - initial guess at point [321.05,37.47]
+initial_evaluation: success - initial guess at point [321.05,32.26]
+initial_evaluation: success - initial guess at point [321.05,27.05]
+initial_evaluation: success - initial guess at point [321.05,21.84]
+initial_evaluation: success - initial guess at point [321.05,16.63]
+initial_evaluation: success - initial guess at point [321.05,11.42]
+initial_evaluation: success - initial guess at point [321.05, 6.21]
+initial_evaluation: success - initial guess at point [321.05, 1.00]
+initial_evaluation: success - initial guess at point [315.79,100.00]
+initial_evaluation: success - initial guess at point [315.79,94.79]
+initial_evaluation: success - initial guess at point [315.79,89.58]
+initial_evaluation: success - initial guess at point [315.79,84.37]
+initial_evaluation: success - initial guess at point [315.79,79.16]
+initial_evaluation: success - initial guess at point [315.79,73.95]
+initial_evaluation: success - initial guess at point [315.79,68.74]
+initial_evaluation: success - initial guess at point [315.79,63.53]
+initial_evaluation: success - initial guess at point [315.79,58.32]
+initial_evaluation: success - initial guess at point [315.79,53.11]
+initial_evaluation: success - initial guess at point [315.79,47.89]
+initial_evaluation: success - initial guess at point [315.79,42.68]
+initial_evaluation: success - initial guess at point [315.79,37.47]
+initial_evaluation: success - initial guess at point [315.79,32.26]
+initial_evaluation: success - initial guess at point [315.79,27.05]
+initial_evaluation: success - initial guess at point [315.79,21.84]
+initial_evaluation: success - initial guess at point [315.79,16.63]
+initial_evaluation: success - initial guess at point [315.79,11.42]
+initial_evaluation: success - initial guess at point [315.79, 6.21]
+initial_evaluation: success - initial guess at point [315.79, 1.00]
+initial_evaluation: success - initial guess at point [310.53,100.00]
+initial_evaluation: success - initial guess at point [310.53,94.79]
+initial_evaluation: success - initial guess at point [310.53,89.58]
+initial_evaluation: success - initial guess at point [310.53,84.37]
+initial_evaluation: success - initial guess at point [310.53,79.16]
+initial_evaluation: success - initial guess at point [310.53,73.95]
+initial_evaluation: success - initial guess at point [310.53,68.74]
+initial_evaluation: success - initial guess at point [310.53,63.53]
+initial_evaluation: success - initial guess at point [310.53,58.32]
+initial_evaluation: success - initial guess at point [310.53,53.11]
+initial_evaluation: success - initial guess at point [310.53,47.89]
+initial_evaluation: success - initial guess at point [310.53,42.68]
+initial_evaluation: success - initial guess at point [310.53,37.47]
+initial_evaluation: success - initial guess at point [310.53,32.26]
+initial_evaluation: success - initial guess at point [310.53,27.05]
+initial_evaluation: success - initial guess at point [310.53,21.84]
+initial_evaluation: success - initial guess at point [310.53,16.63]
+initial_evaluation: success - initial guess at point [310.53,11.42]
+initial_evaluation: success - initial guess at point [310.53, 6.21]
+initial_evaluation: success - initial guess at point [310.53, 1.00]
+initial_evaluation: success - initial guess at point [305.26,100.00]
+initial_evaluation: success - initial guess at point [305.26,94.79]
+initial_evaluation: success - initial guess at point [305.26,89.58]
+initial_evaluation: success - initial guess at point [305.26,84.37]
+initial_evaluation: success - initial guess at point [305.26,79.16]
+initial_evaluation: success - initial guess at point [305.26,73.95]
+initial_evaluation: success - initial guess at point [305.26,68.74]
+initial_evaluation: success - initial guess at point [305.26,63.53]
+initial_evaluation: success - initial guess at point [305.26,58.32]
+initial_evaluation: success - initial guess at point [305.26,53.11]
+initial_evaluation: success - initial guess at point [305.26,47.89]
+initial_evaluation: success - initial guess at point [305.26,42.68]
+initial_evaluation: success - initial guess at point [305.26,37.47]
+initial_evaluation: success - initial guess at point [305.26,32.26]
+initial_evaluation: success - initial guess at point [305.26,27.05]
+initial_evaluation: success - initial guess at point [305.26,21.84]
+initial_evaluation: success - initial guess at point [305.26,16.63]
+initial_evaluation: success - initial guess at point [305.26,11.42]
+initial_evaluation: success - initial guess at point [305.26, 6.21]
+initial_evaluation: success - initial guess at point [305.26, 1.00]
+initial_evaluation: success - initial guess at point [300.00,100.00]
+initial_evaluation: success - initial guess at point [300.00,94.79]
+initial_evaluation: success - initial guess at point [300.00,89.58]
+initial_evaluation: success - initial guess at point [300.00,84.37]
+initial_evaluation: success - initial guess at point [300.00,79.16]
+initial_evaluation: success - initial guess at point [300.00,73.95]
+initial_evaluation: success - initial guess at point [300.00,68.74]
+initial_evaluation: success - initial guess at point [300.00,63.53]
+initial_evaluation: success - initial guess at point [300.00,58.32]
+initial_evaluation: success - initial guess at point [300.00,53.11]
+initial_evaluation: success - initial guess at point [300.00,47.89]
+initial_evaluation: success - initial guess at point [300.00,42.68]
+initial_evaluation: success - initial guess at point [300.00,37.47]
+initial_evaluation: success - initial guess at point [300.00,32.26]
+initial_evaluation: success - initial guess at point [300.00,27.05]
+initial_evaluation: success - initial guess at point [300.00,21.84]
+initial_evaluation: success - initial guess at point [300.00,16.63]
+initial_evaluation: success - initial guess at point [300.00,11.42]
+initial_evaluation: success - initial guess at point [300.00, 6.21]
+initial_evaluation: success - initial guess at point [300.00, 1.00]
+mapper_iteration_0: status - 0 points do not have valid solution."""
