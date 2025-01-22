@@ -92,11 +92,11 @@ All results are saved in the **output** directory, including:
 
 To run the project, you need the following tools and libraries:
 
-1. [ASE](https://wiki.fysik.dtu.dk/ase/index.html) (installation guide):
+1. [Atomic Simulation Environment](https://wiki.fysik.dtu.dk/ase/index.html):
 ```
 conda install -c conda-forge ase
 ```
-2. CATMAP (documentation).
+2. [CATMAP](https://catmap.readthedocs.io/en/latest/index.html).
 3. Python Libraries:
 	- `scipy`
 	- `matplotlib`
