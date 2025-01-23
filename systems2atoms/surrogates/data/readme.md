@@ -5,10 +5,11 @@ This data was obtained computationally using the code in the `systems` module fo
 # Units
 
 ## Cost Data
+### (Source: System-scale model)
 | Column | Name | Unit |
 |--------|------|------|
 | 0 | Station Capacity | kg $H_2$ per day |
-| 1 | CSTR Volume | $m^3 |
+| 1 | CSTR Volume | $m^3$ |
 | 2 | Hydrogen Yield | Fraction |
 | 3 | Catalyst Mass | kg |
 | 4 | Temperature | K |
@@ -18,7 +19,7 @@ This data was obtained computationally using the code in the `systems` module fo
 
 
 ## Component Data
-
+### (Source: Component-scale model)
 | Column | Name | Unit |
 |--------|------|------|
 | 0 | CSTR Volume | $m^3$ |
@@ -29,6 +30,7 @@ This data was obtained computationally using the code in the `systems` module fo
 | 5 | Hydrogen Yield | Fraction |
 
 ## Nanoparticle Data
+### (Source: Material-scale model)
 | Column | Name | Unit |
 |--------|------|------|
 | 0 | Catalyst Metal Choice | N/A |
