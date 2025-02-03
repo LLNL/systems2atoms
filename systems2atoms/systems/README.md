@@ -1,8 +1,7 @@
 # S2A System-Scale Analysis: Hydrogen Delivery Costs
 
 ## Description
-This folder contains the scripts to run the system-scale analysis and make the plots for the manuscript "Systems-to-Atoms Examination of Formic Acid as a Liquid Organic Hydrogen Carrier in Transportation Applications".
-Input files, raw output files, and plots are also included.  
+This folder contains the (1) input files and scripts to run the system-scale analysis, (2) raw output files, (3) scripts to visualize the results, and (4) plots.  
 
 * `cross-scale data handoff`: Outputs from material and component modeling that are passed to the system scale and/or used to make plots.
 * `inputs`: Input files to run the system-scale analysis.
@@ -10,7 +9,7 @@ Input files, raw output files, and plots are also included.
 * `plots`: Plots and scripts used to make these plots.
 * `requirements.txt`: List of Python packages needed to run the system-scale analysis.
 * `s2a_sys.yml`: Environment file.
-* `s2a_systems_functions.py`: Functions, including mass and energy balances, equipment sizing and costing, levelized cost of hydrogen for hydrogen delivery via compressed hydrogen, liquid hydrogen, and formic acid.
+* `s2a_systems_functions.py`: Functions, including mass and energy balances, equipment sizing and costing, levelized cost of hydrogen for hydrogen delivery via compressed hydrogen, liquid hydrogen, and chemical carriers (e.g., formic acid).
 * `s2a_systems_run_analysis.ipynb`: Script used to run the system-scale analysis for user-specified inputs (e.g., in an `input params_[scenario group].xlsx` file). Imports `s2a_systems_functions.py`.
 
 ## Getting Started
@@ -58,5 +57,7 @@ Mengyao Yuan (yuan13@llnl.gov)
 
 Bo-Xun Wang (University of Wisconsin-Madison), Corey Myers (LLNL), Thomas Moore (Queensland University of Technology), and Wenqin Li (LLNL) have contributed to the development of the systems model and analysis.
 
-## Citation
-[TBD]
+## Publication
+Yuan, M.; Bucci, G.; Chatterjee, T.; Deo, S.; Kitchin, J. R.; Laird, C. D.; Li, W.; Moore, T.; Myers, C.; Sun, W.; et al. Integrated Systems-to-Atoms (S2A) Framework for Designing Resilient and Efficient Hydrogen Infrastructure Solutions. Energ Fuel 2025. DOI: 10.1021/acs.energyfuels.4c05903.
+
+(Model version used to generate the analysis for this paper is archived at: <link>)
