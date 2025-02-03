@@ -1,0 +1,15 @@
+scenario,run #,one-way delivery distance (mile),electricity emission factor (kg CO2/kWh),hydrogen purchase cost ($/kg),formic acid production pathway
+baseline,0,100,0.228,0.31,electro
+delivery only,1,100,0.0,0.0,purchase
+closed loop,2,100,0.0,0.31,electro
+cloosed loop - 10 mi,3,10,0.0,0.31,electro
+cloosed loop - 50 mi,4,50,0.0,0.31,electro
+cloosed loop - 100 mi,5,100,0.0,0.31,electro
+cloosed loop - 150 mi,6,150,0.0,0.31,electro
+cloosed loop - 200 mi,7,200,0.0,0.31,electro
+cloosed loop - 250 mi,8,250,0.0,0.31,electro
+cloosed loop - 300 mi,9,300,0.0,0.31,electro
+cloosed loop - 350 mi,10,350,0.0,0.31,electro
+cloosed loop - 400 mi,11,400,0.0,0.31,electro
+cloosed loop - 450 mi,12,450,0.0,0.31,electro
+cloosed loop - 500 mi,13,500,0.0,0.31,electro

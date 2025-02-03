@@ -1,0 +1,12 @@
+scenario,run #,electricity emission factor (kg CO2/kWh),hydrogen purchase cost ($/kg),formic acid production pathway,CO2 electrolyzer purchase cost ($/m^2)
+baseline,0,0.228,0.31,electro,5250
+delivery only,1,0.0,0.0,purchase,5250
+closed loop,2,0.0,0.31,electro,5250
+cloosed loop - 1000 $/sqm,3,0.0,0.31,electro,1000
+cloosed loop - 2500 $/sqm,4,0.0,0.31,electro,2500
+cloosed loop - 5250 $/sqm,5,0.0,0.31,electro,5250
+cloosed loop - 10000 $/sqm,6,0.0,0.31,electro,10000
+cloosed loop - 15000 $/sqm,7,0.0,0.31,electro,15000
+cloosed loop - 20000 $/sqm,8,0.0,0.31,electro,20000
+cloosed loop - 25000 $/sqm,9,0.0,0.31,electro,25000
+cloosed loop - 30000 $/sqm,10,0.0,0.31,electro,30000

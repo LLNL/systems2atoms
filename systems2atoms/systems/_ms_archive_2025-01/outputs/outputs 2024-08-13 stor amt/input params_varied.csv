@@ -1,0 +1,12 @@
+scenario,run #,electricity emission factor (kg CO2/kWh),hydrogen purchase cost ($/kg),formic acid production pathway,terminal formic acid storage amount (days),terminal compressed hydrogen storage amount (days),terminal liquid hydrogen storage amount (days)
+baseline,0,0.228,0.31,electro,0.25,0.25,1.0
+delivery only,1,0.0,0.0,purchase,0.25,0.25,1.0
+closed loop,2,0.0,0.31,electro,0.25,0.25,1.0
+cloosed loop - 0.25 day stor,3,0.0,0.31,electro,0.25,0.25,0.25
+cloosed loop - 1 day stor,4,0.0,0.31,electro,1.0,1.0,1.0
+cloosed loop - 5 day stor,5,0.0,0.31,electro,5.0,5.0,5.0
+cloosed loop - 10 day stor,6,0.0,0.31,electro,10.0,10.0,10.0
+cloosed loop - 30 day stor,7,0.0,0.31,electro,30.0,30.0,30.0
+cloosed loop - 60 day stor,8,0.0,0.31,electro,60.0,60.0,60.0
+cloosed loop - 90 day stor,9,0.0,0.31,electro,90.0,90.0,90.0
+cloosed loop - 120 day stor,10,0.0,0.31,electro,120.0,120.0,120.0

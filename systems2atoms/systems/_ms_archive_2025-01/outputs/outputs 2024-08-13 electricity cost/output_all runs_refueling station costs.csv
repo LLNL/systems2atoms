@@ -1,0 +1,1513 @@
+run #,pathway,process,location,function,equipment,variable group,variable name,unit,value
+0,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+0,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+0,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+0,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,5051.696930963824
+0,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
+0,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+0,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,3721504.9768949314
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,1.0195904046287483
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+0,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,1552476.2047420563
+0,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.425335946504673
+0,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+0,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+0,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,218451.75917681135
+0,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.05984979703474284
+0,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+0,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+0,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+0,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+0,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+0,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+0,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+0,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+0,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+0,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+0,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+0,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+0,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+0,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+0,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+0,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+0,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+0,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+0,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+0,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+0,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+0,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+0,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+0,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+0,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+0,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+0,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+0,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+0,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+0,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+0,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+0,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+0,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+0,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+0,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+0,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+0,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+1,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+1,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+1,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+1,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,5051.696930963824
+1,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
+1,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+1,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,3721504.9768949314
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,1.0195904046287483
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+1,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,1552476.2047420563
+1,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.425335946504673
+1,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+1,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+1,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,218451.75917681135
+1,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.05984979703474284
+1,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+1,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+1,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+1,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+1,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+1,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+1,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+1,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+1,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+1,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+1,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+1,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+1,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+1,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+1,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+1,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+1,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+1,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+1,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+1,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+1,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+1,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+1,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+1,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+1,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+1,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+1,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+1,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+1,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+1,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+1,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+1,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+1,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+1,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+1,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+1,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+1,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+2,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+2,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+2,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+2,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,5051.696930963824
+2,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
+2,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+2,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,3721504.9768949314
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,1.0195904046287483
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+2,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,1552476.2047420563
+2,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.425335946504673
+2,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+2,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+2,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,218451.75917681135
+2,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.05984979703474284
+2,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+2,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+2,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+2,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+2,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+2,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+2,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+2,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+2,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+2,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+2,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+2,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+2,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+2,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+2,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+2,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+2,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+2,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+2,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+2,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+2,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+2,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+2,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+2,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+2,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+2,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+2,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+2,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+2,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+2,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+2,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+2,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+2,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+2,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+2,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+2,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+2,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+3,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+3,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+3,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+3,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,591.1874699782123
+3,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.00016196916985704448
+3,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+3,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,435518.42912755196
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,0.11932011756919232
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+3,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,181682.41132148117
+3,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.049776003101775664
+3,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+3,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+3,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,25564.86356662509
+3,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.00700407221003427
+3,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+3,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+3,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+3,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+3,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+3,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+3,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+3,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+3,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+3,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+3,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+3,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+3,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+3,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+3,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+3,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+3,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+3,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+3,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+3,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+3,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+3,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+3,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+3,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+3,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+3,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+3,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+3,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+3,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+3,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+3,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+3,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+3,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+3,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+3,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+3,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+3,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+4,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+4,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+4,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+4,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+4,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+4,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+4,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+4,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+4,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+4,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+4,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,1182.3749399564247
+4,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.00032393833971408896
+4,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+4,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,871036.8582551039
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,0.23864023513838464
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+4,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,363364.82264296233
+4,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.09955200620355133
+4,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+4,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+4,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,51129.72713325018
+4,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.01400814442006854
+4,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+4,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+4,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+4,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+4,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+4,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+4,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+4,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+4,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+4,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+4,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+4,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+4,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+4,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+4,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+4,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+4,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+4,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+4,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+4,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+4,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+4,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+4,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+4,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+4,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+4,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+4,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+4,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+4,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+4,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+4,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+4,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+4,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+4,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+4,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+4,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+4,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+4,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+4,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+4,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+4,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+4,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+4,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+4,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+4,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+4,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+4,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+4,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+4,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+5,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+5,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+5,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+5,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+5,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+5,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+5,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+5,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+5,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+5,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+5,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,1773.562409934637
+5,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0004859075095711334
+5,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+5,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,1306555.287382656
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,0.357960352707577
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+5,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,545047.2339644434
+5,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.14932800930532697
+5,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+5,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+5,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,76694.59069987526
+5,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.02101221663010281
+5,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+5,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+5,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+5,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+5,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+5,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+5,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+5,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+5,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+5,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+5,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+5,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+5,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+5,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+5,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+5,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+5,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+5,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+5,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+5,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+5,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+5,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+5,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+5,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+5,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+5,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+5,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+5,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+5,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+5,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+5,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+5,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+5,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+5,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+5,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+5,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+5,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+5,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+5,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+5,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+5,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+5,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+5,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+5,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+5,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+5,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+5,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+5,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+5,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+6,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+6,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+6,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+6,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+6,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+6,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+6,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+6,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+6,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+6,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+6,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,2364.7498799128493
+6,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0006478766794281779
+6,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+6,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,1742073.7165102079
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,0.4772804702767693
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+6,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,726729.6452859247
+6,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.19910401240710265
+6,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+6,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+6,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,102259.45426650035
+6,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.02801628884013708
+6,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+6,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+6,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+6,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+6,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+6,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+6,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+6,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+6,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+6,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+6,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+6,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+6,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+6,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+6,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+6,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+6,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+6,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+6,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+6,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+6,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+6,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+6,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+6,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+6,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+6,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+6,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+6,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+6,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+6,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+6,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+6,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+6,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+6,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+6,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+6,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+6,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+6,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+6,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+6,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+6,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+6,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+6,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+6,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+6,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+6,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+6,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+6,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+6,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+7,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+7,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+7,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+7,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+7,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+7,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+7,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+7,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+7,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+7,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+7,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,2955.937349891062
+7,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0008098458492852225
+7,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+7,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,2177592.14563776
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,0.5966005878459616
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+7,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,908412.0566074059
+7,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.2488800155088783
+7,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+7,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+7,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,127824.31783312545
+7,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.03502036105017135
+7,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+7,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+7,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+7,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+7,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+7,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+7,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+7,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+7,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+7,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+7,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+7,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+7,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+7,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+7,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+7,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+7,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+7,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+7,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+7,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+7,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+7,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+7,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+7,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+7,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+7,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+7,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+7,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+7,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+7,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+7,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+7,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+7,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+7,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+7,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+7,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+7,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+7,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+7,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+7,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+7,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+7,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+7,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+7,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+7,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+7,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+7,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+7,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+7,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+8,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+8,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+8,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+8,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+8,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+8,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+8,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+8,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+8,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+8,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+8,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,3547.1248198692742
+8,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0009718150191422669
+8,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+8,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,2613110.574765312
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,0.715920705415154
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+8,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,1090094.467928887
+8,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.298656018610654
+8,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+8,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+8,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,153389.18139975052
+8,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.04202443326020562
+8,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+8,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+8,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+8,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+8,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+8,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+8,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+8,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+8,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+8,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+8,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+8,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+8,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+8,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+8,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+8,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+8,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+8,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+8,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+8,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+8,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+8,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+8,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+8,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+8,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+8,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+8,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+8,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+8,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+8,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+8,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+8,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+8,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+8,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+8,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+8,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+8,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+8,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+8,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+8,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+8,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+8,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+8,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+8,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+8,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+8,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+8,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+8,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+8,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+9,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+9,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+9,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+9,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+9,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+9,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+9,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+9,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+9,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+9,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+9,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,4138.312289847487
+9,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0011337841889993115
+9,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+9,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,3048629.003892864
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,0.8352408229843463
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+9,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,1271776.8792503683
+9,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.34843202171242965
+9,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+9,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+9,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,178954.04496637563
+9,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.049028505470239896
+9,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+9,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+9,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+9,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+9,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+9,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+9,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+9,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+9,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+9,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+9,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+9,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+9,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+9,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+9,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+9,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+9,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+9,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+9,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+9,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+9,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+9,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+9,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+9,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+9,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+9,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+9,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+9,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+9,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+9,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+9,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+9,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+9,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+9,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+9,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+9,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+9,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+9,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+9,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+9,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+9,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+9,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+9,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+9,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+9,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+9,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+9,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+9,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+9,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+10,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+10,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+10,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+10,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+10,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+10,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+10,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+10,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+10,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+10,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+10,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,4729.499759825699
+10,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0012957533588563558
+10,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+10,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,3484147.4330204157
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,0.9545609405535386
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+10,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,1453459.2905718493
+10,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.3982080248142053
+10,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+10,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+10,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,204518.9085330007
+10,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.05603257768027416
+10,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+10,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+10,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+10,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+10,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+10,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+10,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+10,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+10,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+10,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+10,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+10,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+10,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+10,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+10,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+10,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+10,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+10,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+10,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+10,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+10,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+10,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+10,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+10,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+10,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+10,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+10,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+10,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+10,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+10,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+10,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+10,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+10,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+10,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+10,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+10,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+10,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+10,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+10,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+10,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+10,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+10,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+10,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+10,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+10,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+10,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+10,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+10,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+10,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+11,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+11,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+11,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+11,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+11,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+11,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+11,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+11,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+11,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+11,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+11,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,5320.687229803911
+11,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0014577225287134002
+11,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+11,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,3919665.862147968
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,1.073881058122731
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+11,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,1635141.7018933303
+11,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.4479840279159809
+11,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+11,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+11,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,230083.77209962576
+11,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.06303664989030842
+11,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+11,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+11,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+11,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+11,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+11,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+11,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+11,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+11,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+11,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+11,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+11,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+11,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+11,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+11,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+11,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+11,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+11,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+11,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+11,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+11,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+11,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+11,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+11,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+11,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+11,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+11,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+11,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+11,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+11,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+11,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+11,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+11,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+11,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+11,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+11,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+11,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+11,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+11,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+11,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+11,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+11,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+11,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+11,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+11,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+11,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+11,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+11,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+11,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+12,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+12,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+12,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+12,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+12,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+12,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+12,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+12,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+12,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+12,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+12,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,5911.874699782123
+12,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0016196916985704447
+12,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+12,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,4355184.29127552
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,1.1932011756919232
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+12,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,1816824.1132148115
+12,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.49776003101775657
+12,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+12,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+12,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,255648.63566625083
+12,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.07004072210034269
+12,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+12,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+12,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+12,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+12,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+12,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+12,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+12,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+12,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+12,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+12,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+12,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+12,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+12,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+12,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+12,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+12,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+12,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+12,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+12,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+12,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+12,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+12,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+12,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+12,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+12,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+12,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+12,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+12,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+12,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+12,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+12,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+12,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+12,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+12,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+12,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+12,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+12,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+12,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+12,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+12,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+12,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+12,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+12,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+12,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+12,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+12,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+12,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+12,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+13,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+13,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+13,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+13,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+13,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+13,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+13,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+13,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+13,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+13,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+13,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,6503.062169760335
+13,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001781660868427489
+13,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+13,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,4790702.7204030715
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,1.3125212932611154
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+13,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,1998506.5245362925
+13,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.5475360341195322
+13,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+13,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+13,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,281213.4992328759
+13,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.07704479431037696
+13,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+13,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+13,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+13,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+13,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+13,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+13,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+13,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+13,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+13,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+13,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+13,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+13,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+13,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+13,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+13,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+13,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+13,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+13,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+13,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+13,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+13,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+13,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+13,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+13,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+13,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+13,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+13,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+13,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+13,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+13,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+13,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+13,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+13,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+13,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+13,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+13,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+13,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+13,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+13,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+13,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+13,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+13,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+13,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+13,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+13,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+13,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+13,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+13,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+14,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+14,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+14,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+14,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+14,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+14,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+14,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+14,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+14,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+14,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+14,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,7094.249639738547
+14,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0019436300382845333
+14,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+14,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,5226221.149530623
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,1.4318414108303077
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+14,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,2180188.9358577738
+14,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.5973120372213079
+14,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+14,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+14,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,306778.362799501
+14,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.08404886652041123
+14,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+14,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+14,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+14,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+14,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+14,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+14,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+14,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+14,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+14,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+14,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+14,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+14,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+14,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+14,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+14,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+14,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+14,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+14,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+14,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+14,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+14,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+14,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+14,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+14,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+14,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+14,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+14,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+14,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+14,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+14,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+14,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+14,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+14,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+14,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+14,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+14,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+14,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+14,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+14,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+14,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+14,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+14,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+14,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+14,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+14,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+14,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+14,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+14,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+15,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+15,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+15,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+15,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+15,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+15,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+15,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+15,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+15,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+15,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+15,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,7685.43710971676
+15,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.002105599208141578
+15,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+15,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,5661739.578658175
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,1.5511615283995
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+15,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,2361871.3471792545
+15,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.6470880403230834
+15,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+15,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+15,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,332343.22636612604
+15,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.0910529387304455
+15,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+15,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+15,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+15,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+15,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+15,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+15,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+15,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+15,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+15,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+15,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+15,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+15,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+15,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+15,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+15,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+15,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+15,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+15,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+15,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+15,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+15,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+15,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+15,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+15,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+15,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+15,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+15,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+15,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+15,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+15,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+15,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+15,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+15,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+15,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+15,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+15,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+15,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+15,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+15,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+15,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+15,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+15,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+15,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+15,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+15,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+15,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+15,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+15,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+16,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+16,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+16,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+16,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+16,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+16,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+16,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+16,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+16,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+16,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+16,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,8276.624579694973
+16,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0022675683779986226
+16,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+16,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,6097258.007785727
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,1.6704816459686924
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+16,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,2543553.758500736
+16,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.6968640434248592
+16,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+16,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+16,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,357908.0899327512
+16,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.09805701094047978
+16,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+16,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+16,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+16,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+16,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+16,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+16,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+16,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+16,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+16,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+16,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+16,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+16,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+16,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+16,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+16,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+16,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+16,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+16,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+16,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+16,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+16,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+16,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+16,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+16,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+16,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+16,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+16,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+16,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+16,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+16,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+16,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+16,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+16,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+16,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+16,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+16,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+16,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+16,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+16,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+16,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+16,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+16,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+16,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+16,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+16,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+16,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+16,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+16,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
+17,all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.0731028611028611
+17,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
+17,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/yr,0.0
+17,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
+17,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+17,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+17,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
+17,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
+17,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
+17,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
+17,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,8867.812049673184
+17,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.002429537547855667
+17,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+17,LOHC - formic acid,reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,6532776.43691328
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,1.789801763537885
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
+17,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,2725236.169822217
+17,LOHC - formic acid,reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/kg H2,0.7466400465266348
+17,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
+17,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.29701689738875214
+17,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/yr,383472.95349937625
+17,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.10506108315051405
+17,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,36218.11499264702
+17,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.009922771230862196
+17,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/yr,4701.637550884892
+17,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.001288119876954765
+17,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/yr,84145.95452141727
+17,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.023053686170251306
+17,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
+17,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,other O&M costs,$/kg H2,0.0
+17,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/yr,15733.155569557155
+17,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.004310453580700591
+17,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/yr,8721.110013815549
+17,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0023893452092645343
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/yr,37878.87340975076
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,other O&M costs,$/kg H2,0.010377773536918017
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/yr,702200.8816456323
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,other O&M costs,$/kg H2,0.1923838031905842
+17,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/yr,700065.1144340716
+17,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,other O&M costs,$/kg H2,0.19179866148878674
+17,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/yr,46775.695513003615
+17,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,other O&M costs,$/kg H2,0.012815259044658524
+17,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/yr,12144.329793935678
+17,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0033272136421741583
+17,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/yr,217349.0005288208
+17,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,other O&M costs,$/kg H2,0.059547671377759126
+17,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
+17,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,labor cost,$/kg H2,0.0
+17,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/yr,5152.2535423028285
+17,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0014115763129596791
+17,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/yr,2855.966799720559
+17,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0007824566574576873
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/yr,12404.476574391492
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,O&M cost,labor cost,$/kg H2,0.003398486732709998
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/yr,229954.9485716242
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA,O&M cost,labor cost,$/kg H2,0.06300135577304773
+17,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/yr,229255.53298823096
+17,LOHC - formic acid,reconditioning,refueling station,compression,compressor,O&M cost,labor cost,$/kg H2,0.06280973506526875
+17,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/yr,15317.985119709516
+17,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,O&M cost,labor cost,$/kg H2,0.00419670825197521
+17,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/yr,3976.994057108918
+17,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0010895874129065529
+17,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/yr,71176.89473924885
+17,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,O&M cost,labor cost,$/kg H2,0.01950051910664352
+17,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
+17,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
+17,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,101278.34863686246
+17,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.02774749277722259
+17,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
+17,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,4520246.773764045
+17,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/kg H2,1.238423773633985
+17,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,5941442.012405045
+17,LOHC - formic acid,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.627792332165766
+17,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
+17,LOHC - formic acid,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/kg H2,0.0878640558183182
+17,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/yr,67181.34646207928
+17,LOHC - formic acid,reconditioning,refueling station,storage,liquid storage,capital cost,levelized capital cost,$/kg H2,0.018405848345775144
+17,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/yr,1202355.235362995
+17,LOHC - formic acid,reconditioning,refueling station,storage,cascade storage,capital cost,levelized capital cost,$/kg H2,0.3294123932501356
