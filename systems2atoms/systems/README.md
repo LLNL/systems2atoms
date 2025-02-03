@@ -58,6 +58,6 @@ Mengyao Yuan (yuan13@llnl.gov)
 Bo-Xun Wang (University of Wisconsin-Madison), Corey Myers (LLNL), Thomas Moore (Queensland University of Technology), and Wenqin Li (LLNL) have contributed to the development of the systems model and analysis.
 
 ## Publication
-Yuan, M.; Bucci, G.; Chatterjee, T.; Deo, S.; Kitchin, J. R.; Laird, C. D.; Li, W.; Moore, T.; Myers, C.; Sun, W.; et al. Integrated Systems-to-Atoms (S2A) Framework for Designing Resilient and Efficient Hydrogen Infrastructure Solutions. Energ Fuel 2025. DOI: 10.1021/acs.energyfuels.4c05903.
+Yuan, Mengyao, Giovanna Bucci, Tanusree Chatterjee, Shyam Deo, John R. Kitchin, Carl D. Laird, Wenqin Li, Thomas Moore, Corey Myers, Wenyu Sun, Ethan M. Sunshine, Bo-Xun Wang, Matthew J. McNenly, and Sneha A. Akhade. 2025. "Integrated Systems-to-Atoms (S2A) Framework for Designing Resilient and Efficient Hydrogen Infrastructure Solutions." _Energy & Fuels_. https://doi.org/10.1021/acs.energyfuels.4c05903.
 
-(Model version used to generate the analysis for this paper is archived at: https://github.com/LLNL/systems2atoms/tree/main/systems2atoms/systems/_ms_archive_2025-01)
+(The model version used to generate the analysis for this paper is archived at: https://github.com/LLNL/systems2atoms/tree/main/systems2atoms/systems/_ms_archive_2025-01)
