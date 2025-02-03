@@ -60,4 +60,4 @@ Bo-Xun Wang (University of Wisconsin-Madison), Corey Myers (LLNL), Thomas Moore 
 ## Publication
 Yuan, M.; Bucci, G.; Chatterjee, T.; Deo, S.; Kitchin, J. R.; Laird, C. D.; Li, W.; Moore, T.; Myers, C.; Sun, W.; et al. Integrated Systems-to-Atoms (S2A) Framework for Designing Resilient and Efficient Hydrogen Infrastructure Solutions. Energ Fuel 2025. DOI: 10.1021/acs.energyfuels.4c05903.
 
-(Model version used to generate the analysis for this paper is archived at: <link>)
+(Model version used to generate the analysis for this paper is archived at: https://github.com/LLNL/systems2atoms/tree/main/systems2atoms/systems/_ms_archive_2025-01)
