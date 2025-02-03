@@ -1,7 +1,7 @@
 # S2A System-Scale Analysis: Hydrogen Delivery Costs
 
 ## Description
-This folder contains the scripts to run the system-scale analysis and make the plots for the manuscript "Systems-to-Atoms Examination of Formic Acid as a Liquid Organic Hydrogen Carrier in Transportation Applications".
+This folder contains the scripts to run the system-scale analysis and make the plots for the manuscript "Integrated Systems-to-Atoms (S2A) Framework for Designing Resilient and Efficient Hydrogen Infrastructure Solutions".
 Input files, raw output files, and plots are also included.  
 
 * `cross-scale data handoff`: Outputs from material and component modeling that are passed to the system scale and/or used to make plots.
@@ -59,4 +59,4 @@ Mengyao Yuan (yuan13@llnl.gov)
 Bo-Xun Wang (University of Wisconsin-Madison), Corey Myers (LLNL), Thomas Moore (Queensland University of Technology), and Wenqin Li (LLNL) have contributed to the development of the systems model and analysis.
 
 ## Citation
-[TBD]
+Yuan, Mengyao, Giovanna Bucci, Tanusree Chatterjee, Shyam Deo, John R. Kitchin, Carl D. Laird, Wenqin Li, Thomas Moore, Corey Myers, Wenyu Sun, Ethan M. Sunshine, Bo-Xun Wang, Matthew J. McNenly, and Sneha A. Akhade. 2025. "Integrated Systems-to-Atoms (S2A) Framework for Designing Resilient and Efficient Hydrogen Infrastructure Solutions." _Energy & Fuels_. https://doi.org/10.1021/acs.energyfuels.4c05903.
