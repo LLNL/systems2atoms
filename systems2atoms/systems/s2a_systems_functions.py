@@ -3029,8 +3029,8 @@ def calcs(
             'hydr. electrolyzer cell area (m^2/cell)' : 254.972158,
             'hydr. electrolyzer voltage (V)' : 1.27,
             'hydr. electrolyzer current density (A/m^2)' : 2000.0,
+            'hydr. electrolyzer purchase cost ($/m^2)' : 5250.0,
             'hydr. separator energy (unit TBD)' : 0.0,
-            'CO2 electrolyzer purchase cost ($/m^2)' : 5250.0,
             'terminal LOHC storage amount (days)' : 0.25,
             'terminal compressed hydrogen storage amount (days)' : 0.25,
             'terminal liquid hydrogen storage amount (days)' : 1.0,
@@ -3242,14 +3242,14 @@ def calcs(
         'hydr. electrolyzer current density (A/m^2)'
         ]
     
+    # hydrogenation electrolyzer purchase cost ($/m^2)
+    hydr_electr_purc_cost_usd_per_sq_m = dict_input_params[
+        'hydr. electrolyzer purchase cost ($/m^2)'
+        ]
+    
     # hydrogenation separator energy requirement (unit TBD)
     LOHC_hydr_sep_energy = dict_input_params[
         'hydr. separator energy (unit TBD)'
-        ]
-    
-    # CO2 electrolyer purchase cost ($/m^2)
-    CO2_electr_purc_cost_usd_per_sq_m = dict_input_params[
-        'CO2 electrolyzer purchase cost ($/m^2)'
         ]
     
     # LOHC storage amount at terminal (days)
@@ -8148,14 +8148,14 @@ def calcs(
             LOHC_hydr_catal_cost_usd_per_kg * LOHC_hydr_catal_amt_kg
 
     # ------------------------------------------------------------------------
-    # production - LOHC: CO2 electrolyzer energy consumption and size
+    # production - LOHC: hydrogenation electrolyzer energy consumption and size
     
-    # initialize CO2 electrolyzer power (zero by default)
+    # initialize hydrogenation electrolyzer power (zero by default)
     LOHC_TML_hydr_electr_power_kW = 0.0
 
     if LOHC_prod_pathway == 'electro':
         
-        # calculate CO2 electrolyzer power (kW)
+        # calculate hydrogenation electrolyzer power (kW)
         LOHC_TML_hydr_electr_power_kW = electrolyzer_power(
             electr_volt_V = hydr_electr_volt_V,
             electr_curr_dens_A_per_sq_m = hydr_electr_curr_dens_A_per_sq_m,
@@ -8165,11 +8165,11 @@ def calcs(
             target_out_flow_kg_per_sec = LOHC_TML_LOHC_flow_kg_per_sec,
             )
         
-    # calculate CO2 electrolyzer energy (kWh/kg H2)
+    # calculate hydrogenation electrolyzer energy (kWh/kg H2)
     LOHC_TML_hydr_electr_elec_kWh_per_kg = \
         LOHC_TML_hydr_electr_power_kW / tot_H2_deliv_kg_per_hr
         
-    # convert CO2 electrolyzer energy to MJ/MJ H2 (LHV) 
+    # convert hydrogenation electrolyzer energy to MJ/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
     LOHC_TML_hydr_electr_elec_MJ_per_MJ = \
         LOHC_TML_hydr_electr_elec_kWh_per_kg * MJ_per_kWh / \
@@ -8181,7 +8181,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'energy consumption', 
         'electricity consumption', 
         'kWh/kg H2', 
@@ -8192,7 +8192,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'energy consumption', 
         'electricity consumption', 
         'MJ/MJ H2 (LHV)', 
@@ -8200,13 +8200,13 @@ def calcs(
         ])
 
     # ------------------------------------------------------------------------
-    # production - LOHC: CO2 electrolyzer energy emissions
+    # production - LOHC: hydrogenation electrolyzer energy emissions
         
-    # calculate CO2 electrolyzer energy emissions (kg CO2/kg H2)
+    # calculate hydrogenation electrolyzer energy emissions (kg CO2/kg H2)
     LOHC_TML_hydr_electr_ghg_kg_CO2_per_kg = \
         LOHC_TML_hydr_electr_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
     
-    # convert CO2 electrolyzer energy emissions to g CO2/MJ H2 (LHV) 
+    # convert hydrogenation electrolyzer energy emissions to g CO2/MJ H2 (LHV) 
     # (for comparison with HDSAM V3.1)
     LOHC_TML_hydr_electr_ghg_g_CO2_per_MJ = \
         LOHC_TML_hydr_electr_ghg_kg_CO2_per_kg * g_per_kg / \
@@ -8218,7 +8218,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'emissions', 
         'energy emissions', 
         'kg CO2/kg H2', 
@@ -8229,7 +8229,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'emissions', 
         'energy emissions', 
         'g CO2/MJ H2 (LHV)', 
@@ -8237,13 +8237,13 @@ def calcs(
         ])
 
     # ------------------------------------------------------------------------
-    # production - LOHC: CO2 electrolyzer energy cost
+    # production - LOHC: hydrogenation electrolyzer energy cost
     
-    # calculate CO2 electrolyzer energy cost ($/kg H2)
+    # calculate hydrogenation electrolyzer energy cost ($/kg H2)
     LOHC_TML_hydr_electr_elec_cost_usd_per_kg = \
         LOHC_TML_hydr_electr_elec_kWh_per_kg * elec_cost_usd_per_kWh
     
-    # calculate CO2 electrolyzer energy cost ($/yr)
+    # calculate hydrogenation electrolyzer energy cost ($/yr)
     LOHC_TML_hydr_electr_elec_cost_usd_per_yr = \
         LOHC_TML_hydr_electr_elec_cost_usd_per_kg * \
         tot_H2_deliv_kg_per_yr
@@ -8254,7 +8254,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'energy cost', 
         'electricity cost', 
         '$/yr', 
@@ -8265,7 +8265,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'energy cost', 
         'electricity cost', 
         '$/kg H2', 
@@ -8274,9 +8274,9 @@ def calcs(
         
     # ------------------------------------------------------------------------
     # production - LOHC: 
-    # CO2 electrolyzer installed cost and annual O&M cost
+    # hydrogenation electrolyzer installed cost and annual O&M cost
         
-    # initialize CO2 electrolyzer installed cost and 
+    # initialize hydrogenation electrolyzer installed cost and 
     # annual O&M cost (zero by default)
     LOHC_TML_hydr_electr_inst_cost_usd = 0.0
     LOHC_TML_hydr_electr_om_cost_usd_per_yr = 0.0
@@ -8284,7 +8284,7 @@ def calcs(
 
     if LOHC_prod_pathway == 'electro':      
                             
-        # calculate CO2 electrolyzer installed cost ($) and annual 
+        # calculate hydrogenation electrolyzer installed cost ($) and annual 
         # O&M cost ($/yr), both in output dollar year
         LOHC_TML_hydr_electr_inst_cost_usd, \
         LOHC_TML_hydr_electr_om_cost_usd_per_yr, \
@@ -8296,10 +8296,10 @@ def calcs(
                 target_out_flow_kg_per_sec = LOHC_TML_LOHC_flow_kg_per_sec,
                 output_dollar_year = output_dollar_year,
                 electr_purc_cost_usd_per_sq_m = \
-                    CO2_electr_purc_cost_usd_per_sq_m
+                    hydr_electr_purc_cost_usd_per_sq_m
                 )
             
-    # calculate CO2 electrolyzer O&M cost ($/kg H2)
+    # calculate hydrogenation electrolyzer O&M cost ($/kg H2)
     LOHC_TML_hydr_electr_om_cost_usd_per_kg = \
         LOHC_TML_hydr_electr_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
         
@@ -8309,7 +8309,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/yr', 
@@ -8320,7 +8320,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'O&M cost', 
         'operation, maintenance, repair costs', 
         '$/kg H2', 
@@ -8935,7 +8935,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'O&M cost', 
         'other O&M costs', 
         '$/yr', 
@@ -8947,7 +8947,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'O&M cost', 
         'other O&M costs', 
         '$/kg H2', 
@@ -9182,7 +9182,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'O&M cost', 
         'labor cost', 
         '$/yr', 
@@ -9194,7 +9194,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'O&M cost', 
         'labor cost', 
         '$/kg H2', 
@@ -9521,14 +9521,14 @@ def calcs(
         ])
 
     # ------------------------------------------------------------------------
-    # production - LOHC: CO2 electrolyzer levelized capital cost
+    # production - LOHC: hydrogenation electrolyzer levelized capital cost
     
-    # calculate CO2 electrolyzer total capital investment ($) 
+    # calculate hydrogenation electrolyzer total capital investment ($) 
     # (= terminal total capital investment allocated to electrolyzer)
     LOHC_TML_hydr_electr_tot_cap_inv_usd = \
         LOHC_TML_hydr_electr_cost_perc * LOHC_TML_tot_cap_inv_usd
     
-    # calculate CO2 electrolyzer levelized capital cost 
+    # calculate hydrogenation electrolyzer levelized capital cost 
     # ($/yr, output dollar year)
     LOHC_TML_hydr_electr_lev_cap_cost_usd_per_yr, \
     LOHC_TML_hydr_electr_lev_cap_cost_dollar_year = \
@@ -9539,7 +9539,7 @@ def calcs(
             input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
-    # calculate CO2 electrolyzer levelized capital cost ($/kg H2)
+    # calculate hydrogenation electrolyzer levelized capital cost ($/kg H2)
     LOHC_TML_hydr_electr_lev_cap_cost_usd_per_kg = \
         LOHC_TML_hydr_electr_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
@@ -9549,7 +9549,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
@@ -9560,7 +9560,7 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'CO2 electrolyzer', 
+        'electrolyzer', 
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
