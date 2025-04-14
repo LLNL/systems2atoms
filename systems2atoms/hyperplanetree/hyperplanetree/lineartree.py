@@ -219,7 +219,7 @@ class LinearTreeRegressor(_LinearTree, RegressorMixin):
             if (~mask).all():
                 continue
 
-            pred[mask] = L.model.predict(X[mask][:, self._linear_features])
+            pred[mask] = L.model.predict(X[mask][:, self._linear_features]).reshape(pred[mask].shape)
 
         return pred
     

@@ -49,12 +49,13 @@ criteria = {
 def compute_theta(X, y, ridge = 1e-5):
     """Compute linear regression parameters using torch.linalg.lstsq """
     c, b, s, f = X.shape  # columns, bins, samples, features
+    t = y.shape[-1]  # number of targets
 
     X_reshaped = X.permute(0, 1, 3, 2).reshape(c * b, f, s)
     XtX = torch.bmm(X_reshaped, X_reshaped.transpose(1, 2)).view(c, b, f, f)
 
-    y_reshaped = y.reshape(c * b, s, 1)
-    Xty = torch.bmm(X_reshaped, y_reshaped).reshape(c, b, f)
+    y_reshaped = y.reshape(c * b, s, t)
+    Xty = torch.bmm(X_reshaped, y_reshaped).reshape(c, b, f, t)
 
     # Add ridge regularization to handle small data
     XtX += ridge * torch.eye(f, device=X.device).unsqueeze(0).unsqueeze(0)
@@ -408,28 +409,33 @@ class _LinearTree(BaseDecisionTree):
         # Mask X and y tensors
         X_below = torch.einsum('sf,bsc->cbsf', X, mask_below)
         X_above = torch.einsum('sf,bsc->cbsf', X, mask_above)
-        y_below = torch.einsum('s,bsc->cbs', y, mask_below)
-        y_above = torch.einsum('s,bsc->cbs', y, mask_above)
+        y_below = torch.einsum('st,bsc->cbst', y, mask_below)
+        y_above = torch.einsum('st,bsc->cbst', y, mask_above)
 
         # Compute theta (linear regression parameters) for below and above thresholds
         theta_below = compute_theta(X_below[:, :, :, linear_features], y_below, ridge=self.ridge)
         theta_above = compute_theta(X_above[:, :, :, linear_features], y_above, ridge=self.ridge)
 
         # Make predictions
-        y_pred_below = torch.einsum('cbsf, cbf -> cbs', X_below[:, :, :, linear_features], theta_below)
-        y_pred_above = torch.einsum('cbsf, cbf -> cbs', X_above[:, :, :, linear_features], theta_above)
+        y_pred_below = torch.einsum('cbsf, cbft -> cbst', X_below[:, :, :, linear_features], theta_below)
+        y_pred_above = torch.einsum('cbsf, cbft -> cbst', X_above[:, :, :, linear_features], theta_above)
 
-        y_pred = torch.einsum('cbs, bsc -> cbs', y_pred_below, mask_below) + \
-                 torch.einsum('cbs, bsc -> cbs', y_pred_above, mask_above)
+        y_pred = torch.einsum('cbst, bsc -> cbst', y_pred_below, mask_below) + \
+             torch.einsum('cbst, bsc -> cbst', y_pred_above, mask_above)
 
         # Calculate error
-        overall_error = self.loss_func(y, y_pred, dim = -1).T
+        overall_error = self.loss_func(y, y_pred, dim = 2).T
 
-        err_below = self.loss_func(y_below, y_pred_below, dim = -1).T
-        err_above = self.loss_func(y_above, y_pred_above, dim = -1).T
+        err_below = self.loss_func(y_below, y_pred_below, dim = 2).T
+        err_above = self.loss_func(y_above, y_pred_above, dim = 2).T
 
         n_below = mask_below.sum(dim=1)
         n_above = mask_above.sum(dim=1)
+
+        # Pool the error across the targets
+        overall_error = overall_error.sum(dim=0)
+        err_below = err_below.sum(dim=0)
+        err_above = err_above.sum(dim=0)
 
         overall_error = torch.nan_to_num(overall_error, 2*torch.max(overall_error))
         overall_error[~valid_thresholds] += torch.inf
@@ -525,6 +531,9 @@ class _LinearTree(BaseDecisionTree):
         loss = self.loss_func(
             y, yh,
             weights=weights, **largs)
+
+        # Sum loss over targets
+        loss = torch.sum(loss)
 
         self._nodes[''] = Node(
             id=0,
@@ -682,6 +691,10 @@ class _LinearTree(BaseDecisionTree):
         self : object
         """
         n_sample, n_feat = X.shape
+
+        # Ensure y is 2-dimensional
+        if y.ndim == 1:
+            y = y.reshape(-1, 1)
 
         if isinstance(self.min_samples_split, numbers.Integral):
             if self.min_samples_split < 6:
