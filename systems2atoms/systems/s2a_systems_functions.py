@@ -3030,6 +3030,7 @@ def calcs(
             'hydr. electrolyzer voltage (V)' : 1.27,
             'hydr. electrolyzer current density (A/m^2)' : 2000.0,
             'hydr. electrolyzer purchase cost ($/m^2)' : 5250.0,
+            'hydr. electrolyzer catalyst cost fraction' : 0.45,
             'hydr. separator energy (unit TBD)' : 0.0,
             'terminal LOHC storage amount (days)' : 0.25,
             'terminal compressed hydrogen storage amount (days)' : 0.25,
@@ -3245,6 +3246,12 @@ def calcs(
     # hydrogenation electrolyzer purchase cost ($/m^2)
     hydr_electr_purc_cost_usd_per_sq_m = dict_input_params[
         'hydr. electrolyzer purchase cost ($/m^2)'
+        ]
+    
+    # hydrogenation electrolyzer catalyst-coated membrane (CCM) cost fraction
+    # (fraction of electrolyzer purchase cost)
+    hydr_electr_ccm_cost_frac = dict_input_params[
+        'hydr. electrolyzer catalyst cost fraction'
         ]
     
     # hydrogenation separator energy requirement (unit TBD)
@@ -9521,27 +9528,32 @@ def calcs(
         ])
 
     # ------------------------------------------------------------------------
-    # production - LOHC: hydrogenation electrolyzer levelized capital cost
+    # production - LOHC: 
+    # hydrogenation electrolyzer levelized capital cost, 
+    # catalyst-coated membrane (CCM) component
     
-    # calculate hydrogenation electrolyzer total capital investment ($) 
-    # (= terminal total capital investment allocated to electrolyzer)
-    LOHC_TML_hydr_electr_tot_cap_inv_usd = \
-        LOHC_TML_hydr_electr_cost_perc * LOHC_TML_tot_cap_inv_usd
+    # calculate hydrogenation electrolyzer CCM total capital investment ($) 
+    # (= terminal total capital investment allocated to electrolyzer CCM)
+    LOHC_TML_hydr_electr_ccm_tot_cap_inv_usd = \
+        LOHC_TML_hydr_electr_cost_perc * LOHC_TML_tot_cap_inv_usd * \
+        hydr_electr_ccm_cost_frac
     
-    # calculate hydrogenation electrolyzer levelized capital cost 
+    # calculate hydrogenation electrolyzer CCM levelized capital cost 
     # ($/yr, output dollar year)
-    LOHC_TML_hydr_electr_lev_cap_cost_usd_per_yr, \
-    LOHC_TML_hydr_electr_lev_cap_cost_dollar_year = \
+    # NOTE: use hydrogenation catalyst lifetime and depreciation schedule
+    LOHC_TML_hydr_electr_ccm_lev_cap_cost_usd_per_yr, \
+    LOHC_TML_hydr_electr_ccm_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
-            tot_cap_inv_usd = LOHC_TML_hydr_electr_tot_cap_inv_usd, 
-            life_yr = TML_electr_life_yr, 
-            depr_yr = TML_electr_depr_yr,
+            tot_cap_inv_usd = LOHC_TML_hydr_electr_ccm_tot_cap_inv_usd,
+            life_yr = LOHC_hydr_catal_life_yr, 
+            depr_yr = LOHC_hydr_catal_depr_yr,
             input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
-    # calculate hydrogenation electrolyzer levelized capital cost ($/kg H2)
-    LOHC_TML_hydr_electr_lev_cap_cost_usd_per_kg = \
-        LOHC_TML_hydr_electr_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    # calculate hydrogenation electrolyzer CCM levelized capital cost ($/kg H2)
+    LOHC_TML_hydr_electr_ccm_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_hydr_electr_ccm_lev_cap_cost_usd_per_yr / \
+        tot_H2_deliv_kg_per_yr
     
     # append results to list
     list_output.append([
@@ -9549,24 +9561,79 @@ def calcs(
         'production', 
         'terminal', 
         'reaction', 
-        'electrolyzer', 
+        'electrolyzer catalyst-coated membrane', 
         'capital cost', 
         'levelized capital cost', 
         '$/yr', 
-        LOHC_TML_hydr_electr_lev_cap_cost_usd_per_yr
+        LOHC_TML_hydr_electr_ccm_lev_cap_cost_usd_per_yr
         ])
     list_output.append([
         'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'reaction', 
-        'electrolyzer', 
+        'electrolyzer catalyst-coated membrane', 
         'capital cost', 
         'levelized capital cost', 
         '$/kg H2', 
-        LOHC_TML_hydr_electr_lev_cap_cost_usd_per_kg
+        LOHC_TML_hydr_electr_ccm_lev_cap_cost_usd_per_kg
         ])    
     
+    # ------------------------------------------------------------------------
+    # production - LOHC: 
+    # hydrogenation electrolyzer levelized capital cost,
+    # remaining components excluding catalyst-coated membrane
+    
+    # calculate hydrogenation electrolyzer non-catalyst 
+    # total capital investment ($) 
+    # (= terminal total capital investment allocated to electrolyzer 
+    # non-catalyst components)
+    LOHC_TML_hydr_electr_non_catal_tot_cap_inv_usd = \
+        LOHC_TML_hydr_electr_cost_perc * LOHC_TML_tot_cap_inv_usd * \
+        (1 - hydr_electr_ccm_cost_frac)
+    
+    # calculate hydrogenation electrolyzer non-catalyst 
+    # levelized capital cost 
+    # ($/yr, output dollar year)
+    LOHC_TML_hydr_electr_non_catal_lev_cap_cost_usd_per_yr, \
+    LOHC_TML_hydr_electr_non_catal_lev_cap_cost_dollar_year = \
+        levelized_capital_cost(
+            tot_cap_inv_usd = LOHC_TML_hydr_electr_non_catal_tot_cap_inv_usd, 
+            life_yr = TML_electr_life_yr, 
+            depr_yr = TML_electr_depr_yr,
+            input_dollar_year = LOHC_TML_cap_cost_dollar_year
+            )
+    
+    # calculate hydrogenation electrolyzer non-catalyst 
+    # levelized capital cost ($/kg H2)
+    LOHC_TML_hydr_electr_non_catal_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_hydr_electr_non_catal_lev_cap_cost_usd_per_yr / \
+        tot_H2_deliv_kg_per_yr
+    
+    # append results to list
+    list_output.append([
+        'LOHC - ' + str(LOHC_name), 
+        'production', 
+        'terminal', 
+        'reaction', 
+        'electrolyzer non-catalyst components', 
+        'capital cost', 
+        'levelized capital cost', 
+        '$/yr', 
+        LOHC_TML_hydr_electr_non_catal_lev_cap_cost_usd_per_yr
+        ])
+    list_output.append([
+        'LOHC - ' + str(LOHC_name), 
+        'production', 
+        'terminal', 
+        'reaction', 
+        'electrolyzer non-catalyst components', 
+        'capital cost', 
+        'levelized capital cost', 
+        '$/kg H2', 
+        LOHC_TML_hydr_electr_non_catal_lev_cap_cost_usd_per_kg
+        ])
+
     # ------------------------------------------------------------------------
     # production - LOHC:
     # LOHC purification (distillation) levelized capital cost

@@ -34,6 +34,7 @@ all,all,all,all,all,input parameter,hydr. electrolyzer cell area,m^2/cell,5539.8
 all,all,all,all,all,input parameter,hydr. electrolyzer voltage,V,1.27
 all,all,all,all,all,input parameter,hydr. electrolyzer current density,A/m^2,2000
 all,all,all,all,all,input parameter,hydr. electrolyzer purchase cost,$/m^2,5250
+all,all,all,all,all,input parameter,hydr. electrolyzer catalyst cost fraction,-,0.45
 all,all,all,all,all,input parameter,hydr. separator energy,unit TBD,0
 all,all,all,all,all,input parameter,terminal LOHC storage amount,days,0.25
 all,all,all,all,all,input parameter,terminal compressed hydrogen storage amount,days,0.25
@@ -252,8 +253,10 @@ LOHC - formic acid,production,terminal,reaction,reactor,capital cost,levelized c
 LOHC - formic acid,production,terminal,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.0
 LOHC - formic acid,production,terminal,reaction,catalyst,capital cost,levelized capital cost,$/yr,0.0
 LOHC - formic acid,production,terminal,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.0
-LOHC - formic acid,production,terminal,reaction,electrolyzer,capital cost,levelized capital cost,$/yr,9611553.765111754
-LOHC - formic acid,production,terminal,reaction,electrolyzer,capital cost,levelized capital cost,$/kg H2,3.2916280017506008
+LOHC - formic acid,production,terminal,reaction,electrolyzer catalyst-coated membrane,capital cost,levelized capital cost,$/yr,37089120.42137355
+LOHC - formic acid,production,terminal,reaction,electrolyzer catalyst-coated membrane,capital cost,levelized capital cost,$/kg H2,12.701753568963547
+LOHC - formic acid,production,terminal,reaction,electrolyzer non-catalyst components,capital cost,levelized capital cost,$/yr,5286354.570811465
+LOHC - formic acid,production,terminal,reaction,electrolyzer non-catalyst components,capital cost,levelized capital cost,$/kg H2,1.8103954009628307
 LOHC - formic acid,production,truck,CO2 recycling,truck,capital cost,all-in CO2 transport cost,$/yr,35886450.24433576
 LOHC - formic acid,production,truck,CO2 recycling,truck,capital cost,all-in CO2 transport cost,$/kg H2,12.289880220662933
 LOHC - formic acid,production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/yr,0.0
