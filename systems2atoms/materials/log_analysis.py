@@ -6,7 +6,7 @@ output_variable = sys.argv[1]
 #logfile = glob('*.log')
 logfile=glob(sys.argv[2])
 if len(logfile) > 1:
-    raise InputError('Ambiguous logfile. Ensure that only one file ends with .log')
+    raise ValueError('Ambiguous logfile. Ensure that only one file ends with .log')
 model = ReactionModel(setup_file=logfile[0])
 
 print("output_labels are following \n", model.output_labels)
