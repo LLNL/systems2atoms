@@ -285,9 +285,9 @@ class TorchLinearRegression(LinearRegression):
     @property
     def intercept_(self):
         if isinstance(self.scale_offset, torch.Tensor):
-            return (self.params[0] * self.target_scale_weight + self.target_scale_offset - torch.sum(self.params[1:] * self.scale_offset * self.target_scale_weight)).item()
+            return (self.params[0] * self.target_scale_weight + self.target_scale_offset - torch.sum(self.params[1:] * self.scale_offset * self.target_scale_weight)).numpy()
         else:
-            return (self.params[0] * self.target_scale_weight + self.target_scale_offset - torch.sum(self.params[1:] * torch.tensor(self.scale_offset) * self.target_scale_weight)).item()
+            return (self.params[0] * self.target_scale_weight + self.target_scale_offset - torch.sum(self.params[1:] * torch.tensor(self.scale_offset) * self.target_scale_weight)).numpy()
     
     @property
     def coef_(self):
@@ -424,10 +424,10 @@ class _LinearTree(BaseDecisionTree):
              torch.einsum('cbst, bsc -> cbst', y_pred_above, mask_above)
 
         # Calculate error
-        overall_error = self.loss_func(y, y_pred, dim = 2).T
+        overall_error = self.loss_func(y, y_pred, dim = 2).permute(2, 1, 0)
 
-        err_below = self.loss_func(y_below, y_pred_below, dim = 2).T
-        err_above = self.loss_func(y_above, y_pred_above, dim = 2).T
+        err_below = self.loss_func(y_below, y_pred_below, dim = 2).permute(2, 1, 0)
+        err_above = self.loss_func(y_above, y_pred_above, dim = 2).permute(2, 1, 0)
 
         n_below = mask_below.sum(dim=1)
         n_above = mask_above.sum(dim=1)
