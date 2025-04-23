@@ -172,21 +172,13 @@ total_tax_rate = federal_taxes + state_taxes * (1 - federal_taxes)
 # ----------------------------------------------------------------------------
 # cost levelization
 
-# equipment lifetime (yr)
+# equipment lifetime (yr) for all pathways
+# assumptions from HDSAM V3.1 unless otherwise specified
 # TODO: revisit cost allocation; tractor and trailer have different lifetimes 
 # in HDSAM V3.1 (5 and 15 years, respectively) 
-# TODO: revisit terminal and station reactor and separator (PSA) lifetimes; 
-# TODO: revisit terminal vaporizer lifetime
-# TODO: revisit terminal electrolyzer lifetime
-# for now, use remainder of terminal or station lifetime in HDSAM V3.1
-# terminal (formic acid) distillation: Ramdin et al., 2019
 TML_compr_life_yr = 15.0
 TML_pump_life_yr = 15.0
 TML_stor_life_yr = 30.0
-TML_react_life_yr = 30.0
-TML_vap_life_yr = 30.0
-TML_distil_life_yr = 15.0
-TML_electr_life_yr = 30.0
 liquef_life_yr = 40.0
 truck_life_yr = 15.0
 STN_compr_life_yr = 10.0
@@ -194,21 +186,26 @@ STN_pump_life_yr = 10.0
 STN_stor_life_yr = 30.0
 STN_refrig_life_yr = 15.0
 STN_vap_life_yr = 30.0
-STN_react_life_yr = 30.0
-STN_psa_life_yr = 30.0
 
-# equipment MACRS deprepreciation schedule length (yr)
-# TODO: revisit depreciation length for equipment used for 
-# LOHC terminal or refueling station (reactor, catalyst, 
-# distillation, electrolyzer, PSA)
-# for now, use assumptions in HDSAM V3.1 for similar equipment types
+# equipment lifetime (yr) for LOHC pathways
+# assumptions or references:
+# - terminal vaporizer: same as remainder of terminal, currently placeholder
+# - terminal (formic acid) distillation: Ramdin et al., 2019
+# - reactor: same as storage (both are vessels)
+# - station separator (PSA): same as station compressor
+TML_vap_life_yr = 30.0
+TML_distil_life_yr = 15.0
+TML_react_life_yr = TML_stor_life_yr
+STN_react_life_yr = STN_stor_life_yr
+STN_psa_life_yr = STN_compr_life_yr
+
+# equipment MACRS depreciation schedule length (yr) for all pathways
+# assumptions from HDSAM V3.1 unless otherwise specified
+# NOTE: use "H2A Base Case" for terminal pump ("Liquid H2 Terminal" tab),
+# which is different from "Base Case" selection (10 vs. 15 years)
 TML_compr_depr_yr = 10.0
-TML_pump_depr_yr = 15.0
+TML_pump_depr_yr = 10.0
 TML_stor_depr_yr = 15.0
-TML_react_depr_yr = 15.0
-TML_vap_depr_yr = 15.0
-TML_distil_depr_yr = 10.0
-TML_electr_depr_yr = 15.0
 liquef_depr_yr = 15.0
 truck_depr_yr = 5.0
 STN_compr_depr_yr = 5.0
@@ -216,10 +213,24 @@ STN_pump_depr_yr = 5.0
 STN_stor_depr_yr = 5.0
 STN_refrig_depr_yr = 5.0
 STN_vap_depr_yr = 5.0
-STN_react_depr_yr = 15.0
-STN_psa_depr_yr = 15.0
+
+# equipment MACRS depreciation schedule length (yr) for LOHC pathways
+# assumptions or references:
+# - terminal vaporizer: same as remainder of terminal, currently placeholder
+# - terminal distillation: same as terminal equipment with 15-year lifetime
+# - reactor: same as storage (both are vessels)
+# - station separator (PSA): same as station compressor
+# - catalyst: use shortest depreciation length available
+# - electrolzyer: same as equipment with 10-year lifetime 
+# (to align with baseline input for "calcs")
+TML_vap_depr_yr = 15.0
+TML_distil_depr_yr = 10.0
+TML_react_depr_yr = TML_stor_depr_yr
+STN_react_depr_yr = STN_stor_depr_yr
+STN_psa_depr_yr = STN_compr_depr_yr
 LOHC_hydr_catal_depr_yr = 3.0
 LOHC_dehydr_catal_depr_yr = 3.0
+hydr_electr_depr_yr = 5.0
 
 # MACRS depreciation period table
 # read in MACRS depreciation period table (source: HDSAM V3.1)
@@ -3031,6 +3042,7 @@ def calcs(
             'hydr. electrolyzer current density (A/m^2)' : 2000.0,
             'hydr. electrolyzer purchase cost ($/m^2)' : 5250.0,
             'hydr. electrolyzer catalyst cost fraction' : 0.45,
+            'hydr. electrolyzer lifetime (yr)' : 10.0,
             'hydr. separator energy (unit TBD)' : 0.0,
             'terminal LOHC storage amount (days)' : 0.25,
             'terminal compressed hydrogen storage amount (days)' : 0.25,
@@ -3254,6 +3266,11 @@ def calcs(
         'hydr. electrolyzer catalyst cost fraction'
         ]
     
+    # hydrogenation electrolyzer lifetime (yr)
+    hydr_electr_life_yr = dict_input_params[
+        'hydr. electrolyzer lifetime (yr)'
+        ]
+
     # hydrogenation separator energy requirement (unit TBD)
     LOHC_hydr_sep_energy = dict_input_params[
         'hydr. separator energy (unit TBD)'
@@ -9540,13 +9557,12 @@ def calcs(
     
     # calculate hydrogenation electrolyzer CCM levelized capital cost 
     # ($/yr, output dollar year)
-    # NOTE: use hydrogenation catalyst lifetime and depreciation schedule
     LOHC_TML_hydr_electr_ccm_lev_cap_cost_usd_per_yr, \
     LOHC_TML_hydr_electr_ccm_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
             tot_cap_inv_usd = LOHC_TML_hydr_electr_ccm_tot_cap_inv_usd,
-            life_yr = LOHC_hydr_catal_life_yr, 
-            depr_yr = LOHC_hydr_catal_depr_yr,
+            life_yr = hydr_electr_life_yr, 
+            depr_yr = hydr_electr_depr_yr,
             input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
@@ -9599,8 +9615,8 @@ def calcs(
     LOHC_TML_hydr_electr_non_catal_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
             tot_cap_inv_usd = LOHC_TML_hydr_electr_non_catal_tot_cap_inv_usd, 
-            life_yr = TML_electr_life_yr, 
-            depr_yr = TML_electr_depr_yr,
+            life_yr = hydr_electr_life_yr, 
+            depr_yr = hydr_electr_depr_yr,
             input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
