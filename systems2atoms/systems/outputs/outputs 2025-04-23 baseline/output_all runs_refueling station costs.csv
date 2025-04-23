@@ -69,8 +69,8 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
 0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,87034.40973646946
 0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.023845043763416292
-0,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
-0,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+0,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,100486.1295233927
+0,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.02753044644476512
 0,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
 0,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
 0,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,5959568.236348861
@@ -153,8 +153,8 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
 1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,87034.40973646946
 1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.023845043763416292
-1,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
-1,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+1,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,100486.1295233927
+1,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.02753044644476512
 1,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
 1,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
 1,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,5959568.236348861
@@ -237,8 +237,8 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
 2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,87034.40973646946
 2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.023845043763416292
-2,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
-2,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.1318924985834886
+2,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,100486.1295233927
+2,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.02753044644476512
 2,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
 2,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.07115215308095452
 2,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,5959568.236348861
@@ -321,8 +321,8 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
 3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,87034.40973646946
 3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.029806304704270363
-3,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
-3,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.16486562322936074
+3,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,100486.1295233927
+3,LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.0344130580559564
 3,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
 3,LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.08894019135119315
 3,LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,5959568.236348861

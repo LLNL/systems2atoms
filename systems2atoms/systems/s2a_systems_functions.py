@@ -309,7 +309,7 @@ sec_per_hr = 3600.0
 # dollar year indices
 
 # read in cost indices for dollar year conversion
-df_cost_idx = pd.read_csv(this_file/pathlib.Path('inputs/cost_indices_2001_2022.csv'))
+df_cost_idx = pd.read_csv(this_file/pathlib.Path('inputs/cost_indices.csv'))
 
 # create dataframe of CPI-U by year
 cpi_u = df_cost_idx[['Year', 'CPI-U']].copy()
@@ -3034,7 +3034,7 @@ def calcs(
             'number of hydr. reactors' : 1,
             'hydr. catalyst amount (kg)' : 53.0,
             'hydr. catalyst cost ($/kg)' : 5450.0,
-            'hydr. catalyst lifetime (yr)' : 1.0,
+            'hydr. catalyst lifetime (yr)' : 6.0,
             'hydr. reactor energy (unit TBD)' : 0.0,
             'hydr. LOHC output flowrate (kg/s)' : 2.642609297,
             'hydr. electrolyzer cell area (m^2/cell)' : 254.972158,
@@ -3054,7 +3054,7 @@ def calcs(
             'number of dehydr. reactors' : 1,
             'dehydr. catalyst amount (kg)' : 9.65,
             'dehydr. catalyst cost ($/kg)' : 3500,
-            'dehydr. catalyst lifetime (yr)' : 1.0,
+            'dehydr. catalyst lifetime (yr)' : 6.0,
             'dehydr. reactor energy (unit TBD)' : 0.0,
             'dehydr. gas/liquid separator energy (unit TBD)' : 0.0,
             'station LOHC storage amount (days)' : 1.0,

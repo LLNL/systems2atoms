@@ -27,7 +27,7 @@ all,all,all,all,all,input parameter,hydr. reactor volume,m^3,1
 all,all,all,all,all,input parameter,number of hydr. reactors,-,1
 all,all,all,all,all,input parameter,hydr. catalyst amount,kg,53
 all,all,all,all,all,input parameter,hydr. catalyst cost,$/kg,5450
-all,all,all,all,all,input parameter,hydr. catalyst lifetime,yr,1
+all,all,all,all,all,input parameter,hydr. catalyst lifetime,yr,6
 all,all,all,all,all,input parameter,hydr. reactor energy,unit TBD,0
 all,all,all,all,all,input parameter,hydr. LOHC output flowrate,kg/s,2.6426092969379242
 all,all,all,all,all,input parameter,hydr. electrolyzer cell area,m^2/cell,5539.862205650312
@@ -47,7 +47,7 @@ all,all,all,all,all,input parameter,dehydr. reactor volume,m^3,0.073102861102861
 all,all,all,all,all,input parameter,number of dehydr. reactors,-,1
 all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
 all,all,all,all,all,input parameter,dehydr. catalyst cost,$/kg,3500
-all,all,all,all,all,input parameter,dehydr. catalyst lifetime,yr,1
+all,all,all,all,all,input parameter,dehydr. catalyst lifetime,yr,6
 all,all,all,all,all,input parameter,dehydr. reactor energy,unit TBD,0
 all,all,all,all,all,input parameter,dehydr. gas/liquid separator energy,unit TBD,0
 all,all,all,all,all,input parameter,station LOHC storage amount,days,1
@@ -365,8 +365,8 @@ LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital
 LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,capital cost,levelized capital cost,$/kg H2,0.0
 LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/yr,87034.40973646946
 LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,levelized capital cost,$/kg H2,0.029806304704270363
-LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,481407.61982973333
-LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.16486562322936074
+LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/yr,100486.1295233927
+LOHC - formic acid,reconditioning,refueling station,reaction,catalyst,capital cost,levelized capital cost,$/kg H2,0.0344130580559564
 LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/yr,259705.35874548397
 LOHC - formic acid,reconditioning,refueling station,separation,PSA refrigerator,capital cost,levelized capital cost,$/kg H2,0.08894019135119315
 LOHC - formic acid,reconditioning,refueling station,separation,PSA,capital cost,levelized capital cost,$/yr,5959568.236348861
