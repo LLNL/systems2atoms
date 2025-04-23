@@ -228,8 +228,8 @@ TML_distil_depr_yr = 10.0
 TML_react_depr_yr = TML_stor_depr_yr
 STN_react_depr_yr = STN_stor_depr_yr
 STN_psa_depr_yr = STN_compr_depr_yr
-LOHC_hydr_catal_depr_yr = 3.0
-LOHC_dehydr_catal_depr_yr = 3.0
+hydr_catal_depr_yr = 3.0
+dehydr_catal_depr_yr = 3.0
 hydr_electr_depr_yr = 5.0
 
 # MACRS depreciation period table
@@ -3190,47 +3190,47 @@ def calcs(
         ]
     
     # hydrogenation reaction temperature (K)
-    LOHC_hydr_temp_K = dict_input_params[
+    hydr_temp_K = dict_input_params[
         'hydr. reaction temperature (K)'
         ]
     
     # hydrogenation reaction pressure (bar)
-    LOHC_hydr_pres_bar = dict_input_params[
+    hydr_pres_bar = dict_input_params[
         'hydr. reaction pressure (bar)'
         ]
     
     # hydrogenation reaction yield
-    LOHC_hydr_yield = dict_input_params[
+    hydr_yield = dict_input_params[
         'hydr. reaction yield'
         ]
     
     # hydrogenation reactor volume (m^3)
-    LOHC_hydr_react_vol_cu_m = dict_input_params[
+    hydr_react_vol_cu_m = dict_input_params[
         'hydr. reactor volume (m^3)'
         ]
     
     # number of hydrogenation reactors
-    LOHC_num_hydr_reacts = dict_input_params[
+    hydr_num_reacts = dict_input_params[
         'number of hydr. reactors'
         ]
     
     # hydrogenation calalyst amount required (kg)
-    LOHC_hydr_catal_amt_kg = dict_input_params[
+    hydr_catal_amt_kg = dict_input_params[
         'hydr. catalyst amount (kg)'
         ]
     
     # hydrogenation calalyst cost ($/kg)
-    LOHC_hydr_catal_cost_usd_per_kg = dict_input_params[
+    hydr_catal_cost_usd_per_kg = dict_input_params[
         'hydr. catalyst cost ($/kg)'
         ]
 
     # hydrogenation catalyst lifetime (yr)
-    LOHC_hydr_catal_life_yr = dict_input_params[
+    hydr_catal_life_yr = dict_input_params[
         'hydr. catalyst lifetime (yr)'
         ]
     
     # hydrogenation reactor energy requirement (unit TBD)
-    LOHC_hydr_react_energy = dict_input_params[
+    hydr_react_energy = dict_input_params[
         'hydr. reactor energy (unit TBD)'
         ]
     
@@ -3272,7 +3272,7 @@ def calcs(
         ]
 
     # hydrogenation separator energy requirement (unit TBD)
-    LOHC_hydr_sep_energy = dict_input_params[
+    hydr_sep_energy = dict_input_params[
         'hydr. separator energy (unit TBD)'
         ]
     
@@ -3294,54 +3294,54 @@ def calcs(
     # dehydrogenation reaction temperature (K)
     # = inlet temperature to precooling for separator 
     # (pressure swing adsorption, PSA) at LOHC hydrogen refueling station
-    LOHC_dehydr_temp_K = dict_input_params[
+    dehydr_temp_K = dict_input_params[
         'dehydr. reaction temperature (K)'
         ]
     
     # dehydrogenation reaction pressure (bar)
     # = hydrogen outlet pressure (bar) exiting separator (pressure swing
     # adsorption, PSA) at LOHC hydrogen refueling station
-    LOHC_dehydr_pres_bar = dict_input_params[
+    dehydr_pres_bar = dict_input_params[
         'dehydr. reaction pressure (bar)'
         ]
     
     # dehydrogenation reaction yield
-    LOHC_dehydr_yield = dict_input_params[
+    dehydr_yield = dict_input_params[
         'dehydr. reaction yield'
         ]
     
     # dehydrogenation reactor volume (m^3)
-    LOHC_dehydr_react_vol_cu_m = dict_input_params[
+    dehydr_react_vol_cu_m = dict_input_params[
         'dehydr. reactor volume (m^3)'
         ]
     
     # number of dehydrogenation reactors
-    LOHC_num_dehydr_reacts = dict_input_params[
+    dehydr_num_reacts = dict_input_params[
         'number of dehydr. reactors'
         ]
     
     # dehydrogenation calalyst amount required (kg)
-    LOHC_dehydr_catal_amt_kg = dict_input_params[
+    dehydr_catal_amt_kg = dict_input_params[
         'dehydr. catalyst amount (kg)'
         ]
     
     # dehydrogenation calalyst cost ($/kg)
-    LOHC_dehydr_catal_cost_usd_per_kg = dict_input_params[
+    dehydr_catal_cost_usd_per_kg = dict_input_params[
         'dehydr. catalyst cost ($/kg)'
         ]
 
     # dehydrogenation catalyst lifetime (yr)
-    LOHC_dehydr_catal_life_yr = dict_input_params[
+    dehydr_catal_life_yr = dict_input_params[
         'dehydr. catalyst lifetime (yr)'
         ]
     
     # dehydrogenation reactor energy requirement (unit TBD)
-    LOHC_dehydr_react_energy = dict_input_params[
+    dehydr_react_energy = dict_input_params[
         'dehydr. reactor energy (unit TBD)'
         ]
 
     # dehydrogenation gas/liquid separator energy requirement (unit TBD)
-    LOHC_dehydr_gas_liq_sep_energy = dict_input_params[
+    dehydr_gas_liq_sep_energy = dict_input_params[
         'dehydr. gas/liquid separator energy (unit TBD)'
         ]
     
@@ -3514,7 +3514,7 @@ def calcs(
     LOHC_STN_LOHC_flow_kg_per_day = \
         target_stn_capacity_kg_per_day / molar_mass_H2_kg_per_kmol / \
         stoic_mol_H2_per_mol_LOHC * molar_mass_LOHC_kg_per_kmol / \
-        LOHC_dehydr_yield
+        dehydr_yield
 
     # calculate LOHC mass flowrate (kg/s) at each refueling station
     LOHC_STN_LOHC_flow_kg_per_sec = \
@@ -3530,7 +3530,7 @@ def calcs(
     LOHC_STN_psa_in_flow_mol_per_hr = 0.0
     if stoic_mol_CO2_per_mol_LOHC > 0.0:
         LOHC_STN_psa_in_flow_mol_per_hr = \
-            LOHC_STN_LOHC_flow_mol_per_hr * LOHC_dehydr_yield * (
+            LOHC_STN_LOHC_flow_mol_per_hr * dehydr_yield * (
                 stoic_mol_H2_per_mol_LOHC + stoic_mol_CO2_per_mol_LOHC
                 )
     
@@ -3601,7 +3601,7 @@ def calcs(
     # calculate hydrogen molar flowrate (mol/s) at 
     # LOHC terminal
     LOHC_TML_H2_flow_mol_per_sec = \
-        LOHC_TML_LOHC_flow_mol_per_sec / LOHC_hydr_yield * \
+        LOHC_TML_LOHC_flow_mol_per_sec / hydr_yield * \
         stoic_mol_H2_per_mol_LOHC
 
     # calculate hydrogen mass flowrate (kg/day) at LOHC terminal  
@@ -7866,7 +7866,7 @@ def calcs(
         LOHC_TML_hydr_compr_power_kW_per_stg, \
         LOHC_TML_hydr_compr_num_stgs = \
             compressor_power_and_size(
-                out_pres_bar = LOHC_hydr_pres_bar,
+                out_pres_bar = hydr_pres_bar,
                 in_pres_bar = LOHC_TML_in_pres_bar,
                 in_temp_K = LOHC_TML_in_temp_K, 
                 gas_flow_mol_per_sec = LOHC_TML_H2_flow_mol_per_sec, 
@@ -8125,9 +8125,9 @@ def calcs(
         LOHC_TML_hydr_react_om_cost_usd_per_yr, \
         LOHC_TML_hydr_react_dollar_year = \
             reactor_fixed_costs(
-                react_pres_bar = LOHC_hydr_pres_bar,
-                react_vol_cu_m = LOHC_hydr_react_vol_cu_m, 
-                num_reacts = LOHC_num_hydr_reacts, 
+                react_pres_bar = hydr_pres_bar,
+                react_vol_cu_m = hydr_react_vol_cu_m, 
+                num_reacts = hydr_num_reacts, 
                 output_dollar_year = output_dollar_year
                 )
     
@@ -8169,7 +8169,7 @@ def calcs(
 
         # calculate hydrogenation catalyst upfront purchase cost ($)
         LOHC_TML_hydr_catal_purc_cost_usd = \
-            LOHC_hydr_catal_cost_usd_per_kg * LOHC_hydr_catal_amt_kg
+            hydr_catal_cost_usd_per_kg * hydr_catal_amt_kg
 
     # ------------------------------------------------------------------------
     # production - LOHC: hydrogenation electrolyzer energy consumption and size
@@ -9510,8 +9510,8 @@ def calcs(
     LOHC_TML_hydr_catal_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
             tot_cap_inv_usd = LOHC_TML_hydr_catal_tot_cap_inv_usd, 
-            life_yr = LOHC_hydr_catal_life_yr, 
-            depr_yr = LOHC_hydr_catal_depr_yr,
+            life_yr = hydr_catal_life_yr, 
+            depr_yr = hydr_catal_depr_yr,
             input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
@@ -10169,7 +10169,7 @@ def calcs(
     LOHC_STN_dehydr_pump_power_kW_per_pump = 0.0
     LOHC_STN_num_dehydr_compr = 0
 
-    if LOHC_dehydr_pres_bar > LOHC_STN_dehydr_pump_in_pres_bar:
+    if dehydr_pres_bar > LOHC_STN_dehydr_pump_in_pres_bar:
         
         # calculate dehydrogenation pump power (kW) and size (kW/pump) 
         # at refueling station
@@ -10178,7 +10178,7 @@ def calcs(
         LOHC_STN_dehydr_pump_power_kW_per_pump, \
         LOHC_STN_num_dehydr_compr = \
             pump_power_and_size(
-                out_pres_bar = LOHC_dehydr_pres_bar,
+                out_pres_bar = dehydr_pres_bar,
                 in_pres_bar = LOHC_STN_dehydr_pump_in_pres_bar,
                 fluid_flow_kg_per_sec = LOHC_STN_LOHC_flow_kg_per_sec, 
                 dens_kg_per_cu_m = dens_LOHC_kg_per_cu_m
@@ -10387,9 +10387,9 @@ def calcs(
     LOHC_STN_dehydr_react_om_cost_usd_per_yr_per_stn, \
     LOHC_STN_dehydr_react_dollar_year = \
         reactor_fixed_costs(
-            react_pres_bar = LOHC_dehydr_pres_bar,
-            react_vol_cu_m = LOHC_dehydr_react_vol_cu_m, 
-            num_reacts = LOHC_num_dehydr_reacts, 
+            react_pres_bar = dehydr_pres_bar,
+            react_vol_cu_m = dehydr_react_vol_cu_m, 
+            num_reacts = dehydr_num_reacts, 
             output_dollar_year = output_dollar_year
             )
     
@@ -10449,8 +10449,8 @@ def calcs(
     # calculate dehydrogenation catalyst upfront purchase cost ($)
     # sum of all stations
     LOHC_STN_dehydr_catal_purc_cost_usd = \
-        LOHC_dehydr_catal_cost_usd_per_kg * \
-        LOHC_dehydr_catal_amt_kg * target_num_stns
+        dehydr_catal_cost_usd_per_kg * \
+        dehydr_catal_amt_kg * target_num_stns
 
     # append results to list
     list_output.append([
@@ -10480,11 +10480,11 @@ def calcs(
     # outlet temperature = PSA operating temperature
     # TODO: add molar mass of inlet gas mixture
     if (LOHC_STN_psa_in_flow_mol_per_hr > 0.0) and \
-        (LOHC_dehydr_temp_K > LOHC_STN_psa_temp_K):
+        (dehydr_temp_K > LOHC_STN_psa_temp_K):
             LOHC_STN_psa_refrig_elec_kWh_per_kg = \
             heat_exchanger_energy(
                 out_temp_K = LOHC_STN_psa_temp_K,
-                in_temp_K = LOHC_dehydr_temp_K
+                in_temp_K = dehydr_temp_K
                 )
     
     # convert refrigerator energy to MJ/MJ H2 (LHV) 
@@ -10608,7 +10608,7 @@ def calcs(
     # (HDSAM V3.1: 1000 kg H2/day --> 4 hoses, 4 refrigerators)
     # TODO: revisit - this assumption applies to hydrogen refrigerators only?
     if (LOHC_STN_psa_in_flow_mol_per_hr > 0.0) and \
-        (LOHC_dehydr_temp_K > LOHC_STN_psa_temp_K):
+        (dehydr_temp_K > LOHC_STN_psa_temp_K):
         LOHC_STN_num_psa_refrigs = \
             target_stn_capacity_kg_per_day / (1000.0 / 4)
     
@@ -10671,7 +10671,7 @@ def calcs(
     # calculate refueling station separator (PSA) power (kW)
     # TODO: calculate PSA compression power as function of dehydr. pressure
     # for now, model as step function
-    if LOHC_dehydr_pres_bar < LOHC_STN_psa_pres_bar:
+    if dehydr_pres_bar < LOHC_STN_psa_pres_bar:
         
         LOHC_STN_psa_power_kW = psa_power(
             in_flow_norm_cu_m_per_hr = \
@@ -10846,7 +10846,7 @@ def calcs(
     # set compressor inlet pressure to the higher of 
     # dehydrogenation reaction pressure and PSA operating pressure
     LOHC_STN_compr_in_pres_bar = max(
-        LOHC_dehydr_pres_bar, LOHC_STN_psa_pres_bar
+        dehydr_pres_bar, LOHC_STN_psa_pres_bar
         )
     
     # calculate compressor power (kW) and size (kW/stage) 
@@ -12049,8 +12049,8 @@ def calcs(
     LOHC_STN_dehydr_catal_lev_cap_cost_dollar_year = \
         levelized_capital_cost(
             tot_cap_inv_usd = LOHC_STN_dehydr_catal_tot_cap_inv_usd, 
-            life_yr = LOHC_dehydr_catal_life_yr, 
-            depr_yr = LOHC_dehydr_catal_depr_yr,
+            life_yr = dehydr_catal_life_yr, 
+            depr_yr = dehydr_catal_depr_yr,
             input_dollar_year = LOHC_STN_dollar_year
             )
     
