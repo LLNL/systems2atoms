@@ -1,5 +1,0 @@
-scenario,run #,station annual capacity factor,electricity emission factor (kg CO2/kWh),hydrogen purchase cost ($/kg),hydr. reaction pathway
-baseline,0,1.0,0.228,0.31,electro
-FA - delivery only,1,1.0,0.0,0.0,purchase
-FA - closed loop,2,1.0,0.0,0.31,electro
-FA - closed loop - 80 cap factor,3,0.8,0.0,0.31,electro
