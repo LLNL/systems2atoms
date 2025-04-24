@@ -5,6 +5,8 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
 0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/yr,0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/kg H2,0.0
 0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
 0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
@@ -89,6 +91,8 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
 1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/yr,0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/kg H2,0.0
 1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
 1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
@@ -173,6 +177,8 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
 2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/yr,0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/kg H2,0.0
 2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
 2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
@@ -257,6 +263,8 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
 3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/yr,0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/kg H2,0.0
 3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
 3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.002085972503242639

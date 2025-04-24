@@ -19,7 +19,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 0,all,all,all,all,all,input parameter,LOHC density,kg/m^3,1220
 0,all,all,all,all,all,input parameter,stoic. ratio,mol H2/mol LOHC,1
 0,all,all,all,all,all,input parameter,stoic. ratio,mol CO2/mol LOHC,1
-0,all,all,all,all,all,input parameter,LOHC production pathway,-,electro
+0,all,all,all,all,all,input parameter,hydr. reaction pathway,-,electro
 0,all,all,all,all,all,input parameter,hydr. reaction temperature,K,366.15
 0,all,all,all,all,all,input parameter,hydr. reaction pressure,bar,105
 0,all,all,all,all,all,input parameter,hydr. reaction yield,-,1
@@ -40,6 +40,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 0,all,all,all,all,all,input parameter,terminal LOHC storage amount,days,0.25
 0,all,all,all,all,all,input parameter,terminal compressed hydrogen storage amount,days,0.25
 0,all,all,all,all,all,input parameter,terminal liquid hydrogen storage amount,days,1
+0,all,all,all,all,all,input parameter,dehydr. reaction pathway,-,"thermo, model"
 0,all,all,all,all,all,input parameter,dehydr. reaction temperature,K,300
 0,all,all,all,all,all,input parameter,dehydr. reaction pressure,bar,1
 0,all,all,all,all,all,input parameter,dehydr. reaction yield,-,0.9999
@@ -48,7 +49,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 0,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
 0,all,all,all,all,all,input parameter,dehydr. catalyst cost,$/kg,3500
 0,all,all,all,all,all,input parameter,dehydr. catalyst lifetime,yr,6
-0,all,all,all,all,all,input parameter,dehydr. reactor energy,unit TBD,0
+0,all,all,all,all,all,input parameter,dehydr. plant energy,kWh/kg,0
 0,all,all,all,all,all,input parameter,dehydr. gas/liquid separator energy,unit TBD,0
 0,all,all,all,all,all,input parameter,station LOHC storage amount,days,1
 0,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,1131500.0
@@ -345,6 +346,12 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
 0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 0,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,kWh/kg H2,0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,emissions,energy emissions,kg CO2/kg H2,0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/yr,0.0
+0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/kg H2,0.0
 0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
 0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 0,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
@@ -461,7 +468,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 1,all,all,all,all,all,input parameter,LOHC density,kg/m^3,1220
 1,all,all,all,all,all,input parameter,stoic. ratio,mol H2/mol LOHC,1
 1,all,all,all,all,all,input parameter,stoic. ratio,mol CO2/mol LOHC,1
-1,all,all,all,all,all,input parameter,LOHC production pathway,-,purchase
+1,all,all,all,all,all,input parameter,hydr. reaction pathway,-,purchase
 1,all,all,all,all,all,input parameter,hydr. reaction temperature,K,366.15
 1,all,all,all,all,all,input parameter,hydr. reaction pressure,bar,105
 1,all,all,all,all,all,input parameter,hydr. reaction yield,-,1
@@ -482,6 +489,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 1,all,all,all,all,all,input parameter,terminal LOHC storage amount,days,0.25
 1,all,all,all,all,all,input parameter,terminal compressed hydrogen storage amount,days,0.25
 1,all,all,all,all,all,input parameter,terminal liquid hydrogen storage amount,days,1
+1,all,all,all,all,all,input parameter,dehydr. reaction pathway,-,"thermo, model"
 1,all,all,all,all,all,input parameter,dehydr. reaction temperature,K,300
 1,all,all,all,all,all,input parameter,dehydr. reaction pressure,bar,1
 1,all,all,all,all,all,input parameter,dehydr. reaction yield,-,0.9999
@@ -490,7 +498,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 1,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
 1,all,all,all,all,all,input parameter,dehydr. catalyst cost,$/kg,3500
 1,all,all,all,all,all,input parameter,dehydr. catalyst lifetime,yr,6
-1,all,all,all,all,all,input parameter,dehydr. reactor energy,unit TBD,0
+1,all,all,all,all,all,input parameter,dehydr. plant energy,kWh/kg,0
 1,all,all,all,all,all,input parameter,dehydr. gas/liquid separator energy,unit TBD,0
 1,all,all,all,all,all,input parameter,station LOHC storage amount,days,1
 1,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,0.0
@@ -787,6 +795,12 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
 1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 1,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,kWh/kg H2,0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,emissions,energy emissions,kg CO2/kg H2,0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/yr,0.0
+1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/kg H2,0.0
 1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
 1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 1,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
@@ -903,7 +917,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 2,all,all,all,all,all,input parameter,LOHC density,kg/m^3,1220
 2,all,all,all,all,all,input parameter,stoic. ratio,mol H2/mol LOHC,1
 2,all,all,all,all,all,input parameter,stoic. ratio,mol CO2/mol LOHC,1
-2,all,all,all,all,all,input parameter,LOHC production pathway,-,electro
+2,all,all,all,all,all,input parameter,hydr. reaction pathway,-,electro
 2,all,all,all,all,all,input parameter,hydr. reaction temperature,K,366.15
 2,all,all,all,all,all,input parameter,hydr. reaction pressure,bar,105
 2,all,all,all,all,all,input parameter,hydr. reaction yield,-,1
@@ -924,6 +938,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 2,all,all,all,all,all,input parameter,terminal LOHC storage amount,days,0.25
 2,all,all,all,all,all,input parameter,terminal compressed hydrogen storage amount,days,0.25
 2,all,all,all,all,all,input parameter,terminal liquid hydrogen storage amount,days,1
+2,all,all,all,all,all,input parameter,dehydr. reaction pathway,-,"thermo, model"
 2,all,all,all,all,all,input parameter,dehydr. reaction temperature,K,300
 2,all,all,all,all,all,input parameter,dehydr. reaction pressure,bar,1
 2,all,all,all,all,all,input parameter,dehydr. reaction yield,-,0.9999
@@ -932,7 +947,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 2,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
 2,all,all,all,all,all,input parameter,dehydr. catalyst cost,$/kg,3500
 2,all,all,all,all,all,input parameter,dehydr. catalyst lifetime,yr,6
-2,all,all,all,all,all,input parameter,dehydr. reactor energy,unit TBD,0
+2,all,all,all,all,all,input parameter,dehydr. plant energy,kWh/kg,0
 2,all,all,all,all,all,input parameter,dehydr. gas/liquid separator energy,unit TBD,0
 2,all,all,all,all,all,input parameter,station LOHC storage amount,days,1
 2,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,1131500.0
@@ -1229,6 +1244,12 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
 2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 2,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,kWh/kg H2,0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,emissions,energy emissions,kg CO2/kg H2,0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/yr,0.0
+2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/kg H2,0.0
 2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
 2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 2,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
@@ -1345,7 +1366,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 3,all,all,all,all,all,input parameter,LOHC density,kg/m^3,1220
 3,all,all,all,all,all,input parameter,stoic. ratio,mol H2/mol LOHC,1
 3,all,all,all,all,all,input parameter,stoic. ratio,mol CO2/mol LOHC,1
-3,all,all,all,all,all,input parameter,LOHC production pathway,-,electro
+3,all,all,all,all,all,input parameter,hydr. reaction pathway,-,electro
 3,all,all,all,all,all,input parameter,hydr. reaction temperature,K,366.15
 3,all,all,all,all,all,input parameter,hydr. reaction pressure,bar,105
 3,all,all,all,all,all,input parameter,hydr. reaction yield,-,1
@@ -1366,6 +1387,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 3,all,all,all,all,all,input parameter,terminal LOHC storage amount,days,0.25
 3,all,all,all,all,all,input parameter,terminal compressed hydrogen storage amount,days,0.25
 3,all,all,all,all,all,input parameter,terminal liquid hydrogen storage amount,days,1
+3,all,all,all,all,all,input parameter,dehydr. reaction pathway,-,"thermo, model"
 3,all,all,all,all,all,input parameter,dehydr. reaction temperature,K,300
 3,all,all,all,all,all,input parameter,dehydr. reaction pressure,bar,1
 3,all,all,all,all,all,input parameter,dehydr. reaction yield,-,0.9999
@@ -1374,7 +1396,7 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 3,all,all,all,all,all,input parameter,dehydr. catalyst amount,kg,9.64671203342243
 3,all,all,all,all,all,input parameter,dehydr. catalyst cost,$/kg,3500
 3,all,all,all,all,all,input parameter,dehydr. catalyst lifetime,yr,6
-3,all,all,all,all,all,input parameter,dehydr. reactor energy,unit TBD,0
+3,all,all,all,all,all,input parameter,dehydr. plant energy,kWh/kg,0
 3,all,all,all,all,all,input parameter,dehydr. gas/liquid separator energy,unit TBD,0
 3,all,all,all,all,all,input parameter,station LOHC storage amount,days,1
 3,compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,905200.0
@@ -1671,6 +1693,12 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
 3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 3,LOHC - formic acid,reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,kWh/kg H2,0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,emissions,energy emissions,kg CO2/kg H2,0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/yr,0.0
+3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/kg H2,0.0
 3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507
 3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 3,LOHC - formic acid,reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.002085972503242639

@@ -1357,6 +1357,65 @@ def reactor_fixed_costs(
     return react_inst_cost_usd, \
         react_om_cost_usd_per_yr, \
         output_dollar_year
+        
+# ----------------------------------------------------------------------------
+# function: dehydrogenation total plant cost and fixed O&M costs
+
+def dehydr_plant_fixed_costs(
+        dehydr_plant_size_tonne_per_day,
+        output_dollar_year,
+        ref_dehydr_plant_size_tonne_per_day = 200.0,
+        ref_dehydr_tot_plant_cost_usd = 122.919e6,
+        input_dollar_year = 2024,
+        ):
+    r"""Calculate dehydrogenation total plant cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year. Total plant cost scales with plant size (tonne H2/day).
+
+    Reference: Breunig, H., F. Rosner, S. Saqline, D. Papadias, E. Grant, K. Brooks, T. Autrey, R. Ahluwalia, J. King, and S. Hammond. 2024. "Achieving gigawatt-scale green hydrogen production and seasonal storage at industrial locations across the U.S." Nature Communications 15 (1): 9049. https://doi.org/10.1038/s41467-024-53189-2.
+
+    Parameters
+    ----------
+    dehydr_plant_size_tonne_per_day : float
+        Dehydrogenation plant size (capacity) (tonne H2/day).
+    output_dollar_year : int
+        Dollar year of calculated costs.
+    ref_dehydr_plant_size_tonne_per_day : float, optional
+        User-specified reference plant size (capacity) (tonne H2/day).
+    ref_dehydr_tot_plant_cost_usd : float, optional
+        User-specified reference total plant cost (\$, input dollar year).
+    input_dollar_year : int, optional
+        User-specified input dollar year for reference total plant cost.        
+        
+    Returns
+    -------
+    dehydr_tot_plant_cost_usd
+        Dehydrogenation total plant cost (\\$, user-specified output dollar year). 
+    dehydr_om_cost_usd_per_yr
+        Dehydrogenation plant annual O&M cost (\$/yr, user-specified output dollar year).
+    output_dollar_year
+        User-specified output dollar year, for sanity check.
+    """    
+    # calculate conversion (multiplier) from input dollar year to 
+    # output dollar year
+    dollar_year_multiplier = \
+        dollar_year_conversion(
+            input_dollar_year = input_dollar_year, 
+            output_dollar_year = output_dollar_year
+            )    
+
+    # calculate dehydrogenation total plant cost ($, output dollar year) 
+    dehydr_tot_plant_cost_usd = \
+        ref_dehydr_tot_plant_cost_usd * (
+            dehydr_plant_size_tonne_per_day / \
+            ref_dehydr_plant_size_tonne_per_day
+        )**0.67 * dollar_year_multiplier
+    
+    # calculate dehydrogenation plant annual O&M cost 
+    # ($/yr, output dollar year)
+    dehydr_om_cost_usd_per_yr = 0.01 * dehydr_tot_plant_cost_usd
+    
+    return dehydr_tot_plant_cost_usd, \
+        dehydr_om_cost_usd_per_yr, \
+        output_dollar_year
 
 #%% FUNCTIONS: ELECTROLYZER
 
@@ -3026,7 +3085,7 @@ def calcs(
             'LOHC density (kg/m^3)' : 1220.0,
             'stoic. ratio (mol H2/mol LOHC)' : 1,
             'stoic. ratio (mol CO2/mol LOHC)' : 1,
-            'LOHC production pathway' : 'electro', 
+            'hydr. reaction pathway' : 'electro', 
             'hydr. reaction temperature (K)' : 366.15,
             'hydr. reaction pressure (bar)' : 105.0,
             'hydr. reaction yield' : 1.0,
@@ -3047,6 +3106,7 @@ def calcs(
             'terminal LOHC storage amount (days)' : 0.25,
             'terminal compressed hydrogen storage amount (days)' : 0.25,
             'terminal liquid hydrogen storage amount (days)' : 1.0,
+            'dehydr. reaction pathway' : 'thermo, model', 
             'dehydr. reaction temperature (K)' : 300.0,
             'dehydr. reaction pressure (bar)' : 1.013,
             'dehydr. reaction yield' : 0.9999,
@@ -3055,7 +3115,7 @@ def calcs(
             'dehydr. catalyst amount (kg)' : 9.65,
             'dehydr. catalyst cost ($/kg)' : 3500,
             'dehydr. catalyst lifetime (yr)' : 6.0,
-            'dehydr. reactor energy (unit TBD)' : 0.0,
+            'dehydr. plant energy (kWh/kg)' : 0.0,
             'dehydr. gas/liquid separator energy (unit TBD)' : 0.0,
             'station LOHC storage amount (days)' : 1.0,
             }, 
@@ -3181,12 +3241,12 @@ def calcs(
         'stoic. ratio (mol CO2/mol LOHC)'
         ]
     
-    # LOHC production pathway
+    # hydrogenation reaction pathway
     # thermocatalytic, electrolytic, or purchase
     # 'thermo', 'electro', or 'purchase'
     # purchase = no CO2 recycling or hydrogenation costs
-    LOHC_prod_pathway = dict_input_params[
-        'LOHC production pathway'
+    hydr_pathway = dict_input_params[
+        'hydr. reaction pathway'
         ]
     
     # hydrogenation reaction temperature (K)
@@ -3289,7 +3349,14 @@ def calcs(
     # liquid hydrogen storage amount at terminal (days)
     LH2_TML_stor_amt_days = dict_input_params[
         'terminal liquid hydrogen storage amount (days)'
-        ]    
+        ]
+    
+    # dehydrogenation reaction pathway
+    # thermocatalytic, using modeled or literature results for cost analysis
+    # 'thermo, model', 'thermo, literature'
+    dehydr_pathway = dict_input_params[
+        'dehydr. reaction pathway'
+        ]
 
     # dehydrogenation reaction temperature (K)
     # = inlet temperature to precooling for separator 
@@ -3335,9 +3402,9 @@ def calcs(
         'dehydr. catalyst lifetime (yr)'
         ]
     
-    # dehydrogenation reactor energy requirement (unit TBD)
-    dehydr_react_energy = dict_input_params[
-        'dehydr. reactor energy (unit TBD)'
+    # dehydrogenation plant energy requirement (kWh/kg H2)
+    dehydr_plant_energy_kWh_per_kg = dict_input_params[
+        'dehydr. plant energy (kWh/kg)'
         ]
 
     # dehydrogenation gas/liquid separator energy requirement (unit TBD)
@@ -3352,18 +3419,35 @@ def calcs(
     
     #%% CHECK INPUTS
     
-    # accepted LOHC production pathways
-    LOHC_prod_pathways = [
+    # ------------------------------------------------------------------------
+    # accepted hydrogenation reaction pathways
+    hydr_pathways = [
         'thermo', 
         'electro',
         'purchase'
         ]
     
     # raise error if user-specified pathway is not predefined
-    if LOHC_prod_pathway not in LOHC_prod_pathways:
+    if hydr_pathway not in hydr_pathways:
         raise ValueError(
-            'Check LOHC production pathway. '
-            'Currently accepted pathways: "thermo", "electro", "purchase".'
+            'Check hydrogenation (LOHC production) pathway. '
+            'Currently accepted pathways: '
+            '"thermo", "electro", "purchase".'
+            )    
+        
+    # ------------------------------------------------------------------------
+    # accepted dehydrogenation reaction pathways
+    dehydr_pathways = [
+        'thermo, model', 
+        'thermo, literature',
+        ]
+    
+    # raise error if user-specified pathway is not predefined
+    if dehydr_pathway not in dehydr_pathways:
+        raise ValueError(
+            'Check dehydrogenation (hydrogen release) pathway. '
+            'Currently accepted pathways: '
+            '"thermo, model", "thermo, literature".'
             )    
 
     #%% CALCULATIONS: CREATE LIST FOR WRITING INPUTS AND RESULTS
@@ -3497,6 +3581,10 @@ def calcs(
     # to all stations
     tot_H2_deliv_kg_per_yr = tot_H2_deliv_kg_per_day * \
         day_per_yr * stn_cap_factor
+        
+    # calculate hydrogen mass flowrate (tonne/day) at each refueling station
+    STN_H2_flow_tonne_per_day = \
+        target_stn_capacity_kg_per_day / kg_per_tonne
         
     # calculate hydrogen mass flowrate (kg/s) at each refueling station
     STN_H2_flow_kg_per_sec = \
@@ -7677,7 +7765,7 @@ def calcs(
     LOHC_TML_LOHC_purc_cost_usd_per_yr = 0.0
     
     # if purchase LOHC, calculate purchase costs
-    if LOHC_prod_pathway == 'purchase':
+    if hydr_pathway == 'purchase':
     
         # calculate LOHC purchase cost ($/yr)   
         LOHC_TML_LOHC_purc_cost_usd_per_yr = \
@@ -7719,7 +7807,7 @@ def calcs(
     LOHC_TML_LOHC_purc_ghg_kg_CO2_per_kg = 0.0
 
     # if purchase LOHC, calculate emissions of purchased LOHC
-    if LOHC_prod_pathway == 'purchase':
+    if hydr_pathway == 'purchase':
         
         # calculate emissions of purchased LOHC (kg CO2-eq/kg H2)
         LOHC_TML_LOHC_purc_ghg_kg_CO2_per_kg = \
@@ -7764,7 +7852,7 @@ def calcs(
     
     # if produce LOHC at terminal (as opposed to purchase), 
     # calculate hydrogen purchase costs
-    if LOHC_prod_pathway != 'purchase':
+    if hydr_pathway != 'purchase':
     
         # calculate hydrogen purchase cost ($/yr)   
         LOHC_TML_H2_purc_cost_usd_per_yr = \
@@ -7807,7 +7895,7 @@ def calcs(
 
     # if produce LOHC at terminal (as opposed to purchase), 
     # calculate emissions of purchased hydrogen
-    if LOHC_prod_pathway != 'purchase':
+    if hydr_pathway != 'purchase':
         
         # calculate emissions of purchased hydrogen (kg CO2-eq/kg H2)
         LOHC_TML_H2_purc_ghg_kg_CO2_per_kg = \
@@ -7854,7 +7942,7 @@ def calcs(
     LOHC_TML_hydr_compr_power_kW_per_stg = 0.0
     LOHC_TML_hydr_compr_num_stgs = 0
     
-    if LOHC_prod_pathway == 'thermo':
+    if hydr_pathway == 'thermo':
 
         # calculate hydrogenation hydrogen compressor power (kW) 
         # and size (kW/stage) at terminal
@@ -7993,7 +8081,7 @@ def calcs(
     LOHC_TML_hydr_compr_om_cost_usd_per_yr = 0.0
     LOHC_TML_hydr_compr_dollar_year = output_dollar_year
     
-    if LOHC_prod_pathway == 'thermo':
+    if hydr_pathway == 'thermo':
 
         # calculate hydrogenation hydrogen compressor installed cost ($) and annual O&M 
         # cost ($/yr), both in output dollar year
@@ -8117,7 +8205,7 @@ def calcs(
     LOHC_TML_hydr_react_om_cost_usd_per_yr = 0.0
     LOHC_TML_hydr_react_dollar_year = output_dollar_year
     
-    if LOHC_prod_pathway == 'thermo':
+    if hydr_pathway == 'thermo':
 
         # calculate hydrogenation reactor installed cost ($) and annual 
         # O&M cost ($/yr), both in output dollar year
@@ -8165,7 +8253,7 @@ def calcs(
     # initialize hydrogenation catalyst purchase cost (zero by default)
     LOHC_TML_hydr_catal_purc_cost_usd = 0.0
     
-    if LOHC_prod_pathway == 'thermo':
+    if hydr_pathway == 'thermo':
 
         # calculate hydrogenation catalyst upfront purchase cost ($)
         LOHC_TML_hydr_catal_purc_cost_usd = \
@@ -8177,7 +8265,7 @@ def calcs(
     # initialize hydrogenation electrolyzer power (zero by default)
     LOHC_TML_hydr_electr_power_kW = 0.0
 
-    if LOHC_prod_pathway == 'electro':
+    if hydr_pathway == 'electro':
         
         # calculate hydrogenation electrolyzer power (kW)
         LOHC_TML_hydr_electr_power_kW = electrolyzer_power(
@@ -8306,7 +8394,7 @@ def calcs(
     LOHC_TML_hydr_electr_om_cost_usd_per_yr = 0.0
     LOHC_TML_hydr_electr_dollar_year = output_dollar_year
 
-    if LOHC_prod_pathway == 'electro':      
+    if hydr_pathway == 'electro':      
                             
         # calculate hydrogenation electrolyzer installed cost ($) and annual 
         # O&M cost ($/yr), both in output dollar year
@@ -8399,7 +8487,7 @@ def calcs(
     # TODO: calculate capital cost ($) and O&M cost ($/yr) as function of
     # plant capacity
     # TODO: incorporate purification costs as user input?
-    if LOHC_prod_pathway != 'purchase':
+    if hydr_pathway != 'purchase':
         LOHC_TML_distil_lev_cap_cost_usd_per_kgLOHC = 0.129
         LOHC_TML_distil_om_cost_usd_per_kgLOHC = 0.116    
         
@@ -10076,7 +10164,7 @@ def calcs(
     
     # if produce LOHC at terminal (as opposed to purchase),
     # calculate CO2 recycling cost
-    if LOHC_prod_pathway != 'purchase':
+    if hydr_pathway != 'purchase':
         
         # calculate CO2 recycling cost per station
         # ($/tonne CO2 and $/yr, output dollar year)
@@ -10169,7 +10257,8 @@ def calcs(
     LOHC_STN_dehydr_pump_power_kW_per_pump = 0.0
     LOHC_STN_num_dehydr_compr = 0
 
-    if dehydr_pres_bar > LOHC_STN_dehydr_pump_in_pres_bar:
+    if (dehydr_pathway == 'thermo, model') and \
+        (dehydr_pres_bar > LOHC_STN_dehydr_pump_in_pres_bar):
         
         # calculate dehydrogenation pump power (kW) and size (kW/pump) 
         # at refueling station
@@ -10302,7 +10391,8 @@ def calcs(
     LOHC_STN_dehydr_pump_om_cost_usd_per_yr_per_stn = 0.0
     LOHC_STN_dehydr_pump_dollar_year = output_dollar_year
     
-    if LOHC_STN_dehydr_pump_tot_power_kW > 0.0:
+    if (dehydr_pathway == 'thermo, model') and \
+        (LOHC_STN_dehydr_pump_tot_power_kW > 0.0):
     
         # calculate LOHC volumetric flowrate through 
         # dehydrogenation pump (m^3/hr)
@@ -10361,50 +10451,171 @@ def calcs(
     
     # ------------------------------------------------------------------------
     # reconditioning - LOHC: 
-    # dehydrogenation reactor energy consumption
+    # dehydrogenation plant ("reactor") energy consumption
+    
+    # initialize dehydrogenation plant ("reactor") energy (kWh/kg H2) 
+    # (zero by default)
+    LOHC_STN_dehydr_react_elec_kWh_per_kg = 0.0
 
-    # TODO: add reactor energy consumption
+    if dehydr_pathway == 'thermo, literature':
+        
+        # use user-input dehydrogenation plant energy for dehydrogenation
+        # plant ("reactor") energy (kWh/kg H2)
+        LOHC_STN_dehydr_react_elec_kWh_per_kg = dehydr_plant_energy_kWh_per_kg
+    
+    # convert dehydrogenation plant ("reactor") energy to MJ/MJ H2 (LHV) 
+    # (for comparison with HDSAM V3.1)
+    LOHC_STN_dehydr_react_elec_MJ_per_MJ = \
+        LOHC_STN_dehydr_react_elec_kWh_per_kg * MJ_per_kWh / \
+        low_heat_val_H2_MJ_per_kg
+        
+    # append results to list
+    list_output.append([
+        'LOHC - ' + str(LOHC_name),
+        'reconditioning', 
+        'refueling station', 
+        'reaction', 
+        'reactor', 
+        'energy consumption', 
+        'electricity consumption', 
+        'kWh/kg H2', 
+        LOHC_STN_dehydr_react_elec_kWh_per_kg
+        ])
+    list_output.append([
+        'LOHC - ' + str(LOHC_name), 
+        'reconditioning', 
+        'refueling station', 
+        'reaction', 
+        'reactor', 
+        'energy consumption', 
+        'electricity consumption', 
+        'MJ/MJ H2 (LHV)', 
+        LOHC_STN_dehydr_react_elec_MJ_per_MJ
+        ])
+        
+    # ------------------------------------------------------------------------
+    # reconditioning - LOHC: 
+    # dehydrogenation plant ("reactor") energy emissions
+    
+    # calculate dehydrogenation plant ("reactor") energy emissions 
+    # (kg CO2/kg H2)
+    LOHC_STN_dehydr_react_ghg_kg_CO2_per_kg = \
+        LOHC_STN_dehydr_react_elec_kWh_per_kg * elec_ghg_kg_CO2_per_kWh
+    
+    # convert dehydrogenation plant ("reactor") energy emissions to 
+    # g CO2/MJ H2 (LHV) (for comparison with HDSAM V3.1)
+    LOHC_STN_dehydr_react_ghg_g_CO2_per_MJ = \
+        LOHC_STN_dehydr_react_ghg_kg_CO2_per_kg * g_per_kg / \
+        low_heat_val_H2_MJ_per_kg
+    
+    # append results to list
+    list_output.append([
+        'LOHC - ' + str(LOHC_name), 
+        'reconditioning', 
+        'refueling station', 
+        'reaction', 
+        'reactor', 
+        'emissions', 
+        'energy emissions', 
+        'kg CO2/kg H2', 
+        LOHC_STN_dehydr_react_ghg_kg_CO2_per_kg
+        ])
+    list_output.append([
+        'LOHC - ' + str(LOHC_name), 
+        'reconditioning', 
+        'refueling station', 
+        'reaction', 
+        'reactor', 
+        'emissions', 
+        'energy emissions', 
+        'g CO2/MJ H2 (LHV)', 
+        LOHC_STN_dehydr_react_ghg_g_CO2_per_MJ
+        ])
+    
+    # ------------------------------------------------------------------------
+    # reconditioning - LOHC: dehydrogenation plant ("reactor") energy cost
+    
+    # calculate dehydrogenation plant ("reactor") energy cost ($/kg H2)
+    LOHC_STN_dehydr_react_elec_cost_usd_per_kg = \
+        LOHC_STN_dehydr_react_elec_kWh_per_kg * elec_cost_usd_per_kWh
+    
+    # calculate dehydrogenation plant ("reactor") energy cost ($/yr)
+    LOHC_STN_dehydr_react_elec_cost_usd_per_yr = \
+        LOHC_STN_dehydr_react_elec_cost_usd_per_kg * \
+        tot_H2_deliv_kg_per_yr
+    
+    # append results to list
+    list_output.append([
+        'LOHC - ' + str(LOHC_name), 
+        'reconditioning', 
+        'refueling station', 
+        'reaction', 
+        'reactor', 
+        'energy cost', 
+        'electricity cost', 
+        '$/yr', 
+        LOHC_STN_dehydr_react_elec_cost_usd_per_yr
+        ])
+    list_output.append([
+        'LOHC - ' + str(LOHC_name), 
+        'reconditioning', 
+        'refueling station', 
+        'reaction', 
+        'reactor', 
+        'energy cost', 
+        'electricity cost', 
+        '$/kg H2', 
+        LOHC_STN_dehydr_react_elec_cost_usd_per_kg
+        ])    
     
     # ------------------------------------------------------------------------
     # reconditioning - LOHC: 
-    # dehydrogenation reactor energy emissions
-
-    # TODO: add reactor energy emissions
+    # dehydrogenation reactor (or plant) installed cost and annual O&M cost
     
-    # ------------------------------------------------------------------------
-    # reconditioning - LOHC: 
-    # dehydrogenation reactor energy cost
+    # initialize dehydrogenation reactor (or plant) installed cost 
+    # and annual O&M cost
+    LOHC_STN_dehydr_react_inst_cost_usd_per_stn = 0.0
+    LOHC_STN_dehydr_react_om_cost_usd_per_yr_per_stn = 0.0
+    LOHC_STN_dehydr_react_dollar_year = output_dollar_year
     
-    # TODO: add reactor energy cost
-    
-    # ------------------------------------------------------------------------
-    # reconditioning - LOHC: 
-    # dehydrogenation reactor installed cost and annual O&M cost
-
-    # calculate dehydrogenation reactor installed cost ($) and annual 
-    # O&M cost ($/yr) per station, both in output dollar year
-    LOHC_STN_dehydr_react_inst_cost_usd_per_stn, \
-    LOHC_STN_dehydr_react_om_cost_usd_per_yr_per_stn, \
-    LOHC_STN_dehydr_react_dollar_year = \
-        reactor_fixed_costs(
-            react_pres_bar = dehydr_pres_bar,
-            react_vol_cu_m = dehydr_react_vol_cu_m, 
-            num_reacts = dehydr_num_reacts, 
-            output_dollar_year = output_dollar_year
-            )
-    
-    # calculate dehydrogenation reactor installed cost ($)
+    if dehydr_pathway == 'thermo, model':
+        
+        # calculate dehydrogenation reactor installed cost ($) 
+        # and annual O&M cost ($/yr) per station, both in output dollar year
+        LOHC_STN_dehydr_react_inst_cost_usd_per_stn, \
+        LOHC_STN_dehydr_react_om_cost_usd_per_yr_per_stn, \
+        LOHC_STN_dehydr_react_dollar_year = \
+            reactor_fixed_costs(
+                react_pres_bar = dehydr_pres_bar,
+                react_vol_cu_m = dehydr_react_vol_cu_m, 
+                num_reacts = dehydr_num_reacts, 
+                output_dollar_year = output_dollar_year
+                )
+        
+    elif dehydr_pathway == 'thermo, literature':
+        # use literature data (user-input) to scale dehydrogenation 
+        # plant cost ($) and annual O&M cost ($/yr) per station, 
+        # both in output dollar year
+        LOHC_STN_dehydr_react_inst_cost_usd_per_stn, \
+        LOHC_STN_dehydr_react_om_cost_usd_per_yr_per_stn, \
+        LOHC_STN_dehydr_react_dollar_year = \
+            dehydr_plant_fixed_costs(
+                dehydr_plant_size_tonne_per_day = STN_H2_flow_tonne_per_day,
+                output_dollar_year = output_dollar_year
+                )        
+        
+    # calculate dehydrogenation reactor (or plant) installed cost ($)
     # sum of all stations
     LOHC_STN_dehydr_react_inst_cost_usd = \
         LOHC_STN_dehydr_react_inst_cost_usd_per_stn * target_num_stns
 
-    # calculate dehydrogenation reactor O&M cost ($/yr)
+    # calculate dehydrogenation reactor (or plant) O&M cost ($/yr)
     # sum of all stations
     LOHC_STN_dehydr_react_om_cost_usd_per_yr = \
         LOHC_STN_dehydr_react_om_cost_usd_per_yr_per_stn * \
         target_num_stns
 
-    # calculate dehydrogenation reactor O&M cost ($/kg H2)
+    # calculate dehydrogenation reactor (or plant) O&M cost ($/kg H2)
     LOHC_STN_dehydr_react_om_cost_usd_per_kg = \
         LOHC_STN_dehydr_react_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
         
@@ -10458,7 +10669,7 @@ def calcs(
         'reconditioning', 
         'refueling station', 
         'reaction', 
-        'catalyst', 
+        'catalyst',
         'capital cost', 
         'purchase cost', 
         '$/station', 
@@ -11496,7 +11707,7 @@ def calcs(
         LOHC_STN_om_cost_usd_per_kg * \
             LOHC_STN_dehydr_react_cost_perc
         ])
-        
+    
     list_output.append([
         'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
@@ -11753,7 +11964,7 @@ def calcs(
         LOHC_STN_labor_cost_usd_per_kg * \
             LOHC_STN_dehydr_react_cost_perc
         ])
-        
+    
     list_output.append([
         'LOHC - ' + str(LOHC_name), 
         'reconditioning', 
@@ -11981,16 +12192,17 @@ def calcs(
         ])
     
     # ------------------------------------------------------------------------
-    # reconditioning - LOHC: dehydrogenation reactor levelized capital cost
+    # reconditioning - LOHC: dehydrogenation reactor (or plant) 
+    # levelized capital cost
     
-    # calculate reactor total capital investment ($) 
+    # calculate reactor (or plant) total capital investment ($) 
     # (= refueling station total capital investment allocated to 
     # dehydrogenation reactor)
     # sum of all stations
     LOHC_STN_dehydr_react_tot_cap_inv_usd = \
         LOHC_STN_dehydr_react_cost_perc * LOHC_STN_tot_cap_inv_usd
     
-    # calculate reactor levelized capital cost 
+    # calculate reactor (or plant) levelized capital cost 
     # ($/yr, output dollar year)
     # sum of all stations
     LOHC_STN_dehydr_react_lev_cap_cost_usd_per_yr, \
@@ -12002,7 +12214,7 @@ def calcs(
             input_dollar_year = LOHC_STN_dollar_year
             )
     
-    # calculate reactor levelized capital cost ($/kg H2)
+    # calculate reactor (or plant) levelized capital cost ($/kg H2)
     LOHC_STN_dehydr_react_lev_cap_cost_usd_per_kg = \
         LOHC_STN_dehydr_react_lev_cap_cost_usd_per_yr / \
         tot_H2_deliv_kg_per_yr
@@ -12404,7 +12616,7 @@ def calcs(
     LOHC_STN_proc_ghg_kg_CO2_per_kg = 0.0
 
     # if purchase LOHC, calculate dehydrogenation process emissions
-    if LOHC_prod_pathway == 'purchase':
+    if hydr_pathway == 'purchase':
         
         # calculate dehydrogenation process emissions (kg CO2/kg H2)
         LOHC_STN_proc_ghg_kg_CO2_per_kg = \
