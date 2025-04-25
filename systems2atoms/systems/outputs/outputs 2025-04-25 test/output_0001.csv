@@ -244,7 +244,6 @@ LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,emissions,e
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
 LOHC - formic acid (ideal),production,truck,CO2 recycling,truck,emissions,energy emissions,kg CO2/kg H2,0.0
 LOHC - formic acid (ideal),production,truck,CO2 recycling,truck,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-LOHC - formic acid (ideal),production,terminal,separation,distillation,capital cost,levelized capital cost,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,capital cost,levelized capital cost,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,capital cost,levelized capital cost,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
@@ -259,6 +258,8 @@ LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer catalyst-co
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer catalyst-coated membrane,capital cost,levelized capital cost,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer non-catalyst components,capital cost,levelized capital cost,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer non-catalyst components,capital cost,levelized capital cost,$/kg H2,0.0
+LOHC - formic acid (ideal),production,terminal,separation,distillation,capital cost,levelized capital cost,$/yr,16371731.925279213
+LOHC - formic acid (ideal),production,terminal,separation,distillation,capital cost,levelized capital cost,$/kg H2,4.485406006925812
 LOHC - formic acid (ideal),production,truck,CO2 recycling,truck,capital cost,all-in CO2 transport cost,$/yr,0
 LOHC - formic acid (ideal),production,truck,CO2 recycling,truck,capital cost,all-in CO2 transport cost,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/yr,0.0
@@ -271,7 +272,8 @@ LOHC - formic acid (ideal),production,terminal,reaction,reactor,O&M cost,"operat
 LOHC - formic acid (ideal),production,terminal,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
-LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,operation cost,$/kg H2,0.0
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,"operation, maintenance, repair costs",$/yr,754705.278694881
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.20676856950544686
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,O&M cost,other O&M costs,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,O&M cost,other O&M costs,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
@@ -284,8 +286,8 @@ LOHC - formic acid (ideal),production,terminal,reaction,catalyst,O&M cost,other 
 LOHC - formic acid (ideal),production,terminal,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,other O&M costs,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,other O&M costs,$/kg H2,0.0
-LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/yr,0.0
-LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/kg H2,0.0
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/yr,2218833.51936295
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/kg H2,0.6078995943460138
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,O&M cost,labor cost,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,O&M cost,labor cost,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
@@ -298,12 +300,14 @@ LOHC - formic acid (ideal),production,terminal,reaction,catalyst,O&M cost,labor 
 LOHC - formic acid (ideal),production,terminal,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,labor cost,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,labor cost,$/kg H2,0.0
-LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/yr,0.0
-LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/kg H2,0.0
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/yr,575176.122413035
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/kg H2,0.1575824992912425
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,energy cost,electricity cost,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,energy cost,electricity cost,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,energy cost,electricity cost,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,energy cost,electricity cost,$/kg H2,0.0
+LOHC - formic acid (ideal),production,terminal,separation,distillation,energy cost,utility,$/yr,13079718.130437924
+LOHC - formic acid (ideal),production,terminal,separation,distillation,energy cost,utility,$/kg H2,3.5834844192980615
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,energy consumption,electricity consumption,kWh/kg H2,0.0
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,emissions,energy emissions,kg CO2/kg H2,0.0
@@ -322,8 +326,8 @@ LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M c
 LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0007258402015142783
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,O&M cost,labor cost,$/yr,0.0
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,O&M cost,labor cost,$/kg H2,0.0
-LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/yr,575862.8903537961
-LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.15777065489145098
+LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/yr,686.7679407610319
+LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.00018815560020850192
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,energy cost,electricity cost,$/yr,0.0
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,energy cost,electricity cost,$/kg H2,0.0
 LOHC - formic acid (ideal),transport,truck,trucking,truck,energy consumption,diesel consumption,gallon/kg H2,0.021100080885790868

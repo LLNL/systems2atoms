@@ -1,6 +1,6 @@
 pathway,process,location,function,equipment,variable group,variable name,unit,value
-all,all,all,all,all,input parameter,scenario,-,FA ideal
-all,all,all,all,all,input parameter,run #,-,3
+all,all,all,all,all,input parameter,scenario,-,baseline
+all,all,all,all,all,input parameter,run #,-,0
 all,all,all,all,all,input parameter,output dollar year,-,2022
 all,all,all,all,all,input parameter,target station capacity,kg/day,1000
 all,all,all,all,all,input parameter,station annual capacity factor,-,1.0
@@ -8,7 +8,7 @@ all,all,all,all,all,input parameter,target number of stations,-,10
 all,all,all,all,all,input parameter,one-way delivery distance,mile,100
 all,all,all,all,all,input parameter,electricity cost,$/kWh,0.1709
 all,all,all,all,all,input parameter,diesel cost,$/gallon,6.028
-all,all,all,all,all,input parameter,electricity emission factor,kg CO2/kWh,0.0
+all,all,all,all,all,input parameter,electricity emission factor,kg CO2/kWh,0.228
 all,all,all,all,all,input parameter,diesel emission factor,kg CO2/gallon,10.18
 all,all,all,all,all,input parameter,hydrogen prod. emission factor,kg CO2-eq/kg,0
 all,all,all,all,all,input parameter,LOHC prod. emission factor,kg CO2-eq/kg,0
@@ -60,10 +60,10 @@ compressed hydrogen,preconditioning,terminal,compression,loading compressor,ener
 compressed hydrogen,preconditioning,terminal,compression,loading compressor,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.03894397410651835
 compressed hydrogen,preconditioning,terminal,compression,storage compressor,energy consumption,electricity consumption,kWh/kg H2,1.0410589791520164
 compressed hydrogen,preconditioning,terminal,compression,storage compressor,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.031242183435705728
-compressed hydrogen,preconditioning,terminal,compression,loading compressor,emissions,energy emissions,kg CO2/kg H2,0.0
-compressed hydrogen,preconditioning,terminal,compression,loading compressor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-compressed hydrogen,preconditioning,terminal,compression,storage compressor,emissions,energy emissions,kg CO2/kg H2,0.0
-compressed hydrogen,preconditioning,terminal,compression,storage compressor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+compressed hydrogen,preconditioning,terminal,compression,loading compressor,emissions,energy emissions,kg CO2/kg H2,0.295875545141803
+compressed hydrogen,preconditioning,terminal,compression,loading compressor,emissions,energy emissions,g CO2/MJ H2 (LHV),2.4664516934128295
+compressed hydrogen,preconditioning,terminal,compression,storage compressor,emissions,energy emissions,kg CO2/kg H2,0.23736144724665975
+compressed hydrogen,preconditioning,terminal,compression,storage compressor,emissions,energy emissions,g CO2/MJ H2 (LHV),1.9786716175946963
 compressed hydrogen,preconditioning,terminal,compression,loading compressor,capital cost,levelized capital cost,$/yr,1959704.3582238425
 compressed hydrogen,preconditioning,terminal,compression,loading compressor,capital cost,levelized capital cost,$/kg H2,0.5369053036229705
 compressed hydrogen,preconditioning,terminal,compression,storage compressor,capital cost,levelized capital cost,$/yr,1735182.314971867
@@ -108,10 +108,10 @@ compressed hydrogen,reconditioning,refueling station,compression,compressor,ener
 compressed hydrogen,reconditioning,refueling station,compression,compressor,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.03042328665362986
 compressed hydrogen,reconditioning,refueling station,cooling,refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.3502036105017135
 compressed hydrogen,reconditioning,refueling station,cooling,refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.010509611518891035
-compressed hydrogen,reconditioning,refueling station,compression,compressor,emissions,energy emissions,kg CO2/kg H2,0.0
-compressed hydrogen,reconditioning,refueling station,compression,compressor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-compressed hydrogen,reconditioning,refueling station,cooling,refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
-compressed hydrogen,reconditioning,refueling station,cooling,refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+compressed hydrogen,reconditioning,refueling station,compression,compressor,emissions,energy emissions,kg CO2/kg H2,0.2311399062413977
+compressed hydrogen,reconditioning,refueling station,compression,compressor,emissions,energy emissions,g CO2/MJ H2 (LHV),1.926808154729891
+compressed hydrogen,reconditioning,refueling station,cooling,refrigerator,emissions,energy emissions,kg CO2/kg H2,0.07984642319439068
+compressed hydrogen,reconditioning,refueling station,cooling,refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.6656087295297657
 compressed hydrogen,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/yr,4467670.7470738785
 compressed hydrogen,reconditioning,refueling station,compression,compressor,capital cost,levelized capital cost,$/kg H2,1.2240193827599668
 compressed hydrogen,reconditioning,refueling station,cooling,refrigerator,capital cost,levelized capital cost,$/yr,320703.80373686145
@@ -148,10 +148,10 @@ liquid hydrogen,preconditioning,liquefier,liquefaction,liquefier,energy consumpt
 liquid hydrogen,preconditioning,liquefier,liquefaction,liquefier,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.3189973455609304
 liquid hydrogen,preconditioning,terminal,pumping,loading pump,energy consumption,electricity consumption,kWh/kg H2,0.0005296792911471811
 liquid hydrogen,preconditioning,terminal,pumping,loading pump,energy consumption,electricity consumption,MJ/MJ H2 (LHV),1.5895677293513272e-05
-liquid hydrogen,preconditioning,liquefier,liquefaction,liquefier,emissions,energy emissions,kg CO2/kg H2,0.0
-liquid hydrogen,preconditioning,liquefier,liquefaction,liquefier,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-liquid hydrogen,preconditioning,terminal,pumping,loading pump,emissions,energy emissions,kg CO2/kg H2,0.0
-liquid hydrogen,preconditioning,terminal,pumping,loading pump,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+liquid hydrogen,preconditioning,liquefier,liquefaction,liquefier,emissions,energy emissions,kg CO2/kg H2,2.423571699654316
+liquid hydrogen,preconditioning,liquefier,liquefaction,liquefier,emissions,energy emissions,g CO2/MJ H2 (LHV),20.20316521885892
+liquid hydrogen,preconditioning,terminal,pumping,loading pump,emissions,energy emissions,kg CO2/kg H2,0.00012076687838155731
+liquid hydrogen,preconditioning,terminal,pumping,loading pump,emissions,energy emissions,g CO2/MJ H2 (LHV),0.001006726228589174
 liquid hydrogen,preconditioning,liquefier,liquefaction,liquefier,capital cost,levelized capital cost,$/yr,7304513.069458776
 liquid hydrogen,preconditioning,liquefier,liquefaction,liquefier,capital cost,levelized capital cost,$/kg H2,2.001236457385966
 liquid hydrogen,preconditioning,terminal,pumping,loading pump,capital cost,levelized capital cost,$/yr,38407.709964392765
@@ -194,8 +194,8 @@ liquid hydrogen,transport,truck,trucking,truck,energy cost,fuel cost,$/yr,203159
 liquid hydrogen,transport,truck,trucking,truck,energy cost,fuel cost,$/kg H2,0.055660203139427517
 liquid hydrogen,reconditioning,refueling station,pumping,cryogenic pump,energy consumption,electricity consumption,kWh/kg H2,0.49134608850205164
 liquid hydrogen,reconditioning,refueling station,pumping,cryogenic pump,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.014745297754312988
-liquid hydrogen,reconditioning,refueling station,pumping,cryogenic pump,emissions,energy emissions,kg CO2/kg H2,0.0
-liquid hydrogen,reconditioning,refueling station,pumping,cryogenic pump,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+liquid hydrogen,reconditioning,refueling station,pumping,cryogenic pump,emissions,energy emissions,kg CO2/kg H2,0.11202690817846778
+liquid hydrogen,reconditioning,refueling station,pumping,cryogenic pump,emissions,energy emissions,g CO2/MJ H2 (LHV),0.9338688577731559
 liquid hydrogen,reconditioning,refueling station,storage,cryogenic storage,capital cost,levelized capital cost,$/yr,833373.6533511113
 liquid hydrogen,reconditioning,refueling station,storage,cryogenic storage,capital cost,levelized capital cost,$/kg H2,0.22832154886331818
 liquid hydrogen,reconditioning,refueling station,pumping,cryogenic pump,capital cost,levelized capital cost,$/yr,2955394.4404809303
@@ -240,11 +240,10 @@ LOHC - formic acid (ideal),production,terminal,purchase,hydrogen purchase,emissi
 LOHC - formic acid (ideal),production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,emissions,energy emissions,kg CO2/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,emissions,energy emissions,kg CO2/kg H2,0.0
-LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,emissions,energy emissions,kg CO2/kg H2,7.6997880012869
+LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,emissions,energy emissions,g CO2/MJ H2 (LHV),64.18629544253835
 LOHC - formic acid (ideal),production,truck,CO2 recycling,truck,emissions,energy emissions,kg CO2/kg H2,0.0
 LOHC - formic acid (ideal),production,truck,CO2 recycling,truck,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-LOHC - formic acid (ideal),production,terminal,separation,distillation,capital cost,levelized capital cost,$/kg H2,2.9453466179951326
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,capital cost,levelized capital cost,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,capital cost,levelized capital cost,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
@@ -259,6 +258,8 @@ LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer catalyst-co
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer catalyst-coated membrane,capital cost,levelized capital cost,$/kg H2,1.562305281124902
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer non-catalyst components,capital cost,levelized capital cost,$/yr,6969617.44857387
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer non-catalyst components,capital cost,levelized capital cost,$/kg H2,1.9094842324859918
+LOHC - formic acid (ideal),production,terminal,separation,distillation,capital cost,levelized capital cost,$/yr,16371731.925279213
+LOHC - formic acid (ideal),production,terminal,separation,distillation,capital cost,levelized capital cost,$/kg H2,4.485406006925812
 LOHC - formic acid (ideal),production,truck,CO2 recycling,truck,capital cost,all-in CO2 transport cost,$/yr,37015710.57405456
 LOHC - formic acid (ideal),production,truck,CO2 recycling,truck,capital cost,all-in CO2 transport cost,$/kg H2,10.141290568234126
 LOHC - formic acid (ideal),production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/yr,0.0
@@ -271,7 +272,8 @@ LOHC - formic acid (ideal),production,terminal,reaction,reactor,O&M cost,"operat
 LOHC - formic acid (ideal),production,terminal,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,"operation, maintenance, repair costs",$/yr,507861.73820095
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.13914020224683563
-LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,operation cost,$/kg H2,2.648528741763065
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,"operation, maintenance, repair costs",$/yr,754705.278694881
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.20676856950544686
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,O&M cost,other O&M costs,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,O&M cost,other O&M costs,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
@@ -282,10 +284,10 @@ LOHC - formic acid (ideal),production,terminal,reaction,reactor,O&M cost,other O
 LOHC - formic acid (ideal),production,terminal,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,catalyst,O&M cost,other O&M costs,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0
-LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,other O&M costs,$/yr,1493113.510310793
-LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,other O&M costs,$/kg H2,0.40907219460569677
-LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/yr,0.0
-LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/kg H2,0.0
+LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,other O&M costs,$/yr,1493113.5103107933
+LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,other O&M costs,$/kg H2,0.4090721946056967
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/yr,2218833.51936295
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/kg H2,0.6078995943460137
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,O&M cost,labor cost,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,O&M cost,labor cost,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
@@ -296,14 +298,16 @@ LOHC - formic acid (ideal),production,terminal,reaction,reactor,O&M cost,labor c
 LOHC - formic acid (ideal),production,terminal,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,catalyst,O&M cost,labor cost,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0
-LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,labor cost,$/yr,574842.9136802241
-LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,labor cost,$/kg H2,0.15749120922745866
-LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/yr,0.0
-LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/kg H2,0.0
+LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,labor cost,$/yr,231472.97350492273
+LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,O&M cost,labor cost,$/kg H2,0.06341725301504733
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/yr,343979.2011073748
+LOHC - formic acid (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/kg H2,0.09424087701571912
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,energy cost,electricity cost,$/yr,0.0
 LOHC - formic acid (ideal),production,terminal,compression,reactor compressor,energy cost,electricity cost,$/kg H2,0.0
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,energy cost,electricity cost,$/yr,21065843.238520827
 LOHC - formic acid (ideal),production,terminal,reaction,electrolyzer,energy cost,electricity cost,$/kg H2,5.77146390096461
+LOHC - formic acid (ideal),production,terminal,separation,distillation,energy cost,utility,$/yr,13079718.130437924
+LOHC - formic acid (ideal),production,terminal,separation,distillation,energy cost,utility,$/kg H2,3.5834844192980615
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,energy consumption,electricity consumption,kWh/kg H2,0.0
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,emissions,energy emissions,kg CO2/kg H2,0.0
@@ -318,12 +322,12 @@ LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M c
 LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0002468844222837681
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,O&M cost,other O&M costs,$/yr,0.0
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,O&M cost,other O&M costs,$/kg H2,0.0
-LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,other O&M costs,$/yr,2649.3167355271157
+LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,other O&M costs,$/yr,2649.316735527116
 LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0007258402015142783
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,O&M cost,labor cost,$/yr,0.0
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,O&M cost,labor cost,$/kg H2,0.0
-LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/yr,1019.9766735719812
-LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.0002794456639923236
+LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/yr,410.7157414985608
+LOHC - formic acid (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.00011252486068453721
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,energy cost,electricity cost,$/yr,0.0
 LOHC - formic acid (ideal),preconditioning,terminal,pumping,loading pump,energy cost,electricity cost,$/kg H2,0.0
 LOHC - formic acid (ideal),transport,truck,trucking,truck,energy consumption,diesel consumption,gallon/kg H2,0.021100080885790868
@@ -354,14 +358,14 @@ LOHC - formic acid (ideal),reconditioning,refueling station,pumping,reactor pump
 LOHC - formic acid (ideal),reconditioning,refueling station,pumping,reactor pump,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,emissions,energy emissions,kg CO2/kg H2,0.0
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,kg CO2/kg H2,0.0
-LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-LOHC - formic acid (ideal),reconditioning,refueling station,compression,compressor,emissions,energy emissions,kg CO2/kg H2,0.0
-LOHC - formic acid (ideal),reconditioning,refueling station,compression,compressor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.001846448536370307
+LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.015392201870376017
+LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,kg CO2/kg H2,1.3602493402887925
+LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,g CO2/MJ H2 (LHV),11.339190899373063
+LOHC - formic acid (ideal),reconditioning,refueling station,compression,compressor,emissions,energy emissions,kg CO2/kg H2,0.5674464353602425
+LOHC - formic acid (ideal),reconditioning,refueling station,compression,compressor,emissions,energy emissions,g CO2/MJ H2 (LHV),4.730297060355473
+LOHC - formic acid (ideal),reconditioning,refueling station,cooling,refrigerator,emissions,energy emissions,kg CO2/kg H2,0.07984642319439068
+LOHC - formic acid (ideal),reconditioning,refueling station,cooling,refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.6656087295297657
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,emissions,process emissions,kg CO2/kg H2,0.0
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,emissions,process emissions,g CO2/MJ H2 (LHV),0.0
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,capital cost,installed cost,$/station,60910.39709468507

@@ -1393,7 +1393,7 @@ def dehydr_plant_fixed_costs(
         Dehydrogenation plant annual O&M cost (\$/yr, user-specified output dollar year).
     output_dollar_year
         User-specified output dollar year, for sanity check.
-    """    
+    """
     # calculate conversion (multiplier) from input dollar year to 
     # output dollar year
     dollar_year_multiplier = \
@@ -1537,11 +1537,110 @@ def electrolyzer_fixed_costs(
     return electr_inst_cost_usd, \
         electr_om_cost_usd_per_yr, \
         output_dollar_year
-        
-#%% FUNCTIONS: SEPARATOR (PRESSURE SWING ADSORPTION, PSA)
+
+#%% FUNCTIONS: EXTRACTIVE DISTILLATION
 
 # ----------------------------------------------------------------------------
-# function: separator (PSA) power
+# function: extractive distillation fixed and variable costs
+# (fixed = installed cost, fixed O&M cost; variable = utility cost)
+
+# TODO: revisit O&M cost as % of installed cost (placeholders for now)
+
+def extractive_distillation_costs(
+        feed_solute_name,
+        feed_solute_flow_kg_per_hr,
+        output_dollar_year,
+        ):
+    r"""Calculate extractive distillation installed cost (\\$), annual O&M cost (\$/yr), and variable O&M (utility) cost ($/kg solute), all in user-specified output dollar year.
+    
+    Reference(s): 
+    (a) Ramdin, M., A. R. T. Morrison, M. de Groen, R. van Haperen, R. de Kler, L. J. P. van den Broeke, J. P. M. Trusler, W. de Jong, and T. J. H. Vlugt. 2019. "High pressure electrochemical reduction of CO2 to formic acid/formate: A comparison between bipolar membranes and cation exchange membranes." Industrial & Engineering Chemistry Research 58 (5): 1834-1847. https://doi.org/10.1021/acs.iecr.8b04944.
+    (b) Ahn, B., H. Sohn, J. J. Liu, and W. Won. 2024. "A system-level analysis for long-distance hydrogen transport using liquid organic hydrogen carriers (LOHCs): A case study in Australia–Korea." ACS Sustainable Chemistry & Engineering 12 (23): 8630-8641. https://doi.org/10.1021/acssuschemeng.4c00330. https://doi.org/10.1021/acssuschemeng.4c00330.
+
+    Parameters
+    ----------
+    feed_solute_name : str
+        Name of feed solute. In the case extractive distillation following hydrogenation, solute is the carrier chemical (e.g., formic acid). Solute name determines the method (reference) to use for cost calculations.
+    feed_solute_flow_kg_per_hr : float
+        Feed solute flowrate to extractive distillation (kg/hr). Note that this is the flowrate of the solute itself, not the total solution feed flowrate. For example, a feed flowrate of 5000 kg/hr for a 10 wt% formic acid solution equals to 500 kg/hr of formic acid solute.
+    output_dollar_year : int
+        Dollar year of calculated costs.
+        
+    Returns
+    -------
+    extr_distil_inst_cost_usd
+        Extractive distillation installed cost (\\$, user-specified output dollar year). 
+    extr_distil_om_cost_usd_per_yr
+        Extractive distillation annual O&M cost (\$/yr, user-specified output dollar year).
+    extr_distil_util_cost_usd_per_kg_solute
+        Extractive distillation utility cost (variable O&M cost) (\$/kg solute, user-specified output dollar year).    
+    output_dollar_year
+        User-specified output dollar year, for sanity check.
+    """
+    # initialize reference total feed flowrate (kg/hr) and installed cost ($)
+    ref_feed_tot_flow_kg_per_hr = 1.0e12
+    ref_extr_distil_inst_cost_usd = 0.0
+
+    # initialize purity (weight fraction) of feed solution
+    # TODO: consider moving this to user input
+    feed_purity_wt_perc = 1.0
+
+    # initialize utility cost (variable O&M cost) ($/kg solute)
+    extr_distil_util_cost_usd_per_kg_solute = 0.0
+
+    # specify input dollar year
+    # same in Ramdin et al. and Ahn et al.
+    input_dollar_year = 2018
+    
+    # calculate conversion (multiplier) from input dollar year to 
+    # output dollar year
+    dollar_year_multiplier = \
+        dollar_year_conversion(
+            input_dollar_year = input_dollar_year, 
+            output_dollar_year = output_dollar_year
+            )
+
+    # specify reference total feed flowrate (kg/hr), 
+    # installed costs ($, input dollar year), 
+    # and utility cost (variable O&M cost) ($/kg solute)
+    # formic acid: method = Ramdin et al., purity = 10 wt%, solvent = water
+    # MCH: method = Ahn et al., purity = 99+ wt%, solvent = benzene
+    if 'formic acid' in feed_solute_name:
+        ref_feed_tot_flow_kg_per_hr = 5000.0
+        ref_extr_distil_inst_cost_usd = 7.750e6
+        feed_purity_wt_perc = 0.1
+        extr_distil_util_cost_usd_per_kg_solute = \
+            0.116 * dollar_year_multiplier
+    elif 'MCH' in feed_solute_name:
+        ref_feed_tot_flow_kg_per_hr =  832542.0
+        ref_extr_distil_inst_cost_usd = 96.498930e6
+        feed_purity_wt_perc = 0.992
+
+    # calculate total feed flowrate (kg/hr)
+    # NOTE: total feed flowrate = solute + solvent flowrate 
+    # = solute flowrate / purity
+    feed_tot_flow_kg_per_hr = feed_solute_flow_kg_per_hr / feed_purity_wt_perc
+
+    # calculate extractive distillation installed cost ($, output dollar year) 
+    extr_distil_inst_cost_usd = \
+        ref_extr_distil_inst_cost_usd * (
+            feed_tot_flow_kg_per_hr / \
+            ref_feed_tot_flow_kg_per_hr
+        )**0.67 * dollar_year_multiplier
+    
+    # calculate extractive distillation annual O&M cost 
+    # ($/yr, output dollar year)
+    extr_distil_om_cost_usd_per_yr = 0.01 * extr_distil_inst_cost_usd
+
+    return extr_distil_inst_cost_usd, \
+        extr_distil_om_cost_usd_per_yr, \
+        extr_distil_util_cost_usd_per_kg_solute, \
+        output_dollar_year
+
+#%% FUNCTIONS: PRESSURE SWING ADSORPTION (PSA)
+
+# ----------------------------------------------------------------------------
+# function: pressure siwng adsorption (PSA) power
 
 def psa_power(
         in_flow_norm_cu_m_per_hr
@@ -1568,7 +1667,7 @@ def psa_power(
     return psa_power_kW
 
 # ----------------------------------------------------------------------------
-# function: separator (PSA) installed and O&M costs
+# function: pressure siwng adsorption (PSA) installed and O&M costs
 
 # TODO: revisit assumption that cost calculated from Jouny et al., 2020 
 # represents *installed* cost
@@ -3673,13 +3772,17 @@ def calcs(
     # ------------------------------------------------------------------------
     # LOHC terminal mass balance
 
-    # calculate LOHC mass flowrate (kg LOHC/day) at LOHC terminal  
+    # calculate LOHC mass flowrate (kg/day) at LOHC terminal  
     # TODO: incorporate losses
     LOHC_TML_LOHC_flow_kg_per_day = tot_LOHC_deliv_kg_per_day
     
+    # calculate LOHC mass flowrate (kg/hr) at LOHC terminal
+    LOHC_TML_LOHC_flow_kg_per_hr = \
+        LOHC_TML_LOHC_flow_kg_per_day / hr_per_day
+
     # calculate LOHC mass flowrate (kg/s) at LOHC terminal
     LOHC_TML_LOHC_flow_kg_per_sec = \
-        LOHC_TML_LOHC_flow_kg_per_day / hr_per_day / sec_per_hr
+        LOHC_TML_LOHC_flow_kg_per_hr / sec_per_hr
     
     # calculate LOHC molar flowrate (mol/s) at LOHC terminal
     LOHC_TML_LOHC_flow_mol_per_sec = \
@@ -8431,7 +8534,7 @@ def calcs(
         'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
-        'reaction', 
+        'reaction',
         'electrolyzer', 
         'O&M cost', 
         'operation, maintenance, repair costs', 
@@ -8441,91 +8544,102 @@ def calcs(
     
     # ------------------------------------------------------------------------
     # production - LOHC: 
-    # LOHC purification (distillation) energy consumption
+    # LOHC purification (extractive distillation) energy consumption
        
     # TODO: add distillation energy consumption
     # get from Components modeling?
     
     # ------------------------------------------------------------------------
     # production - LOHC: 
-    # LOHC purification (distillation) energy emissions
+    # LOHC purification (extractive distillation) energy emissions
 
     # TODO: add distillation energy emissions
 
     # ------------------------------------------------------------------------
     # production - LOHC: 
-    # LOHC purification (distillation) energy cost
+    # LOHC purification (extractive distillation) energy cost
     
     # TODO: add distillation energy cost
     
     # ------------------------------------------------------------------------
     # production - LOHC: 
-    # LOHC purification (distillation) installed cost 
-    # and annual O&M cost
-
-    # TODO: add distillation installed cost and
-    # annual O&M cost
-    # get equipment size from Components modeling?
+    # LOHC purification (extractive distillation) installed cost, 
+    # annual O&M cost, and utility cost (variable O&M) 
     
-    # initialize LOHC purification capital and O&M costs
-    # ($ and $/yr, zero by default)
-    LOHC_TML_distil_cap_cost_usd = 0.0
-    LOHC_TML_distil_om_cost_usd_per_yr = 0.0    
-    LOHC_TML_distil_dollar_year = output_dollar_year
+    # calculate LOHC extractive distillation installed cost, annual O&M cost, 
+    # and utility (variable O&M) cost
+    LOHC_TML_distil_inst_cost_usd, \
+    LOHC_TML_distil_om_cost_usd_per_yr, \
+    LOHC_TML_distil_util_cost_usd_per_kgLOHC, \
+    LOHC_TML_distil_dollar_year = \
+        extractive_distillation_costs(
+            feed_solute_name = LOHC_name,
+            feed_solute_flow_kg_per_hr = LOHC_TML_LOHC_flow_kg_per_hr,
+            output_dollar_year = output_dollar_year,
+            )
         
-    # initialize LOHC purification capital and O&M costs 
-    # ($/kg LOHC, zero by default)
-    LOHC_TML_distil_lev_cap_cost_usd_per_kgLOHC = 0.0    
-    LOHC_TML_distil_om_cost_usd_per_kgLOHC = 0.0
-    
-    # if produce LOHC at terminal (as opposed to purchase), 
-    # update LOHC purification costs ($/kg LOHC)
-    # placeholders from Table 8, Ramdin et al., 2019; 
-    # hybrid extraction-distillation from 10 wt% to 85 wt% formic acid    
-    # "Maintenance, depreciation, interest, and taxes are 
-    # excluded" in OPEX in Ramdin et al."
-    # TODO: calculate capital cost ($) and O&M cost ($/yr) as function of
-    # plant capacity
-    # TODO: incorporate purification costs as user input?
-    if hydr_pathway != 'purchase':
-        LOHC_TML_distil_lev_cap_cost_usd_per_kgLOHC = 0.129
-        LOHC_TML_distil_om_cost_usd_per_kgLOHC = 0.116    
-        
-    # calculate LOHC purification capital cost ($/kg H2)
-    LOHC_TML_distil_lev_cap_cost_usd_per_kg = \
-        LOHC_TML_distil_lev_cap_cost_usd_per_kgLOHC * \
-        tot_LOHC_deliv_kg_per_day / tot_H2_deliv_kg_per_day
-        
-    # calculate LOHC purification O&M cost ($/kg H2)
+    # calculate LOHC extractive distillation O&M cost ($/kg H2)
     LOHC_TML_distil_om_cost_usd_per_kg = \
-        LOHC_TML_distil_om_cost_usd_per_kgLOHC * \
-        tot_LOHC_deliv_kg_per_day / tot_H2_deliv_kg_per_day
+        LOHC_TML_distil_om_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+        
+    # calculate LOHC extractive distillation utility cost ($/kg H2)
+    LOHC_TML_distil_util_cost_usd_per_kg = \
+        LOHC_TML_distil_util_cost_usd_per_kgLOHC * \
+        LOHC_TML_LOHC_flow_kg_per_day / tot_H2_deliv_kg_per_day
+        
+    # calculate LOHC extractive distillation utility cost ($/yr)
+    LOHC_TML_distil_util_cost_usd_per_yr = \
+        LOHC_TML_distil_util_cost_usd_per_kg * \
+        tot_H2_deliv_kg_per_yr
 
     # append results to list
-    # TODO: add LOHC purification O&M cost in $/yr --> 
-    # calculate as function of plant capacity
+    # NOTE: allocate utility cost to energy cost, assuming it is
+    # mostly heat for distillation
     list_output.append([
-        'LOHC - ' + str(LOHC_name), 
+        'LOHC - ' + str(LOHC_name),
         'production', 
         'terminal', 
         'separation', 
-        'distillation', 
-        'capital cost', 
-        'levelized capital cost', 
-        '$/kg H2', 
-        LOHC_TML_distil_lev_cap_cost_usd_per_kg
+        'distillation',
+        'O&M cost', 
+        'operation, maintenance, repair costs', 
+        '$/yr', 
+        LOHC_TML_distil_om_cost_usd_per_yr
         ])
     list_output.append([
         'LOHC - ' + str(LOHC_name), 
         'production', 
         'terminal', 
         'separation', 
-        'distillation', 
+        'distillation',
         'O&M cost', 
-        'operation cost', 
+        'operation, maintenance, repair costs', 
         '$/kg H2', 
         LOHC_TML_distil_om_cost_usd_per_kg
         ])
+    
+    list_output.append([
+        'LOHC - ' + str(LOHC_name), 
+        'production', 
+        'terminal', 
+        'separation', 
+        'distillation',
+        'energy cost', 
+        'utility', 
+        '$/yr', 
+        LOHC_TML_distil_util_cost_usd_per_yr
+        ])
+    list_output.append([
+        'LOHC - ' + str(LOHC_name), 
+        'production', 
+        'terminal', 
+        'separation', 
+        'distillation',
+        'energy cost', 
+        'utility', 
+        '$/kg H2', 
+        LOHC_TML_distil_util_cost_usd_per_kg
+        ])    
     
     #%% CALCULATIONS: LOHC DELIVERY ("LOHC")
     # LOHC PRECONDITIONING @ TERMINAL
@@ -8802,7 +8916,7 @@ def calcs(
         LOHC_TML_hydr_react_inst_cost_usd + \
         LOHC_TML_hydr_catal_purc_cost_usd + \
         LOHC_TML_hydr_electr_inst_cost_usd + \
-        LOHC_TML_distil_cap_cost_usd + \
+        LOHC_TML_distil_inst_cost_usd + \
         LOHC_TML_load_pump_inst_cost_usd + \
         LOHC_TML_stor_inst_cost_usd
                 
@@ -8842,7 +8956,7 @@ def calcs(
             LOHC_TML_hydr_electr_inst_cost_usd / \
             LOHC_TML_init_cap_inv_usd
         LOHC_TML_distil_cost_perc = \
-            LOHC_TML_distil_cap_cost_usd / \
+            LOHC_TML_distil_inst_cost_usd / \
             LOHC_TML_init_cap_inv_usd
         LOHC_TML_load_pump_cost_perc = \
             LOHC_TML_load_pump_inst_cost_usd / \
@@ -9740,14 +9854,14 @@ def calcs(
 
     # ------------------------------------------------------------------------
     # production - LOHC:
-    # LOHC purification (distillation) levelized capital cost
+    # LOHC purification (extractive distillation) levelized capital cost
     
-    # calculate distillator total capital investment ($) 
-    # (= terminal total capital investment allocated to distillator)
+    # calculate extractive distillation total capital investment ($) 
+    # (= terminal total capital investment allocated to distillation)
     LOHC_TML_distil_tot_cap_inv_usd = \
         LOHC_TML_distil_cost_perc * LOHC_TML_tot_cap_inv_usd
     
-    # calculate distillator levelized capital cost 
+    # calculate extractive distillation levelized capital cost 
     # ($/yr, output dollar year)
     LOHC_TML_distil_lev_cap_cost_usd_per_yr, \
     LOHC_TML_distil_lev_cap_cost_dollar_year = \
@@ -9758,36 +9872,33 @@ def calcs(
             input_dollar_year = LOHC_TML_cap_cost_dollar_year
             )
     
-    # calculate distillator levelized capital cost ($/kg H2)
-    # TODO: uncomment after updating distillator capital cost ($) 
-    # LOHC_TML_distil_lev_cap_cost_usd_per_kg = \
-    #     LOHC_TML_distil_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
+    # calculate extractive distillation levelized capital cost ($/kg H2)
+    LOHC_TML_distil_lev_cap_cost_usd_per_kg = \
+        LOHC_TML_distil_lev_cap_cost_usd_per_yr / tot_H2_deliv_kg_per_yr
     
     # append results to list
-    # TODO: uncomment after updating distillator capital cost ($) 
-    # (for now, use $/kg values from Ramdin et al., 2019)
-    # list_output.append([
-    #     'LOHC - ' + str(LOHC_name), 
-    #     'production', 
-    #     'terminal', 
-    #     'separation', 
-    #     'distillation', 
-    #     'capital cost', 
-    #     'levelized capital cost', 
-    #     '$/yr', 
-    #     LOHC_TML_distil_lev_cap_cost_usd_per_yr
-    #     ])
-    # list_output.append([
-    #     'LOHC - ' + str(LOHC_name), 
-    #     'production', 
-    #     'terminal', 
-    #     'separation', 
-    #     'distillation', 
-    #     'capital cost', 
-    #     'levelized capital cost', 
-    #     '$/kg H2', 
-    #     LOHC_TML_distil_lev_cap_cost_usd_per_kg
-    #     ])
+    list_output.append([
+        'LOHC - ' + str(LOHC_name),
+        'production', 
+        'terminal', 
+        'separation', 
+        'distillation',
+        'capital cost', 
+        'levelized capital cost', 
+        '$/yr', 
+        LOHC_TML_distil_lev_cap_cost_usd_per_yr
+        ])
+    list_output.append([
+        'LOHC - ' + str(LOHC_name), 
+        'production', 
+        'terminal', 
+        'separation', 
+        'distillation', 
+        'capital cost', 
+        'levelized capital cost', 
+        '$/kg H2', 
+        LOHC_TML_distil_lev_cap_cost_usd_per_kg
+        ])
 
     # ------------------------------------------------------------------------
     # preconditioning - LOHC: loading pump levelized capital cost

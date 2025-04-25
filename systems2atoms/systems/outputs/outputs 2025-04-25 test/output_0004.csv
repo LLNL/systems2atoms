@@ -12,7 +12,7 @@ all,all,all,all,all,input parameter,electricity emission factor,kg CO2/kWh,0.0
 all,all,all,all,all,input parameter,diesel emission factor,kg CO2/gallon,10.18
 all,all,all,all,all,input parameter,hydrogen prod. emission factor,kg CO2-eq/kg,0
 all,all,all,all,all,input parameter,LOHC prod. emission factor,kg CO2-eq/kg,0
-all,all,all,all,all,input parameter,hydrogen purchase cost,$/kg,0.31
+all,all,all,all,all,input parameter,hydrogen purchase cost,$/kg,6.0
 all,all,all,all,all,input parameter,LOHC purchase cost,$/kg,0
 all,all,all,all,all,input parameter,LOHC name,-,MCH (ideal)
 all,all,all,all,all,input parameter,LOHC molar mass,kg/kmol,98.1861
@@ -54,8 +54,8 @@ all,all,all,all,all,input parameter,dehydr. gas/liquid separator energy,unit TBD
 all,all,all,all,all,input parameter,station LOHC storage amount,days,1
 compressed hydrogen,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
 compressed hydrogen,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
-compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,1131500.0
-compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.31
+compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,21900000.0
+compressed hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,6.0
 compressed hydrogen,preconditioning,terminal,compression,loading compressor,energy consumption,electricity consumption,kWh/kg H2,1.2976997593938726
 compressed hydrogen,preconditioning,terminal,compression,loading compressor,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.03894397410651835
 compressed hydrogen,preconditioning,terminal,compression,storage compressor,energy consumption,electricity consumption,kWh/kg H2,1.0410589791520164
@@ -142,8 +142,8 @@ compressed hydrogen,reconditioning,refueling station,cooling,refrigerator,energy
 compressed hydrogen,reconditioning,refueling station,cooling,refrigerator,energy cost,electricity cost,$/kg H2,0.05984979703474284
 liquid hydrogen,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,kg CO2/kg H2,0.0
 liquid hydrogen,production,terminal,purchase,hydrogen purchase,emissions,upstream emissions,g CO2/MJ H2 (LHV),0.0
-liquid hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,1131500.0
-liquid hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.31
+liquid hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,21900000.0
+liquid hydrogen,production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,6.0
 liquid hydrogen,preconditioning,liquefier,liquefaction,liquefier,energy consumption,electricity consumption,kWh/kg H2,10.629700437080334
 liquid hydrogen,preconditioning,liquefier,liquefaction,liquefier,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.3189973455609304
 liquid hydrogen,preconditioning,terminal,pumping,loading pump,energy consumption,electricity consumption,kWh/kg H2,0.0005296792911471811
@@ -244,7 +244,6 @@ LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,emissions,energy em
 LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
 LOHC - MCH (ideal),production,truck,CO2 recycling,truck,emissions,energy emissions,kg CO2/kg H2,0.0
 LOHC - MCH (ideal),production,truck,CO2 recycling,truck,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-LOHC - MCH (ideal),production,terminal,separation,distillation,capital cost,levelized capital cost,$/kg H2,2.094456618280876
 LOHC - MCH (ideal),production,terminal,compression,reactor compressor,capital cost,levelized capital cost,$/yr,0.0
 LOHC - MCH (ideal),production,terminal,compression,reactor compressor,capital cost,levelized capital cost,$/kg H2,0.0
 LOHC - MCH (ideal),production,terminal,pumping,reactor pump,capital cost,levelized capital cost,$/yr,0.0
@@ -259,19 +258,22 @@ LOHC - MCH (ideal),production,terminal,reaction,electrolyzer catalyst-coated mem
 LOHC - MCH (ideal),production,terminal,reaction,electrolyzer catalyst-coated membrane,capital cost,levelized capital cost,$/kg H2,1.5623052811249019
 LOHC - MCH (ideal),production,terminal,reaction,electrolyzer non-catalyst components,capital cost,levelized capital cost,$/yr,6969617.448573869
 LOHC - MCH (ideal),production,terminal,reaction,electrolyzer non-catalyst components,capital cost,levelized capital cost,$/kg H2,1.9094842324859915
+LOHC - MCH (ideal),production,terminal,separation,distillation,capital cost,levelized capital cost,$/yr,1132626.7195532983
+LOHC - MCH (ideal),production,terminal,separation,distillation,capital cost,levelized capital cost,$/kg H2,0.3103086902885749
 LOHC - MCH (ideal),production,truck,CO2 recycling,truck,capital cost,all-in CO2 transport cost,$/yr,0
 LOHC - MCH (ideal),production,truck,CO2 recycling,truck,capital cost,all-in CO2 transport cost,$/kg H2,0.0
 LOHC - MCH (ideal),production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/yr,0.0
 LOHC - MCH (ideal),production,terminal,purchase,LOHC purchase,O&M cost,purchase cost,$/kg H2,0.0
-LOHC - MCH (ideal),production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,1131613.1613161315
-LOHC - MCH (ideal),production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,0.31003100310031
+LOHC - MCH (ideal),production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/yr,21902190.219021898
+LOHC - MCH (ideal),production,terminal,purchase,hydrogen purchase,O&M cost,purchase cost,$/kg H2,6.000600060006
 LOHC - MCH (ideal),production,terminal,compression,reactor compressor,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 LOHC - MCH (ideal),production,terminal,compression,reactor compressor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
 LOHC - MCH (ideal),production,terminal,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 LOHC - MCH (ideal),production,terminal,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
 LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,O&M cost,"operation, maintenance, repair costs",$/yr,507861.73820095
 LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.13914020224683563
-LOHC - MCH (ideal),production,terminal,separation,distillation,O&M cost,operation cost,$/kg H2,1.883387346671175
+LOHC - MCH (ideal),production,terminal,separation,distillation,O&M cost,"operation, maintenance, repair costs",$/yr,52211.90818045738
+LOHC - MCH (ideal),production,terminal,separation,distillation,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.014304632378207501
 LOHC - MCH (ideal),production,terminal,compression,reactor compressor,O&M cost,other O&M costs,$/yr,0.0
 LOHC - MCH (ideal),production,terminal,compression,reactor compressor,O&M cost,other O&M costs,$/kg H2,0.0
 LOHC - MCH (ideal),production,terminal,pumping,reactor pump,O&M cost,other O&M costs,$/yr,0.0
@@ -282,10 +284,10 @@ LOHC - MCH (ideal),production,terminal,reaction,reactor,O&M cost,other O&M costs
 LOHC - MCH (ideal),production,terminal,reaction,reactor,O&M cost,other O&M costs,$/kg H2,0.0
 LOHC - MCH (ideal),production,terminal,reaction,catalyst,O&M cost,other O&M costs,$/yr,0.0
 LOHC - MCH (ideal),production,terminal,reaction,catalyst,O&M cost,other O&M costs,$/kg H2,0.0
-LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,O&M cost,other O&M costs,$/yr,1493113.5103107928
-LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,O&M cost,other O&M costs,$/kg H2,0.40907219460569666
-LOHC - MCH (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/yr,0.0
-LOHC - MCH (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/kg H2,0.0
+LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,O&M cost,other O&M costs,$/yr,1493113.510310793
+LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,O&M cost,other O&M costs,$/kg H2,0.4090721946056967
+LOHC - MCH (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/yr,153503.0100505447
+LOHC - MCH (ideal),production,terminal,separation,distillation,O&M cost,other O&M costs,$/kg H2,0.04205561919193005
 LOHC - MCH (ideal),production,terminal,compression,reactor compressor,O&M cost,labor cost,$/yr,0.0
 LOHC - MCH (ideal),production,terminal,compression,reactor compressor,O&M cost,labor cost,$/kg H2,0.0
 LOHC - MCH (ideal),production,terminal,pumping,reactor pump,O&M cost,labor cost,$/yr,0.0
@@ -296,14 +298,16 @@ LOHC - MCH (ideal),production,terminal,reaction,reactor,O&M cost,labor cost,$/yr
 LOHC - MCH (ideal),production,terminal,reaction,reactor,O&M cost,labor cost,$/kg H2,0.0
 LOHC - MCH (ideal),production,terminal,reaction,catalyst,O&M cost,labor cost,$/yr,0.0
 LOHC - MCH (ideal),production,terminal,reaction,catalyst,O&M cost,labor cost,$/kg H2,0.0
-LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,O&M cost,labor cost,$/yr,574752.941044838
-LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,O&M cost,labor cost,$/kg H2,0.1574665591903666
-LOHC - MCH (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/yr,0.0
-LOHC - MCH (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/kg H2,0.0
+LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,O&M cost,labor cost,$/yr,521266.2437189833
+LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,O&M cost,labor cost,$/kg H2,0.1428126695120502
+LOHC - MCH (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/yr,53589.98957282851
+LOHC - MCH (ideal),production,terminal,separation,distillation,O&M cost,labor cost,$/kg H2,0.014682188924062605
 LOHC - MCH (ideal),production,terminal,compression,reactor compressor,energy cost,electricity cost,$/yr,0.0
 LOHC - MCH (ideal),production,terminal,compression,reactor compressor,energy cost,electricity cost,$/kg H2,0.0
 LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,energy cost,electricity cost,$/yr,17914260.391812988
 LOHC - MCH (ideal),production,terminal,reaction,electrolyzer,energy cost,electricity cost,$/kg H2,4.908016545702188
+LOHC - MCH (ideal),production,terminal,separation,distillation,energy cost,utility,$/yr,0.0
+LOHC - MCH (ideal),production,terminal,separation,distillation,energy cost,utility,$/kg H2,0.0
 LOHC - MCH (ideal),preconditioning,terminal,pumping,loading pump,energy consumption,electricity consumption,kWh/kg H2,0.0
 LOHC - MCH (ideal),preconditioning,terminal,pumping,loading pump,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
 LOHC - MCH (ideal),preconditioning,terminal,pumping,loading pump,emissions,energy emissions,kg CO2/kg H2,0.0
@@ -318,12 +322,12 @@ LOHC - MCH (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,"ope
 LOHC - MCH (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.00026870427326809016
 LOHC - MCH (ideal),preconditioning,terminal,pumping,loading pump,O&M cost,other O&M costs,$/yr,0.0
 LOHC - MCH (ideal),preconditioning,terminal,pumping,loading pump,O&M cost,other O&M costs,$/kg H2,0.0
-LOHC - MCH (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,other O&M costs,$/yr,2883.465556439875
-LOHC - MCH (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.000789990563408185
+LOHC - MCH (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,other O&M costs,$/yr,2883.4655564398754
+LOHC - MCH (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,other O&M costs,$/kg H2,0.0007899905634081851
 LOHC - MCH (ideal),preconditioning,terminal,pumping,loading pump,O&M cost,labor cost,$/yr,0.0
 LOHC - MCH (ideal),preconditioning,terminal,pumping,loading pump,O&M cost,labor cost,$/kg H2,0.0
-LOHC - MCH (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/yr,1109.9493089579937
-LOHC - MCH (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.00030409570108438184
+LOHC - MCH (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/yr,1006.6570619842693
+LOHC - MCH (ideal),preconditioning,terminal,storage,liquid storage,O&M cost,labor cost,$/kg H2,0.000275796455338156
 LOHC - MCH (ideal),preconditioning,terminal,pumping,loading pump,energy cost,electricity cost,$/yr,0.0
 LOHC - MCH (ideal),preconditioning,terminal,pumping,loading pump,energy cost,electricity cost,$/kg H2,0.0
 LOHC - MCH (ideal),transport,truck,trucking,truck,energy consumption,diesel consumption,gallon/kg H2,0.015004415367447769
