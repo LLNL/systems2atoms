@@ -292,9 +292,9 @@ class TorchLinearRegression(LinearRegression):
     @property
     def coef_(self):
         if isinstance(self.scale_weight, torch.Tensor):
-            return (self.params[1:] * self.scale_weight * self.target_scale_weight).numpy()
+            return (self.params[1:] * self.scale_weight * self.target_scale_weight).numpy().T
         else:
-            return (self.params[1:] * torch.tensor(self.scale_weight) * self.target_scale_weight).numpy()
+            return (self.params[1:] * torch.tensor(self.scale_weight) * self.target_scale_weight).numpy().T
 
 
 class _LinearTree(BaseDecisionTree):
