@@ -360,14 +360,14 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 0,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 0,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
 0,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
-0,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.008098458492852224
-0,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0002430347663743582
-0,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.001846448536370307
-0,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.015392201870376017
-0,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,5051.696930963824
-0,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
-0,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
-0,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+0,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.008098458492852224
+0,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0002430347663743582
+0,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.001846448536370307
+0,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.015392201870376017
+0,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/yr,5051.696930963824
+0,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
+0,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+0,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
 0,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,kWh/kg H2,5.966005878459616
 0,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.17903985630589045
 0,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,kg CO2/kg H2,1.3602493402887925
@@ -813,14 +813,14 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 1,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 1,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
 1,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
-1,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.008098458492852224
-1,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0002430347663743582
-1,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
-1,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-1,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,5051.696930963824
-1,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
-1,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
-1,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+1,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.008098458492852224
+1,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0002430347663743582
+1,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
+1,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+1,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/yr,5051.696930963824
+1,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
+1,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+1,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
 1,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,kWh/kg H2,5.966005878459616
 1,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.17903985630589045
 1,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,kg CO2/kg H2,0.0
@@ -1266,14 +1266,14 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 2,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 2,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.002085972503242639
 2,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
-2,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.008098458492852224
-2,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0002430347663743582
-2,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
-2,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-2,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,4041.3575447710596
-2,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
-2,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
-2,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.010044302687686815
+2,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.008098458492852224
+2,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0002430347663743582
+2,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
+2,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+2,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/yr,4041.3575447710596
+2,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
+2,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+2,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.010044302687686815
 2,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,kWh/kg H2,5.966005878459616
 2,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.17903985630589045
 2,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,kg CO2/kg H2,0.0
@@ -1719,14 +1719,14 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 3,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 3,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
 3,LOHC - formic acid (ideal),reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,33763.49211697851
-3,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.008098458492852224
-3,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0002430347663743582
-3,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
-3,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-3,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,5051.696930963824
-3,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
-3,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
-3,LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+3,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.008098458492852224
+3,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0002430347663743582
+3,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
+3,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+3,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/yr,5051.696930963824
+3,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
+3,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+3,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
 3,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,kWh/kg H2,5.966005878459616
 3,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.17903985630589045
 3,LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,kg CO2/kg H2,0.0
@@ -2172,14 +2172,14 @@ run #,pathway,process,location,function,equipment,variable group,variable name,u
 4,LOHC - MCH (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,360593.546064909
 4,LOHC - MCH (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.09879275234655041
 4,LOHC - MCH (ideal),reconditioning,refueling station,reaction,catalyst,capital cost,purchase cost,$/station,8007.9975
-4,LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.0
-4,LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
-4,LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
-4,LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-4,LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,0.0
-4,LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0
-4,LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
-4,LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+4,LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.0
+4,LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
+4,LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
+4,LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+4,LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/yr,0.0
+4,LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0
+4,LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+4,LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
 4,LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,kWh/kg H2,0.0
 4,LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
 4,LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,kg CO2/kg H2,0.0

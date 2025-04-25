@@ -346,8 +346,8 @@ LOHC - MCH (ideal),reconditioning,refueling station,pumping,reactor pump,energy 
 LOHC - MCH (ideal),reconditioning,refueling station,pumping,reactor pump,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
 LOHC - MCH (ideal),reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,kWh/kg H2,0.2793013698630137
 LOHC - MCH (ideal),reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.008381835040904045
-LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.0
-LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
+LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.0
+LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
 LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,kWh/kg H2,0.0
 LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
 LOHC - MCH (ideal),reconditioning,refueling station,compression,compressor,energy consumption,electricity consumption,kWh/kg H2,2.488800155088783
@@ -358,8 +358,8 @@ LOHC - MCH (ideal),reconditioning,refueling station,pumping,reactor pump,emissio
 LOHC - MCH (ideal),reconditioning,refueling station,pumping,reactor pump,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
 LOHC - MCH (ideal),reconditioning,refueling station,reaction,reactor,emissions,energy emissions,kg CO2/kg H2,0.0
 LOHC - MCH (ideal),reconditioning,refueling station,reaction,reactor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
-LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
+LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.0
+LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
 LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,kg CO2/kg H2,0.0
 LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
 LOHC - MCH (ideal),reconditioning,refueling station,compression,compressor,emissions,energy emissions,kg CO2/kg H2,0.0
@@ -392,8 +392,8 @@ LOHC - MCH (ideal),reconditioning,refueling station,pumping,reactor pump,O&M cos
 LOHC - MCH (ideal),reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
 LOHC - MCH (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,360593.546064909
 LOHC - MCH (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.09879275234655041
-LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
-LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
+LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
+LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
 LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,0.0
 LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
 LOHC - MCH (ideal),reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
@@ -444,8 +444,8 @@ LOHC - MCH (ideal),reconditioning,refueling station,pumping,reactor pump,energy 
 LOHC - MCH (ideal),reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
 LOHC - MCH (ideal),reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/yr,174224.00499999998
 LOHC - MCH (ideal),reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/kg H2,0.04773260410958904
-LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,0.0
-LOHC - MCH (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0
+LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/yr,0.0
+LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.0
 LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,0.0
 LOHC - MCH (ideal),reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,0.0
 LOHC - MCH (ideal),reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,1552476.2047420563

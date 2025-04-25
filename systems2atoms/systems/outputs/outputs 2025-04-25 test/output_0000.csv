@@ -346,8 +346,8 @@ LOHC - formic acid (ideal),reconditioning,refueling station,pumping,reactor pump
 LOHC - formic acid (ideal),reconditioning,refueling station,pumping,reactor pump,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,kWh/kg H2,0.0
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.008098458492852224
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0002430347663743582
+LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,kWh/kg H2,0.008098458492852224
+LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.0002430347663743582
 LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,kWh/kg H2,5.966005878459616
 LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy consumption,electricity consumption,MJ/MJ H2 (LHV),0.17903985630589045
 LOHC - formic acid (ideal),reconditioning,refueling station,compression,compressor,energy consumption,electricity consumption,kWh/kg H2,2.488800155088783
@@ -358,8 +358,8 @@ LOHC - formic acid (ideal),reconditioning,refueling station,pumping,reactor pump
 LOHC - formic acid (ideal),reconditioning,refueling station,pumping,reactor pump,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,emissions,energy emissions,kg CO2/kg H2,0.0
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,emissions,energy emissions,g CO2/MJ H2 (LHV),0.0
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.001846448536370307
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.015392201870376017
+LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,kg CO2/kg H2,0.001846448536370307
+LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,emissions,energy emissions,g CO2/MJ H2 (LHV),0.015392201870376017
 LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,kg CO2/kg H2,1.3602493402887925
 LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,emissions,energy emissions,g CO2/MJ H2 (LHV),11.339190899373063
 LOHC - formic acid (ideal),reconditioning,refueling station,compression,compressor,emissions,energy emissions,kg CO2/kg H2,0.5674464353602425
@@ -392,8 +392,8 @@ LOHC - formic acid (ideal),reconditioning,refueling station,pumping,reactor pump
 LOHC - formic acid (ideal),reconditioning,refueling station,pumping,reactor pump,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/yr,6091.039709468507
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.0016687780025941114
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
+LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/yr,29329.3638480455
+LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.008035442150149452
 LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/yr,271854.77415626496
 LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,O&M cost,"operation, maintenance, repair costs",$/kg H2,0.07448076004281232
 LOHC - formic acid (ideal),reconditioning,refueling station,compression,compressor,O&M cost,"operation, maintenance, repair costs",$/yr,1084111.6754689454
@@ -444,8 +444,8 @@ LOHC - formic acid (ideal),reconditioning,refueling station,pumping,reactor pump
 LOHC - formic acid (ideal),reconditioning,refueling station,pumping,reactor pump,energy cost,electricity cost,$/kg H2,0.0
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/yr,0.0
 LOHC - formic acid (ideal),reconditioning,refueling station,reaction,reactor,energy cost,electricity cost,$/kg H2,0.0
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/yr,5051.696930963824
-LOHC - formic acid (ideal),reconditioning,refueling station,cooling,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
+LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/yr,5051.696930963824
+LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA refrigerator,energy cost,electricity cost,$/kg H2,0.001384026556428445
 LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/yr,3721504.9768949314
 LOHC - formic acid (ideal),reconditioning,refueling station,separation,PSA,energy cost,electricity cost,$/kg H2,1.0195904046287483
 LOHC - formic acid (ideal),reconditioning,refueling station,compression,compressor,energy cost,electricity cost,$/yr,1552476.2047420563
