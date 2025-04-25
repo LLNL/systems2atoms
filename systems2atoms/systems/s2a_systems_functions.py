@@ -1478,7 +1478,7 @@ def electrolyzer_fixed_costs(
     r"""Calculate electrolyzer installed cost (\\$) and annual O&M cost (\$/yr), both in user-specified output dollar year.
             
     Reference(s): 
-    (a) Ramdin, M., Morrison, A. R. T., de Groen, M., van Haperen, R., de Kler, R., van den Broeke, L. J. P., Trusler, J. P. M., de Jong, W., & Vlugt, T. J. H. (2019). High Pressure Electrochemical Reduction of CO2 to Formic Acid/Formate: A Comparison between Bipolar Membranes and Cation Exchange Membranes. Industrial & Engineering Chemistry Research, 58(5), 1834-1847. https://doi.org/10.1021/acs.iecr.8b04944.
+    (a) Ramdin, M., A. R. T. Morrison, M. de Groen, R. van Haperen, R. de Kler, L. J. P. van den Broeke, J. P. M. Trusler, W. de Jong, and T. J. H. Vlugt. 2019. "High pressure electrochemical reduction of CO2 to formic acid/formate: A comparison between bipolar membranes and cation exchange membranes." Industrial & Engineering Chemistry Research 58 (5): 1834-1847. https://doi.org/10.1021/acs.iecr.8b04944.
     (b) Li, W. Q., J. T. Feaster, S. A. Akhade, J. T. Davis, A. A. Wong, V. A. Beck, . . . S. E. Baker. 2021. "Comparative Techno-Economic and Life Cycle Analysis of Water Oxidation and Hydrogen Oxidation at the Anode in a CO2 Electrolysis to Ethylene System." ACS Sustainable Chemistry & Engineering 9 (44): 14678-14689. https://doi.org/10.1021/acssuschemeng.1c01846.
 
 
