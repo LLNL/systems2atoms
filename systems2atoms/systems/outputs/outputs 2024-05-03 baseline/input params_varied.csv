@@ -1,4 +1,0 @@
-scenario,run #,electricity emission factor (kg CO2/kWh),hydrogen purchase cost ($/kg),formic acid production pathway
-baseline,0,0.228,0.31,electro
-delivery only,1,0.0,0.0,purchase
-closed loop,2,0.0,0.31,electro
