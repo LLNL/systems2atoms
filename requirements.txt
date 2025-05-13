@@ -7,5 +7,5 @@ matplotlib
 tqdm
 torch
 pyomo
-omlt @ git+https://github.com/cog-imperial/OMLT
+omlt >= 1.2.0
 linear-tree @ git+https://github.com/emsunshine/linear-tree
