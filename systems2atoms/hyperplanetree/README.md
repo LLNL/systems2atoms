@@ -1,7 +1,9 @@
 # hyperplanetree
-A Python library to build piecewise linear or piecewise quadratic models in multi-dimensional spaces.
+A Python library to build piecewise linear models in multi-dimensional spaces.
 
 This code is a fork of [linear-tree](https://github.com/cerlymarco/linear-tree). Please see this repository for more information about Linear Model Decision Trees!
+
+[Check out our paper on this project!](https://www.sciencedirect.com/science/article/pii/S009813542500208X)
 
 ## What does this fork include?
 
