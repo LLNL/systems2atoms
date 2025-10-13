@@ -654,7 +654,7 @@ class _LinearTree(BaseDecisionTree):
 
                 if len(queue) > 0:
 
-                    if self.early_stop_loss > -np.inf:
+                    if self.early_stop_loss > -torch.inf:
                         yh = self.predict(X)
                         current_loss = self.loss_func(y, yh)
                         current_loss = torch.sum(current_loss)
