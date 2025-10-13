@@ -309,7 +309,7 @@ class _LinearTree(BaseDecisionTree):
                  split_features, linear_features, disable_tqdm,
                  save_linear_propogation_uncertainty_parameters,
                  save_quadratic_uncertainty_parameters,
-                 max_batch_size, depth_first, ridge):
+                 max_batch_size, train_priority, ridge, early_stop_loss):
 
         self.base_estimator = base_estimator
         self.criterion = criterion
@@ -325,8 +325,9 @@ class _LinearTree(BaseDecisionTree):
         self.save_linear_propogation_uncertainty_parameters = save_linear_propogation_uncertainty_parameters
         self.save_quadratic_uncertainty_parameters = save_quadratic_uncertainty_parameters
         self.max_batch_size = max_batch_size
-        self.depth_first = depth_first
+        self.train_priority = train_priority
         self.ridge = ridge
+        self.early_stop_loss = early_stop_loss
         
         if isinstance(criterion, Callable):
             self.loss_func = criterion
@@ -572,7 +573,7 @@ class _LinearTree(BaseDecisionTree):
             pbar.set_postfix_str('Progress is estimated. Tree may finish training normally at any point beyond 50% progress.')
             i = 1
 
-            if self.depth_first:
+            if self.train_priority == 'depth':
                 active_index = -1
             else:
                 active_index = 0
@@ -652,6 +653,24 @@ class _LinearTree(BaseDecisionTree):
                         queue.extend([q + 'R', q + 'L'])
 
                 if len(queue) > 0:
+
+                    yh = self.predict(X)
+                    current_loss = self.loss_func(y, yh)
+                    current_loss = torch.sum(current_loss)
+                    if current_loss < self.early_stop_loss:
+                        break
+
+                    # Set active index based on splitting priority
+                    if self.split_priority == 'depth':
+                        active_index = -1
+                    elif self.split_priority == 'breadth':
+                        active_index = 0
+                    elif self.split_priority == 'loss':
+                        losses = [self._nodes[n].loss for n in queue]
+                        active_index = int(torch.argmax(torch.tensor(losses)))
+                    elif self.split_priority == 'random':
+                        active_index = int(torch.randint(high = len(queue), size = (1,)))
+
                     loss = self._nodes[queue[active_index]].loss
                     mask = _predict_branch(X, self._nodes[queue[active_index]].threshold, start.clone())
                     

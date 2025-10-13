@@ -261,12 +261,16 @@ class QuadricTreeRegressor(QuadricMixin, LinearTreeRegressor):
         Maximum amount of data used to fit a split.
         Allows fitting of large datasets with limited memory
 
-    depth_first : bool, default = True
-        Make splits depth-first through the tree.
-        If False, make splits breadth-first.
-        Depth-first is generally recommended for the following reasons:
-        1. Leaves close in index are usually close in domain
-        2. More accurate training time estimation
+    split_priority : str, default = 'depth'
+        Select next node for splitting based on a given priority.
+        Options are:
+        - 'depth': Split deepest nodes first
+        - 'breadth': Split shallowest nodes first
+        - 'loss': Split nodes with highest loss first
+        - 'random': Split random nodes first
+
+    early_stop_loss : float, default = -torch.inf
+        Stop training once a training loss lower than this value is reached.
     """
 
     def __init__(
@@ -288,7 +292,8 @@ class QuadricTreeRegressor(QuadricMixin, LinearTreeRegressor):
         save_linear_propogation_uncertainty_parameters: bool = False,
         save_quadratic_uncertainty_parameters: bool = False,
         max_batch_size = torch.inf,
-        depth_first = True,
+        split_priority = 'depth',
+        early_stop_loss = -torch.inf,
         ):
         QuadricMixin.__init__(
             self,
@@ -314,5 +319,7 @@ class QuadricTreeRegressor(QuadricMixin, LinearTreeRegressor):
             save_linear_propogation_uncertainty_parameters,
             save_quadratic_uncertainty_parameters,
             max_batch_size,
-            depth_first,
+            split_priority,
+            ridge = 1e-5,
+            early_stop_loss = early_stop_loss,
         )
