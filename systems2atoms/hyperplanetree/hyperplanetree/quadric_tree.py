@@ -267,6 +267,8 @@ class QuadricTreeRegressor(QuadricMixin, LinearTreeRegressor):
         - 'depth': Split deepest nodes first
         - 'breadth': Split shallowest nodes first
         - 'loss': Split nodes with highest loss first
+        - 'weighted_loss': Split nodes with highest weighted loss first
+            (weight = n_samples in node / total n_samples)
         - 'random': Split random nodes first
 
     early_stop_loss : float, default = -torch.inf

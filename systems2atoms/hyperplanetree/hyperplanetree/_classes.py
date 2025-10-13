@@ -654,11 +654,12 @@ class _LinearTree(BaseDecisionTree):
 
                 if len(queue) > 0:
 
-                    yh = self.predict(X)
-                    current_loss = self.loss_func(y, yh)
-                    current_loss = torch.sum(current_loss)
-                    if current_loss < self.early_stop_loss:
-                        break
+                    if self.early_stop_loss > -np.inf:
+                        yh = self.predict(X)
+                        current_loss = self.loss_func(y, yh)
+                        current_loss = torch.sum(current_loss)
+                        if current_loss < self.early_stop_loss:
+                            break
 
                     # Set active index based on splitting priority
                     if self.split_priority == 'depth':
@@ -668,6 +669,10 @@ class _LinearTree(BaseDecisionTree):
                     elif self.split_priority == 'loss':
                         losses = [self._nodes[n].loss for n in queue]
                         active_index = int(torch.argmax(torch.tensor(losses)))
+                    elif self.split_priority == 'weighted_loss':
+                        n_samples = self.apply(X).bincount().float()
+                        w_losses = [self._nodes[n].loss * n_samples[self._nodes[n].id] for n in queue]
+                        active_index = int(torch.argmax(torch.tensor(w_losses)))
                     elif self.split_priority == 'random':
                         active_index = int(torch.randint(high = len(queue), size = (1,)))
 
