@@ -309,7 +309,7 @@ class _LinearTree(BaseDecisionTree):
                  split_features, linear_features, disable_tqdm,
                  save_linear_propogation_uncertainty_parameters,
                  save_quadratic_uncertainty_parameters,
-                 max_batch_size, train_priority, ridge, early_stop_loss):
+                 max_batch_size, split_priority, ridge, early_stop_loss):
 
         self.base_estimator = base_estimator
         self.criterion = criterion
@@ -325,7 +325,7 @@ class _LinearTree(BaseDecisionTree):
         self.save_linear_propogation_uncertainty_parameters = save_linear_propogation_uncertainty_parameters
         self.save_quadratic_uncertainty_parameters = save_quadratic_uncertainty_parameters
         self.max_batch_size = max_batch_size
-        self.train_priority = train_priority
+        self.split_priority = split_priority
         self.ridge = ridge
         self.early_stop_loss = early_stop_loss
         
@@ -573,7 +573,7 @@ class _LinearTree(BaseDecisionTree):
             pbar.set_postfix_str('Progress is estimated. Tree may finish training normally at any point beyond 50% progress.')
             i = 1
 
-            if self.train_priority == 'depth':
+            if self.split_priority == 'depth':
                 active_index = -1
             else:
                 active_index = 0
