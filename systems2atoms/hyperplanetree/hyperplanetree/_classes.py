@@ -657,8 +657,8 @@ class _LinearTree(BaseDecisionTree):
                         worst_loss = max([node.loss for node in self._nodes.values() if node.children is None])
                         if worst_loss < self.early_stop_loss:
                             # Empty the queue
-                            for i in queue:
-                                self._leaves[i] = self._nodes[i]
+                            for j in queue:
+                                self._leaves[j] = self._nodes[j]
                             queue = []
                             
                 if len(queue) > 0:
