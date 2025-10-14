@@ -654,14 +654,8 @@ class _LinearTree(BaseDecisionTree):
 
                 if len(queue) > 0:
                     if self.early_stop_loss > -torch.inf:
-                        if (self.max_batch_size != torch.inf) and (len(X) > self.max_batch_size):
-                            random_mask = torch.randint(high = len(X), size = (self.max_batch_size,))
-                        batch = X[random_mask]
-                        y_true = y[random_mask]
-                        
-                        yh = self.predict(batch)
-                        current_loss = self.loss_func(y_true, yh)
-                        current_loss = torch.sum(current_loss)
+                        current_loss = torch.sum([node.loss * node.n_samples for node in self._nodes if node.children is None]) / len(X)
+                        print(current_loss)
                         if current_loss < self.early_stop_loss:
                             break
 
@@ -675,7 +669,7 @@ class _LinearTree(BaseDecisionTree):
                         active_index = int(torch.argmax(torch.tensor(losses)))
                     elif self.split_priority == 'weighted_loss':
                         n_samples = self.apply(X).bincount().float()
-                        w_losses = [self._nodes[n].loss * n_samples[self._nodes[n].id] for n in queue]
+                        w_losses = [self._nodes[n].loss * self._nodes[n].n_samples for n in queue]
                         active_index = int(torch.argmax(torch.tensor(w_losses)))
                     elif self.split_priority == 'random':
                         active_index = int(torch.randint(high = len(queue), size = (1,)))
