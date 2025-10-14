@@ -653,10 +653,14 @@ class _LinearTree(BaseDecisionTree):
                         queue.extend([q + 'R', q + 'L'])
 
                 if len(queue) > 0:
-
                     if self.early_stop_loss > -torch.inf:
-                        yh = self.predict(X)
-                        current_loss = self.loss_func(y, yh)
+                        if (self.max_batch_size != torch.inf) and (len(X) > self.max_batch_size):
+                            random_mask = torch.randint(high = len(X), size = (self.max_batch_size,))
+                        batch = X[random_mask]
+                        y_true = y[random_mask]
+                        
+                        yh = self.predict(batch)
+                        current_loss = self.loss_func(y_true, yh)
                         current_loss = torch.sum(current_loss)
                         if current_loss < self.early_stop_loss:
                             break
