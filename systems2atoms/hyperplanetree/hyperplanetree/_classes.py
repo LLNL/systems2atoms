@@ -654,9 +654,9 @@ class _LinearTree(BaseDecisionTree):
 
                 if len(queue) > 0:
                     if self.early_stop_loss > -torch.inf:
-                        current_loss = sum([node.loss * node.n_samples for node in self._nodes.values() if node.children is None]) / len(X)
-                        print(current_loss)
-                        if current_loss < self.early_stop_loss:
+                        worst_loss = max([node.loss for node in self._nodes.values() if node.children is None])
+                        print(worst_loss)
+                        if worst_loss < self.early_stop_loss:
                             break
 
                     # Set active index based on splitting priority
