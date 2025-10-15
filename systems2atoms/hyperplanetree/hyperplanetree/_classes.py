@@ -671,7 +671,6 @@ class _LinearTree(BaseDecisionTree):
                         losses = [self._nodes[n].loss for n in queue]
                         active_index = int(torch.argmax(torch.tensor(losses)))
                     elif self.split_priority == 'weighted_loss':
-                        n_samples = self.apply(X).bincount().float()
                         w_losses = [self._nodes[n].loss * self._nodes[n].n_samples for n in queue]
                         active_index = int(torch.argmax(torch.tensor(w_losses)))
                     elif self.split_priority == 'random':
