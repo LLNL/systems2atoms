@@ -35,6 +35,13 @@ from hyperplanetree import LinearTreeRegressor, HyperplaneTreeRegressor
 ```
 
 ## Quickstart
+```python
+from systems2atoms.hyperplanetree import LinearTreeRegressor, HyperplaneTreeRegressor
+model = HyperplaneTreeRegressor()
+model.fit(X, y)
+```
+Note that `X` and `y` must be PyTorch tensors. Other than that, the `LinearTreeRegressor`/`HyperplaneTreeRegressor` objects behave much like any other sk-learn model.
+
 Please see the notebooks folder for basic tutorials on these models.
 
 ## Why Hyperplanes?
