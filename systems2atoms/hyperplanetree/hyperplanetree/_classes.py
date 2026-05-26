@@ -431,11 +431,14 @@ class _LinearTree(BaseDecisionTree):
 
         n_below = mask_below.sum(dim=1)
         n_above = mask_above.sum(dim=1)
+        scale_below = len(X) / n_below.clamp_min(1)
+        scale_above = len(X) / n_above.clamp_min(1)
 
         # Pool the error across the targets
         overall_error = overall_error.sum(dim=0)
-        err_below = err_below.sum(dim=0)
-        err_above = err_above.sum(dim=0)
+        err_below = err_below.sum(dim=0) * scale_below
+        err_above = err_above.sum(dim=0) * scale_above
+        overall_error = (err_below * n_below + err_above * n_above) / len(X)
 
         overall_error = torch.nan_to_num(overall_error, 2*torch.max(overall_error))
         overall_error[~valid_thresholds] += torch.inf
@@ -472,8 +475,8 @@ class _LinearTree(BaseDecisionTree):
             loss_right = err_above[best_threshold_idx, best_feature_idx].item()
 
             if weights is not None:
-                wloss_left = loss_left * (weights[~below_mask].sum() / weights.sum())
-                wloss_right = loss_right * (weights[~above_mask].sum() / weights.sum())
+                wloss_left = loss_left * (weights[below_mask].sum() / weights.sum())
+                wloss_right = loss_right * (weights[above_mask].sum() / weights.sum())
             else:
                 wloss_left = loss_left * n_left / len(X)
                 wloss_right = loss_right * n_right / len(X)
